@@ -1,273 +1,153 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="purple">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snow | Developer Portfolio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script defer src="https://unpkg.com/lucide@latest"></script>
-    <script>window.tailwind = { config: { darkMode: 'class' } }</script>
-    <script defer src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        :root { --accent: #a855f7; --accent-rgb: 168, 85, 247; --bg: #050505; }
-        [data-theme="purple"] { --accent: #a855f7; --accent-rgb: 168, 85, 247; }
-        [data-theme="cyan"] { --accent: #06b6d4; --accent-rgb: 6, 182, 212; }
-        [data-theme="blue"] { --accent: #3b82f6; --accent-rgb: 59, 130, 246; }
-        [data-theme="green"] { --accent: #22c55e; --accent-rgb: 34, 197, 94; }
-        [data-theme="red"] { --accent: #ef4444; --accent-rgb: 239, 68, 68; }
-        [data-theme="gold"] { --accent: #f59e0b; --accent-rgb: 245, 158, 11; }
-
-        /* Graph Mode Styles */
-        body.graph-mode {
-            background-color: #8fa382 !important;
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            color: #1a1c18 !important;
-        }
-        body.graph-mode::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-        body.graph-mode .glass { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.2); color: #1a1c18; }
-        body.graph-mode .rgb-full-text { filter: brightness(0.4) contrast(1.2); }
-        body.graph-mode .text-white\/40, body.graph-mode .text-white\/30 { color: rgba(0,0,0,0.6); }
-
-        body { 
-            background-color: var(--bg); color: #fafafa; font-family: 'Plus Jakarta Sans', sans-serif; 
-            overflow-x: hidden; opacity: 0; animation: fadeIn 0.8s ease forwards;
-            transition: background-color 0.5s ease;
-        }
-        @keyframes fadeIn { to { opacity: 1; } }
-
-        .mono { font-family: 'JetBrains Mono', monospace; }
-
-        .cursor-blink {
-            display: inline-block; width: 10px; height: 1.2em; background-color: var(--accent);
-            margin-left: 6px; vertical-align: middle; animation: blink 1s step-end infinite;
-            box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.6);
-        }
-        @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
-
-        .rgb-underline { position: relative; display: inline-block; padding-bottom: 12px; margin-bottom: 3rem; }
-        .rgb-underline::after {
-            content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 1.5px;
-            background: linear-gradient(to right, #a855f7, #06b6d4, #3b82f6, #22c55e, #ef4444, #f59e0b, #eab308, #a855f7);
-            background-size: 400% auto; animation: flow 8s linear infinite;
-            transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .rgb-underline.reveal::after { width: 100%; }
-
-        .rgb-full-text {
-            background: linear-gradient(to right, #a855f7, #06b6d4, #3b82f6, #22c55e, #ef4444, #f59e0b, #eab308, #a855f7);
-            background-size: 400% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
-            animation: flow 12s linear infinite; display: inline-block; line-height: 1.1; letter-spacing: -0.03em;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.15));
-        }
-        @keyframes flow { 0% { background-position: 0% 50%; } 100% { background-position: 400% 50%; } }
-
-        #cursor-dot { width: 8px; height: 8px; background: var(--accent); position: fixed; pointer-events: none; z-index: 9999; border-radius: 50%; }
-        #cursor-glow { 
-            width: 260px; height: 260px; background: radial-gradient(circle, rgba(var(--accent-rgb), 0.15) 0%, transparent 70%); 
-            position: fixed; pointer-events: none; z-index: 9998; border-radius: 50%; transform: translate(-50%, -50%); 
-        }
-
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .role-badge { background: rgba(var(--accent-rgb), 0.1); border: 1px solid rgba(var(--accent-rgb), 0.3); color: var(--accent); }
-
-        @media (hover: none) { #cursor-dot, #cursor-glow { display: none; } body { cursor: default; } }
-        @media (hover: hover) { body { cursor: none; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Am Snow | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="transition-colors duration-500">
+<body class="theme-purple">
+  <div id="bg-gradient"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div id="ti83-grid"></div>
 
-    <div id="cursor-dot"></div>
-    <div id="cursor-glow"></div>
+  <nav class="glass nav-bar">
+    <div class="theme-switcher">
+      <button data-theme="purple" style="background: #8b5cf6"></button>
+      <button data-theme="cyan" style="background: #06b6d4"></button>
+      <button data-theme="blue" style="background: #3b82f6"></button>
+      <button data-theme="green" style="background: #10b981"></button>
+      <button data-theme="red" style="background: #ef4444"></button>
+      <button data-theme="gold" style="background: #f59e0b"></button>
+      <button data-theme="yellow" style="background: #fde047"></button>
+    </div>
+    <button id="ti83-toggle" class="glass-btn">🧮 TI-83 Mode</button>
+  </nav>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 px-4 md:px-10 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-6 text-[10px] md:text-xs mono">
-                <span class="flex items-center gap-2 opacity-60"><i data-lucide="clock" class="w-3.5 h-3.5 text-accent"></i> VISITOR: <span id="local-time" class="text-white">--:-- --</span></span>
-                <span id="status-tag" class="bg-accent/10 text-accent px-3 py-1 rounded-full border border-accent/20 font-bold uppercase tracking-widest text-[9px]">--</span>
-            </div>
-            <button onclick="cycleTheme()" class="p-2.5 rounded-xl glass border-white/10 hover:border-accent group bg-white/5">
-                <i data-lucide="palette" class="w-4 h-4 text-accent group-hover:rotate-180 transition-transform duration-500"></i>
-            </button>
+  <main>
+    <section id="hero" class="glass">
+      <div class="time-widget">
+        <p>📍 Des Moines, Iowa</p>
+        <p>Snow's Time: <span id="snow-time"></span></p>
+        <p>Your Time: <span id="local-time"></span></p>
+        <p>Session Time: <span id="session-timer">00:00</span></p>
+      </div>
+      <img src="https://raw.githubusercontent.com/therealjustsnow/portfolio-/refs/heads/main/Screenshot_20260218-193627.Google.png" alt="Snow" class="profile-img">
+      <h1 class="rgb-text">I Am Snow</h1>
+      <p class="description">Hey there 👋<br>I'm Snow, a front end hobbyist, self taught</p>
+      <div class="typewriter-container">
+        <span id="typewriter"></span><span class="cursor">|</span>
+      </div>
+    </section>
+
+    <section id="schedule" class="glass">
+      <h2>Daily Routine</h2>
+      <ul id="schedule-list">
+        <li data-start="0" data-end="12">12am–12pm: Sleeping 💤</li>
+        <li data-start="12" data-end="16">12pm–4pm: Coding 👨‍💻</li>
+        <li data-start="16" data-end="22">4pm–10pm: Working 💼</li>
+        <li data-start="22" data-end="24">10pm–12am: Gaming 🎮</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="grid">
+        <div class="card glass project-card">
+          <img src="https://i.imgur.com/FWcHtcS.png" alt="MusicBot" loading="lazy">
+          <h3>MusicBot <span class="badge">Maintainer</span></h3>
+          <p>2020–Present | Python</p>
+          <div class="actions">
+            <a href="https://github.com/Just-Some-Bots/MusicBot/tree/dev" target="_blank" class="glass-btn">GitHub</a>
+            <button class="glass-btn read-more" data-repo="Just-Some-Bots/MusicBot">Read More</button>
+          </div>
         </div>
-    </nav>
-
-    <main class="max-w-6xl mx-auto px-6 pt-48 pb-10">
-        <section class="mb-48 hero-container">
-            <div class="mb-4 mono text-accent/60 text-sm md:text-base font-medium tracking-[0.2em] uppercase">
-                Des Moines, Iowa | <span id="dm-time" class="text-accent">--:-- --</span>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
-                <div class="flex-1 text-center md:text-left">
-                    <h1 class="text-6xl md:text-9xl font-black tracking-tighter cursor-default">
-                        <span class="rgb-full-text">I Am Snow</span>
-                    </h1>
-                    <div class="text-xl md:text-2xl font-light text-white/40 mt-8 mb-12 mono flex items-center justify-center md:justify-start min-h-[1.5em]">
-                        <span id="type-icon-box" class="mr-3 opacity-0 transition-opacity duration-300"></span>
-                        <span id="typewriter"></span><span class="cursor-blink"></span>
-                    </div>
-                </div>
-                <div class="photo-reveal hidden md:block w-72 h-72 rounded-[3rem] overflow-hidden border-2 border-accent/20 shadow-2xl transition-all duration-700">
-                    <img src="1000002594.png" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-40 section-reveal">
-            <div class="rgb-underline"><h2 class="text-2xl font-black mono tracking-[0.3em] uppercase">Analytics</h2></div>
-            <div class="grid md:grid-cols-3 gap-6 bg-[#0d0d0d]/40 p-8 rounded-[3rem] border border-white/5 glass">
-                <img loading="lazy" src="http://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=BabyBoySnow&theme=transparent" class="w-full grayscale hover:grayscale-0 transition-all">
-                <img loading="lazy" src="http://github-profile-summary-cards.vercel.app/api/cards/stats?username=BabyBoySnow&theme=transparent" class="w-full grayscale hover:grayscale-0 transition-all">
-                <img loading="lazy" src="http://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=BabyBoySnow&theme=transparent&utcOffset=-6" class="w-full grayscale hover:grayscale-0 transition-all">
-            </div>
-        </section>
-
-        <section class="mb-40 section-reveal">
-            <div class="rgb-underline"><h2 class="text-2xl font-black mono tracking-[0.3em] uppercase">Tool Belt</h2></div>
-            <div class="space-y-12" id="tech-fragment-root"></div>
-        </section>
-
-        <section class="mb-40 section-reveal">
-            <div class="rgb-underline"><h2 class="text-2xl font-black mono tracking-[0.3em] uppercase">Projects</h2></div>
-            <div class="grid md:grid-cols-3 gap-8" id="project-container"></div>
-        </section>
-    </main>
-
-    <footer class="max-w-6xl mx-auto px-6 pb-20">
-        <div class="glass p-8 rounded-[2.5rem] flex flex-col md:flex-row items-center justify-between gap-8 border-white/5">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center border border-accent/40">
-                    <i data-lucide="info" class="text-accent w-5 h-5"></i>
-                </div>
-                <div>
-                    <p class="text-[10px] mono font-bold uppercase opacity-40">System Architecture</p>
-                    <p class="text-xs mono font-black">A purple mod of ClearVision.</p>
-                </div>
-            </div>
-            
-            <button onclick="toggleGraphMode()" class="flex items-center gap-4 px-6 py-3 bg-white/5 rounded-2xl border border-white/10 hover:border-accent group transition-all">
-                <i data-lucide="calculator" class="w-5 h-5 text-accent group-hover:rotate-12 transition-transform"></i>
-                <span class="text-[10px] mono font-black uppercase tracking-widest">TI-83+ MODE</span>
-            </button>
-
-            <div class="text-[10px] mono opacity-20 uppercase font-black tracking-[0.3em]">
-                EST. 2026 • SNOW
-            </div>
+        <div class="card glass project-card">
+          <img src="https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Aquarion%20Preview.png" alt="Aquarion" loading="lazy">
+          <h3>Aquarion <span class="badge">Owner</span></h3>
+          <p>2025–Present | CSS, SCSS, GitHub Actions</p>
+          <div class="actions">
+            <a href="https://github.com/Aquarion-D/Aquarion" target="_blank" class="glass-btn">GitHub</a>
+            <button class="glass-btn read-more" data-repo="Aquarion-D/Aquarion">Read More</button>
+          </div>
         </div>
-    </footer>
+        <div class="card glass project-card">
+          <img src="https://i.imgur.com/U7UXrEN.png" alt="ClearVision" loading="lazy">
+          <h3>ClearVision <span class="badge">Team Member</span></h3>
+          <p>2024–2025 | CSS, SCSS, GitHub Actions</p>
+          <p class="project-desc">A purple mod of ClearVision.</p>
+          <div class="actions">
+            <a href="https://github.com/ClearVision" target="_blank" class="glass-btn">GitHub</a>
+            <button class="glass-btn read-more" data-repo="ClearVision/ClearVision-v6">Read More</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        const techData = {
-            "Languages": [{ name: 'Python', icon: 'code-2' }, { name: 'CSS', icon: 'paint-bucket' }, { name: 'SCSS', icon: 'layers' }, { name: 'Markdown', icon: 'file-text' }, { name: 'Batch', icon: 'terminal' }],
-            "Development Tools": [{ name: 'GitHub Actions', icon: 'zap' }, { name: 'GitHub Desktop', icon: 'github' }, { name: 'Black', icon: 'align-left' }, { name: 'Prettier', icon: 'wand-2' }, { name: 'ChatGPT', icon: 'message-circle' }],
-            "Environment": [{ name: 'Windows 11', icon: 'monitor' }, { name: 'VS Code', icon: 'laptop' }]
-        };
+    <section id="tech">
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="grid">
+        <div class="card glass tilt-card">
+          <h3>Languages & Tools</h3>
+          <p>Python, Batch, Markdown, HTML, CSS, SCSS, SASS</p>
+        </div>
+        <div class="card glass tilt-card">
+          <h3>Environment</h3>
+          <p>Windows 11, VS Code, Git, GitHub Actions, Prettier, Black</p>
+        </div>
+      </div>
+    </section>
 
-        const projects = [
-            { id: 'aquarion', name: 'Aquarion', role: 'Owner', repo: 'Aquarion-D/Aquarion', desc: 'Premium Discord client modification. Purple mod of ClearVision.', tech: ['SCSS', 'JS'], imgs: ['https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Aquarion%20Preview.png'] },
-            { id: 'musicbot', name: 'MusicBot', role: 'Maintainer', repo: 'Just-Some-Bots/MusicBot', desc: 'Original Discord music bot written in Python.', tech: ['Python', 'FFmpeg'], imgs: ['https://i.imgur.com/FWcHtcS.png'] },
-            { id: 'cv6', name: 'ClearVision v6', role: 'Team Member', repo: 'ClearVision/ClearVision-v6', desc: 'The gold standard of Discord CSS mods.', tech: ['CSS', 'SCSS'], imgs: ['https://i.imgur.com/U7UXrEN.png'] }
-        ];
+    <section id="analytics">
+      <h2 class="section-title">Analytics</h2>
+      <div class="grid">
+        <div class="card glass stats-card">
+          <img src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/2-most-commit-language.svg" loading="lazy" alt="Lang Stats">
+        </div>
+        <div class="card glass stats-card">
+          <img src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/3-stats.svg" loading="lazy" alt="GitHub Stats">
+        </div>
+      </div>
+      <div class="card glass visitor-analytics mt-4">
+        <h3>Visitor Insights</h3>
+        <ul id="visitor-stats-list"></ul>
+      </div>
+    </section>
 
-        function init() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const underline = entry.target.querySelector('.rgb-underline');
-                    if (entry.isIntersecting) underline?.classList.add('reveal');
-                    else underline?.classList.remove('reveal');
-                });
-            }, { threshold: 0.15 });
+    <section id="contact" class="grid">
+      <div class="card glass">
+        <h3>Vibes</h3>
+        <iframe src="https://music.youtube.com/playlist?list=PLi8Ca0H-BLi6VZkC6Sab-vFouBBBuEPJj" width="100%" height="250" frameborder="0" loading="lazy"></iframe>
+      </div>
+      <div class="card glass">
+        <h3>Contact</h3>
+        <p>Discord: therealjustsnow</p>
+        <p>Email: <a href="mailto:ewagner2698@gmail.com">ewagner2698@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/BabyBoySnow" target="_blank">BabyBoySnow</a></p>
+      </div>
+    </section>
+  </main>
 
-            document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+  <div id="github-modal" class="modal glass hidden">
+    <div class="modal-content">
+      <button class="close-btn">&times;</button>
+      <h2>Recent Commits</h2>
+      <ul id="commit-list"></ul>
+    </div>
+  </div>
 
-            const techRoot = document.getElementById('tech-fragment-root');
-            Object.entries(techData).forEach(([cat, items]) => {
-                const section = document.createElement('div');
-                section.innerHTML = `<h3 class="text-[10px] mono uppercase tracking-[0.4em] opacity-30 mb-6 font-black border-l-2 border-accent pl-4">${cat}</h3>`;
-                const grid = document.createElement('div'); grid.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4";
-                items.forEach(t => { grid.innerHTML += `<div class="tech-card p-6 rounded-2xl flex flex-col items-center gap-4 cursor-pointer glass border border-white/5"><i data-lucide="${t.icon}" class="w-7 h-7 text-accent"></i><span class="text-[10px] mono font-bold uppercase tracking-tighter opacity-60">${t.name}</span></div>`; });
-                section.appendChild(grid); techRoot.appendChild(section);
-            });
+  <div id="ti83-calc" class="glass hidden">
+    <div class="calc-screen">
+      <canvas id="graph-canvas" width="200" height="100"></canvas>
+      <div id="calc-output">Ready.</div>
+    </div>
+    <input type="text" id="calc-input" placeholder="e.g. x*x - 4">
+    <div class="calc-buttons">
+      <button onclick="calcGraph()">Graph</button>
+      <button onclick="calcSolve()">Solve f(x)=0</button>
+    </div>
+  </div>
 
-            const pCon = document.getElementById('project-container');
-            projects.forEach(p => {
-                pCon.innerHTML += `<div class="glass p-8 rounded-[2.5rem] group border border-white/5"><div class="h-44 rounded-2xl overflow-hidden mb-8"><img src="${p.imgs[0]}" class="w-full h-full object-cover"></div><span class="role-badge px-3 py-1 rounded-full text-[9px] font-black mono mb-4 inline-block uppercase tracking-widest">${p.role}</span><h3 class="text-2xl font-black mb-3 group-hover:text-accent transition-colors">${p.name}</h3><p class="text-white/40 text-sm mb-8 line-clamp-2">${p.desc}</p></div>`;
-            });
-
-            const saved = localStorage.getItem('theme') || 'purple';
-            document.documentElement.setAttribute('data-theme', saved);
-            lucide.createIcons();
-            type();
-            setInterval(updateClocks, 1000);
-        }
-
-        function toggleGraphMode() {
-            document.body.classList.toggle('graph-mode');
-        }
-
-        function cycleTheme() {
-            const themes = ['purple', 'cyan', 'blue', 'green', 'red', 'gold'];
-            let next = themes[(themes.indexOf(document.documentElement.getAttribute('data-theme')) + 1) % themes.length];
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-            lucide.createIcons();
-        }
-
-        function updateClocks() {
-            const options = { hour: '2-digit', minute: '2-digit', hour12: true };
-            document.getElementById('dm-time').innerText = new Date().toLocaleTimeString('en-US', { ...options, timeZone: 'America/Chicago' });
-            document.getElementById('local-time').innerText = new Date().toLocaleTimeString('en-US', options);
-            const hr = parseInt(new Date().toLocaleString("en-US", {timeZone: "America/Chicago", hour: "numeric", hour12: false}));
-            let s = "Gaming 🎮";
-            if (hr >= 0 && hr < 12) s = "Sleeping 💤";
-            else if (hr >= 12 && hr < 16) s = "Coding 👨‍💻";
-            else if (hr >= 16 && hr < 22) s = "Working 💼";
-            document.getElementById('status-tag').innerText = s;
-        }
-
-        const words = [
-            { t: "ClearVision Team Member.", i: "users" },
-            { t: "Building Aquarion.", i: "crown" },
-            { t: "Maintaining MusicBot.", i: "shield" },
-            { t: "Calculator Tinkerer.", i: "calculator" }
-        ];
-        let wordIdx=0, charIdx=0, isDeleting=false;
-        function type() {
-            const currentObj = words[wordIdx];
-            const displayEl = document.getElementById('typewriter');
-            const iconBox = document.getElementById('type-icon-box');
-            displayEl.innerText = currentObj.t.substring(0, charIdx);
-            if(charIdx > 0) {
-                iconBox.innerHTML = `<i data-lucide="${currentObj.i}" class="w-6 h-6 text-accent"></i>`;
-                iconBox.classList.remove('opacity-0'); lucide.createIcons();
-            } else { iconBox.classList.add('opacity-0'); }
-            if(!isDeleting && charIdx < currentObj.t.length) { charIdx++; setTimeout(type, 80); }
-            else if (isDeleting && charIdx > 0) { charIdx--; setTimeout(type, 40); }
-            else { isDeleting = !isDeleting; if(!isDeleting) wordIdx = (wordIdx + 1) % words.length; setTimeout(type, isDeleting ? 1800 : 600); }
-        }
-
-        document.addEventListener('mousemove', e => {
-            document.getElementById('cursor-dot').style.top = e.clientY + 'px'; document.getElementById('cursor-dot').style.left = e.clientX + 'px';
-            document.getElementById('cursor-glow').style.top = e.clientY + 'px'; document.getElementById('cursor-glow').style.left = e.clientX + 'px';
-        });
-
-        window.onload = init;
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
