@@ -59,7 +59,6 @@
                 --nav-h: 64px;
             }
 
-
             /* ─── ANIMATED GRADIENT BG ──────────────────────────────── */
             .bg-gradient {
                 position: fixed;
@@ -1419,6 +1418,60 @@
                     animation: pageFade 0.8s ease forwards;
                 }
             }
+            /* ─── SCROLL TO TOP ─────────────────────────────────────── */
+            #scroll-top {
+                position: fixed;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%) translateY(80px);
+                z-index: 1500;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                background: #080810;
+                border: 2px solid rgba(var(--accent-rgb), 0.8);
+                color: #fff;
+                font-size: 1.1rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow:
+                    0 0 14px rgba(var(--accent-rgb), 0.35),
+                    0 4px 16px rgba(0, 0, 0, 0.5);
+                opacity: 0;
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease,
+                    box-shadow 0.25s ease,
+                    border-color 0.25s ease;
+                outline: none;
+            }
+            #scroll-top::before {
+                content: "";
+                position: absolute;
+                inset: -4px;
+                border-radius: 50%;
+                border: 1.5px solid rgba(var(--accent-rgb), 0.3);
+                transition:
+                    inset 0.25s ease,
+                    opacity 0.25s ease,
+                    border-color 0.25s ease;
+            }
+            #scroll-top.visible {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            #scroll-top:hover {
+                box-shadow:
+                    0 0 22px rgba(var(--accent-rgb), 0.6),
+                    0 4px 20px rgba(0, 0, 0, 0.5);
+                border-color: var(--accent);
+            }
+            #scroll-top:hover::before {
+                inset: -7px;
+                border-color: rgba(var(--accent-rgb), 0.5);
+            }
         </style>
     </head>
 
@@ -1695,6 +1748,10 @@
         </div>
 
         <div id="cursor-glow" aria-hidden="true"></div>
+
+        <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+            ↑
+        </button>
 
         <script>
             /* ════════════════════════════════════════════════════════
@@ -2740,6 +2797,25 @@
                     document.title = originalTitle;
                 }
             });
+
+            /* ════════════════════════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════════════════════════ */
+            (function () {
+                const btn = document.getElementById("scroll-top");
+                let lastY = 0;
+                window.addEventListener(
+                    "scroll",
+                    () => {
+                        const y = window.scrollY;
+                        const nearBottom = window.innerHeight + y >= document.body.scrollHeight - 100;
+                        const scrollingUp = y < lastY;
+                        btn.classList.toggle("visible", nearBottom || (scrollingUp && y > 400));
+                        lastY = y;
+                    },
+                    { passive: true }
+                );
+            })();
 
             /* ════════════════════════════════════════════════════════
    INIT DRAW GRID
