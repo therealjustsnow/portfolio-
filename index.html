@@ -1571,6 +1571,8 @@ document.querySelectorAll('.theme-dot').forEach(d => {
   });
 });
 
+const originalTitle = document.title;
+
 // FAV ICON SWITCH WHEN USER INACTIVE 
 let inactiveTimer;
 document.addEventListener("visibilitychange", () => {
