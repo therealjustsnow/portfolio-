@@ -2351,7 +2351,7 @@
                     const img = document.createElement("img");
                     img.src = photo.src;
                     img.alt = photo.alt;
-                    img.loading = "lazy";
+                    img.loading = "eager";
                     img.decoding = "async";
 
                     item.appendChild(img);
