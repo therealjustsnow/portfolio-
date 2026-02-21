@@ -732,7 +732,9 @@
                 const header = calc.querySelector(".ti-header");
                 let dragging = false,
                     ox = 0,
-                    oy = 0;
+                    oy = 0,
+                    calcW = 0,
+                    calcH = 0; // cached on drag start — avoids forced reflow in onMove
 
                 function initPos() {
                     // Convert bottom/right to top/left so transform works predictably
@@ -752,9 +754,9 @@
                     if (!dragging) return;
                     let nx = cx - ox;
                     let ny = cy - oy;
-                    // Keep within viewport
-                    nx = clamp(nx, 0, window.innerWidth - calc.offsetWidth);
-                    ny = clamp(ny, 0, window.innerHeight - calc.offsetHeight);
+                    // Use cached dimensions — reading offsetWidth/Height here would force reflow
+                    nx = clamp(nx, 0, window.innerWidth - calcW);
+                    ny = clamp(ny, 0, window.innerHeight - calcH);
                     calc.style.left = nx + "px";
                     calc.style.top = ny + "px";
                 }
@@ -771,8 +773,11 @@
                     if (e.target.classList.contains("ti-close-btn")) return;
                     e.preventDefault();
                     initPos();
-                    dragging = true;
+                    // Read layout once here before any style writes
                     const r = calc.getBoundingClientRect();
+                    calcW = calc.offsetWidth;
+                    calcH = calc.offsetHeight;
+                    dragging = true;
                     ox = e.clientX - r.left;
                     oy = e.clientY - r.top;
                     header.style.cursor = "grabbing";
@@ -788,8 +793,11 @@
                         if (e.target.classList.contains("ti-close-btn")) return;
                         e.preventDefault();
                         initPos();
-                        dragging = true;
+                        // Read layout once here before any style writes
                         const r = calc.getBoundingClientRect();
+                        calcW = calc.offsetWidth;
+                        calcH = calc.offsetHeight;
+                        dragging = true;
                         const t = e.touches[0];
                         ox = t.clientX - r.left;
                         oy = t.clientY - r.top;
@@ -2351,7 +2359,7 @@
                     const img = document.createElement("img");
                     img.src = photo.src;
                     img.alt = photo.alt;
-                    img.loading = "eager";
+                    img.loading = "lazy";
                     img.decoding = "async";
 
                     item.appendChild(img);
