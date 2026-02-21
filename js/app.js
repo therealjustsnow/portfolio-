@@ -2341,7 +2341,9 @@
                     grid.innerHTML = "";
 
                     imgs.forEach((file, i) => {
-                        const rawUrl = `https://raw.githubusercontent.com/therealjustsnow/portfolio-/main/photos/${encodeURIComponent(file.name)}`;
+                        // Use download_url from the API — GitHub constructs this correctly
+                        // for any filename including special characters, spaces, etc.
+                        const rawUrl = file.download_url;
 
                         const item = document.createElement("div");
                         item.className = "photo-item";
@@ -2378,10 +2380,8 @@
                 lb.dataset.idx = idx;
                 lb.dataset.total = imgs.length;
 
-                // Store all img srcs for navigation
-                lb.dataset.srcs = JSON.stringify(imgs.map(f =>
-                    `https://raw.githubusercontent.com/therealjustsnow/portfolio-/main/photos/${encodeURIComponent(f.name)}`
-                ));
+                // Store all img srcs for navigation — use download_url directly from API data
+                lb.dataset.srcs = JSON.stringify(imgs.map(f => f.download_url));
                 lb.dataset.alts = JSON.stringify(imgs.map(f =>
                     f.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
                 ));
