@@ -1472,6 +1472,139 @@
                 inset: -7px;
                 border-color: rgba(var(--accent-rgb), 0.5);
             }
+            /* ─── GUESTBOOK ─────────────────────────────────────────── */
+            .guestbook-section {
+                display: none;
+                opacity: 0;
+                transform: translateY(24px);
+                transition:
+                    opacity 0.5s ease,
+                    transform 0.5s ease;
+            }
+            .guestbook-section.gb-open {
+                display: block;
+            }
+            .guestbook-section.gb-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .gb-form-card {
+                padding: 1.5rem;
+            }
+            .gb-form-title {
+                font-family: "Syne", sans-serif;
+                font-weight: 700;
+                font-size: 1rem;
+                color: var(--accent);
+                margin-bottom: 1rem;
+            }
+            .gb-fields {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                margin-bottom: 0.75rem;
+            }
+            .gb-input {
+                width: 100%;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(var(--accent-rgb), 0.2);
+                border-radius: 10px;
+                padding: 0.65rem 0.9rem;
+                color: #e2e8f0;
+                font-family: "DM Sans", sans-serif;
+                font-size: 0.88rem;
+                outline: none;
+                resize: none;
+                transition:
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+            .gb-input:focus {
+                border-color: rgba(var(--accent-rgb), 0.6);
+                box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+            }
+            .gb-input::placeholder {
+                color: rgba(255, 255, 255, 0.25);
+            }
+            .gb-textarea {
+                line-height: 1.5;
+            }
+            .gb-form-footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 0.5rem;
+            }
+            .gb-char-count {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.62rem;
+                color: rgba(255, 255, 255, 0.3);
+                letter-spacing: 0.04em;
+            }
+            .gb-submit {
+                padding: 0.55rem 1.4rem;
+                font-size: 0.82rem;
+            }
+            .gb-error {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.68rem;
+                color: rgba(239, 68, 68, 0.85);
+                margin-top: 0.5rem;
+                min-height: 1rem;
+            }
+
+            /* Entry cards */
+            .gb-entries {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+            .gb-entry {
+                padding: 1.1rem 1.25rem;
+                animation: gbSlideIn 0.35s ease;
+            }
+            @keyframes gbSlideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .gb-entry-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.4rem;
+            }
+            .gb-entry-name {
+                font-family: "Syne", sans-serif;
+                font-weight: 700;
+                font-size: 0.95rem;
+                color: var(--accent);
+            }
+            .gb-entry-date {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.6rem;
+                color: rgba(255, 255, 255, 0.25);
+                letter-spacing: 0.06em;
+            }
+            .gb-entry-msg {
+                font-size: 0.87rem;
+                color: rgba(255, 255, 255, 0.72);
+                line-height: 1.55;
+            }
+            .gb-empty {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.78rem;
+                color: rgba(255, 255, 255, 0.22);
+                text-align: center;
+                padding: 2rem 0;
+                letter-spacing: 0.06em;
+            }
         </style>
     </head>
 
@@ -1519,6 +1652,7 @@
                 <a href="#analytics">Analytics</a>
                 <a href="#schedule">Schedule</a>
                 <a href="#contact">Contact</a>
+                <a href="#guestbook" id="guestbook-nav" onclick="openGuestbook(event)">✍️ Guestbook</a>
             </div>
             <div class="nav-right">
                 <button
@@ -1729,6 +1863,43 @@
         </section>
 
         <footer>Built with 💜 by Snow • Des Moines, Iowa • <span id="footer-year"></span></footer>
+
+        <!-- GUESTBOOK -->
+        <section id="guestbook" class="section guestbook-section" aria-hidden="true">
+            <div class="section-header reveal">
+                <div class="section-tag">// You Were Here</div>
+                <h2 class="section-title">Guest Book</h2>
+                <div class="section-underline"></div>
+            </div>
+
+            <div class="glass gb-form-card reveal">
+                <div class="gb-form-title">Leave your mark ✍️</div>
+                <div class="gb-fields">
+                    <input
+                        class="gb-input"
+                        id="gb-name"
+                        type="text"
+                        placeholder="Your name"
+                        maxlength="40"
+                        autocomplete="off"
+                    />
+                    <textarea
+                        class="gb-input gb-textarea"
+                        id="gb-msg"
+                        placeholder="Say something..."
+                        maxlength="200"
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="gb-form-footer">
+                    <span class="gb-char-count" id="gb-char">0 / 200</span>
+                    <button class="btn btn-primary gb-submit" onclick="submitGuestbook()">Sign ✦</button>
+                </div>
+                <div class="gb-error" id="gb-error"></div>
+            </div>
+
+            <div id="gb-entries" class="gb-entries"></div>
+        </section>
 
         <!-- PROJECT MODAL -->
         <div id="modal-overlay">
@@ -2816,6 +2987,162 @@
                     { passive: true }
                 );
             })();
+
+            /* ════════════════════════════════════════════════════════
+   GUESTBOOK
+════════════════════════════════════════════════════════ */
+            // Supabase config — anon key is safe to expose in frontend code,
+            // it can only do what your RLS policies explicitly permit.
+            const GB_URL = "https://zsyyscnydkgmtvzurhoa.supabase.co/rest/v1/guestbook";
+            const GB_KEY_ANON =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzeXlzY255ZGtnbXR2enVyaG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MzU0NzIsImV4cCI6MjA4NzIxMTQ3Mn0.u2dpcV5fv2HNfgnNsEnjBFfmKXLoy2Lrgntle_AbA_4";
+
+            // Shared headers for every Supabase request
+            const GB_HEADERS = {
+                "Content-Type": "application/json",
+                apikey: GB_KEY_ANON,
+                Authorization: "Bearer " + GB_KEY_ANON,
+            };
+
+            // XSS sanitizer — always escape before injecting into innerHTML
+            function sanitize(str) {
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+            }
+
+            function openGuestbook(e) {
+                e.preventDefault();
+                const sec = document.getElementById("guestbook");
+                const alreadyOpen = sec.classList.contains("gb-open");
+
+                if (alreadyOpen) {
+                    sec.scrollIntoView({ behavior: "smooth" });
+                    return;
+                }
+
+                sec.classList.add("gb-open");
+                // Two rAF frames to let display:block paint before starting the CSS transition
+                requestAnimationFrame(() =>
+                    requestAnimationFrame(() => {
+                        sec.classList.add("gb-visible");
+                        sec.scrollIntoView({ behavior: "smooth" });
+                    })
+                );
+
+                renderGuestbookEntries();
+                document.getElementById("nav-links").classList.remove("open");
+            }
+
+            // Live character counter
+            document.getElementById("gb-msg").addEventListener("input", function () {
+                document.getElementById("gb-char").textContent = this.value.length + " / 200";
+            });
+
+            async function submitGuestbook() {
+                const nameEl = document.getElementById("gb-name");
+                const msgEl = document.getElementById("gb-msg");
+                const errEl = document.getElementById("gb-error");
+                const btn = document.querySelector(".gb-submit");
+                const name = nameEl.value.trim();
+                const msg = msgEl.value.trim();
+
+                errEl.textContent = "";
+
+                if (!name) {
+                    errEl.textContent = "! Name is required.";
+                    nameEl.focus();
+                    return;
+                }
+                if (!msg) {
+                    errEl.textContent = "! Message cannot be empty.";
+                    msgEl.focus();
+                    return;
+                }
+
+                // Disable button while the request is in flight
+                btn.textContent = "Signing…";
+                btn.disabled = true;
+
+                try {
+                    // POST a new row — Supabase expects the column names from your table schema.
+                    // "message" maps to the `message` column, "name" to `name`.
+                    // `created_at` is handled automatically by Supabase/Postgres.
+                    const res = await fetch(GB_URL, {
+                        method: "POST",
+                        headers: { ...GB_HEADERS, Prefer: "return=minimal" },
+                        body: JSON.stringify({ name: sanitize(name), message: sanitize(msg) }),
+                    });
+
+                    if (!res.ok) {
+                        const err = await res.json().catch(() => ({}));
+                        throw new Error(err.message || "Request failed with status " + res.status);
+                    }
+
+                    // Clear form on success
+                    nameEl.value = "";
+                    msgEl.value = "";
+                    document.getElementById("gb-char").textContent = "0 / 200";
+
+                    btn.textContent = "Signed! ✓";
+                    setTimeout(() => {
+                        btn.textContent = "Sign ✦";
+                        btn.disabled = false;
+                    }, 2000);
+
+                    // Reload entries so the new one appears immediately
+                    renderGuestbookEntries();
+                } catch (err) {
+                    errEl.textContent = "! " + err.message;
+                    btn.textContent = "Sign ✦";
+                    btn.disabled = false;
+                }
+            }
+
+            async function renderGuestbookEntries() {
+                const container = document.getElementById("gb-entries");
+
+                // Show a loading state while fetching
+                container.innerHTML = '<div class="gb-empty">Loading entries…</div>';
+
+                try {
+                    // Fetch all rows, newest first, via the auto-generated REST endpoint.
+                    // `order=created_at.desc` sorts by timestamp descending.
+                    // `limit=100` keeps the response size reasonable.
+                    const res = await fetch(
+                        GB_URL + "?select=name,message,created_at&order=created_at.desc&limit=100",
+                        { headers: GB_HEADERS }
+                    );
+
+                    if (!res.ok) throw new Error("Could not load entries.");
+
+                    const entries = await res.json();
+
+                    if (!entries.length) {
+                        container.innerHTML = '<div class="gb-empty">No entries yet — be the first to sign! 👋</div>';
+                        return;
+                    }
+
+                    container.innerHTML = entries
+                        .map((e) => {
+                            // Format the Postgres timestamp into a human-readable date
+                            const date = new Date(e.created_at).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                            });
+                            return `
+        <div class="glass gb-entry">
+          <div class="gb-entry-header">
+            <span class="gb-entry-name">${e.name}</span>
+            <span class="gb-entry-date">${date}</span>
+          </div>
+          <div class="gb-entry-msg">${e.message}</div>
+        </div>`;
+                        })
+                        .join("");
+                } catch (err) {
+                    container.innerHTML = `<div class="gb-empty">⚠ ${err.message}</div>`;
+                }
+            }
 
             /* ════════════════════════════════════════════════════════
    INIT DRAW GRID
