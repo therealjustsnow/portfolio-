@@ -857,6 +857,12 @@
                     border-color 0.35s ease;
                 cursor: default;
                 position: relative;
+                /* Resting state: clearly visible accent border + soft ambient glow */
+                border-color: rgba(var(--accent-rgb), 0.35);
+                box-shadow:
+                    0 0 12px rgba(var(--accent-rgb), 0.18),
+                    0 4px 16px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.07);
             }
             .stack-card::after {
                 content: "";
@@ -877,9 +883,10 @@
                 transform: perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px);
                 box-shadow:
                     16px 20px 40px rgba(0, 0, 0, 0.55),
-                    0 0 28px rgba(var(--accent-rgb), 0.25),
+                    0 0 32px rgba(var(--accent-rgb), 0.5),
+                    0 0 12px rgba(var(--accent-rgb), 0.25),
                     inset 0 1px 0 rgba(255, 255, 255, 0.18);
-                border-color: rgba(var(--accent-rgb), 0.65);
+                border-color: rgba(var(--accent-rgb), 0.85);
             }
             .stack-card:hover::after {
                 background: rgba(var(--accent-rgb), 0.3);
@@ -889,8 +896,17 @@
             .stack-card .icon {
                 font-size: 1.6rem;
                 margin-bottom: 0.5rem;
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 2rem;
                 line-height: 1;
+            }
+            .stack-card .icon img {
+                width: 1.75rem;
+                height: 1.75rem;
+                object-fit: contain;
+                display: block;
             }
             .stack-card .name {
                 font-size: 0.72rem;
@@ -1418,6 +1434,17 @@
                     animation: pageFade 0.8s ease forwards;
                 }
             }
+            /* Inline icon in typewriter (e.g. GitHub logo) */
+            .tw-icon {
+                width: 1em;
+                height: 1em;
+                vertical-align: middle;
+                display: inline-block;
+                margin-right: 0.15em;
+                position: relative;
+                top: -0.05em;
+            }
+
             /* ─── SCROLL TO TOP ─────────────────────────────────────── */
             #scroll-top {
                 position: fixed;
@@ -1472,22 +1499,60 @@
                 inset: -7px;
                 border-color: rgba(var(--accent-rgb), 0.5);
             }
-            /* ─── GUESTBOOK ─────────────────────────────────────────── */
-            .guestbook-section {
+            /* Active nav link state for view switching */
+            #guestbook-nav.active-nav {
+                color: #fff;
+            }
+            #guestbook-nav.active-nav::after {
+                width: 100%;
+            }
+            /* Both views sit on top of each other. Only the active one
+   is visible. We use opacity + transform for a smooth swap
+   rather than an instant display:none flicker.            */
+            #main-view,
+            #guestbook-view {
+                transition:
+                    opacity 0.35s ease,
+                    transform 0.35s ease;
+            }
+
+            /* Guestbook starts hidden, shifted slightly down */
+            #guestbook-view {
                 display: none;
                 opacity: 0;
-                transform: translateY(24px);
-                transition:
-                    opacity 0.5s ease,
-                    transform 0.5s ease;
+                transform: translateY(20px);
+                min-height: 100vh;
+                padding-top: var(--nav-h);
             }
-            .guestbook-section.gb-open {
+            #guestbook-view.view-active {
                 display: block;
             }
-            .guestbook-section.gb-visible {
+            #guestbook-view.view-visible {
                 opacity: 1;
                 transform: translateY(0);
             }
+
+            /* Main view fades out when leaving */
+            #main-view.view-leaving {
+                opacity: 0;
+                transform: translateY(-12px);
+                pointer-events: none;
+            }
+
+            .gb-view-inner {
+                max-width: 700px;
+            }
+
+            .gb-back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+                font-size: 0.82rem;
+                padding: 0.5rem 1rem;
+            }
+
+            /* ─── GUESTBOOK CONTENT ─────────────────────────────────── */
             .gb-form-card {
                 padding: 1.5rem;
             }
@@ -1552,8 +1617,6 @@
                 margin-top: 0.5rem;
                 min-height: 1rem;
             }
-
-            /* Entry cards */
             .gb-entries {
                 display: flex;
                 flex-direction: column;
@@ -1596,6 +1659,17 @@
                 font-size: 0.87rem;
                 color: rgba(255, 255, 255, 0.72);
                 line-height: 1.55;
+            }
+            .gb-load-more-wrap {
+                display: flex;
+                justify-content: center;
+                margin-top: 1.25rem;
+                padding-bottom: 2rem;
+            }
+            .gb-load-more-btn {
+                font-size: 0.82rem;
+                padding: 0.55rem 1.6rem;
+                transition: all 0.2s ease;
             }
             .gb-empty {
                 font-family: "JetBrains Mono", monospace;
@@ -1652,7 +1726,7 @@
                 <a href="#analytics">Analytics</a>
                 <a href="#schedule">Schedule</a>
                 <a href="#contact">Contact</a>
-                <a href="#guestbook" id="guestbook-nav" onclick="openGuestbook(event)">✍️ Guestbook</a>
+                <a href="#" id="guestbook-nav" onclick="switchView('guestbook');return false;">✍️ Guestbook</a>
             </div>
             <div class="nav-right">
                 <button
@@ -1700,206 +1774,225 @@
             <input type="range" id="alpha-track" min="0" max="100" value="100" step="1" aria-label="Opacity" />
         </div>
 
-        <!-- HERO -->
-        <section id="hero">
-            <div class="hero-inner">
-                <div class="hero-text">
-                    <div class="hero-greeting">📍 Des Moines, Iowa • Front End Hobbyist</div>
-                    <h1 class="hero-title">
-                        <span class="i-am">I Am </span><br />
-                        <span class="name-gradient">Snow</span>
-                    </h1>
-                    <p class="hero-tagline">
-                        A self taught, Front-end developer focused on interactive UI and performance
-                    </p>
-                    <div class="opp-badge" aria-label="Open to opportunities">
-                        <span class="opp-dot"></span> Open to opportunities
+        <!-- ═══════════════ MAIN VIEW ═══════════════ -->
+        <div id="main-view">
+            <!-- HERO -->
+            <section id="hero">
+                <div class="hero-inner">
+                    <div class="hero-text">
+                        <div class="hero-greeting">📍 Des Moines, Iowa • Front End Hobbyist</div>
+                        <h1 class="hero-title">
+                            <span class="i-am">I Am </span><br />
+                            <span class="name-gradient">Snow</span>
+                        </h1>
+                        <p class="hero-tagline">
+                            A self taught, Front-end developer focused on interactive UI and performance
+                        </p>
+                        <div class="opp-badge" aria-label="Open to opportunities">
+                            <span class="opp-dot"></span> Open to opportunities
+                        </div>
+                        <div class="hero-typewriter">
+                            <span class="prefix">~ </span><span id="typewriter-text"></span
+                            ><span class="cursor" id="tw-cursor"></span>
+                        </div>
+                        <div class="hero-links">
+                            <a class="btn btn-primary" href="#projects">View Projects</a>
+                            <a class="btn btn-ghost" href="https://github.com/BabyBoySnow" target="_blank">GitHub ↗</a>
+                        </div>
                     </div>
-                    <div class="hero-typewriter">
-                        <span class="prefix">~ </span><span id="typewriter-text"></span
-                        ><span class="cursor" id="tw-cursor"></span>
-                    </div>
-                    <div class="hero-links">
-                        <a class="btn btn-primary" href="#projects">View Projects</a>
-                        <a class="btn btn-ghost" href="https://github.com/BabyBoySnow" target="_blank">GitHub ↗</a>
-                    </div>
-                </div>
-                <div class="hero-img-wrap">
-                    <div class="hero-img-ring">
-                        <div class="hero-img-inner">
-                            <img src="selfie.png" alt="Snow" loading="eager" />
+                    <div class="hero-img-wrap">
+                        <div class="hero-img-ring">
+                            <div class="hero-img-inner">
+                                <img src="selfie.png" alt="Snow" loading="eager" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- TIME BAR -->
-        <div id="time-bar">
-            <div class="time-cards">
-                <div class="glass time-card">
-                    <div class="label">📍 Snow's Time</div>
-                    <div class="value" id="snow-time">--:--:--</div>
-                    <div class="sub">Des Moines, Iowa (CT)</div>
-                </div>
-                <div class="glass time-card">
-                    <div class="label">🌐 Your Time</div>
-                    <div class="value" id="your-time">--:--:--</div>
-                    <div class="sub" id="your-tz">Detecting…</div>
-                </div>
-                <div class="glass time-card">
-                    <div class="label">⏱ Time On Site</div>
-                    <div class="value" id="session-timer">00:00</div>
-                    <div class="sub">Current session</div>
-                </div>
-                <div class="glass time-card">
-                    <div class="label">🎨 Active Accent</div>
-                    <div class="value" id="theme-display" style="font-size: 0.75rem; letter-spacing: 0.05em">
-                        #a855f7
+            <!-- TIME BAR -->
+            <div id="time-bar">
+                <div class="time-cards">
+                    <div class="glass time-card">
+                        <div class="label">📍 Snow's Time</div>
+                        <div class="value" id="snow-time">--:--:--</div>
+                        <div class="sub">Des Moines, Iowa (CT)</div>
                     </div>
-                    <div class="sub" id="ti83-status">TI-83: off</div>
+                    <div class="glass time-card">
+                        <div class="label">🌐 Your Time</div>
+                        <div class="value" id="your-time">--:--:--</div>
+                        <div class="sub" id="your-tz">Detecting…</div>
+                    </div>
+                    <div class="glass time-card">
+                        <div class="label">⏱ Time On Site</div>
+                        <div class="value" id="session-timer">00:00</div>
+                        <div class="sub">Current session</div>
+                    </div>
+                    <div class="glass time-card">
+                        <div class="label">🎨 Active Accent</div>
+                        <div class="value" id="theme-display" style="font-size: 0.75rem; letter-spacing: 0.05em">
+                            #a855f7
+                        </div>
+                        <div class="sub" id="ti83-status">TI-83: off</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJECTS -->
+            <section id="projects" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag">// Work</div>
+                    <h2 class="section-title">Projects</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="projects-grid" id="projects-grid"></div>
+            </section>
+
+            <!-- TECH STACK -->
+            <section id="stack" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag">// Toolbelt</div>
+                    <h2 class="section-title">Tech Stack</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="stack-group reveal">
+                    <div class="stack-group-label">Languages &amp; Markup</div>
+                    <div class="stack-grid" id="lang-grid"></div>
+                </div>
+
+                <div class="stack-group reveal reveal-delay-1">
+                    <div class="stack-group-label">Environment &amp; Tools</div>
+                    <div class="stack-grid" id="tools-grid"></div>
+                </div>
+            </section>
+
+            <!-- ANALYTICS -->
+            <section id="analytics" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag">// Metrics</div>
+                    <h2 class="section-title">Analytics</h2>
+                    <div class="section-underline"></div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="glass stat-card reveal">
+                        <img
+                            src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/2-most-commit-language.svg"
+                            alt="Most Used Languages"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="glass stat-card reveal reveal-delay-1">
+                        <img
+                            src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/3-stats.svg"
+                            alt="Stats"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="glass stat-card reveal reveal-delay-2">
+                        <img
+                            src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/4-productive-time.svg"
+                            alt="Productive Time"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+
+                <div class="glass visitor-card reveal" id="visitor-insights">
+                    <div class="visitor-title">🧠 Visitor Insights</div>
+                    <div id="visitor-rows"></div>
+                </div>
+
+                <div class="playlist-wrap glass reveal" style="margin-top: 2rem">
+                    <iframe
+                        src="https://www.youtube.com/embed/videoseries?list=PLi8Ca0H-BLi6VZkC6Sab-vFouBBBuEPJj&autoplay=0"
+                        width="100%"
+                        height="200"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        title="Snow's Playlist"
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            </section>
+
+            <!-- SCHEDULE -->
+            <section id="schedule" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag">// Daily Routine</div>
+                    <h2 class="section-title">Where's Snow?</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="schedule-grid" id="schedule-grid"></div>
+            </section>
+
+            <!-- CONTACT -->
+            <section id="contact" class="section">
+                <div class="section-header reveal">
+                    <div class="section-tag">// Reach Out</div>
+                    <h2 class="section-title">Contact</h2>
+                    <div class="section-underline"></div>
+                </div>
+                <div class="contact-cards" id="contact-cards"></div>
+            </section>
+
+            <footer>Built with 💜 by Snow • Des Moines, Iowa • <span id="footer-year"></span></footer>
+        </div>
+        <!-- /#main-view -->
+
+        <!-- ═══════════════ GUESTBOOK VIEW ═══════════════ -->
+        <div id="guestbook-view">
+            <div class="gb-view-inner section">
+                <button class="btn btn-ghost gb-back-btn" onclick="switchView('home')">← Back to Home</button>
+
+                <div class="section-header">
+                    <div class="section-tag">// You Were Here</div>
+                    <h2 class="section-title">Guest Book</h2>
+                    <div class="section-underline" style="width: 80px"></div>
+                </div>
+
+                <div class="glass gb-form-card">
+                    <div class="gb-form-title">Leave your mark ✍️</div>
+                    <div class="gb-fields">
+                        <input
+                            class="gb-input"
+                            id="gb-name"
+                            type="text"
+                            placeholder="Your name"
+                            maxlength="40"
+                            autocomplete="off"
+                        />
+                        <textarea
+                            class="gb-input gb-textarea"
+                            id="gb-msg"
+                            placeholder="Say something..."
+                            maxlength="200"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <div class="gb-form-footer">
+                        <span class="gb-char-count" id="gb-char">0 / 200</span>
+                        <button class="btn btn-primary gb-submit" onclick="submitGuestbook()">Sign ✦</button>
+                    </div>
+                    <div class="gb-error" id="gb-error"></div>
+                </div>
+
+                <div id="gb-entries" class="gb-entries"></div>
+
+                <div class="gb-load-more-wrap">
+                    <button
+                        id="gb-load-more"
+                        class="btn btn-ghost gb-load-more-btn"
+                        onclick="loadMoreEntries()"
+                        style="display: none"
+                    >
+                        Load More ↓
+                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- PROJECTS -->
-        <section id="projects" class="section">
-            <div class="section-header reveal">
-                <div class="section-tag">// Work</div>
-                <h2 class="section-title">Projects</h2>
-                <div class="section-underline"></div>
-            </div>
-            <div class="projects-grid" id="projects-grid"></div>
-        </section>
-
-        <!-- TECH STACK -->
-        <section id="stack" class="section">
-            <div class="section-header reveal">
-                <div class="section-tag">// Toolbelt</div>
-                <h2 class="section-title">Tech Stack</h2>
-                <div class="section-underline"></div>
-            </div>
-
-            <div class="stack-group reveal">
-                <div class="stack-group-label">Languages &amp; Markup</div>
-                <div class="stack-grid" id="lang-grid"></div>
-            </div>
-
-            <div class="stack-group reveal reveal-delay-1">
-                <div class="stack-group-label">Environment &amp; Tools</div>
-                <div class="stack-grid" id="tools-grid"></div>
-            </div>
-        </section>
-
-        <!-- ANALYTICS -->
-        <section id="analytics" class="section">
-            <div class="section-header reveal">
-                <div class="section-tag">// Metrics</div>
-                <h2 class="section-title">Analytics</h2>
-                <div class="section-underline"></div>
-            </div>
-
-            <div class="analytics-grid">
-                <div class="glass stat-card reveal">
-                    <img
-                        src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/2-most-commit-language.svg"
-                        alt="Most Used Languages"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="glass stat-card reveal reveal-delay-1">
-                    <img
-                        src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/3-stats.svg"
-                        alt="Stats"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="glass stat-card reveal reveal-delay-2">
-                    <img
-                        src="https://raw.githubusercontent.com/BabyBoySnow/babyboysnow/main/profile-summary-card-output/transparent/4-productive-time.svg"
-                        alt="Productive Time"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
-
-            <div class="glass visitor-card reveal" id="visitor-insights">
-                <div class="visitor-title">🧠 Visitor Insights</div>
-                <div id="visitor-rows"></div>
-            </div>
-
-            <div class="playlist-wrap glass reveal" style="margin-top: 2rem">
-                <iframe
-                    src="https://www.youtube.com/embed/videoseries?list=PLi8Ca0H-BLi6VZkC6Sab-vFouBBBuEPJj&autoplay=0"
-                    width="100%"
-                    height="200"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
-                    title="Snow's Playlist"
-                    loading="lazy"
-                ></iframe>
-            </div>
-        </section>
-
-        <!-- SCHEDULE -->
-        <section id="schedule" class="section">
-            <div class="section-header reveal">
-                <div class="section-tag">// Daily Routine</div>
-                <h2 class="section-title">Where's Snow?</h2>
-                <div class="section-underline"></div>
-            </div>
-            <div class="schedule-grid" id="schedule-grid"></div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="section">
-            <div class="section-header reveal">
-                <div class="section-tag">// Reach Out</div>
-                <h2 class="section-title">Contact</h2>
-                <div class="section-underline"></div>
-            </div>
-            <div class="contact-cards" id="contact-cards"></div>
-        </section>
-
-        <footer>Built with 💜 by Snow • Des Moines, Iowa • <span id="footer-year"></span></footer>
-
-        <!-- GUESTBOOK -->
-        <section id="guestbook" class="section guestbook-section" aria-hidden="true">
-            <div class="section-header reveal">
-                <div class="section-tag">// You Were Here</div>
-                <h2 class="section-title">Guest Book</h2>
-                <div class="section-underline"></div>
-            </div>
-
-            <div class="glass gb-form-card reveal">
-                <div class="gb-form-title">Leave your mark ✍️</div>
-                <div class="gb-fields">
-                    <input
-                        class="gb-input"
-                        id="gb-name"
-                        type="text"
-                        placeholder="Your name"
-                        maxlength="40"
-                        autocomplete="off"
-                    />
-                    <textarea
-                        class="gb-input gb-textarea"
-                        id="gb-msg"
-                        placeholder="Say something..."
-                        maxlength="200"
-                        rows="3"
-                    ></textarea>
-                </div>
-                <div class="gb-form-footer">
-                    <span class="gb-char-count" id="gb-char">0 / 200</span>
-                    <button class="btn btn-primary gb-submit" onclick="submitGuestbook()">Sign ✦</button>
-                </div>
-                <div class="gb-error" id="gb-error"></div>
-            </div>
-
-            <div id="gb-entries" class="gb-entries"></div>
-        </section>
 
         <!-- PROJECT MODAL -->
         <div id="modal-overlay">
@@ -1970,22 +2063,34 @@
             ];
 
             const LANGS = [
-                { icon: "🐍", name: "Python" },
-                { icon: "📦", name: "Batch" },
-                { icon: "📝", name: "Markdown" },
-                { icon: "🌐", name: "HTML" },
-                { icon: "🎨", name: "CSS" },
-                { icon: "💅", name: "SCSS" },
-                { icon: "🖌️", name: "SASS" },
+                { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">', name: "Python" },
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Batch">',
+                    name: "Batch",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/markdown/ffffff" alt="Markdown">', name: "Markdown" },
+                { icon: '<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML">', name: "HTML" },
+                { icon: '<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS">', name: "CSS" },
+                { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SCSS">', name: "SCSS" },
+                { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SASS">', name: "SASS" },
             ];
 
             const TOOLS = [
-                { icon: "🪟", name: "Windows 11" },
-                { icon: "💻", name: "VS Code" },
-                { icon: "🔀", name: "Git" },
-                { icon: "⚙️", name: "GitHub Actions" },
-                { icon: "✨", name: "Prettier" },
-                { icon: "🐍", name: "Black" },
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" alt="Windows 11">',
+                    name: "Windows 11",
+                },
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">',
+                    name: "VS Code",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/git/F05032" alt="Git">', name: "Git" },
+                {
+                    icon: '<img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions">',
+                    name: "GitHub Actions",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier">', name: "Prettier" },
+                { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Black">', name: "Black" },
             ];
 
             const CONTACTS = [
@@ -1996,7 +2101,12 @@
                     href: "https://discord.com/users/therealjustsnow",
                 },
                 { icon: "📧", label: "Email", val: "ewagner2698@gmail.com", href: "mailto:ewagner2698@gmail.com" },
-                { icon: "🐙", label: "GitHub", val: "BabyBoySnow", href: "https://github.com/BabyBoySnow" },
+                {
+                    icon: '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
+                    label: "GitHub",
+                    val: "BabyBoySnow",
+                    href: "https://github.com/BabyBoySnow",
+                },
             ];
 
             const SCHEDULE = [
@@ -2351,15 +2461,20 @@
             /* ════════════════════════════════════════════════════════
    TYPEWRITER
 ════════════════════════════════════════════════════════ */
+            const GH_ICON = '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="tw-icon">';
+
+            // Each phrase is a {icon, text} object.
+            // `icon` is rendered statically (never sliced), `text` is animated character-by-character.
+            // This lets us embed the GitHub logo without breaking the slice animation.
             const phrases = [
-                "🎮 Gamer",
-                "Blending Design & Functionality",
-                "Open Source First",
-                "ClearVision Team Member",
-                "Maintaining MusicBot",
-                "Working on Aquarion",
-                "Calculator Tinkerer",
-                "Rolling Burritos 🌯",
+                { icon: "🎮", text: " Gamer" },
+                { icon: "🎨", text: " Blending Design & Functionality" },
+                { icon: GH_ICON, text: " Open Source First" },
+                { icon: "👥", text: " ClearVision Team Member" },
+                { icon: "🎶", text: " Maintaining MusicBot" },
+                { icon: "👨‍💻", text: " Working on Aquarion" },
+                { icon: "🖩", text: " Calculator Tinkerer" },
+                { icon: "🌯", text: " Rolling Burritos" },
             ];
             let twIdx = 0,
                 twChar = 0,
@@ -2373,18 +2488,19 @@
                     setTimeout(typeStep, 50);
                     return;
                 }
-                const word = phrases[twIdx];
+                const { icon, text } = phrases[twIdx];
                 if (!twDeleting) {
                     twChar++;
-                    twEl.textContent = word.slice(0, twChar);
-                    if (twChar === word.length) {
+                    // innerHTML so the icon img renders; only `text` is sliced, icon is static
+                    twEl.innerHTML = icon + text.slice(0, twChar);
+                    if (twChar === text.length) {
                         twDeleting = true;
                         twPause = 40;
                     }
                     setTimeout(typeStep, 60);
                 } else {
                     twChar--;
-                    twEl.textContent = word.slice(0, twChar);
+                    twEl.innerHTML = icon + text.slice(0, twChar);
                     if (twChar === 0) {
                         twDeleting = false;
                         twIdx = (twIdx + 1) % phrases.length;
@@ -2989,54 +3105,98 @@
             })();
 
             /* ════════════════════════════════════════════════════════
-   GUESTBOOK
+   GUESTBOOK & VIEW SWITCHER
 ════════════════════════════════════════════════════════ */
-            // Supabase config — anon key is safe to expose in frontend code,
-            // it can only do what your RLS policies explicitly permit.
+
+            // Supabase config
             const GB_URL = "https://zsyyscnydkgmtvzurhoa.supabase.co/rest/v1/guestbook";
             const GB_KEY_ANON =
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzeXlzY255ZGtnbXR2enVyaG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MzU0NzIsImV4cCI6MjA4NzIxMTQ3Mn0.u2dpcV5fv2HNfgnNsEnjBFfmKXLoy2Lrgntle_AbA_4";
-
-            // Shared headers for every Supabase request
             const GB_HEADERS = {
                 "Content-Type": "application/json",
                 apikey: GB_KEY_ANON,
                 Authorization: "Bearer " + GB_KEY_ANON,
             };
 
-            // XSS sanitizer — always escape before injecting into innerHTML
+            // ── View switcher ────────────────────────────────────────
+            // "home" and "guestbook" are the two possible views.
+            // switchView animates the old view out, swaps visibility,
+            // then animates the new view in. history.pushState keeps
+            // the browser back button working naturally.
+            let currentView = "home";
+
+            function switchView(target) {
+                if (target === currentView) return;
+
+                const mainEl = document.getElementById("main-view");
+                const gbEl = document.getElementById("guestbook-view");
+                const gbNav = document.getElementById("guestbook-nav");
+                const scrollTopBtn = document.getElementById("scroll-top");
+
+                if (target === "guestbook") {
+                    // Fade main out, then swap and fade guestbook in
+                    mainEl.classList.add("view-leaving");
+                    gbEl.classList.add("view-active"); // display:block
+
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            gbEl.classList.add("view-visible"); // opacity + translateY(0)
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+
+                    // After main's transition finishes, fully hide it
+                    setTimeout(() => {
+                        mainEl.style.display = "none";
+                    }, 360);
+
+                    gbNav.classList.add("active-nav");
+                    scrollTopBtn.classList.remove("visible"); // hide scroll-to-top in guestbook
+                    document.getElementById("nav-links").classList.remove("open");
+
+                    history.pushState({ view: "guestbook" }, "", "#guestbook");
+                    renderGuestbookEntries();
+                } else {
+                    // Fade guestbook out, restore main
+                    gbEl.classList.remove("view-visible");
+
+                    mainEl.style.display = ""; // un-hide before animating back
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            mainEl.classList.remove("view-leaving");
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+
+                    setTimeout(() => {
+                        gbEl.classList.remove("view-active"); // display:none
+                    }, 360);
+
+                    gbNav.classList.remove("active-nav");
+                    document.getElementById("nav-links").classList.remove("open");
+                    history.pushState({ view: "home" }, "", "#");
+                }
+
+                currentView = target;
+            }
+
+            // Handle browser back/forward buttons
+            window.addEventListener("popstate", (e) => {
+                const target = e.state?.view === "guestbook" ? "guestbook" : "home";
+                if (target !== currentView) switchView(target);
+            });
+
+            // ── XSS sanitizer ───────────────────────────────────────
             function sanitize(str) {
                 return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
             }
 
-            function openGuestbook(e) {
-                e.preventDefault();
-                const sec = document.getElementById("guestbook");
-                const alreadyOpen = sec.classList.contains("gb-open");
-
-                if (alreadyOpen) {
-                    sec.scrollIntoView({ behavior: "smooth" });
-                    return;
-                }
-
-                sec.classList.add("gb-open");
-                // Two rAF frames to let display:block paint before starting the CSS transition
-                requestAnimationFrame(() =>
-                    requestAnimationFrame(() => {
-                        sec.classList.add("gb-visible");
-                        sec.scrollIntoView({ behavior: "smooth" });
-                    })
-                );
-
-                renderGuestbookEntries();
-                document.getElementById("nav-links").classList.remove("open");
-            }
-
-            // Live character counter
+            // ── Live character counter ───────────────────────────────
             document.getElementById("gb-msg").addEventListener("input", function () {
                 document.getElementById("gb-char").textContent = this.value.length + " / 200";
             });
 
+            // ── Submit new entry ─────────────────────────────────────
             async function submitGuestbook() {
                 const nameEl = document.getElementById("gb-name");
                 const msgEl = document.getElementById("gb-msg");
@@ -3046,7 +3206,6 @@
                 const msg = msgEl.value.trim();
 
                 errEl.textContent = "";
-
                 if (!name) {
                     errEl.textContent = "! Name is required.";
                     nameEl.focus();
@@ -3058,37 +3217,27 @@
                     return;
                 }
 
-                // Disable button while the request is in flight
                 btn.textContent = "Signing…";
                 btn.disabled = true;
 
                 try {
-                    // POST a new row — Supabase expects the column names from your table schema.
-                    // "message" maps to the `message` column, "name" to `name`.
-                    // `created_at` is handled automatically by Supabase/Postgres.
                     const res = await fetch(GB_URL, {
                         method: "POST",
                         headers: { ...GB_HEADERS, Prefer: "return=minimal" },
                         body: JSON.stringify({ name: sanitize(name), message: sanitize(msg) }),
                     });
-
                     if (!res.ok) {
                         const err = await res.json().catch(() => ({}));
-                        throw new Error(err.message || "Request failed with status " + res.status);
+                        throw new Error(err.message || "Request failed (" + res.status + ")");
                     }
-
-                    // Clear form on success
                     nameEl.value = "";
                     msgEl.value = "";
                     document.getElementById("gb-char").textContent = "0 / 200";
-
                     btn.textContent = "Signed! ✓";
                     setTimeout(() => {
                         btn.textContent = "Sign ✦";
                         btn.disabled = false;
                     }, 2000);
-
-                    // Reload entries so the new one appears immediately
                     renderGuestbookEntries();
                 } catch (err) {
                     errEl.textContent = "! " + err.message;
@@ -3097,51 +3246,87 @@
                 }
             }
 
-            async function renderGuestbookEntries() {
-                const container = document.getElementById("gb-entries");
+            // ── Fetch & render entries (with load-more pagination) ───
+            const GB_PAGE_SIZE = 100;
+            let gbOffset = 0;
 
-                // Show a loading state while fetching
-                container.innerHTML = '<div class="gb-empty">Loading entries…</div>';
+            // `append` = false means a fresh load (reset offset, clear container)
+            // `append` = true means the user hit Load More (keep existing cards, add new ones below)
+            async function renderGuestbookEntries(append = false) {
+                const container = document.getElementById("gb-entries");
+                const loadMoreBtn = document.getElementById("gb-load-more");
+
+                if (!append) {
+                    gbOffset = 0;
+                    container.innerHTML = '<div class="gb-empty">Loading entries…</div>';
+                    if (loadMoreBtn) loadMoreBtn.style.display = "none";
+                } else {
+                    // While fetching, give the button some feedback
+                    loadMoreBtn.textContent = "Loading…";
+                    loadMoreBtn.disabled = true;
+                }
 
                 try {
-                    // Fetch all rows, newest first, via the auto-generated REST endpoint.
-                    // `order=created_at.desc` sorts by timestamp descending.
-                    // `limit=100` keeps the response size reasonable.
+                    // `limit` controls page size; `offset` skips past already-loaded rows.
+                    // Supabase's REST API supports these as query params natively.
                     const res = await fetch(
-                        GB_URL + "?select=name,message,created_at&order=created_at.desc&limit=100",
+                        `${GB_URL}?select=name,message,created_at&order=created_at.desc&limit=${GB_PAGE_SIZE}&offset=${gbOffset}`,
                         { headers: GB_HEADERS }
                     );
-
                     if (!res.ok) throw new Error("Could not load entries.");
-
                     const entries = await res.json();
 
-                    if (!entries.length) {
+                    // Clear the loading placeholder only on the first load
+                    if (!append) container.innerHTML = "";
+
+                    if (entries.length === 0 && gbOffset === 0) {
                         container.innerHTML = '<div class="gb-empty">No entries yet — be the first to sign! 👋</div>';
                         return;
                     }
 
-                    container.innerHTML = entries
-                        .map((e) => {
-                            // Format the Postgres timestamp into a human-readable date
-                            const date = new Date(e.created_at).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                            });
-                            return `
-        <div class="glass gb-entry">
-          <div class="gb-entry-header">
-            <span class="gb-entry-name">${e.name}</span>
-            <span class="gb-entry-date">${date}</span>
-          </div>
-          <div class="gb-entry-msg">${e.message}</div>
-        </div>`;
-                        })
-                        .join("");
+                    // Build and append each entry card
+                    entries.forEach((e) => {
+                        const date = new Date(e.created_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        });
+                        const card = document.createElement("div");
+                        card.className = "glass gb-entry";
+                        card.innerHTML = `
+        <div class="gb-entry-header">
+          <span class="gb-entry-name">${e.name}</span>
+          <span class="gb-entry-date">${date}</span>
+        </div>
+        <div class="gb-entry-msg">${e.message}</div>`;
+                        container.appendChild(card);
+                    });
+
+                    // Advance the offset by however many rows we actually got back
+                    gbOffset += entries.length;
+
+                    // If we got a full page back there might be more — show the button.
+                    // If we got fewer than a full page, we've hit the end — hide it.
+                    if (loadMoreBtn) {
+                        if (entries.length === GB_PAGE_SIZE) {
+                            loadMoreBtn.style.display = "block";
+                            loadMoreBtn.textContent = "Load More ↓";
+                            loadMoreBtn.disabled = false;
+                        } else {
+                            loadMoreBtn.style.display = "none";
+                        }
+                    }
                 } catch (err) {
-                    container.innerHTML = `<div class="gb-empty">⚠ ${err.message}</div>`;
+                    if (!append) container.innerHTML = `<div class="gb-empty">⚠ ${err.message}</div>`;
+                    if (loadMoreBtn) {
+                        loadMoreBtn.textContent = "Load More ↓";
+                        loadMoreBtn.disabled = false;
+                    }
                 }
+            }
+
+            function loadMoreEntries() {
+                renderGuestbookEntries(true);
             }
 
             /* ════════════════════════════════════════════════════════
