@@ -472,8 +472,14 @@
                     display: flex;
                     justify-content: center;
                 }
+                .hero-text {
+                    align-items: center;
+                }
             }
             .hero-text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
             }
             .hero-greeting {
                 font-family: "JetBrains Mono", monospace;
