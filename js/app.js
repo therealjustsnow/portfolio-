@@ -2310,63 +2310,58 @@
 ════════════════════════════════════════════════════════ */
             let photoLoaded = false;
 
-            async function loadPhotography() {
+            // ── To add a new photo: push a new entry to this array ────────
+            const PHOTOS = [
+                { src: "photos/beach.jpg",           alt: "Beach" },
+                { src: "photos/black_butterfly.jpg", alt: "Black Butterfly" },
+                { src: "photos/fish.jpeg",           alt: "Fish" },
+                { src: "photos/halloween.jpg",       alt: "Halloween" },
+                { src: "photos/monarch.jpg",         alt: "Monarch" },
+                { src: "photos/ramen.jpg",           alt: "Ramen" },
+                { src: "photos/sonic_sunset.jpg",    alt: "Sonic Sunset" },
+                { src: "photos/sunrise1.png",        alt: "Sunrise 1" },
+                { src: "photos/sunrise2.png",        alt: "Sunrise 2" },
+                { src: "photos/sunrise3.jpg",        alt: "Sunrise 3" },
+                { src: "photos/sunrise4.jpg",        alt: "Sunrise 4" },
+                { src: "photos/sunset1.jpg",         alt: "Sunset 1" },
+                { src: "photos/sunset2.jpg",         alt: "Sunset 2" },
+                { src: "photos/sunset3.jpg",         alt: "Sunset 3" },
+                { src: "photos/sunset4.jpg",         alt: "Sunset 4" },
+                { src: "photos/sunset5.jpg",         alt: "Sunset 5" },
+                { src: "photos/sunset6.jpg",         alt: "Sunset 6" },
+                { src: "photos/sunset7.jpg",         alt: "Sunset 7" },
+                { src: "photos/sushi.jpg",           alt: "Sushi" },
+            ];
+
+            function loadPhotography() {
                 if (photoLoaded) return;
                 photoLoaded = true;
 
                 const grid = document.getElementById("photo-grid");
                 const status = document.getElementById("photo-status");
 
-                status.textContent = "Loading photos…";
+                status.textContent = PHOTOS.length + " photos";
+                grid.innerHTML = "";
 
-                try {
-                    const res = await fetch(
-                        "https://api.github.com/repos/therealjustsnow/portfolio-/contents/photos",
-                        { headers: { Accept: "application/vnd.github.v3+json" } }
-                    );
-                    if (!res.ok) throw new Error("GitHub API returned " + res.status);
-                    const files = await res.json();
+                PHOTOS.forEach((photo, i) => {
+                    const item = document.createElement("div");
+                    item.className = "photo-item";
+                    item.style.animationDelay = (i * 0.06) + "s";
 
-                    const imgs = files.filter(f =>
-                        /\.(jpe?g|png|gif|webp|avif|tiff?)$/i.test(f.name) &&
-                        !/favicon/i.test(f.name)
-                    );
+                    const img = document.createElement("img");
+                    img.src = photo.src;
+                    img.alt = photo.alt;
+                    img.loading = "lazy";
+                    img.decoding = "async";
 
-                    if (imgs.length === 0) {
-                        status.textContent = "No photos found yet — check back soon!";
-                        return;
-                    }
-
-                    status.textContent = imgs.length + " photo" + (imgs.length !== 1 ? "s" : "");
-                    grid.innerHTML = "";
-
-                    imgs.forEach((file, i) => {
-                        // Use download_url from the API — GitHub constructs this correctly
-                        // for any filename including special characters, spaces, etc.
-                        const rawUrl = file.download_url;
-
-                        const item = document.createElement("div");
-                        item.className = "photo-item";
-                        item.style.animationDelay = (i * 0.06) + "s";
-
-                        const img = document.createElement("img");
-                        img.src = rawUrl;
-                        img.alt = file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
-                        img.loading = "lazy";
-                        img.decoding = "async";
-
-                        item.appendChild(img);
-                        item.addEventListener("click", () => openLightbox(rawUrl, img.alt, i, imgs));
-                        grid.appendChild(item);
-                    });
-
-                } catch (err) {
-                    status.textContent = "Could not load photos: " + err.message;
-                }
+                    item.appendChild(img);
+                    item.addEventListener("click", () => openLightbox(photo.src, photo.alt, i, PHOTOS));
+                    grid.appendChild(item);
+                });
             }
 
             // Lightbox
-            function openLightbox(src, alt, idx, imgs) {
+            function openLightbox(src, alt, idx, photos) {
                 const lb = document.getElementById("photo-lightbox");
                 const lbImg = document.getElementById("lb-img");
                 const lbCaption = document.getElementById("lb-caption");
@@ -2375,16 +2370,11 @@
                 lbImg.src = src;
                 lbImg.alt = alt;
                 lbCaption.textContent = alt;
-                lbCounter.textContent = (idx + 1) + " / " + imgs.length;
+                lbCounter.textContent = (idx + 1) + " / " + photos.length;
 
                 lb.dataset.idx = idx;
-                lb.dataset.total = imgs.length;
-
-                // Store all img srcs for navigation — use download_url directly from API data
-                lb.dataset.srcs = JSON.stringify(imgs.map(f => f.download_url));
-                lb.dataset.alts = JSON.stringify(imgs.map(f =>
-                    f.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
-                ));
+                lb.dataset.srcs = JSON.stringify(photos.map(p => p.src));
+                lb.dataset.alts = JSON.stringify(photos.map(p => p.alt));
 
                 lb.classList.add("open");
                 document.body.style.overflow = "hidden";
