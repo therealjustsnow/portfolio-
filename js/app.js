@@ -1,0 +1,2428 @@
+            /* ════════════════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════════════════ */
+            const PROJECTS = [
+                {
+                    id: "musicbot",
+                    name: "MusicBot",
+                    badge: "Maintainer",
+                    period: "2020 – Present",
+                    tech: ["Python"],
+                    images: ["https://i.imgur.com/FWcHtcS.png"],
+                    github: "https://github.com/Just-Some-Bots/MusicBot/tree/dev",
+                    repo: "Just-Some-Bots/MusicBot",
+                    desc: "A self-hosted music bot for Discord. I maintain the dev branch, triaging issues and shipping improvements.",
+                },
+                {
+                    id: "aquarion",
+                    name: "Aquarion",
+                    badge: "Owner",
+                    period: "2025 – Present",
+                    tech: ["CSS", "SCSS", "GitHub Actions"],
+                    images: [
+                        "https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Aquarion%20Preview.png",
+                        "https://github.com/Aquarion-D/Aquarion/raw/Aquarion/screenshots/Nitro%20Profile%20Preview.png",
+                        "https://github.com/Aquarion-D/Aquarion/raw/Aquarion/screenshots/Preview%20with%20profile.png",
+                        "https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Channel%20Hovered.png",
+                    ],
+                    github: "https://github.com/Aquarion-D/Aquarion",
+                    repo: "Aquarion-D/Aquarion",
+                    desc: "A highly polished Discord theme built with CSS & SCSS. Features adaptive layouts, Nitro previews, and automated builds.",
+                },
+                {
+                    id: "clearvision",
+                    name: "ClearVision",
+                    badge: "Team Member",
+                    period: "2024 – 2025",
+                    tech: ["CSS", "SCSS", "GitHub Actions"],
+                    images: ["https://i.imgur.com/U7UXrEN.png"],
+                    github: "https://github.com/ClearVision",
+                    repo: "ClearVision/ClearVision-v6",
+                    desc: "Contributed to one of the most popular Discord themes. Helped maintain styles, fix bugs, and improve documentation.",
+                },
+            ];
+
+            const LANGS = [
+                { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">', name: "Python" },
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Batch">',
+                    name: "Batch",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/markdown/ffffff" alt="Markdown">', name: "Markdown" },
+                { icon: '<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML">', name: "HTML" },
+                { icon: '<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS">', name: "CSS" },
+                { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SCSS">', name: "SCSS" },
+                { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SASS">', name: "SASS" },
+            ];
+
+            const TOOLS = [
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" alt="Windows 11">',
+                    name: "Windows 11",
+                },
+                {
+                    icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">',
+                    name: "VS Code",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/git/F05032" alt="Git">', name: "Git" },
+                {
+                    icon: '<img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions">',
+                    name: "GitHub Actions",
+                },
+                { icon: '<img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier">', name: "Prettier" },
+                { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Black">', name: "Black" },
+            ];
+
+            const CONTACTS = [
+                {
+                    icon: "💬",
+                    label: "Discord",
+                    val: "therealjustsnow",
+                    href: "https://discord.com/users/therealjustsnow",
+                },
+                { icon: "📧", label: "Email", val: "ewagner2698@gmail.com", href: "mailto:ewagner2698@gmail.com" },
+                {
+                    icon: '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
+                    label: "GitHub",
+                    val: "BabyBoySnow",
+                    href: "https://github.com/BabyBoySnow",
+                },
+            ];
+
+            const SCHEDULE = [
+                { emoji: "💤", label: "Sleeping", time: "12am – 12pm", start: 0, end: 12 },
+                { emoji: "👨‍💻", label: "Coding", time: "12pm – 4pm", start: 12, end: 16 },
+                { emoji: "💼", label: "Working", time: "4pm – 10pm", start: 16, end: 22 },
+                { emoji: "🎮", label: "Gaming", time: "10pm – 12am", start: 22, end: 24 },
+            ];
+
+            /* ════════════════════════════════════════════════════════
+   HUE-BASED ACCENT COLOR
+════════════════════════════════════════════════════════ */
+            // Load saved or default to hue=280 (purple), alpha=1
+            let currentHue = parseFloat(localStorage.getItem("snow-hue") ?? "280");
+            let currentAlpha = parseFloat(localStorage.getItem("snow-alpha") ?? "1");
+
+            function hslToRgb(h, s, l) {
+                s /= 100;
+                l /= 100;
+                const k = (n) => (n + h / 30) % 12;
+                const a = s * Math.min(l, 1 - l);
+                const f = (n) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+                return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+            }
+            function rgbToHex(r, g, b) {
+                return "#" + [r, g, b].map((v) => v.toString(16).padStart(2, "0")).join("");
+            }
+            // Tinted dark bg from hue
+            function darkBg(h, l1, l2, l3) {
+                return [`hsl(${h},55%,${l1}%)`, `hsl(${h},55%,${l2}%)`, `hsl(${h},50%,${l3}%)`];
+            }
+
+            function applyCustomColor(hue, alpha) {
+                currentHue = hue;
+                currentAlpha = alpha;
+
+                const [r, g, b] = hslToRgb(hue, 80, 58);
+                const hex = rgbToHex(r, g, b);
+                const accentFull = `hsl(${hue},80%,58%)`;
+                const accentDark = `hsl(${hue},80%,43%)`;
+                const glowA = 0.35 * alpha;
+                const [g1, g2, g3] = darkBg(hue, 7, 4.5, 9);
+
+                const root = document.documentElement.style;
+                root.setProperty("--accent", accentFull);
+                root.setProperty("--accent-rgb", `${r},${g},${b}`);
+                root.setProperty("--accent-dark", accentDark);
+                root.setProperty("--accent-glow", `rgba(${r},${g},${b},${glowA})`);
+                root.setProperty("--g1", g1);
+                root.setProperty("--g2", g2);
+                root.setProperty("--g3", g3);
+
+                // Remove any old body theme class
+                document.body.className = "";
+
+                // Update accent display card
+                const el = document.getElementById("theme-display");
+                if (el) el.textContent = alpha < 1 ? `${hex} / ${Math.round(alpha * 100)}%` : hex;
+
+                // Update picker UI
+                document.getElementById("hue-track").value = hue;
+                document.getElementById("alpha-track").value = Math.round(alpha * 100);
+                updatePickerUI(hue, alpha);
+
+                // Persist
+                localStorage.setItem("snow-hue", hue);
+                localStorage.setItem("snow-alpha", alpha);
+                trackSession("accent", hex + (alpha < 1 ? "/" + Math.round(alpha * 100) + "%" : ""));
+            }
+
+            function updatePickerUI(hue, alpha) {
+                const [r, g, b] = hslToRgb(hue, 80, 58);
+                const hex = rgbToHex(r, g, b);
+                const swatchEl = document.getElementById("cp-swatch");
+                const hexInput = document.getElementById("cp-hex-input");
+                if (swatchEl) swatchEl.style.background = `rgba(${r},${g},${b},${alpha})`;
+                // Only update input if user isn't actively typing in it
+                if (hexInput && document.activeElement !== hexInput) {
+                    hexInput.value = hex;
+                    hexInput.classList.remove("invalid");
+                }
+                // Update alpha track gradient
+                const at = document.getElementById("alpha-track");
+                if (at)
+                    at.style.background = `linear-gradient(to right, rgba(${r},${g},${b},0), rgba(${r},${g},${b},1))`;
+            }
+
+            // Hex → HSL conversion helper
+            function hexToHsl(hex) {
+                // Expand shorthand #rgb → #rrggbb
+                hex = hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (_, r, g, b) => "#" + r + r + g + g + b + b);
+                const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                if (!m) return null;
+                let r = parseInt(m[1], 16) / 255,
+                    g = parseInt(m[2], 16) / 255,
+                    b = parseInt(m[3], 16) / 255;
+                const max = Math.max(r, g, b),
+                    min = Math.min(r, g, b);
+                let h,
+                    s,
+                    l = (max + min) / 2;
+                if (max === min) {
+                    h = s = 0;
+                } else {
+                    const d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r:
+                            h = ((g - b) / d + (g < b ? 6 : 0)) / 6;
+                            break;
+                        case g:
+                            h = ((b - r) / d + 2) / 6;
+                            break;
+                        case b:
+                            h = ((r - g) / d + 4) / 6;
+                            break;
+                    }
+                }
+                return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+            }
+
+            function applyHexInput(rawVal) {
+                const hex = rawVal.trim().startsWith("#") ? rawVal.trim() : "#" + rawVal.trim();
+                const hsl = hexToHsl(hex);
+                const input = document.getElementById("cp-hex-input");
+                if (!hsl) {
+                    if (input) input.classList.add("invalid");
+                    return;
+                }
+                if (input) input.classList.remove("invalid");
+                // Snap hue slider to this hue, keep current alpha
+                applyCustomColor(hsl.h, currentAlpha);
+            }
+
+            // Wire hex input
+            const cpHexInput = document.getElementById("cp-hex-input");
+            cpHexInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    applyHexInput(cpHexInput.value);
+                    cpHexInput.blur();
+                }
+                if (e.key === "Escape") {
+                    cpHexInput.blur();
+                }
+            });
+            // Validate on every keystroke (auto-apply if valid full hex)
+            cpHexInput.addEventListener("input", function () {
+                const val = this.value.trim();
+                const clean = val.startsWith("#") ? val : "#" + val;
+                if (/^#[a-f\d]{6}$/i.test(clean) || /^#[a-f\d]{3}$/i.test(clean)) {
+                    this.classList.remove("invalid");
+                    applyHexInput(val);
+                } else {
+                    this.classList.toggle("invalid", val.length > 0);
+                }
+            });
+            // Prefix # automatically if user starts typing without it
+            cpHexInput.addEventListener("focus", function () {
+                if (!this.value) this.value = "#";
+            });
+            cpHexInput.addEventListener("blur", function () {
+                if (this.value === "#") this.value = "";
+                // Restore to current color if invalid
+                const [r, g, b] = hslToRgb(currentHue, 80, 58);
+                if (this.classList.contains("invalid")) this.value = rgbToHex(r, g, b);
+                this.classList.remove("invalid");
+            });
+            document.getElementById("cp-apply-btn").addEventListener("click", () => {
+                applyHexInput(cpHexInput.value);
+                cpHexInput.blur();
+            });
+
+            let colorPopupOpen = false;
+            function toggleColorPopup() {
+                colorPopupOpen = !colorPopupOpen;
+                document.getElementById("color-popup").classList.toggle("open", colorPopupOpen);
+                if (colorPopupOpen) updatePickerUI(currentHue, currentAlpha);
+            }
+            document.addEventListener("click", (e) => {
+                if (!colorPopupOpen) return;
+                const popup = document.getElementById("color-popup");
+                const btn = document.getElementById("hue-btn");
+                if (!popup.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                    colorPopupOpen = false;
+                    popup.classList.remove("open");
+                }
+            });
+
+            // Wire up sliders — fast real-time updates
+            document.getElementById("hue-track").addEventListener("input", function () {
+                applyCustomColor(parseFloat(this.value), currentAlpha);
+            });
+            document.getElementById("alpha-track").addEventListener("input", function () {
+                applyCustomColor(currentHue, parseFloat(this.value) / 100);
+            });
+
+            // Init
+            applyCustomColor(currentHue, currentAlpha);
+
+            // Legacy applyTheme shim (for trackSession calls etc.) — no-op
+            function applyTheme(t) {}
+
+            /* ════════════════════════════════════════════════════════
+   TIME
+════════════════════════════════════════════════════════ */
+            const sessionStart = Date.now();
+
+            function padZ(n) {
+                return String(n).padStart(2, "0");
+            }
+
+            function updateTimes() {
+                const now = new Date();
+
+                // Snow's time in Central Time (America/Chicago)
+                const snowOpts = {
+                    timeZone: "America/Chicago",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true,
+                };
+                document.getElementById("snow-time").textContent = now.toLocaleTimeString("en-US", snowOpts);
+
+                // Visitor time
+                document.getElementById("your-time").textContent = now.toLocaleTimeString("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    hour12: true,
+                });
+                document.getElementById("your-tz").textContent =
+                    Intl.DateTimeFormat().resolvedOptions().timeZone || "Local";
+
+                // Session timer
+                const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+                const m = Math.floor(elapsed / 60),
+                    s = elapsed % 60;
+                document.getElementById("session-timer").textContent = padZ(m) + ":" + padZ(s);
+
+                // Schedule — show only active item
+                const snowNow = new Date(now.toLocaleString("en-US", { timeZone: "America/Chicago" }));
+                const h = snowNow.getHours() + snowNow.getMinutes() / 60;
+                const activeSc = SCHEDULE.find((sc) => h >= sc.start && h < sc.end) || SCHEDULE[0];
+                const grid = document.getElementById("schedule-grid");
+                // Only re-render if the active item changed
+                if (grid.dataset.active !== activeSc.label) {
+                    grid.dataset.active = activeSc.label;
+                    grid.innerHTML = `<div class="glass sched-card">
+      <span class="sched-emoji">${activeSc.emoji}</span>
+      <div class="sched-label">${activeSc.label}</div>
+      <div class="sched-time">${activeSc.time}</div>
+      <div class="sched-now">◉ NOW</div>
+    </div>`;
+                }
+            }
+            setInterval(updateTimes, 1000);
+            updateTimes();
+
+            /* ════════════════════════════════════════════════════════
+   BUILD DOM
+════════════════════════════════════════════════════════ */
+            // Projects
+            function buildProjects() {
+                const grid = document.getElementById("projects-grid");
+                PROJECTS.forEach((p, pi) => {
+                    const card = document.createElement("div");
+                    card.className = "glass project-card reveal" + (pi > 0 ? " reveal-delay-" + Math.min(pi, 3) : "");
+
+                    const imgSrc = p.images[0];
+                    let navDots = "";
+                    if (p.images.length > 1) {
+                        navDots = `<div class="card-img-nav">${p.images.map((_, ii) => `<div class="img-dot${ii === 0 ? " active" : ""}" data-proj="${p.id}" data-idx="${ii}"></div>`).join("")}</div>`;
+                    }
+
+                    card.innerHTML = `
+      <div class="card-img">
+        <img src="${imgSrc}" alt="${p.name}" loading="lazy" id="proj-img-${p.id}"/>
+        ${navDots}
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-name">${p.name}</span>
+          <span class="badge">${p.badge}</span>
+        </div>
+        <div class="card-period">${p.period}</div>
+        <div class="card-tech">${p.tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>
+        <div class="card-actions">
+          <a class="btn btn-ghost" href="${p.github}" target="_blank">GitHub ↗</a>
+          <button class="btn btn-primary" onclick="openModal('${p.id}')">Read More</button>
+        </div>
+      </div>`;
+
+                    grid.appendChild(card);
+
+                    // Image dots
+                    card.querySelectorAll(".img-dot").forEach((dot) => {
+                        dot.addEventListener("click", () => {
+                            const idx = parseInt(dot.dataset.idx);
+                            document.getElementById("proj-img-" + p.id).src = p.images[idx];
+                            card.querySelectorAll(".img-dot").forEach((d, di) =>
+                                d.classList.toggle("active", di === idx)
+                            );
+                        });
+                    });
+                });
+            }
+            buildProjects();
+
+            // Stack
+            function buildStack(containerId, items) {
+                const g = document.getElementById(containerId);
+                items.forEach((item, i) => {
+                    const card = document.createElement("div");
+                    card.className = "glass stack-card";
+                    card.style.transitionDelay = i * 0.04 + "s";
+                    card.innerHTML = `<span class="icon">${item.icon}</span><span class="name">${item.name}</span>`;
+                    // Touch skew
+                    card.addEventListener("click", () => {
+                        card.style.transform =
+                            "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
+                        setTimeout(() => (card.style.transform = ""), 500);
+                    });
+                    g.appendChild(card);
+                });
+            }
+            buildStack("lang-grid", LANGS);
+            buildStack("tools-grid", TOOLS);
+
+            // Contacts
+            (function () {
+                const cont = document.getElementById("contact-cards");
+                CONTACTS.forEach((c) => {
+                    const a = document.createElement("a");
+                    a.className = "glass contact-card";
+                    a.href = c.href;
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.innerHTML = `<div class="contact-icon">${c.icon}</div>
+      <div class="contact-info">
+        <div class="label">${c.label}</div>
+        <div class="val">${c.val}</div>
+      </div>`;
+                    cont.appendChild(a);
+                });
+            })();
+
+            // Footer year
+            document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+            /* ════════════════════════════════════════════════════════
+   TYPEWRITER
+════════════════════════════════════════════════════════ */
+            const GH_ICON = '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="tw-icon">';
+
+            // Each phrase is a {icon, text} object.
+            // `icon` is rendered statically (never sliced), `text` is animated character-by-character.
+            // This lets us embed the GitHub logo without breaking the slice animation.
+            const phrases = [
+                { icon: "🎮", text: " Gamer" },
+                { icon: "🎨", text: " Blending Design & Functionality" },
+                { icon: GH_ICON, text: " Open Source First" },
+                { icon: "👥", text: " ClearVision Team Member" },
+                { icon: "🎶", text: " Maintaining MusicBot" },
+                { icon: "👨‍💻", text: " Working on Aquarion" },
+                { icon: "🖩", text: " Calculator Tinkerer" },
+                { icon: "🌯", text: " Rolling Burritos" },
+            ];
+            let twIdx = 0,
+                twChar = 0,
+                twDeleting = false,
+                twPause = 0;
+            const twEl = document.getElementById("typewriter-text");
+
+            function typeStep() {
+                if (twPause > 0) {
+                    twPause--;
+                    setTimeout(typeStep, 50);
+                    return;
+                }
+                const { icon, text } = phrases[twIdx];
+                if (!twDeleting) {
+                    twChar++;
+                    // innerHTML so the icon img renders; only `text` is sliced, icon is static
+                    twEl.innerHTML = icon + text.slice(0, twChar);
+                    if (twChar === text.length) {
+                        twDeleting = true;
+                        twPause = 40;
+                    }
+                    setTimeout(typeStep, 60);
+                } else {
+                    twChar--;
+                    twEl.innerHTML = icon + text.slice(0, twChar);
+                    if (twChar === 0) {
+                        twDeleting = false;
+                        twIdx = (twIdx + 1) % phrases.length;
+                        twPause = 6;
+                    }
+                    setTimeout(typeStep, 30);
+                }
+            }
+            typeStep();
+
+            /* ════════════════════════════════════════════════════════
+   SCROLL REVEAL + SECTION TRACKING
+════════════════════════════════════════════════════════ */
+            const visitedSections = new Set();
+            const ro = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add("visible");
+                            if (e.target.closest("section")) {
+                                const id = e.target.closest("section").id;
+                                if (id) visitedSections.add(id);
+                            }
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document.querySelectorAll(".reveal,.section-header").forEach((el) => ro.observe(el));
+
+            /* ════════════════════════════════════════════════════════
+   MODAL + GITHUB COMMITS
+════════════════════════════════════════════════════════ */
+            function openModal(id) {
+                const p = PROJECTS.find((x) => x.id === id);
+                if (!p) return;
+
+                document.getElementById("modal-title").textContent = p.name;
+                document.getElementById("modal-badge").innerHTML =
+                    `<span class="badge">${p.badge}</span> <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-left:0.5rem">${p.period}</span>`;
+
+                const imgs = document.getElementById("modal-imgs");
+                imgs.innerHTML = p.images.map((src) => `<img src="${src}" alt="${p.name}" loading="lazy"/>`).join("");
+
+                document.getElementById("modal-tech").innerHTML =
+                    `<div class="card-tech" style="margin-bottom:1rem">${p.tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>
+     <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.6">${p.desc}</p>`;
+
+                document.getElementById("commits-list").innerHTML =
+                    '<div class="commit-item" style="color:rgba(255,255,255,0.4)">Loading commits…</div>';
+                document.getElementById("cached-indicator").textContent = "";
+
+                document.getElementById("modal-overlay").classList.add("open");
+                document.body.style.overflow = "hidden";
+
+                fetchCommits(p.repo);
+            }
+
+            function closeModal() {
+                document.getElementById("modal-overlay").classList.remove("open");
+                document.body.style.overflow = "";
+            }
+            document.getElementById("modal-overlay").addEventListener("click", (e) => {
+                if (e.target === document.getElementById("modal-overlay")) closeModal();
+            });
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeModal();
+            });
+
+            async function fetchCommits(repo) {
+                const key = "snow-commits-" + repo;
+                const cached = localStorage.getItem(key);
+                if (cached) {
+                    try {
+                        const { data, ts } = JSON.parse(cached);
+                        if (Date.now() - ts < 3600000) {
+                            renderCommits(data, true);
+                            return;
+                        }
+                    } catch (_) {}
+                }
+                try {
+                    const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=5`);
+                    if (!res.ok) throw new Error(res.status);
+                    const data = await res.json();
+                    localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
+                    renderCommits(data, false);
+                } catch (err) {
+                    document.getElementById("commits-list").innerHTML =
+                        `<div class="commit-item" style="color:rgba(239,68,68,0.8)">
+        ${err.message === "403" ? "GitHub rate limit reached. Try again later." : "Could not load commits — " + err.message}
+      </div>`;
+                }
+            }
+
+            function renderCommits(commits, fromCache) {
+                document.getElementById("cached-indicator").textContent = fromCache ? "(cached)" : "";
+                const el = document.getElementById("commits-list");
+                if (!Array.isArray(commits) || commits.length === 0) {
+                    el.innerHTML = '<div class="commit-item">No commits found.</div>';
+                    return;
+                }
+                el.innerHTML = commits
+                    .slice(0, 5)
+                    .map((c) => {
+                        const msg = c.commit?.message?.split("\n")[0] || "No message";
+                        const author = c.commit?.author?.name || "Unknown";
+                        const date = c.commit?.author?.date ? new Date(c.commit.author.date).toLocaleDateString() : "";
+                        const sha = (c.sha || "").slice(0, 7);
+                        return `<div class="commit-item">
+      <div class="commit-msg">${msg}</div>
+      <div class="commit-meta">${author} · ${date} · <a href="${c.html_url || "#"}" target="_blank" style="color:var(--accent);text-decoration:none">${sha}</a></div>
+    </div>`;
+                    })
+                    .join("");
+            }
+
+            /* ════════════════════════════════════════════════════════
+   VISITOR ANALYTICS
+════════════════════════════════════════════════════════ */
+            function trackSession(key, val) {
+                try {
+                    const raw = localStorage.getItem("snow-analytics") || "{}";
+                    const d = JSON.parse(raw);
+                    d[key] = val;
+                    localStorage.setItem("snow-analytics", JSON.stringify(d));
+                } catch (_) {}
+            }
+
+            function renderVisitorInsights() {
+                try {
+                    const d = JSON.parse(localStorage.getItem("snow-analytics") || "{}");
+                    const sessions = JSON.parse(localStorage.getItem("snow-sessions") || "[]");
+                    const lastSess = sessions[sessions.length - 1];
+
+                    const rows = [];
+                    if (lastSess?.duration) rows.push({ dot: true, text: "Last session: " + lastSess.duration });
+                    if (d.accent) rows.push({ dot: true, text: "Favorite accent: " + d.accent });
+                    if (d.ti83) rows.push({ dot: true, text: "TI-83 mode used: " + d.ti83 });
+                    rows.push({
+                        dot: true,
+                        text: "Sections explored: " + (Array.from(visitedSections).join(", ") || "Just arrived!"),
+                    });
+
+                    const el = document.getElementById("visitor-rows");
+                    if (rows.length === 0) {
+                        el.innerHTML =
+                            '<div style="font-size:0.8rem;color:rgba(255,255,255,0.35)">Start exploring to track your session!</div>';
+                        return;
+                    }
+                    el.innerHTML = rows
+                        .map((r) => `<div class="visitor-row"><div class="dot"></div><span>${r.text}</span></div>`)
+                        .join("");
+                } catch (_) {}
+            }
+            renderVisitorInsights();
+            setInterval(renderVisitorInsights, 5000);
+
+            // Save session on unload
+            window.addEventListener("beforeunload", () => {
+                try {
+                    const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
+                    const m = Math.floor(elapsed / 60),
+                        s = elapsed % 60;
+                    const dur = `${m}m ${padZ(s)}s`;
+                    const sessions = JSON.parse(localStorage.getItem("snow-sessions") || "[]");
+                    sessions.push({ duration: dur, ts: Date.now(), hue: currentHue, alpha: currentAlpha });
+                    localStorage.setItem("snow-sessions", JSON.stringify(sessions.slice(-7)));
+                } catch (_) {}
+            });
+
+            /* ════════════════════════════════════════════════════════
+   PARTICLE CURSOR
+════════════════════════════════════════════════════════ */
+            const isTouch = window.matchMedia("(hover:none)").matches;
+            if (!isTouch) {
+                let lastSpawn = 0;
+                const SPAWN_INTERVAL = 40;
+                const particles = [];
+                const MAX_PARTICLES = 30;
+
+                document.addEventListener("mousemove", (e) => {
+                    const now = Date.now();
+                    if (now - lastSpawn < SPAWN_INTERVAL) return;
+                    lastSpawn = now;
+
+                    if (particles.length >= MAX_PARTICLES) {
+                        const old = particles.shift();
+                        old.remove();
+                    }
+
+                    const p = document.createElement("div");
+                    p.className = "particle";
+                    const size = 4 + Math.random() * 6;
+                    const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
+                    p.style.cssText = `
+      left:${e.clientX}px;top:${e.clientY}px;
+      width:${size}px;height:${size}px;
+      background:var(--accent);
+      opacity:0.7;
+      transition:opacity 0.6s ease,transform 0.6s ease;
+    `;
+                    document.body.appendChild(p);
+                    particles.push(p);
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            p.style.opacity = "0";
+                            p.style.transform = `translate(-50%,-50%) scale(0) translate(${(Math.random() - 0.5) * 20}px,${-10 - Math.random() * 20}px)`;
+                        });
+                    });
+
+                    setTimeout(() => {
+                        p.remove();
+                        const idx = particles.indexOf(p);
+                        if (idx > -1) particles.splice(idx, 1);
+                    }, 700);
+                });
+            }
+
+            /* ════════════════════════════════════════════════════════
+   TI-83 MODE
+════════════════════════════════════════════════════════ */
+            let tiActive = false;
+
+            function toggleTI() {
+                tiActive = !tiActive;
+                document.getElementById("ti-overlay").classList.toggle("active", tiActive);
+                document.getElementById("ti-calc").classList.toggle("active", tiActive);
+                document.getElementById("ti-toggle").textContent = tiActive ? "EXIT TI" : "TI-83";
+                document.getElementById("ti83-status").textContent = "TI-83: " + (tiActive ? "ON ◉" : "off");
+                if (tiActive) {
+                    trackSession("ti83", "Yes");
+                    drawGrid();
+                }
+            }
+            function closeTI() {
+                tiActive = false;
+                document.getElementById("ti-overlay").classList.remove("active");
+                document.getElementById("ti-calc").classList.remove("active");
+                document.getElementById("ti-toggle").textContent = "TI-83";
+                document.getElementById("ti83-status").textContent = "TI-83: off";
+            }
+
+            /* ── TI-83 DRAG ─────────────────────────────────────────── */
+            (function () {
+                const calc = document.getElementById("ti-calc");
+                const header = calc.querySelector(".ti-header");
+                let dragging = false,
+                    ox = 0,
+                    oy = 0;
+
+                function initPos() {
+                    // Convert bottom/right to top/left so transform works predictably
+                    if (calc.style.left) return;
+                    const r = calc.getBoundingClientRect();
+                    calc.style.left = r.left + "px";
+                    calc.style.top = r.top + "px";
+                    calc.style.bottom = "auto";
+                    calc.style.right = "auto";
+                }
+
+                function clamp(val, min, max) {
+                    return Math.min(Math.max(val, min), max);
+                }
+
+                function onMove(cx, cy) {
+                    if (!dragging) return;
+                    let nx = cx - ox;
+                    let ny = cy - oy;
+                    // Keep within viewport
+                    nx = clamp(nx, 0, window.innerWidth - calc.offsetWidth);
+                    ny = clamp(ny, 0, window.innerHeight - calc.offsetHeight);
+                    calc.style.left = nx + "px";
+                    calc.style.top = ny + "px";
+                }
+
+                function onUp() {
+                    if (!dragging) return;
+                    dragging = false;
+                    header.style.cursor = "grab";
+                    calc.style.boxShadow = "0 0 30px rgba(0,255,65,0.25)";
+                }
+
+                // Mouse
+                header.addEventListener("mousedown", (e) => {
+                    if (e.target.classList.contains("ti-close-btn")) return;
+                    e.preventDefault();
+                    initPos();
+                    dragging = true;
+                    const r = calc.getBoundingClientRect();
+                    ox = e.clientX - r.left;
+                    oy = e.clientY - r.top;
+                    header.style.cursor = "grabbing";
+                    calc.style.boxShadow = "0 8px 48px rgba(0,255,65,0.4), 0 0 30px rgba(0,255,65,0.25)";
+                });
+                document.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY));
+                document.addEventListener("mouseup", onUp);
+
+                // Touch
+                header.addEventListener(
+                    "touchstart",
+                    (e) => {
+                        if (e.target.classList.contains("ti-close-btn")) return;
+                        e.preventDefault();
+                        initPos();
+                        dragging = true;
+                        const r = calc.getBoundingClientRect();
+                        const t = e.touches[0];
+                        ox = t.clientX - r.left;
+                        oy = t.clientY - r.top;
+                        calc.style.boxShadow = "0 8px 48px rgba(0,255,65,0.4), 0 0 30px rgba(0,255,65,0.25)";
+                    },
+                    { passive: false }
+                );
+                document.addEventListener(
+                    "touchmove",
+                    (e) => {
+                        if (!dragging) return;
+                        e.preventDefault();
+                        onMove(e.touches[0].clientX, e.touches[0].clientY);
+                    },
+                    { passive: false }
+                );
+                document.addEventListener("touchend", onUp);
+            })();
+
+            function tiInsert(txt) {
+                const inp = document.getElementById("ti-input");
+                inp.value = txt;
+                inp.focus();
+            }
+            function tiClear() {
+                document.getElementById("ti-input").value = "";
+                document.getElementById("ti-output").textContent = "Cleared.";
+                const canvas = document.getElementById("ti-canvas");
+                const ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawGrid();
+            }
+
+            // Safe math evaluator
+            function safeEval(expr, x) {
+                try {
+                    const scope = {
+                        x,
+                        Math,
+                        sin: Math.sin,
+                        cos: Math.cos,
+                        tan: Math.tan,
+                        sqrt: Math.sqrt,
+                        abs: Math.abs,
+                        log: Math.log,
+                        exp: Math.exp,
+                        PI: Math.PI,
+                        E: Math.E,
+                    };
+                    const fn = new Function(...Object.keys(scope), "return (" + expr + ")");
+                    const r = fn(...Object.values(scope));
+                    return isFinite(r) ? r : null;
+                } catch (_) {
+                    return null;
+                }
+            }
+
+            function drawGrid() {
+                const canvas = document.getElementById("ti-canvas");
+                const ctx = canvas.getContext("2d");
+                const W = canvas.width,
+                    H = canvas.height;
+                ctx.clearRect(0, 0, W, H);
+                ctx.strokeStyle = "rgba(0,255,65,0.15)";
+                ctx.lineWidth = 1;
+                const step = 20;
+                for (let x = 0; x < W; x += step) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, H);
+                    ctx.stroke();
+                }
+                for (let y = 0; y < H; y += step) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(W, y);
+                    ctx.stroke();
+                }
+                // Axes
+                ctx.strokeStyle = "rgba(0,255,65,0.5)";
+                ctx.beginPath();
+                ctx.moveTo(W / 2, 0);
+                ctx.lineTo(W / 2, H);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, H / 2);
+                ctx.lineTo(W, H / 2);
+                ctx.stroke();
+            }
+
+            function graphEq(expr) {
+                const canvas = document.getElementById("ti-canvas");
+                const ctx = canvas.getContext("2d");
+                const W = canvas.width,
+                    H = canvas.height;
+                drawGrid();
+                ctx.strokeStyle = "#00ff41";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                const xRange = 10;
+                let first = true;
+                for (let px = 0; px < W; px++) {
+                    const x = (px / W - 0.5) * xRange * 2;
+                    const y = safeEval(expr, x);
+                    if (y === null) {
+                        first = true;
+                        continue;
+                    }
+                    const py = H / 2 - y * (H / xRange / 2);
+                    if (first) {
+                        ctx.moveTo(px, py);
+                        first = false;
+                    } else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+            }
+
+            function findRoots(expr) {
+                const roots = [];
+                let prev = null,
+                    prevX = null;
+                for (let xi = -10; xi <= 10; xi += 0.05) {
+                    const y = safeEval(expr, xi);
+                    if (y === null) {
+                        prev = null;
+                        continue;
+                    }
+                    if (prev !== null && prev * y < 0) {
+                        // bisect
+                        let lo = prevX,
+                            hi = xi;
+                        for (let i = 0; i < 40; i++) {
+                            const mid = (lo + hi) / 2;
+                            const ym = safeEval(expr, mid);
+                            if (ym === null) break;
+                            if (safeEval(expr, lo) * ym <= 0) hi = mid;
+                            else lo = mid;
+                            if (hi - lo < 1e-8) break;
+                        }
+                        const root = (lo + hi) / 2;
+                        if (!roots.some((r) => Math.abs(r - root) < 0.01)) roots.push(root);
+                    }
+                    prev = y;
+                    prevX = xi;
+                }
+                return roots;
+            }
+
+            function tiBtn(mode) {
+                const expr = document.getElementById("ti-input").value.trim();
+                if (!expr) {
+                    document.getElementById("ti-output").textContent = "Enter an expression first.";
+                    return;
+                }
+                const out = document.getElementById("ti-output");
+
+                if (mode === "graph") {
+                    graphEq(expr);
+                    out.textContent = "Graphed: " + expr;
+                } else if (mode === "roots") {
+                    graphEq(expr);
+                    const roots = findRoots(expr);
+                    if (roots.length === 0) out.textContent = "No roots found in [-10,10].";
+                    else out.textContent = "Roots: x ≈ " + roots.map((r) => r.toFixed(4)).join(", ");
+                } else if (mode === "solve") {
+                    const xStr = prompt("Solve f(x) at x =");
+                    if (xStr === null) return;
+                    const xVal = parseFloat(xStr);
+                    if (isNaN(xVal)) {
+                        out.textContent = "Invalid x value.";
+                        return;
+                    }
+                    const y = safeEval(expr, xVal);
+                    out.textContent = y === null ? "Error evaluating." : "f(" + xVal + ") = " + y.toFixed(6);
+                }
+            }
+
+            function tiRun() {
+                const expr = document.getElementById("ti-input").value.trim();
+                if (!expr) return;
+                const out = document.getElementById("ti-output");
+
+                // If expression contains 'x', treat it as a function to graph
+                if (/x/i.test(expr)) {
+                    graphEq(expr);
+                    const roots = findRoots(expr);
+                    let txt = "Graphed: " + expr;
+                    if (roots.length) txt += "\nRoots ≈ " + roots.map((r) => r.toFixed(4)).join(", ");
+                    out.textContent = txt;
+                } else {
+                    // Plain arithmetic — just evaluate it
+                    const result = safeEval(expr, 0);
+                    if (result === null) out.textContent = "Error: invalid expression";
+                    else out.textContent = expr + " = " + result;
+                }
+            }
+            document.getElementById("ti-input").addEventListener("keydown", (e) => {
+                if (e.key === "Enter") tiRun();
+            });
+
+            /* ════════════════════════════════════════════════════════
+   MOBILE MENU
+════════════════════════════════════════════════════════ */
+            function toggleMobileMenu() {
+                document.getElementById("nav-links").classList.toggle("open");
+            }
+            document.querySelectorAll("#nav-links a").forEach((a) => {
+                a.addEventListener("click", () => document.getElementById("nav-links").classList.remove("open"));
+            });
+
+            /* ════════════════════════════════════════════════════════
+   CURSOR GLOW + MAGNETIC ELEMENTS
+════════════════════════════════════════════════════════ */
+            const glow = document.getElementById("cursor-glow");
+            let glowX = window.innerWidth / 2,
+                glowY = window.innerHeight / 2;
+            let rafGlow;
+
+            document.addEventListener("mousemove", (e) => {
+                glowX = e.clientX;
+                glowY = e.clientY;
+                if (!rafGlow) rafGlow = requestAnimationFrame(updateGlow);
+            });
+
+            function updateGlow() {
+                glow.style.left = glowX + "px";
+                glow.style.top = glowY + "px";
+                rafGlow = null;
+            }
+
+            // Magnetic effect — only on non-touch, only on btns (not all glass cards for perf)
+            if (!isTouch) {
+                document.querySelectorAll(".btn, .nav-links a").forEach((item) => {
+                    item.addEventListener("mousemove", (e) => {
+                        const rect = item.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        item.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+                    });
+                    item.addEventListener("mouseleave", () => {
+                        item.style.transform = "";
+                    });
+                });
+
+                // Softer magnetic pull on project + stack cards
+                document.querySelectorAll(".project-card, .stack-card, .time-card, .contact-card").forEach((item) => {
+                    item.addEventListener("mousemove", (e) => {
+                        const rect = item.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        item.style.transform = `translate(${x * 0.04}px, ${y * 0.04}px) perspective(320px) rotateY(${x * 0.06}deg) rotateX(${-y * 0.06}deg) translateY(-8px) translateZ(10px)`;
+                    });
+                    item.addEventListener("mouseleave", () => {
+                        item.style.transform = "";
+                    });
+                });
+            }
+
+            const originalTitle = document.title;
+
+            // FAV ICON SWITCH WHEN USER INACTIVE
+            let inactiveTimer;
+            document.addEventListener("visibilitychange", () => {
+                clearTimeout(inactiveTimer);
+                if (document.hidden) {
+                    inactiveTimer = setTimeout(() => {
+                        favicon.href = "photos/favicon-alert.png";
+                        document.title = "🔴 Come back";
+                    }, 2000); // 2s delay
+                } else {
+                    favicon.href = "photos/favicon.png";
+                    document.title = originalTitle;
+                }
+            });
+
+            /* ════════════════════════════════════════════════════════
+   SCROLL TO TOP
+════════════════════════════════════════════════════════ */
+            (function () {
+                const btn = document.getElementById("scroll-top");
+                let lastY = 0;
+                window.addEventListener(
+                    "scroll",
+                    () => {
+                        const y = window.scrollY;
+                        const nearBottom = window.innerHeight + y >= document.body.scrollHeight - 100;
+                        const scrollingUp = y < lastY;
+                        btn.classList.toggle("visible", nearBottom || (scrollingUp && y > 400));
+                        lastY = y;
+                    },
+                    { passive: true }
+                );
+            })();
+
+            /* ════════════════════════════════════════════════════════
+   GUESTBOOK & VIEW SWITCHER
+════════════════════════════════════════════════════════ */
+
+            // Supabase config
+            const GB_URL = "https://zsyyscnydkgmtvzurhoa.supabase.co/rest/v1/guestbook";
+            const GB_KEY_ANON =
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzeXlzY255ZGtnbXR2enVyaG9hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE2MzU0NzIsImV4cCI6MjA4NzIxMTQ3Mn0.u2dpcV5fv2HNfgnNsEnjBFfmKXLoy2Lrgntle_AbA_4";
+            const GB_HEADERS = {
+                "Content-Type": "application/json",
+                apikey: GB_KEY_ANON,
+                Authorization: "Bearer " + GB_KEY_ANON,
+            };
+
+            // ── View switcher ──────────────────────────────────────────
+            // Four views: "home", "guestbook", "terminal", "photography".
+            let currentView = "home";
+
+            function switchView(target) {
+                if (target === currentView) return;
+
+                const mainEl = document.getElementById("main-view");
+                const gbEl = document.getElementById("guestbook-view");
+                const termEl = document.getElementById("terminal-view");
+                const photoEl = document.getElementById("photography-view");
+                const gbNav = document.getElementById("guestbook-nav");
+                const termNav = document.getElementById("terminal-nav");
+                const photoNav = document.getElementById("photography-nav");
+                const scrollTopBtn = document.getElementById("scroll-top");
+
+                // Fade out the current view
+                if (currentView === "home") {
+                    mainEl.classList.add("view-leaving");
+                    setTimeout(() => { mainEl.style.display = "none"; }, 360);
+                } else if (currentView === "guestbook") {
+                    gbEl.classList.remove("view-visible");
+                    setTimeout(() => { gbEl.classList.remove("view-active"); }, 360);
+                } else if (currentView === "terminal") {
+                    termEl.classList.remove("view-visible");
+                    setTimeout(() => { termEl.classList.remove("view-active"); }, 360);
+                } else if (currentView === "photography") {
+                    photoEl.classList.remove("view-visible");
+                    setTimeout(() => { photoEl.classList.remove("view-active"); }, 360);
+                }
+
+                // Clear all active nav states
+                gbNav.classList.remove("active-nav");
+                termNav.classList.remove("active-nav");
+                if (photoNav) photoNav.classList.remove("active-nav");
+                scrollTopBtn.classList.remove("visible");
+                document.getElementById("nav-links").classList.remove("open");
+
+                // Fade in the target view
+                if (target === "home") {
+                    mainEl.style.display = "";
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            mainEl.classList.remove("view-leaving");
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+                    history.pushState({ view: "home" }, "", "#");
+                } else if (target === "guestbook") {
+                    gbEl.classList.add("view-active");
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            gbEl.classList.add("view-visible");
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+                    gbNav.classList.add("active-nav");
+                    history.pushState({ view: "guestbook" }, "", "#guestbook");
+                    renderGuestbookEntries();
+                } else if (target === "terminal") {
+                    termEl.classList.add("view-active");
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            termEl.classList.add("view-visible");
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+                    termNav.classList.add("active-nav");
+                    history.pushState({ view: "terminal" }, "", "#terminal");
+                    termOnOpen();
+                } else if (target === "photography") {
+                    photoEl.classList.add("view-active");
+                    requestAnimationFrame(() =>
+                        requestAnimationFrame(() => {
+                            photoEl.classList.add("view-visible");
+                            window.scrollTo({ top: 0, behavior: "instant" });
+                        })
+                    );
+                    if (photoNav) photoNav.classList.add("active-nav");
+                    history.pushState({ view: "photography" }, "", "#photography");
+                    loadPhotography();
+                }
+
+                currentView = target;
+            }
+
+            // Browser back / forward buttons work across all four views
+            window.addEventListener("popstate", (e) => {
+                const v = e.state && e.state.view;
+                const valid = ["guestbook", "terminal", "photography"];
+                const target = valid.includes(v) ? v : "home";
+                if (target !== currentView) switchView(target);
+            });
+
+            // ── XSS sanitizer ───────────────────────────────────────
+            function sanitize(str) {
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+            }
+
+            // ── Live character counter ───────────────────────────────
+            document.getElementById("gb-msg").addEventListener("input", function () {
+                document.getElementById("gb-char").textContent = this.value.length + " / 200";
+            });
+
+            // ── Submit new entry ─────────────────────────────────────
+            async function submitGuestbook() {
+                const nameEl = document.getElementById("gb-name");
+                const msgEl = document.getElementById("gb-msg");
+                const errEl = document.getElementById("gb-error");
+                const btn = document.querySelector(".gb-submit");
+                const name = nameEl.value.trim();
+                const msg = msgEl.value.trim();
+
+                errEl.textContent = "";
+                if (!name) {
+                    errEl.textContent = "! Name is required.";
+                    nameEl.focus();
+                    return;
+                }
+                if (!msg) {
+                    errEl.textContent = "! Message cannot be empty.";
+                    msgEl.focus();
+                    return;
+                }
+
+                btn.textContent = "Signing…";
+                btn.disabled = true;
+
+                try {
+                    const res = await fetch(GB_URL, {
+                        method: "POST",
+                        headers: { ...GB_HEADERS, Prefer: "return=minimal" },
+                        body: JSON.stringify({ name: sanitize(name), message: sanitize(msg) }),
+                    });
+                    if (!res.ok) {
+                        const err = await res.json().catch(() => ({}));
+                        throw new Error(err.message || "Request failed (" + res.status + ")");
+                    }
+                    nameEl.value = "";
+                    msgEl.value = "";
+                    document.getElementById("gb-char").textContent = "0 / 200";
+                    btn.textContent = "Signed! ✓";
+                    setTimeout(() => {
+                        btn.textContent = "Sign ✦";
+                        btn.disabled = false;
+                    }, 2000);
+                    renderGuestbookEntries();
+                } catch (err) {
+                    errEl.textContent = "! " + err.message;
+                    btn.textContent = "Sign ✦";
+                    btn.disabled = false;
+                }
+            }
+
+            // ── Fetch & render entries (with load-more pagination) ───
+            const GB_PAGE_SIZE = 100;
+            let gbOffset = 0;
+
+            // `append` = false means a fresh load (reset offset, clear container)
+            // `append` = true means the user hit Load More (keep existing cards, add new ones below)
+            async function renderGuestbookEntries(append = false) {
+                const container = document.getElementById("gb-entries");
+                const loadMoreBtn = document.getElementById("gb-load-more");
+
+                if (!append) {
+                    gbOffset = 0;
+                    container.innerHTML = '<div class="gb-empty">Loading entries…</div>';
+                    if (loadMoreBtn) loadMoreBtn.style.display = "none";
+                } else {
+                    // While fetching, give the button some feedback
+                    loadMoreBtn.textContent = "Loading…";
+                    loadMoreBtn.disabled = true;
+                }
+
+                try {
+                    // `limit` controls page size; `offset` skips past already-loaded rows.
+                    // Supabase's REST API supports these as query params natively.
+                    const res = await fetch(
+                        `${GB_URL}?select=name,message,created_at&order=created_at.desc&limit=${GB_PAGE_SIZE}&offset=${gbOffset}`,
+                        { headers: GB_HEADERS }
+                    );
+                    if (!res.ok) throw new Error("Could not load entries.");
+                    const entries = await res.json();
+
+                    // Clear the loading placeholder only on the first load
+                    if (!append) container.innerHTML = "";
+
+                    if (entries.length === 0 && gbOffset === 0) {
+                        container.innerHTML = '<div class="gb-empty">No entries yet — be the first to sign! 👋</div>';
+                        return;
+                    }
+
+                    // Build and append each entry card
+                    entries.forEach((e) => {
+                        const date = new Date(e.created_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                        });
+                        const card = document.createElement("div");
+                        card.className = "glass gb-entry";
+                        card.innerHTML = `
+        <div class="gb-entry-header">
+          <span class="gb-entry-name">${e.name}</span>
+          <span class="gb-entry-date">${date}</span>
+        </div>
+        <div class="gb-entry-msg">${e.message}</div>`;
+                        container.appendChild(card);
+                    });
+
+                    // Advance the offset by however many rows we actually got back
+                    gbOffset += entries.length;
+
+                    // If we got a full page back there might be more — show the button.
+                    // If we got fewer than a full page, we've hit the end — hide it.
+                    if (loadMoreBtn) {
+                        if (entries.length === GB_PAGE_SIZE) {
+                            loadMoreBtn.style.display = "block";
+                            loadMoreBtn.textContent = "Load More ↓";
+                            loadMoreBtn.disabled = false;
+                        } else {
+                            loadMoreBtn.style.display = "none";
+                        }
+                    }
+                } catch (err) {
+                    if (!append) container.innerHTML = `<div class="gb-empty">⚠ ${err.message}</div>`;
+                    if (loadMoreBtn) {
+                        loadMoreBtn.textContent = "Load More ↓";
+                        loadMoreBtn.disabled = false;
+                    }
+                }
+            }
+
+            function loadMoreEntries() {
+                renderGuestbookEntries(true);
+            }
+
+            /* ════════════════════════════════════════════════════════
+   INIT DRAW GRID
+════════════════════════════════════════════════════════ */
+
+            /* ════════════════════════════════════════════════════════
+               TERMINAL ENGINE
+               ════════════════════════════════════════════════════════ */
+
+            // ── State ────────────────────────────────────────────────────
+            const termHistory = []; // command history (newest first)
+            let termHistIdx = -1; // current position in the history stack
+            let termBooted = false; // boot message shown only once per session
+            let retroMode = false; // CRT retro mode active?
+            let matrixRAF = null; // requestAnimationFrame handle for matrix rain
+
+            // ── Output helpers ────────────────────────────────────────────
+            // Every helper appends a <span> to #term-output with a class
+            // from our .tl-* palette so CSS controls all the colours.
+
+            const tOut = () => document.getElementById("term-output");
+
+            function tPrint(text, cls) {
+                const el = document.createElement("span");
+                el.className = "tl" + (cls ? " " + cls : "");
+                el.textContent = text;
+                tOut().appendChild(el);
+            }
+
+            function tHTML(html, cls) {
+                const el = document.createElement("span");
+                el.className = "tl" + (cls ? " " + cls : "");
+                el.innerHTML = html;
+                tOut().appendChild(el);
+            }
+
+            function tBlank() {
+                const el = document.createElement("span");
+                el.className = "tl tl-blank";
+                tOut().appendChild(el);
+            }
+
+            function tScroll() {
+                const o = tOut();
+                o.scrollTop = o.scrollHeight;
+            }
+
+            function tClear() {
+                tOut().innerHTML = "";
+            }
+
+            // ── Boot banner (shown once when terminal first opens) ─────────
+            function termBoot() {
+                if (termBooted) return;
+                termBooted = true;
+                const now = new Date().toLocaleString("en-US", {
+                    timeZone: "America/Chicago",
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                });
+                tPrint("snow-portfolio  v2.0.0  (zsh 5.9)", "tl-accent");
+                tPrint("Last login: " + now + " CST on ttys001", "tl-dim");
+                tBlank();
+                tPrint("  Type  help  to see all available commands.", "tl-dim");
+                tPrint("  Hint: try  neofetch  or  cat secrets.txt  to start.", "tl-dim");
+                tBlank();
+                tScroll();
+            }
+
+            // Called by switchView every time the terminal tab opens.
+            function termOnOpen() {
+                termBoot();
+                setTimeout(() => {
+                    const inp = document.getElementById("term-input");
+                    if (inp) inp.focus();
+                }, 120);
+            }
+
+            // ── Main command runner ────────────────────────────────────────
+            function termRun(raw) {
+                const inp = document.getElementById("term-input");
+                const cmd = (raw !== undefined ? raw : inp.value).trim();
+                if (!cmd) return;
+
+                if (termHistory[0] !== cmd) termHistory.unshift(cmd);
+                if (termHistory.length > 200) termHistory.pop();
+                termHistIdx = -1;
+                if (inp) inp.value = "";
+
+                // Echo the command just like a real shell does
+                tPrint("snow@portfolio ~ $ " + cmd, "tl-cmd");
+
+                const parts = cmd.trim().split(/\s+/);
+                const verb = parts[0].toLowerCase();
+                const args = parts.slice(1);
+
+                switch (verb) {
+                    case "help":
+                        cmdHelp();
+                        break;
+                    case "clear":
+                        tClear();
+                        return;
+                    case "cat":
+                        cmdCat(args);
+                        break;
+                    case "ls":
+                        cmdLs(args);
+                        break;
+                    case "pwd":
+                        tPrint("/home/snow/portfolio");
+                        break;
+                    case "whoami":
+                        tPrint("snow", "tl-accent");
+                        break;
+                    case "echo":
+                        tPrint(args.join(" "));
+                        break;
+                    case "date":
+                        cmdDate();
+                        break;
+                    case "uname":
+                        cmdUname(args);
+                        break;
+                    case "uptime":
+                        cmdUptime();
+                        break;
+                    case "neofetch":
+                        cmdNeofetch();
+                        break;
+                    case "projects":
+                        cmdProjects();
+                        break;
+                    case "stack":
+                        cmdStack();
+                        break;
+                    case "contact":
+                        cmdContact();
+                        break;
+                    case "color":
+                        cmdColor(args);
+                        break;
+                    case "weather":
+                        cmdWeather().then(() => { tBlank(); tScroll(); });
+                        return;
+                    case "history":
+                        cmdHistoryCmd();
+                        break;
+                    case "git":
+                        cmdGit(args);
+                        break;
+                    case "banner":
+                        cmdBanner();
+                        break;
+                    case "man":
+                        cmdMan(args);
+                        break;
+                    case "ping":
+                        cmdPing(args);
+                        break;
+                    case "curl":
+                        cmdCurl(args);
+                        break;
+                    case "fortune":
+                        cmdFortune();
+                        break;
+                    case "matrix":
+                        cmdMatrix();
+                        break;
+                    case "sl":
+                        cmdSL();
+                        break;
+                    case "sudo":
+                        cmdSudo(args);
+                        break;
+                    case "open":
+                    case "xdg-open":
+                        cmdOpen(args);
+                        break;
+                    case "exit":
+                    case "quit":
+                        tPrint("logout", "tl-dim");
+                        tBlank();
+                        tScroll();
+                        setTimeout(() => switchView("home"), 650);
+                        return;
+                    default:
+                        tPrint("zsh: command not found: " + verb, "tl-err");
+                        tPrint("Type  help  to see available commands.", "tl-dim");
+                }
+                tBlank();
+                tScroll();
+            }
+
+            // ── Commands ──────────────────────────────────────────────────
+
+            function cmdHelp() {
+                tPrint("Available commands", "tl-accent");
+                tPrint("-------------------------------------------------------", "tl-dim");
+                var rows = [
+                    ["help", "Show this message"],
+                    ["clear", "Clear the terminal  (Ctrl+L also works)"],
+                    ["neofetch", "System info with ASCII art logo"],
+                    ["cat", "Display an ASCII cat"],
+                    ["cat secrets.txt", "Read Snow's about file"],
+                    ["cat readme.md", "Read the portfolio README"],
+                    ["ls / ls -la", "List directory contents"],
+                    ["pwd", "Print working directory"],
+                    ["whoami", "Current user"],
+                    ["echo <text>", "Print text to the terminal"],
+                    ["date", "Current date and time (CST)"],
+                    ["uname -a", "System information"],
+                    ["uptime", "Session uptime"],
+                    ["projects", "List all projects with details"],
+                    ["stack", "Print full tech stack"],
+                    ["contact", "Show contact links"],
+                    ["weather", "Des Moines weather report"],
+                    ["git log/status", "Convincing git output"],
+                    ["ping <host>", "Simulate a ping"],
+                    ["curl <url>", "Simulate curl"],
+                    ["banner", "SNOW in ASCII block letters"],
+                    ["fortune", "Random developer wisdom"],
+                    ["matrix", "Matrix rain (5s, Ctrl+C to stop)"],
+                    ["sl", "The classic ls typo Easter egg"],
+                    ["man <cmd>", "Read the manual for a command"],
+                    ["sudo <cmd>", "Attempt superuser mode (good luck)"],
+                    ["open <url>", "Open a URL in a new tab"],
+                    ["color --retro", "Retro CRT phosphor mode"],
+                    ["color --reset", "Restore normal accent theme"],
+                    ["color --hue <n>", "Set accent hue (0-360)"],
+                    ["history", "Show command history"],
+                    ["exit", "Close terminal, return home"],
+                ];
+                rows.forEach(function (r) {
+                    tHTML(
+                        "<span style='color:var(--accent);display:inline-block;min-width:22ch'>" +
+                            r[0] +
+                            "</span>" +
+                            "<span style='color:rgba(255,255,255,0.48)'>" +
+                            r[1] +
+                            "</span>"
+                    );
+                });
+                tBlank();
+                tPrint("Tip: arrow keys navigate history. Tab auto-completes.", "tl-dim");
+            }
+
+            function cmdCat(args) {
+                if (!args.length) {
+                    tPrint("   /\\_____/\\   ", "tl-ascii");
+                    tPrint("  /  o   o  \\  ", "tl-ascii");
+                    tPrint(" ( ==  ^  == ) ", "tl-ascii");
+                    tPrint("  )         (  ", "tl-ascii");
+                    tPrint(" (           ) ", "tl-ascii");
+                    tPrint("( (  )   (  ) )", "tl-ascii");
+                    tPrint("(__(__)___(__)_)", "tl-ascii");
+                    tBlank();
+                    tPrint("Meow. :3", "tl-dim");
+                    return;
+                }
+                var file = args.join(" ").toLowerCase().trim();
+
+                if (file === "secrets.txt") {
+                    tPrint("# secrets.txt", "tl-accent");
+                    tPrint("--------------------------------------", "tl-dim");
+                    [
+                        ["Name", "Snow"],
+                        ["Location", "Des Moines, Iowa"],
+                        ["Specialty", "Front-end UI/UX design"],
+                        ["Vibe", "Self-taught, design-first developer"],
+                    ].forEach(function (r) {
+                        tHTML(
+                            "<span style='color:var(--accent);display:inline-block;min-width:13ch'>" +
+                                r[0] +
+                                "</span>" +
+                                "<span>" +
+                                r[1] +
+                                "</span>"
+                        );
+                    });
+                    tBlank();
+                    tPrint("Projects:", "tl-accent");
+                    tPrint("  -> ClearVision  (Team Member,  2024-2025)", "");
+                    tPrint("  -> MusicBot     (Maintainer,   2020-present)", "");
+                    tPrint("  -> Aquarion     (Owner,        2025-present)", "");
+                    tBlank();
+                    tPrint("Tech Stack:", "tl-accent");
+                    tPrint("  Languages : Python, HTML, CSS, SCSS/SASS, Markdown, Batch", "");
+                    tPrint("  Tools     : VS Code, Git, GitHub Actions, Prettier, Black", "");
+                    tBlank();
+                    tPrint("Status  : Open to opportunities  [ACTIVE]", "tl-ok");
+                    tPrint("Hobbies : Gaming, Burritos, Calculator tinkering", "");
+                    tBlank();
+                    tPrint("# end of file", "tl-dim");
+                } else if (file === "readme.md") {
+                    tPrint("# Snow's Portfolio -- README", "tl-accent");
+                    tBlank();
+                    tPrint("A handcrafted single-file portfolio. Pure HTML/CSS/JS.", "");
+                    tPrint("No frameworks. No build step. Just craft.", "");
+                    tBlank();
+                    tPrint("Highlights:", "tl-accent");
+                    [
+                        "Live hue-based accent color picker with hex input",
+                        "View-switching SPA (Home / Guestbook / Terminal)",
+                        "Live shared guestbook powered by Supabase + RLS",
+                        "Draggable TI-83 graphing calculator",
+                        "GitHub commit fetching per project card",
+                        "Retro CRT phosphor mode with real scanlines",
+                        "This terminal you are reading from right now",
+                    ].forEach(function (h) {
+                        tPrint("  * " + h, "");
+                    });
+                    tBlank();
+                    tPrint("Built by Snow -- Des Moines, Iowa", "tl-dim");
+                } else if (file === ".bash_history" || file === ".zsh_history") {
+                    tPrint(
+                        "cat: ." + (file.indexOf("zsh") >= 0 ? "zsh" : "bash") + "_history: Permission denied",
+                        "tl-err"
+                    );
+                    tPrint("Nice try :)", "tl-dim");
+                } else if (file === "/etc/passwd" || file === "/etc/shadow") {
+                    tPrint("cat: " + file + ": This is a portfolio, not a server", "tl-err");
+                } else {
+                    tPrint("cat: " + args.join(" ") + ": No such file or directory", "tl-err");
+                    tPrint("Available: secrets.txt, readme.md", "tl-dim");
+                }
+            }
+
+            function cmdLs(args) {
+                var isLong = args.some(function (a) {
+                    return a.indexOf("l") >= 0;
+                });
+                var showHidden = args.some(function (a) {
+                    return a.indexOf("a") >= 0;
+                });
+                var entries = [
+                    { name: "secrets.txt", type: "f", size: "892", date: "Jan 15 09:12", perms: "-rw-r--r--" },
+                    { name: "readme.md", type: "f", size: "1.3K", date: "Feb  3 14:27", perms: "-rw-r--r--" },
+                    { name: "portfolio/", type: "d", size: "256", date: "Feb 20 00:00", perms: "drwxr-xr-x" },
+                    { name: "projects/", type: "d", size: "192", date: "Jan 28 18:55", perms: "drwxr-xr-x" },
+                    { name: "assets/", type: "d", size: "512", date: "Feb 10 11:03", perms: "drwxr-xr-x" },
+                    { name: ".zshrc", type: "h", size: "512", date: "Nov 30 22:47", perms: "-rw-------" },
+                    { name: ".gitconfig", type: "h", size: "220", date: "Sep 12 08:15", perms: "-rw-------" },
+                    { name: ".ssh/", type: "h", size: "128", date: "Oct  1 17:00", perms: "drwx------" },
+                ];
+                var visible = entries.filter(function (e) {
+                    return showHidden || e.type !== "h";
+                });
+
+                if (isLong) {
+                    tPrint("total " + visible.length * 8, "tl-dim");
+                    visible.forEach(function (e) {
+                        var col = e.type === "d" || e.name.slice(-1) === "/" ? "#60a5fa" : "rgba(255,255,255,0.82)";
+                        tHTML(
+                            "<span style='color:rgba(255,255,255,0.35)'>" +
+                                e.perms +
+                                "  1 snow  staff  " +
+                                e.size.padStart(5) +
+                                "  " +
+                                e.date +
+                                "  </span>" +
+                                "<span style='color:" +
+                                col +
+                                "'>" +
+                                e.name +
+                                "</span>"
+                        );
+                    });
+                } else {
+                    for (var i = 0; i < visible.length; i += 3) {
+                        var chunk = visible.slice(i, i + 3);
+                        var html = chunk
+                            .map(function (e) {
+                                var col =
+                                    e.type === "d" || e.name.slice(-1) === "/" ? "#60a5fa" : "rgba(255,255,255,0.82)";
+                                return (
+                                    "<span style='color:" +
+                                    col +
+                                    ";display:inline-block;min-width:20ch'>" +
+                                    e.name +
+                                    "</span>"
+                                );
+                            })
+                            .join("");
+                        tHTML(html);
+                    }
+                }
+            }
+
+            function cmdDate() {
+                tPrint(
+                    new Date().toLocaleString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        timeZoneName: "short",
+                        timeZone: "America/Chicago",
+                    })
+                );
+            }
+
+            function cmdUname(args) {
+                tPrint(
+                    args.indexOf("-a") >= 0
+                        ? "Portfolio-OS 2.0.0-snow #1 SMP PREEMPT Fri Feb 20 00:00:00 CST 2026 x86_64"
+                        : "Portfolio-OS"
+                );
+            }
+
+            function cmdUptime() {
+                var s = Math.floor((Date.now() - sessionStart) / 1000);
+                var h = Math.floor(s / 3600);
+                var m = Math.floor((s % 3600) / 60);
+                var ss = s % 60;
+                var str = h > 0 ? h + "h " + m + "m " + ss + "s" : m + "m " + ss + "s";
+                tPrint("up " + str + ",  1 user,  load average: 0.02, 0.03, 0.00");
+            }
+
+            function cmdNeofetch() {
+                var rgb = hslToRgb(currentHue, 80, 58);
+                var hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+                var s = Math.floor((Date.now() - sessionStart) / 1000);
+                var up = Math.floor(s / 60) + "m " + (s % 60) + "s";
+                var rows = [
+                    [
+                        "         /\\           ",
+                        "<span style='color:var(--accent);font-weight:700'>snow</span><span style='color:rgba(255,255,255,0.4)'>@</span><span style='color:var(--accent);font-weight:700'>portfolio</span>",
+                    ],
+                    [
+                        "        /  \\          ",
+                        "<span style='color:rgba(255,255,255,0.3)'>---------------------</span>",
+                    ],
+                    ["       / /\\ \\         ", "<span style='color:var(--accent)'>OS:</span>       Portfolio-OS 2.0"],
+                    ["      / /  \\ \\        ", "<span style='color:var(--accent)'>Shell:</span>    zsh 5.9"],
+                    ["     / /    \\ \\       ", "<span style='color:var(--accent)'>Editor:</span>   VS Code"],
+                    ["    / / ____ \\ \\      ", "<span style='color:var(--accent)'>Location:</span> Des Moines, Iowa"],
+                    ["   / / /    \\ \\ \\     ", "<span style='color:var(--accent)'>Accent:</span>   " + hex],
+                    ["  /_/ /      \\ \\_\\    ", "<span style='color:var(--accent)'>Uptime:</span>   " + up],
+                    [
+                        " |__|/        \\|__|   ",
+                        "<span style='color:var(--accent)'>Theme:</span>    " +
+                            (retroMode ? "Retro CRT" : "Custom hue"),
+                    ],
+                    [
+                        "                     ",
+                        "<span style='color:var(--accent)'>Projects:</span> ClearVision, MusicBot, Aquarion",
+                    ],
+                    ["                     ", ""],
+                ];
+                rows.forEach(function (r) {
+                    tHTML(
+                        "<span style='color:var(--accent);font-size:0.72rem'>" +
+                            r[0] +
+                            "</span>" +
+                            "<span>" +
+                            r[1] +
+                            "</span>"
+                    );
+                });
+                var swatches = ["#ef4444", "#f97316", "#eab308", "#22c55e", "#06b6d4", "#3b82f6", "#a855f7", "#ec4899"]
+                    .map(function (c) {
+                        return "<span style='background:" + c + ";color:" + c + ";border-radius:2px'>###</span>";
+                    })
+                    .join("");
+                tHTML("<span style='color:transparent'>                     </span>" + swatches);
+            }
+
+            function cmdProjects() {
+                tPrint("# projects", "tl-accent");
+                tPrint("------------------------------------------------", "tl-dim");
+                PROJECTS.forEach(function (p) {
+                    tHTML(
+                        "<span style='color:var(--accent);font-weight:700'>" +
+                            p.name +
+                            "</span>  " +
+                            "<span style='color:rgba(255,255,255,0.35);font-size:0.72rem'>[" +
+                            p.badge +
+                            "]  " +
+                            p.period +
+                            "</span>"
+                    );
+                    tPrint("  " + p.desc, "tl-dim");
+                    tPrint("  Tech: " + p.tech.join(", "), "");
+                    tHTML(
+                        "  <a href='" +
+                            p.github +
+                            "' target='_blank' rel='noopener noreferrer' style='color:var(--accent)'>" +
+                            p.github +
+                            "</a>"
+                    );
+                    tBlank();
+                });
+            }
+
+            function cmdStack() {
+                tPrint("# tech-stack", "tl-accent");
+                tPrint("----------------------------------", "tl-dim");
+                tPrint("Languages:", "tl-accent");
+                LANGS.forEach(function (l) {
+                    tPrint("  * " + l.name);
+                });
+                tBlank();
+                tPrint("Tools:", "tl-accent");
+                TOOLS.forEach(function (t) {
+                    tPrint("  * " + t.name);
+                });
+            }
+
+            function cmdContact() {
+                tPrint("# contact", "tl-accent");
+                tPrint("----------------------------------", "tl-dim");
+                CONTACTS.forEach(function (c) {
+                    tHTML(
+                        "<span style='color:var(--accent);display:inline-block;min-width:12ch'>" +
+                            c.label +
+                            "</span>" +
+                            "<a href='" +
+                            c.href +
+                            "' target='_blank' rel='noopener noreferrer' style='color:rgba(255,255,255,0.75);text-decoration:none'>" +
+                            c.val +
+                            "</a>"
+                    );
+                });
+            }
+
+            function cmdColor(args) {
+                var flag = (args[0] || "").toLowerCase();
+                if (flag === "--retro") {
+                    retroMode = true;
+                    document.body.classList.add("retro-mode");
+                    var r = document.documentElement.style;
+                    r.setProperty("--accent", "#00ff41");
+                    r.setProperty("--accent-rgb", "0, 255, 65");
+                    r.setProperty("--accent-dark", "#00cc33");
+                    r.setProperty("--accent-glow", "rgba(0,255,65,0.35)");
+                    r.setProperty("--g1", "#001a08");
+                    r.setProperty("--g2", "#000d04");
+                    r.setProperty("--g3", "#002010");
+                    tPrint("Retro CRT mode enabled.", "tl-ok");
+                    tPrint("Phosphor glow engaged. Scanlines active.", "tl-dim");
+                    tPrint("Type  color --reset  to restore.", "tl-dim");
+                } else if (flag === "--reset" || flag === "--normal") {
+                    retroMode = false;
+                    document.body.classList.remove("retro-mode");
+                    applyCustomColor(currentHue, currentAlpha);
+                    tPrint("Theme restored to your accent settings.", "tl-ok");
+                } else if (flag === "--hue") {
+                    var h = parseFloat(args[1]);
+                    if (isNaN(h) || h < 0 || h > 360) {
+                        tPrint("Usage: color --hue <0-360>", "tl-err");
+                    } else {
+                        retroMode = false;
+                        document.body.classList.remove("retro-mode");
+                        applyCustomColor(h, currentAlpha);
+                        tPrint("Accent hue set to " + Math.round(h) + " degrees.", "tl-ok");
+                    }
+                } else {
+                    tPrint("Usage:", "tl-accent");
+                    tPrint("  color --retro         Enable retro CRT mode", "");
+                    tPrint("  color --reset         Restore normal theme", "");
+                    tPrint("  color --hue <0-360>   Set accent hue directly", "");
+                }
+            }
+
+            async function cmdWeather() {
+                tPrint("# weather -- Des Moines, Iowa (KDSM)", "tl-accent");
+                tPrint("--------------------------------------", "tl-dim");
+                tPrint("Fetching live data from Open-Meteo…", "tl-dim");
+                tBlank();
+                tScroll();
+
+                const WMO = {
+                    0:"Clear sky", 1:"Mainly clear", 2:"Partly cloudy", 3:"Overcast",
+                    45:"Foggy", 48:"Icy fog", 51:"Light drizzle", 53:"Drizzle", 55:"Heavy drizzle",
+                    61:"Light rain", 63:"Rain", 65:"Heavy rain",
+                    71:"Light snow", 73:"Snow", 75:"Heavy snow", 77:"Snow grains",
+                    80:"Rain showers", 81:"Heavy showers", 82:"Violent showers",
+                    85:"Snow showers", 86:"Heavy snow showers",
+                    95:"Thunderstorm", 96:"Thunderstorm + hail", 99:"Thunderstorm + heavy hail"
+                };
+                const WIND_DIR = (d) => {
+                    const dirs = ["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+                    return dirs[Math.round(d / 22.5) % 16];
+                };
+
+                try {
+                    const res = await fetch(
+                        "https://api.open-meteo.com/v1/forecast?latitude=41.5868&longitude=-93.6250" +
+                        "&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m," +
+                        "wind_direction_10m,relative_humidity_2m,precipitation" +
+                        "&daily=temperature_2m_max,temperature_2m_min" +
+                        "&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FChicago&forecast_days=1"
+                    );
+                    if (!res.ok) throw new Error("HTTP " + res.status);
+                    const d = await res.json();
+                    const c = d.current;
+                    const day = d.daily;
+
+                    const condition = WMO[c.weather_code] || "Unknown";
+                    const dir = WIND_DIR(c.wind_direction_10m);
+
+                    tPrint("Condition  : " + condition, "");
+                    tPrint("Temp       : " + Math.round(c.temperature_2m) + "°F  (feels like " + Math.round(c.apparent_temperature) + "°F)", "");
+                    tPrint("High / Low : " + Math.round(day.temperature_2m_max[0]) + "°F / " + Math.round(day.temperature_2m_min[0]) + "°F", "");
+                    tPrint("Wind       : " + dir + " " + Math.round(c.wind_speed_10m) + " mph", "");
+                    tPrint("Humidity   : " + c.relative_humidity_2m + "%", "");
+                    if (c.precipitation > 0) {
+                        tPrint("Precip     : " + c.precipitation.toFixed(2) + " in", "tl-warn");
+                    }
+                    tBlank();
+                    tPrint("Live data via Open-Meteo • Des Moines, Iowa", "tl-ok");
+                } catch (err) {
+                    tPrint("Failed to fetch weather: " + err.message, "tl-err");
+                    tPrint("Tip: try  curl wttr.in  as a fallback.", "tl-dim");
+                }
+            }
+
+            function cmdHistoryCmd() {
+                if (!termHistory.length) {
+                    tPrint("No history yet.", "tl-dim");
+                    return;
+                }
+                termHistory
+                    .slice()
+                    .reverse()
+                    .forEach(function (cmd, i) {
+                        tHTML(
+                            "<span style='color:rgba(255,255,255,0.28);display:inline-block;min-width:5ch'>" +
+                                (i + 1) +
+                                "</span>" +
+                                "<span>" +
+                                cmd +
+                                "</span>"
+                        );
+                    });
+            }
+
+            function cmdGit(args) {
+                var sub = (args[0] || "").toLowerCase();
+                if (sub === "log") {
+                    var commits = [
+                        ["a3f91b2", "Add interactive terminal with 25+ commands"],
+                        ["8cd02e4", "Implement retro CRT phosphor mode + scanlines"],
+                        ["f17aa33", "Add live guestbook with Supabase + pagination"],
+                        ["2b8e56f", "Replace theme dots with live hue/alpha picker"],
+                        ["d9c14a1", "Replace emoji stack icons with real SVG logos"],
+                        ["7e0f38c", "Add draggable TI-83 with real math evaluation"],
+                        ["3b5f9e1", "Implement view-switching SPA pattern"],
+                        ["1a2b3c4", "Initial commit -- portfolio v1.0"],
+                    ];
+                    commits.forEach(function (c) {
+                        tHTML("<span style='color:var(--accent)'>commit " + c[0] + "</span>");
+                        tPrint("Author: Snow <ewagner2698@gmail.com>", "tl-dim");
+                        tPrint("    " + c[1], "");
+                        tBlank();
+                    });
+                } else if (sub === "status") {
+                    tPrint("On branch main", "");
+                    tPrint("Your branch is up to date with 'origin/main'.", "tl-ok");
+                    tBlank();
+                    tPrint("nothing to commit, working tree clean", "tl-ok");
+                } else if (sub === "branch") {
+                    tPrint("* main", "tl-ok");
+                    tPrint("  dev", "tl-dim");
+                    tPrint("  feature/terminal", "tl-dim");
+                } else if (sub === "diff") {
+                    tPrint("(nothing to diff -- all changes committed)", "tl-ok");
+                } else if (sub === "stash") {
+                    tPrint("Saved working directory state WIP on main", "tl-ok");
+                } else {
+                    tPrint("usage: git [log | status | branch | diff | stash]", "tl-err");
+                }
+            }
+
+            function cmdBanner() {
+                var art = [
+                    " ######## ##    ## ####### ##      ##",
+                    " ##       ###   ## ##   ## ##      ##",
+                    " ######## ## ## ## ##   ## ##  #   ##",
+                    "       ## ##   ### ##   ## ## ### ##",
+                    " ######## ##    ## ####### ####  ####",
+                ];
+                art.forEach(function (l) {
+                    tPrint(l, "tl-ascii");
+                });
+                tBlank();
+                tPrint("  Front-end dev  *  Des Moines, Iowa  *  Open to opportunities", "tl-dim");
+            }
+
+            function cmdMan(args) {
+                var pages = {
+                    cat: "CAT(1)\n  Print file contents or ASCII cat with no args.\n  Usage: cat [file]\n  Files: secrets.txt, readme.md",
+                    ls: "LS(1)\n  List directory contents.\n  Usage: ls [-l] [-la] [-a]",
+                    color: "COLOR(1)\n  Change the site accent colour.\n  Usage: color [--retro | --reset | --hue <0-360>]",
+                    neofetch: "NEOFETCH(1)\n  Display system info alongside ASCII art logo.",
+                    git: "GIT(1)\n  Distributed version control (simulated).\n  Usage: git [log | status | branch | diff | stash]",
+                    matrix: "MATRIX(1)\n  Render Matrix-style character rain for 5 seconds.\n  Press Ctrl+C to cancel.",
+                    sudo: "SUDO(1)\n  Execute a command as superuser.\n  Result: it will not work here.",
+                    weather: "WEATHER(1)\n  Live weather for Des Moines, Iowa via Open-Meteo.\n  Shows: condition, temp, feels-like, high/low, wind, humidity.",
+                    ping: "PING(1)\n  Send ICMP echo requests (simulated).\n  Usage: ping <host>",
+                    fortune: "FORTUNE(1)\n  Display random developer wisdom.",
+                    banner: "BANNER(1)\n  Print SNOW in ASCII block letters.",
+                    open: "OPEN(1)\n  Open a URL in a new browser tab.\n  Usage: open <url>",
+                    history: "HISTORY(1)\n  Show command history for this session.",
+                    uname: "UNAME(1)\n  Print system information.\n  Usage: uname [-a]",
+                    uptime: "UPTIME(1)\n  Show session uptime.",
+                };
+                var topic = (args[0] || "").toLowerCase();
+                if (!topic) {
+                    tPrint("Usage: man <command>", "tl-err");
+                    tPrint("Pages: " + Object.keys(pages).join(", "), "tl-dim");
+                } else if (pages[topic]) {
+                    tPrint(pages[topic], "");
+                } else {
+                    tPrint("No manual entry for '" + topic + "'.", "tl-err");
+                    tPrint("Pages: " + Object.keys(pages).join(", "), "tl-dim");
+                }
+            }
+
+            function cmdPing(args) {
+                var host = args[0] || "portfolio.snow.dev";
+                tPrint("PING " + host + " (127.0.0.1): 56 data bytes");
+                [11, 12, 10, 13].forEach(function (ms, i) {
+                    tPrint("64 bytes from " + host + ": icmp_seq=" + (i + 1) + " ttl=64 time=" + ms + " ms");
+                });
+                tBlank();
+                tPrint("--- " + host + " ping statistics ---", "tl-dim");
+                tPrint("4 packets transmitted, 4 received, 0.0% packet loss", "tl-ok");
+                tPrint("round-trip min/avg/max = 10/11.5/13 ms", "tl-dim");
+            }
+
+            function cmdCurl(args) {
+                var url = args[0] || "";
+                if (!url) {
+                    tPrint("curl: no URL provided.  Usage: curl <url>", "tl-err");
+                    return;
+                }
+                if (url.indexOf("wttr") >= 0 || url.indexOf("weather") >= 0) {
+                    cmdWeather();
+                    return;
+                }
+                tPrint("  % Total  % Received  % Xferd", "tl-dim");
+                tPrint("  0     0    0     0    0     0  --:--:-- 0:00:02", "tl-dim");
+                tPrint("curl: (6) Could not resolve host: " + url, "tl-err");
+                tPrint("(Portfolio only -- try  weather  or  ping  instead.)", "tl-dim");
+            }
+
+            function cmdFortune() {
+                var quotes = [
+                    "Any fool can write code a computer can understand.\nGood programmers write code humans can understand.\n  -- Martin Fowler",
+                    "First, solve the problem. Then, write the code.\n  -- John Johnson",
+                    "Clean code always looks like it was written by someone who cares.\n  -- Robert C. Martin",
+                    "Make it work, make it right, make it fast.\n  -- Kent Beck",
+                    "The best error message is the one that never shows up.\n  -- Thomas Fuchs",
+                    "It works on my machine. -- every developer, eternally.",
+                    "CSS: Cascading Stress Sheets. We love it anyway.",
+                    "Have you tried turning it off and on again?",
+                    "// TODO: remove before launch\n  (The comment is still there two years later.)",
+                    "Weeks of coding can save you hours of planning.",
+                ];
+                tPrint(quotes[Math.floor(Math.random() * quotes.length)], "tl-dim");
+            }
+
+            function cmdSL() {
+                tPrint("        ====        ________                ___________       ", "tl-ascii");
+                tPrint("    _D _|  |_______/        \\__I_I_____===__|___________|     ", "tl-ascii");
+                tPrint("     |(_)---  |   H\\________/ |   |        =|___ ___|         ", "tl-ascii");
+                tPrint("     /     |  |   H  |  |     |   |         ||_| |_||         ", "tl-ascii");
+                tPrint("    |      |  |   H  |__--------------------| [___] |         ", "tl-ascii");
+                tPrint("    |/ |   |-----------I_____I [][] []  D   |=======|__|      ", "tl-ascii");
+                tPrint("  __/ =| o |=-~~\\  /~~\\  /~~\\  /~~\\ ____Y___________|__|      ", "tl-ascii");
+                tPrint(" |/-=|___|=    ||  ||  ||  ||  |_____/~\\___/          |       ", "tl-ascii");
+                tBlank();
+                tPrint("sl: Did you mean  ls  ? (steam locomotive)", "tl-dim");
+            }
+
+            function cmdSudo(args) {
+                var sub = args.join(" ");
+                if (sub === "rm -rf /" || sub === "rm -rf /*" || sub === "rm -rf ~") {
+                    tPrint("[sudo] password for snow: ", "");
+                    setTimeout(function () {
+                        tPrint("Sorry, try again.", "tl-err");
+                        setTimeout(function () {
+                            tPrint("[sudo] password for snow: ", "");
+                            setTimeout(function () {
+                                tPrint("Sorry, try again.", "tl-err");
+                                setTimeout(function () {
+                                    tPrint("sudo: 2 incorrect password attempts", "tl-err");
+                                    tBlank();
+                                    tPrint("The portfolio lives on. :)", "tl-accent");
+                                    tScroll();
+                                }, 700);
+                            }, 1100);
+                        }, 700);
+                    }, 1100);
+                    return;
+                }
+                tPrint("snow is not in the sudoers file. This incident will be reported.", "tl-err");
+            }
+
+            function cmdOpen(args) {
+                var url = args.join(" ").trim();
+                if (!url) {
+                    tPrint("Usage: open <url>", "tl-err");
+                    return;
+                }
+                var href = url.indexOf("http") === 0 ? url : "https://" + url;
+                window.open(href, "_blank", "noopener,noreferrer");
+                tPrint("Opening " + href + " ...", "tl-ok");
+            }
+
+            function cmdMatrix() {
+                var out = tOut();
+                var w = out.clientWidth || 600;
+                var h = 240;
+                var COLS = Math.floor(w / 10);
+                var chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789@#$%";
+
+                var canvas = document.createElement("canvas");
+                canvas.width = w;
+                canvas.height = h;
+                canvas.style.cssText = "display:block;width:100%;border-radius:6px;margin:0.5rem 0;";
+                out.appendChild(canvas);
+                tScroll();
+
+                var ctx = canvas.getContext("2d");
+                var ROWS = Math.floor(h / 16);
+
+                var streams = [];
+                for (var i = 0; i < COLS; i++) {
+                    streams.push({
+                        y: Math.floor(Math.random() * -40),
+                        speed: 1 + Math.floor(Math.random() * 2),
+                        len: 8 + Math.floor(Math.random() * 14),
+                    });
+                }
+
+                tPrint("Entering the Matrix... (5s, Ctrl+C to stop)", "tl-dim");
+                tScroll();
+
+                function draw() {
+                    ctx.fillStyle = "rgba(0,0,0,0.08)";
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.font = '13px "JetBrains Mono", monospace';
+
+                    streams.forEach(function (s, col) {
+                        for (var row = 0; row < s.len; row++) {
+                            var y = s.y - row;
+                            if (y < 0 || y >= ROWS) continue;
+                            var alpha = row === 0 ? 1 : (s.len - row) / s.len;
+                            ctx.fillStyle =
+                                row === 0 ? "rgba(210,255,210," + alpha + ")" : "rgba(0,255,65," + alpha * 0.75 + ")";
+                            ctx.fillText(chars[Math.floor(Math.random() * chars.length)], col * 10, y * 16 + 16);
+                        }
+                        if (Math.random() < 0.02) {
+                            s.y = Math.floor(Math.random() * -30);
+                            s.len = 8 + Math.floor(Math.random() * 14);
+                        } else {
+                            s.y += s.speed;
+                            if (s.y - s.len > ROWS) s.y = 0;
+                        }
+                    });
+                    matrixRAF = requestAnimationFrame(draw);
+                }
+
+                draw();
+                setTimeout(function () {
+                    if (matrixRAF) {
+                        cancelAnimationFrame(matrixRAF);
+                        matrixRAF = null;
+                        tPrint("Matrix exited. Welcome back.", "tl-ok");
+                        tScroll();
+                    }
+                }, 5000);
+            }
+
+            // ── Keyboard handler ──────────────────────────────────────────
+            function termKeydown(e) {
+                var inp = document.getElementById("term-input");
+
+                if (e.key === "Enter") {
+                    termRun();
+                } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    if (termHistIdx < termHistory.length - 1) {
+                        termHistIdx++;
+                        inp.value = termHistory[termHistIdx];
+                        requestAnimationFrame(function () {
+                            inp.selectionStart = inp.selectionEnd = inp.value.length;
+                        });
+                    }
+                } else if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    if (termHistIdx > 0) {
+                        termHistIdx--;
+                        inp.value = termHistory[termHistIdx];
+                    } else {
+                        termHistIdx = -1;
+                        inp.value = "";
+                    }
+                } else if (e.key === "Tab") {
+                    e.preventDefault();
+                    var val = inp.value.trim();
+                    var candidates = [
+                        "help",
+                        "clear",
+                        "cat",
+                        "cat secrets.txt",
+                        "cat readme.md",
+                        "ls",
+                        "ls -la",
+                        "pwd",
+                        "whoami",
+                        "echo",
+                        "date",
+                        "uname -a",
+                        "uptime",
+                        "neofetch",
+                        "projects",
+                        "stack",
+                        "contact",
+                        "color --retro",
+                        "color --reset",
+                        "color --hue",
+                        "weather",
+                        "history",
+                        "git log",
+                        "git status",
+                        "git branch",
+                        "git diff",
+                        "ping",
+                        "curl",
+                        "banner",
+                        "matrix",
+                        "fortune",
+                        "sl",
+                        "man",
+                        "sudo",
+                        "open",
+                        "exit",
+                    ];
+                    var match = candidates.find(function (c) {
+                        return c !== val && c.indexOf(val) === 0;
+                    });
+                    if (match) inp.value = match;
+                } else if (e.ctrlKey && e.key === "l") {
+                    e.preventDefault();
+                    tClear();
+                } else if (e.ctrlKey && e.key === "c") {
+                    e.preventDefault();
+                    if (matrixRAF) {
+                        cancelAnimationFrame(matrixRAF);
+                        matrixRAF = null;
+                        tPrint("^C  Matrix interrupted.", "tl-err");
+                    } else {
+                        tPrint("^C", "tl-err");
+                    }
+                    tBlank();
+                    tScroll();
+                    inp.value = "";
+                }
+            }
+
+            drawGrid();
+
+            /* ════════════════════════════════════════════════════════
+   PHOTOGRAPHY
+════════════════════════════════════════════════════════ */
+            let photoLoaded = false;
+
+            async function loadPhotography() {
+                if (photoLoaded) return;
+                photoLoaded = true;
+
+                const grid = document.getElementById("photo-grid");
+                const status = document.getElementById("photo-status");
+
+                status.textContent = "Loading photos…";
+
+                try {
+                    const res = await fetch(
+                        "https://api.github.com/repos/therealjustsnow/portfolio-/contents/photos",
+                        { headers: { Accept: "application/vnd.github.v3+json" } }
+                    );
+                    if (!res.ok) throw new Error("GitHub API returned " + res.status);
+                    const files = await res.json();
+
+                    const imgs = files.filter(f =>
+                        /\.(jpe?g|png|gif|webp|avif|tiff?)$/i.test(f.name) &&
+                        !/favicon/i.test(f.name)
+                    );
+
+                    if (imgs.length === 0) {
+                        status.textContent = "No photos found yet — check back soon!";
+                        return;
+                    }
+
+                    status.textContent = imgs.length + " photo" + (imgs.length !== 1 ? "s" : "");
+                    grid.innerHTML = "";
+
+                    imgs.forEach((file, i) => {
+                        const rawUrl = `https://raw.githubusercontent.com/therealjustsnow/portfolio-/main/photos/${encodeURIComponent(file.name)}`;
+
+                        const item = document.createElement("div");
+                        item.className = "photo-item";
+                        item.style.animationDelay = (i * 0.06) + "s";
+
+                        const img = document.createElement("img");
+                        img.src = rawUrl;
+                        img.alt = file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+                        img.loading = "lazy";
+                        img.decoding = "async";
+
+                        item.appendChild(img);
+                        item.addEventListener("click", () => openLightbox(rawUrl, img.alt, i, imgs));
+                        grid.appendChild(item);
+                    });
+
+                } catch (err) {
+                    status.textContent = "Could not load photos: " + err.message;
+                }
+            }
+
+            // Lightbox
+            function openLightbox(src, alt, idx, imgs) {
+                const lb = document.getElementById("photo-lightbox");
+                const lbImg = document.getElementById("lb-img");
+                const lbCaption = document.getElementById("lb-caption");
+                const lbCounter = document.getElementById("lb-counter");
+
+                lbImg.src = src;
+                lbImg.alt = alt;
+                lbCaption.textContent = alt;
+                lbCounter.textContent = (idx + 1) + " / " + imgs.length;
+
+                lb.dataset.idx = idx;
+                lb.dataset.total = imgs.length;
+
+                // Store all img srcs for navigation
+                lb.dataset.srcs = JSON.stringify(imgs.map(f =>
+                    `https://raw.githubusercontent.com/therealjustsnow/portfolio-/main/photos/${encodeURIComponent(f.name)}`
+                ));
+                lb.dataset.alts = JSON.stringify(imgs.map(f =>
+                    f.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")
+                ));
+
+                lb.classList.add("open");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                document.getElementById("photo-lightbox").classList.remove("open");
+                document.body.style.overflow = "";
+            }
+
+            function lbNav(dir) {
+                const lb = document.getElementById("photo-lightbox");
+                const srcs = JSON.parse(lb.dataset.srcs || "[]");
+                const alts = JSON.parse(lb.dataset.alts || "[]");
+                let idx = parseInt(lb.dataset.idx) + dir;
+                if (idx < 0) idx = srcs.length - 1;
+                if (idx >= srcs.length) idx = 0;
+
+                const lbImg = document.getElementById("lb-img");
+                const lbCaption = document.getElementById("lb-caption");
+                const lbCounter = document.getElementById("lb-counter");
+
+                lbImg.style.opacity = "0";
+                setTimeout(() => {
+                    lbImg.src = srcs[idx];
+                    lbImg.alt = alts[idx];
+                    lbCaption.textContent = alts[idx];
+                    lbCounter.textContent = (idx + 1) + " / " + srcs.length;
+                    lb.dataset.idx = idx;
+                    lbImg.style.opacity = "1";
+                }, 200);
+            }
+
+            // Lightbox keyboard nav
+            document.addEventListener("keydown", (e) => {
+                const lb = document.getElementById("photo-lightbox");
+                if (!lb || !lb.classList.contains("open")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowRight") lbNav(1);
+                if (e.key === "ArrowLeft") lbNav(-1);
+            });
