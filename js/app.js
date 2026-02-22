@@ -8,7 +8,7 @@
                     badge: "Maintainer",
                     period: "2020 – Present",
                     tech: ["Python"],
-                    images: ["https://i.imgur.com/FWcHtcS.png"],
+                    images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f465763487463532e706e67.png"],
                     github: "https://github.com/Just-Some-Bots/MusicBot/tree/dev",
                     repo: "Just-Some-Bots/MusicBot",
                     desc: "A self-hosted music bot for Discord. I maintain the dev branch, triaging issues and shipping improvements.",
@@ -20,10 +20,10 @@
                     period: "2025 – Present",
                     tech: ["CSS", "SCSS", "GitHub Actions"],
                     images: [
-                        "https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Aquarion%20Preview.png",
-                        "https://github.com/Aquarion-D/Aquarion/raw/Aquarion/screenshots/Nitro%20Profile%20Preview.png",
-                        "https://github.com/Aquarion-D/Aquarion/raw/Aquarion/screenshots/Preview%20with%20profile.png",
-                        "https://raw.githubusercontent.com/Aquarion-D/Aquarion/refs/heads/Aquarion/screenshots/Channel%20Hovered.png",
+                        "photos/Aquarion Preview (1).png",
+                        "photos/Nitro Profile Preview.png",
+                        "photos/Preview with profile.png",
+                        "photos/Channel Hovered.png",
                     ],
                     github: "https://github.com/Aquarion-D/Aquarion",
                     repo: "Aquarion-D/Aquarion",
@@ -35,7 +35,7 @@
                     badge: "Team Member",
                     period: "2024 – 2025",
                     tech: ["CSS", "SCSS", "GitHub Actions"],
-                    images: ["https://i.imgur.com/U7UXrEN.png"],
+                    images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f5537555872454e2e706e67.png"],
                     github: "https://github.com/ClearVision",
                     repo: "ClearVision/ClearVision-v6",
                     desc: "Contributed to one of the most popular Discord themes. Helped maintain styles, fix bugs, and improve documentation.",
@@ -348,99 +348,158 @@
             updateTimes();
 
             /* ════════════════════════════════════════════════════════
-   BUILD DOM
+   BUILD DOM + OBSERVERS + EFFECTS
+   Deferred to window load so none of this blocks FCP/LCP.
 ════════════════════════════════════════════════════════ */
-            // Projects
-            function buildProjects() {
-                const grid = document.getElementById("projects-grid");
-                PROJECTS.forEach((p, pi) => {
-                    const card = document.createElement("div");
-                    card.className = "glass project-card reveal" + (pi > 0 ? " reveal-delay-" + Math.min(pi, 3) : "");
+            window.addEventListener("load", () => {
 
-                    const imgSrc = p.images[0];
-                    let navDots = "";
-                    if (p.images.length > 1) {
-                        navDots = `<div class="card-img-nav">${p.images.map((_, ii) => `<div class="img-dot${ii === 0 ? " active" : ""}" data-proj="${p.id}" data-idx="${ii}"></div>`).join("")}</div>`;
-                    }
+                // ── Projects ────────────────────────────────────────────
+                buildProjects();
 
-                    card.innerHTML = `
-      <div class="card-img">
-        <img src="${imgSrc}" alt="${p.name}" loading="lazy" id="proj-img-${p.id}"/>
-        ${navDots}
-      </div>
-      <div class="card-body">
-        <div class="card-top">
-          <span class="card-name">${p.name}</span>
-          <span class="badge">${p.badge}</span>
-        </div>
-        <div class="card-period">${p.period}</div>
-        <div class="card-tech">${p.tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>
-        <div class="card-actions">
-          <a class="btn btn-ghost" href="${p.github}" target="_blank">GitHub ↗</a>
-          <button class="btn btn-primary" onclick="openModal('${p.id}')">Read More</button>
-        </div>
-      </div>`;
+                // ── Stack ────────────────────────────────────────────────
+                buildStack("lang-grid", LANGS);
+                buildStack("tools-grid", TOOLS);
 
-                    grid.appendChild(card);
-
-                    // Image dots
-                    card.querySelectorAll(".img-dot").forEach((dot) => {
-                        dot.addEventListener("click", () => {
-                            const idx = parseInt(dot.dataset.idx);
-                            document.getElementById("proj-img-" + p.id).src = p.images[idx];
-                            card.querySelectorAll(".img-dot").forEach((d, di) =>
-                                d.classList.toggle("active", di === idx)
-                            );
-                        });
-                    });
-                });
-            }
-            buildProjects();
-
-            // Stack
-            function buildStack(containerId, items) {
-                const g = document.getElementById(containerId);
-                items.forEach((item, i) => {
-                    const card = document.createElement("div");
-                    card.className = "glass stack-card";
-                    card.style.transitionDelay = i * 0.04 + "s";
-                    card.innerHTML = `<span class="icon">${item.icon}</span><span class="name">${item.name}</span>`;
-                    // Touch skew
-                    card.addEventListener("click", () => {
-                        card.style.transform =
-                            "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
-                        setTimeout(() => (card.style.transform = ""), 500);
-                    });
-                    g.appendChild(card);
-                });
-            }
-            buildStack("lang-grid", LANGS);
-            buildStack("tools-grid", TOOLS);
-
-            // Contacts
-            (function () {
-                const cont = document.getElementById("contact-cards");
-                CONTACTS.forEach((c) => {
-                    const a = document.createElement("a");
-                    a.className = "glass contact-card";
-                    a.href = c.href;
-                    a.target = "_blank";
-                    a.rel = "noopener noreferrer";
-                    a.innerHTML = `<div class="contact-icon">${c.icon}</div>
+                // ── Contacts ─────────────────────────────────────────────
+                (function () {
+                    const cont = document.getElementById("contact-cards");
+                    CONTACTS.forEach((c) => {
+                        const a = document.createElement("a");
+                        a.className = "glass contact-card";
+                        a.href = c.href;
+                        a.target = "_blank";
+                        a.rel = "noopener noreferrer";
+                        a.innerHTML = `<div class="contact-icon">${c.icon}</div>
       <div class="contact-info">
         <div class="label">${c.label}</div>
         <div class="val">${c.val}</div>
       </div>`;
-                    cont.appendChild(a);
+                        cont.appendChild(a);
+                    });
+                })();
+
+                // ── Footer year ──────────────────────────────────────────
+                document.getElementById("footer-year").textContent = new Date().getFullYear();
+
+                // ── Scroll reveal + section tracking ─────────────────────
+                const ro = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) {
+                                e.target.classList.add("visible");
+                                if (e.target.closest("section")) {
+                                    const id = e.target.closest("section").id;
+                                    if (id) visitedSections.add(id);
+                                }
+                            }
+                        });
+                    },
+                    { threshold: 0.1 }
+                );
+                document.querySelectorAll(".reveal,.section-header").forEach((el) => ro.observe(el));
+
+                // ── Visitor insights ─────────────────────────────────────
+                renderVisitorInsights();
+                setInterval(renderVisitorInsights, 5000);
+
+                // ── Cursor glow + magnetic elements ───────────────────────
+                const glow = document.getElementById("cursor-glow");
+                let glowX = window.innerWidth / 2,
+                    glowY = window.innerHeight / 2;
+                let rafGlow;
+
+                document.addEventListener("mousemove", (e) => {
+                    glowX = e.clientX;
+                    glowY = e.clientY;
+                    if (!rafGlow) rafGlow = requestAnimationFrame(updateGlow);
                 });
-            })();
 
-            // Footer year
-            document.getElementById("footer-year").textContent = new Date().getFullYear();
+                function updateGlow() {
+                    glow.style.left = glowX + "px";
+                    glow.style.top = glowY + "px";
+                    rafGlow = null;
+                }
 
-            /* ════════════════════════════════════════════════════════
-   TYPEWRITER
-════════════════════════════════════════════════════════ */
+                // Magnetic effect — cache rect on mouseenter, use it in mousemove
+                // so we never call getBoundingClientRect() inside a hot mousemove path
+                if (!isTouch) {
+                    document.querySelectorAll(".btn, .nav-links a").forEach((item) => {
+                        let rect = null;
+                        item.addEventListener("mouseenter", () => { rect = item.getBoundingClientRect(); });
+                        item.addEventListener("mousemove", (e) => {
+                            if (!rect) return;
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            item.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+                        });
+                        item.addEventListener("mouseleave", () => {
+                            rect = null;
+                            item.style.transform = "";
+                        });
+                    });
+
+                    document.querySelectorAll(".project-card, .stack-card, .time-card, .contact-card").forEach((item) => {
+                        let rect = null;
+                        item.addEventListener("mouseenter", () => { rect = item.getBoundingClientRect(); });
+                        item.addEventListener("mousemove", (e) => {
+                            if (!rect) return;
+                            const x = e.clientX - rect.left - rect.width / 2;
+                            const y = e.clientY - rect.top - rect.height / 2;
+                            item.style.transform = `translate(${x * 0.04}px, ${y * 0.04}px) perspective(320px) rotateY(${x * 0.06}deg) rotateX(${-y * 0.06}deg) translateY(-8px) translateZ(10px)`;
+                        });
+                        item.addEventListener("mouseleave", () => {
+                            rect = null;
+                            item.style.transform = "";
+                        });
+                    });
+                }
+
+                // ── Particle cursor ───────────────────────────────────────
+                if (!isTouch) {
+                    let lastSpawn = 0;
+                    const SPAWN_INTERVAL = 40;
+                    const particles = [];
+                    const MAX_PARTICLES = 30;
+
+                    document.addEventListener("mousemove", (e) => {
+                        const now = Date.now();
+                        if (now - lastSpawn < SPAWN_INTERVAL) return;
+                        lastSpawn = now;
+
+                        if (particles.length >= MAX_PARTICLES) {
+                            const old = particles.shift();
+                            old.remove();
+                        }
+
+                        const p = document.createElement("div");
+                        p.className = "particle";
+                        const size = 4 + Math.random() * 6;
+                        p.style.cssText = `
+      left:${e.clientX}px;top:${e.clientY}px;
+      width:${size}px;height:${size}px;
+      background:var(--accent);
+      opacity:0.7;
+      transition:opacity 0.6s ease,transform 0.6s ease;
+    `;
+                        document.body.appendChild(p);
+                        particles.push(p);
+
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                p.style.opacity = "0";
+                                p.style.transform = `translate(-50%,-50%) scale(0) translate(${(Math.random() - 0.5) * 20}px,${-10 - Math.random() * 20}px)`;
+                            });
+                        });
+
+                        setTimeout(() => {
+                            p.remove();
+                            const idx = particles.indexOf(p);
+                            if (idx > -1) particles.splice(idx, 1);
+                        }, 700);
+                    });
+                }
+
+            }); // end window load
             const GH_ICON = '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="tw-icon">';
 
             // Each phrase is a {icon, text} object.
