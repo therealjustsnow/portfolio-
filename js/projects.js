@@ -148,6 +148,24 @@ function buildStack(containerId, items) {
     });
 }
 
+function buildContacts() {
+    const cont = document.getElementById("contact-cards");
+    if (!cont) return;
+    CONTACTS.forEach(c => {
+        const a = document.createElement("a");
+        a.className  = "glass contact-card";
+        a.href       = c.href;
+        a.target     = "_blank";
+        a.rel        = "noopener noreferrer";
+        a.innerHTML  = `<div class="contact-icon">${c.icon}</div>
+      <div class="contact-info">
+        <div class="label">${c.label}</div>
+        <div class="val">${c.val}</div>
+      </div>`;
+        cont.appendChild(a);
+    });
+}
+
 // ── Modal ───────────────────────────────────────────────────────────────────
 
 function openModal(id) {
