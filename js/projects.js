@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════════════════════════════
+   projects.js  —  data arrays, project cards, modal, GitHub commits
+   Deps: trackSession (analytics.js)
+   Globals provided: PROJECTS, LANGS, TOOLS, CONTACTS, SCHEDULE,
+                     buildProjects, buildStack, openModal, closeModal,
+                     fetchCommits, renderCommits
+═══════════════════════════════════════════════════════════════ */
+
+const PROJECTS = [
+    {
+        id: "musicbot",
+        name: "MusicBot",
+        badge: "Maintainer",
+        period: "2020 – Present",
+        tech: ["Python"],
+        images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f465763487463532e706e67.png"],
+        github: "https://github.com/Just-Some-Bots/MusicBot/tree/dev",
+        repo: "Just-Some-Bots/MusicBot",
+        desc: "A self-hosted music bot for Discord. I maintain the dev branch, triaging issues and shipping improvements.",
+    },
+    {
+        id: "aquarion",
+        name: "Aquarion",
+        badge: "Owner",
+        period: "2025 – Present",
+        tech: ["CSS", "SCSS", "GitHub Actions"],
+        images: [
+            "photos/Aquarion Preview (1).png",
+            "photos/Nitro Profile Preview.png",
+            "photos/Preview with profile.png",
+            "photos/Channel Hovered.png",
+        ],
+        github: "https://github.com/Aquarion-D/Aquarion",
+        repo: "Aquarion-D/Aquarion",
+        desc: "A highly polished Discord theme built with CSS & SCSS. Features adaptive layouts, Nitro previews, and automated builds.",
+    },
+    {
+        id: "clearvision",
+        name: "ClearVision",
+        badge: "Team Member",
+        period: "2024 – 2025",
+        tech: ["CSS", "SCSS", "GitHub Actions"],
+        images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f5537555872454e2e706e67.png"],
+        github: "https://github.com/ClearVision",
+        repo: "ClearVision/ClearVision-v6",
+        desc: "Contributed to one of the most popular Discord themes. Helped maintain styles, fix bugs, and improve documentation.",
+    },
+];
+
+const LANGS = [
+    { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">',   name: "Python"   },
+    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Batch">', name: "Batch" },
+    { icon: '<img src="https://cdn.simpleicons.org/markdown/ffffff" alt="Markdown">',  name: "Markdown" },
+    { icon: '<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML">',       name: "HTML"     },
+    { icon: '<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS">',          name: "CSS"      },
+    { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SCSS">',        name: "SCSS"     },
+    { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SASS">',        name: "SASS"     },
+];
+
+const TOOLS = [
+    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" alt="Windows 11">', name: "Windows 11" },
+    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">',       name: "VS Code"    },
+    { icon: '<img src="https://cdn.simpleicons.org/git/F05032" alt="Git">',                name: "Git"            },
+    { icon: '<img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions">',name: "GitHub Actions" },
+    { icon: '<img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier">',      name: "Prettier"       },
+    { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Black">',           name: "Black"          },
+];
+
+const CONTACTS = [
+    { icon: "💬", label: "Discord", val: "therealjustsnow",    href: "https://discord.com/users/therealjustsnow" },
+    { icon: "📧", label: "Email",   val: "ewagner2698@gmail.com", href: "mailto:ewagner2698@gmail.com" },
+    {
+        icon: '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
+        label: "GitHub", val: "BabyBoySnow", href: "https://github.com/BabyBoySnow",
+    },
+];
+
+const SCHEDULE = [
+    { emoji: "💤", label: "Sleeping", time: "12am – 12pm", start: 0,  end: 12 },
+    { emoji: "👨‍💻", label: "Coding",   time: "12pm – 4pm",  start: 12, end: 16 },
+    { emoji: "💼", label: "Working",   time: "4pm – 10pm",  start: 16, end: 22 },
+    { emoji: "🎮", label: "Gaming",    time: "10pm – 12am", start: 22, end: 24 },
+];
+
+// ── DOM builders ────────────────────────────────────────────────────────────
+
+function buildProjects() {
+    const grid = document.getElementById("projects-grid");
+    if (!grid) return;
+
+    PROJECTS.forEach((p, pi) => {
+        const card = document.createElement("div");
+        card.className = "glass project-card reveal" + (pi > 0 ? " reveal-delay-" + Math.min(pi, 3) : "");
+
+        const navDots = p.images.length > 1
+            ? `<div class="card-img-nav">${p.images.map((_, ii) =>
+                `<div class="img-dot${ii === 0 ? " active" : ""}" data-proj="${p.id}" data-idx="${ii}"></div>`
+              ).join("")}</div>`
+            : "";
+
+        card.innerHTML = `
+      <div class="card-img">
+        <img src="${p.images[0]}" alt="${p.name}" loading="lazy" id="proj-img-${p.id}"/>
+        ${navDots}
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="card-name">${p.name}</span>
+          <span class="badge">${p.badge}</span>
+        </div>
+        <div class="card-period">${p.period}</div>
+        <div class="card-tech">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}</div>
+        <div class="card-actions">
+          <a class="btn btn-ghost" href="${p.github}" target="_blank">GitHub ↗</a>
+          <button class="btn btn-primary" onclick="openModal('${p.id}')">Read More</button>
+        </div>
+      </div>`;
+
+        grid.appendChild(card);
+
+        card.querySelectorAll(".img-dot").forEach(dot => {
+            dot.addEventListener("click", () => {
+                const idx = parseInt(dot.dataset.idx);
+                const img = document.getElementById("proj-img-" + p.id);
+                if (img) img.src = p.images[idx];
+                card.querySelectorAll(".img-dot").forEach((d, di) =>
+                    d.classList.toggle("active", di === idx)
+                );
+            });
+        });
+    });
+}
+
+function buildStack(containerId, items) {
+    const g = document.getElementById(containerId);
+    if (!g) return;
+    items.forEach((item, i) => {
+        const card = document.createElement("div");
+        card.className = "glass stack-card";
+        card.style.transitionDelay = i * 0.04 + "s";
+        card.innerHTML = `<span class="icon">${item.icon}</span><span class="name">${item.name}</span>`;
+        card.addEventListener("click", () => {
+            card.style.transform =
+                "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
+            setTimeout(() => (card.style.transform = ""), 500);
+        });
+        g.appendChild(card);
+    });
+}
+
+// ── Modal ───────────────────────────────────────────────────────────────────
+
+function openModal(id) {
+    const p = PROJECTS.find(x => x.id === id);
+    if (!p) return;
+
+    const titleEl  = document.getElementById("modal-title");
+    const badgeEl  = document.getElementById("modal-badge");
+    const imgsEl   = document.getElementById("modal-imgs");
+    const techEl   = document.getElementById("modal-tech");
+    const commEl   = document.getElementById("commits-list");
+    const cacheEl  = document.getElementById("cached-indicator");
+    const overlay  = document.getElementById("modal-overlay");
+
+    if (titleEl) titleEl.textContent = p.name;
+    if (badgeEl) badgeEl.innerHTML   =
+        `<span class="badge">${p.badge}</span> <span style="font-size:0.75rem;color:rgba(255,255,255,0.4);font-family:'JetBrains Mono',monospace;margin-left:0.5rem">${p.period}</span>`;
+    if (imgsEl)  imgsEl.innerHTML    = p.images.map(src => `<img src="${src}" alt="${p.name}" loading="lazy"/>`).join("");
+    if (techEl)  techEl.innerHTML    =
+        `<div class="card-tech" style="margin-bottom:1rem">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}</div>
+         <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.6">${p.desc}</p>`;
+    if (commEl)  commEl.innerHTML    = '<div class="commit-item" style="color:rgba(255,255,255,0.4)">Loading commits…</div>';
+    if (cacheEl) cacheEl.textContent = "";
+    if (overlay) { overlay.classList.add("open"); document.body.style.overflow = "hidden"; }
+
+    fetchCommits(p.repo);
+}
+
+function closeModal() {
+    const overlay = document.getElementById("modal-overlay");
+    if (overlay) overlay.classList.remove("open");
+    document.body.style.overflow = "";
+}
+
+// Wire modal dismissal once on load
+(function () {
+    const overlay = document.getElementById("modal-overlay");
+    if (overlay) {
+        overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+    }
+    document.addEventListener("keydown", e => {
+        if (e.key === "Escape") closeModal();
+    });
+})();
+
+// ── GitHub commits ───────────────────────────────────────────────────────────
+
+async function fetchCommits(repo) {
+    const key    = "snow-commits-" + repo;
+    const cached = localStorage.getItem(key);
+    if (cached) {
+        try {
+            const { data, ts } = JSON.parse(cached);
+            if (Date.now() - ts < 3_600_000) { renderCommits(data, true); return; }
+        } catch (_) {}
+    }
+    try {
+        const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=5`);
+        if (!res.ok) throw new Error(res.status);
+        const data = await res.json();
+        localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
+        renderCommits(data, false);
+    } catch (err) {
+        const el = document.getElementById("commits-list");
+        if (el) el.innerHTML = `<div class="commit-item" style="color:rgba(239,68,68,0.8)">
+            ${err.message === "403" ? "GitHub rate limit reached. Try again later." : "Could not load commits — " + err.message}
+        </div>`;
+    }
+}
+
+function renderCommits(commits, fromCache) {
+    const cacheEl = document.getElementById("cached-indicator");
+    const el      = document.getElementById("commits-list");
+    if (cacheEl) cacheEl.textContent = fromCache ? "(cached)" : "";
+    if (!el) return;
+    if (!Array.isArray(commits) || commits.length === 0) {
+        el.innerHTML = '<div class="commit-item">No commits found.</div>';
+        return;
+    }
+    el.innerHTML = commits.slice(0, 5).map(c => {
+        const msg    = c.commit?.message?.split("\n")[0] || "No message";
+        const author = c.commit?.author?.name || "Unknown";
+        const date   = c.commit?.author?.date ? new Date(c.commit.author.date).toLocaleDateString() : "";
+        const sha    = (c.sha || "").slice(0, 7);
+        return `<div class="commit-item">
+            <div class="commit-msg">${msg}</div>
+            <div class="commit-meta">${author} · ${date} · <a href="${c.html_url || "#"}" target="_blank" style="color:var(--accent);text-decoration:none">${sha}</a></div>
+        </div>`;
+    }).join("");
+}
