@@ -15,15 +15,8 @@
 ═══════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════
-   SCHEDULE + TIME BAR
+   TIME BAR  (SCHEDULE data lives in projects.js)
 ════════════════════════════════════════════════════════ */
-const SCHEDULE = [
-    { emoji: "💤", label: "Sleeping", time: "12am – 12pm", start: 0,  end: 12 },
-    { emoji: "👨‍💻", label: "Coding",   time: "12pm – 4pm",  start: 12, end: 16 },
-    { emoji: "💼", label: "Working",   time: "4pm – 10pm",  start: 16, end: 22 },
-    { emoji: "🎮", label: "Gaming",    time: "10pm – 12am", start: 22, end: 24 },
-];
-
 function updateTimes() {
     const now      = new Date();
     const snowOpts = { timeZone: "America/Chicago", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
