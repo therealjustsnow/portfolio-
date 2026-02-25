@@ -337,7 +337,7 @@ async function renderGuestbookEntries(append = false) {
 
     try {
         const res = await fetch(
-            `${GB_URL}?select=id,name,message,created_at&order=created_at.desc&limit=${GB_PAGE}&offset=${gbOffset}`,
+            `${GB_URL}?select=id,name,message,created_at,edited_at&order=created_at.desc&limit=${GB_PAGE}&offset=${gbOffset}`,
             { headers: GB_HEADERS }
         );
         if (!res.ok) throw new Error("Could not load entries.");
@@ -354,6 +354,9 @@ async function renderGuestbookEntries(append = false) {
 
         entries.forEach(e => {
             const date     = new Date(e.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+            const editedAt = e.edited_at
+                ? new Date(e.edited_at).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })
+                : null;
             const safeName = sanitize(String(e.name    || "").slice(0, 80));
             const safeMsg  = sanitize(String(e.message || "").slice(0, 600));
             const isOwner  = e.id && myTokens[e.id];
@@ -367,6 +370,7 @@ async function renderGuestbookEntries(append = false) {
   <span class="gb-entry-name">${safeName}</span>
   <div class="gb-entry-meta">
     <span class="gb-entry-date">${date}</span>
+    ${editedAt ? `<span class="gb-edited" title="Edited ${editedAt}">(edited)</span>` : ""}
     ${isOwner ? `
     <div class="gb-entry-actions">
       <button class="gb-action-btn gb-edit-btn"  title="Edit">✎</button>
@@ -432,15 +436,35 @@ async function gbSaveEdit(card, entry, token, newMsg) {
     if (saveBtn) { saveBtn.textContent = "Saving…"; saveBtn.disabled = true; }
 
     try {
+        const now = new Date().toISOString();
         const res = await fetch(`${GB_URL}?id=eq.${entry.id}&token=eq.${token}`, {
             method:  "PATCH",
             headers: { ...GB_HEADERS, Prefer: "return=minimal" },
-            body:    JSON.stringify({ message: sanitize(newMsg) }),
+            body:    JSON.stringify({ message: sanitize(newMsg), edited_at: now }),
         });
         if (!res.ok) throw new Error("Save failed (" + res.status + ")");
-        entry.message = newMsg;
+        entry.message  = newMsg;
+        entry.edited_at = now;
         card.classList.remove("gb-editing");
         card.querySelector(".gb-entry-msg").textContent = newMsg;
+
+        // Add or update the (edited) label
+        const meta = card.querySelector(".gb-entry-meta");
+        if (meta) {
+            let editedEl = meta.querySelector(".gb-edited");
+            const editedStr = new Date(now).toLocaleString("en-US", {
+                month: "short", day: "numeric", year: "numeric",
+                hour: "2-digit", minute: "2-digit",
+            });
+            if (!editedEl) {
+                editedEl = document.createElement("span");
+                editedEl.className = "gb-edited";
+                const dateEl = meta.querySelector(".gb-entry-date");
+                if (dateEl) dateEl.after(editedEl);
+            }
+            editedEl.title       = "Edited " + editedStr;
+            editedEl.textContent = "(edited)";
+        }
     } catch (err) {
         if (saveBtn) { saveBtn.textContent = "Retry"; saveBtn.disabled = false; }
         const msgEl = card.querySelector(".gb-entry-msg");
