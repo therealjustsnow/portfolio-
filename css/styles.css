@@ -1653,6 +1653,18 @@
                 color: rgba(255, 255, 255, 0.72);
                 line-height: 1.55;
             }
+            .gb-edited {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.58rem;
+                color: rgba(255, 255, 255, 0.2);
+                letter-spacing: 0.04em;
+                cursor: default;
+                user-select: none;
+                transition: color 0.15s ease;
+            }
+            .gb-entry:hover .gb-edited {
+                color: rgba(255, 255, 255, 0.35);
+            }
             /* ─── GUESTBOOK ENTRY ACTIONS (edit / delete) ─────── */
             .gb-entry-meta {
                 display: flex;
