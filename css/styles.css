@@ -721,6 +721,14 @@
                 width: 80px;
             }
 
+            .section-intro {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.45);
+                line-height: 1.65;
+                margin-top: 0.75rem;
+                max-width: 580px;
+            }
+
             /* ─── PROJECTS ──────────────────────────────────────────── */
             .projects-grid {
                 display: grid;
@@ -1412,6 +1420,24 @@
                 font-family: "JetBrains Mono", monospace;
                 border-top: 1px solid rgba(255, 255, 255, 0.05);
             }
+            .footer-nav {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            .footer-nav a {
+                color: rgba(255, 255, 255, 0.35);
+                text-decoration: none;
+                font-size: 0.75rem;
+                font-family: "JetBrains Mono", monospace;
+                letter-spacing: 0.05em;
+                transition: color 0.2s ease;
+            }
+            .footer-nav a:hover {
+                color: var(--accent);
+            }
 
             /* ─── PAGE FADE IN ──────────────────────────────────────── */
             @media (prefers-reduced-motion: no-preference) {
@@ -1652,19 +1678,6 @@
                 font-size: 0.87rem;
                 color: rgba(255, 255, 255, 0.72);
                 line-height: 1.55;
-            }
-            .gb-edited {
-                font-family: "JetBrains Mono", monospace;
-                font-size: 0.58rem;
-                color: rgba(255, 255, 255, 0.2);
-                letter-spacing: 0.04em;
-                cursor: default;
-                user-select: none;
-                transition: color 0.15s ease;
-                margin-left: 0.6rem;
-            }
-            .gb-entry:hover .gb-edited {
-                color: rgba(255, 255, 255, 0.35);
             }
             /* ─── GUESTBOOK ENTRY ACTIONS (edit / delete) ─────── */
             .gb-entry-meta {
