@@ -1213,12 +1213,18 @@ function termKeydown(e) {
 /* ════════════════════════════════════════════════════════
    PHOTOGRAPHY LIGHTBOX
 ════════════════════════════════════════════════════════ */
+
 let photoLoaded = false;
 
 function loadPhotography() {
     if (photoLoaded) return;
     photoLoaded = true;
-    document.querySelectorAll("#photo-grid .photo-item").forEach((item, idx) => {
+
+    const items  = document.querySelectorAll("#photo-grid .photo-item");
+    const status = document.getElementById("photo-status");
+    if (status) status.textContent = items.length + " photo" + (items.length !== 1 ? "s" : "");
+
+    items.forEach((item, idx) => {
         item.style.animationDelay = (idx * 0.06) + "s";
         item.addEventListener("click", () => {
             const img = item.querySelector("img");
