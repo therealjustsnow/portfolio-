@@ -1727,6 +1727,19 @@
                 font-size: 0.75rem;
                 margin-top: 0.3rem;
             }
+            .gb-edited {
+                font-family: "JetBrains Mono", monospace;
+                font-size: 0.58rem;
+                color: rgba(255, 255, 255, 0.2);
+                letter-spacing: 0.04em;
+                cursor: default;
+                user-select: none;
+                transition: color 0.15s ease;
+                margin-left: 0.6rem;
+            }
+            .gb-entry:hover .gb-edited {
+                color: rgba(255, 255, 255, 0.35);
+            }
 
             .gb-load-more-wrap {
                 display: flex;
