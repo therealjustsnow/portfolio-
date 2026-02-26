@@ -33,11 +33,10 @@
             />
         </noscript>
 
-        <link rel="stylesheet" href="css/styles.css?v=7" />
+        <link rel="stylesheet" href="css/styles.css?v=3" />
 
         <!-- SEO ──────────────────────────────────────────────────── -->
         <meta name="description" content="Snow — self-taught front-end developer from Des Moines, Iowa. Building interactive UIs with HTML, CSS, and JavaScript. Open to opportunities." />
-        <meta name="keywords"    content="Snow, front-end developer, UI design, CSS, HTML, JavaScript, Discord themes, Des Moines, portfolio" />
         <meta name="author"      content="Snow" />
         <link rel="canonical"    href="https://therealjustsnow.github.io/portfolio-/" />
 
@@ -55,7 +54,7 @@
         <meta name="twitter:image"       content="https://therealjustsnow.github.io/portfolio-/photos/selfie.png" />
 
         <!-- Google Analytics ───────────────────────────────────── -->
-        <!-- Measurements from analytics.google.com -->
+        <!-- Replace G-559BWJ6T8E with your Measurement ID from analytics.google.com -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-559BWJ6T8E"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -109,9 +108,9 @@
                 <a href="#analytics">Analytics</a>
                 <a href="#schedule">Schedule</a>
                 <a href="#contact">Contact</a>
-                <a href="#" id="photography-nav" onclick="switchView('photography');return false;">📷 Photography</a>
-                <a href="#" id="guestbook-nav" onclick="switchView('guestbook');return false;">✍️ Guestbook</a>
-                <a href="#" id="terminal-nav" onclick="switchView('terminal');return false;">⌨️ Terminal</a>
+                <a href="#photography" id="photography-nav" onclick="switchView('photography');return false;">📷 Photography</a>
+                <a href="#guestbook" id="guestbook-nav" onclick="switchView('guestbook');return false;">✍️ Guestbook</a>
+                <a href="#terminal" id="terminal-nav" onclick="switchView('terminal');return false;">⌨️ Terminal</a>
             </div>
             <div class="nav-right">
                 <button
@@ -171,7 +170,7 @@
                             <span class="name-gradient">Snow</span>
                         </h1>
                         <p class="hero-tagline">
-                            A self taught, Front-end developer focused on interactive UI and performance
+                            Self-taught front-end developer from Des Moines, Iowa — building interactive UIs, Discord bots, and CSS themes.
                         </p>
                         <div class="opp-badge" aria-label="Open to opportunities">
                             <span class="opp-dot"></span> Open to opportunities
@@ -188,7 +187,7 @@
                     <div class="hero-img-wrap">
                         <div class="hero-img-ring">
                             <div class="hero-img-inner">
-                                <img src="photos/selfie.png" alt="Snow" loading="eager" fetchpriority="high" />
+                                <img src="photos/selfie.png" srcset="photos/selfie.png 1x" alt="Snow — front-end developer from Des Moines, Iowa" width="320" height="320" loading="eager" fetchpriority="high" />
                             </div>
                         </div>
                     </div>
@@ -229,6 +228,7 @@
                     <div class="section-tag">// Work</div>
                     <h2 class="section-title">Projects</h2>
                     <div class="section-underline"></div>
+                    <p class="section-intro">Selected open-source projects — including a Python Discord music bot, CSS UI themes used by thousands, and interactive front-end experiments.</p>
                 </div>
                 <div class="projects-grid" id="projects-grid"></div>
             </section>
@@ -239,6 +239,7 @@
                     <div class="section-tag">// Toolbelt</div>
                     <h2 class="section-title">Tech Stack</h2>
                     <div class="section-underline"></div>
+                    <p class="section-intro">The languages and tools I reach for. Focused on the front-end — HTML, CSS, and SCSS — with Python for scripting and automation.</p>
                 </div>
 
                 <div class="stack-group reveal">
@@ -258,6 +259,7 @@
                     <div class="section-tag">// Metrics</div>
                     <h2 class="section-title">Analytics</h2>
                     <div class="section-underline"></div>
+                    <p class="section-intro">A live look at my GitHub activity, commit history, and contribution streaks.</p>
                 </div>
 
                 <div class="analytics-grid">
@@ -323,7 +325,16 @@
                 <div class="contact-cards" id="contact-cards"></div>
             </section>
 
-            <footer>Built with 💜 by Snow • Des Moines, Iowa • <span id="footer-year"></span></footer>
+            <footer>
+                <div class="footer-nav">
+                    <a href="#projects">Projects</a>
+                    <a href="#stack">Stack</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#guestbook" onclick="switchView('guestbook');return false;">Guestbook</a>
+                    <a href="#photography" onclick="switchView('photography');return false;">Photography</a>
+                </div>
+                <div class="footer-credit">Built with 💜 by Snow • Des Moines, Iowa • <span id="footer-year"></span></div>
+            </footer>
         </div>
         <!-- /#main-view -->
 
@@ -340,9 +351,6 @@
 
                 <div class="photo-status" id="photo-status"></div>
                 <div class="photo-grid" id="photo-grid">
-                    <div class="photo-item"><img src="photos/20181006_201545.jpg"                          alt="October 2018"     loading="lazy" decoding="async"></div>
-                    <div class="photo-item"><img src="photos/20181008_124504.jpg"                          alt="October 2018 II"  loading="lazy" decoding="async"></div>
-                    <div class="photo-item"><img src="photos/20190121_101242.jpg"                          alt="January 2019"     loading="lazy" decoding="async"></div>
                     <div class="photo-item"><img src="photos/20190628_145005.jpg"                          alt="June 2019"        loading="lazy" decoding="async"></div>
                     <div class="photo-item"><img src="photos/20190712_204722.jpg"                          alt="July 2019"        loading="lazy" decoding="async"></div>
                     <div class="photo-item"><img src="photos/20190714_015814.jpg"                          alt="July 2019 II"     loading="lazy" decoding="async"></div>
@@ -505,11 +513,6 @@
             ↑
         </button>
 
-        <script src="js/analytics.js?v=7" defer></script>
-        <script src="js/theme.js?v=7" defer></script>
-        <script src="js/projects.js?v=7" defer></script>
-        <script src="js/ti83.js?v=7" defer></script>
-        <script src="js/effects.js?v=7" defer></script>
-        <script src="js/app.js?v=7" defer></script>
+        <script src="js/app.js?v=5" defer></script>
     </body>
 </html>
