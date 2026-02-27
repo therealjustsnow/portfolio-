@@ -16,7 +16,7 @@ const PROJECTS = [
         images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f465763487463532e706e67.png"],
         github: "https://github.com/Just-Some-Bots/MusicBot/tree/dev",
         repo: "Just-Some-Bots/MusicBot",
-        desc: "A self-hosted music bot for Discord. I maintain the dev branch, triaging issues and shipping improvements.",
+        desc: "Maintainer of the dev branch for one of the most widely self-hosted Discord music bots — used across thousands of servers. Responsibilities include triaging community issues, reviewing pull requests, refactoring the yt-dlp integration for reliability, and shipping incremental improvements without breaking self-hosted deployments. Working in a real open-source environment with external contributors and production users.",
     },
     {
         id: "aquarion",
@@ -32,7 +32,7 @@ const PROJECTS = [
         ],
         github: "https://github.com/Aquarion-D/Aquarion",
         repo: "Aquarion-D/Aquarion",
-        desc: "A highly polished Discord theme built with CSS & SCSS. Features adaptive layouts, Nitro previews, and automated builds.",
+        desc: "Designed and built a full Discord client theme from scratch using CSS and SCSS. Engineered adaptive layouts that handle Discord's frequently changing DOM, implemented Nitro profile previews, and set up GitHub Actions to automate builds and releases. Focused on maintainability — modular SCSS architecture means updates don't cascade into breakage.",
     },
     {
         id: "clearvision",
@@ -43,7 +43,7 @@ const PROJECTS = [
         images: ["photos/68747470733a2f2f692e696d6775722e636f6d2f5537555872454e2e706e67.png"],
         github: "https://github.com/ClearVision",
         repo: "ClearVision/ClearVision-v6",
-        desc: "Contributed to one of the most popular Discord themes. Helped maintain styles, fix bugs, and improve documentation.",
+        desc: "Contributed to ClearVision, one of the most installed Discord themes with a large active user base. Worked within an established team codebase — fixing visual regressions, maintaining cross-platform style consistency, and improving contributor documentation. First real experience shipping code that others depend on.",
     },
 ];
 
