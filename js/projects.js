@@ -68,7 +68,7 @@ const TOOLS = [
 
 const CONTACTS = [
     { icon: "💬", label: "Discord", val: "therealjustsnow",    href: "https://discord.com/users/therealjustsnow" },
-    { icon: "📧", label: "Email",   val: "ewagner2698@gmail.com", href: "mailto:ewagner2698@gmail.com" },
+    { icon: "📧", label: "Email",   val: "justsnow.dev@gmail.com", href: "mailto:justsnow.dev@gmail.com" },
     {
         icon: '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
         label: "GitHub", val: "BabyBoySnow", href: "https://github.com/BabyBoySnow",
