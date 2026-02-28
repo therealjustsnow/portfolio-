@@ -32,7 +32,18 @@ const PROJECTS = [
         ],
         github: "https://github.com/Aquarion-D/Aquarion",
         repo: "Aquarion-D/Aquarion",
-        desc: "Designed and built a full Discord client theme from scratch using CSS and SCSS. Engineered adaptive layouts that handle Discord's frequently changing DOM, implemented Nitro profile previews, and set up GitHub Actions to automate builds and releases. Focused on maintainability — modular SCSS architecture means updates don't cascade into breakage.",
+        desc: "A heavily modified fork of ClearVision, rebuilt into its own distinct theme. Overhauled the visual design end-to-end — reworking layout components like message pills, server member lists, Nitro sections, and voice UI. Added a frosted glass effect toggle, alt-color customization system, Vencord plugin support, and automated builds via GitHub Actions. Every change was intentional: reduce visual noise, improve readability, and make the theme feel cohesive rather than patched together.",
+    },
+    {
+        id: "portfolio",
+        name: "Portfolio",
+        badge: "Owner",
+        period: "2025 – Present",
+        tech: ["HTML", "CSS", "JavaScript", "Supabase"],
+        images: ["https://image.thum.io/get/width/600/crop/800/https://therealjustsnow.github.io/portfolio-/"],
+        github: "https://github.com/therealjustsnow/portfolio-/tree/main",
+        repo: "therealjustsnow/portfolio-",
+        desc: "The site you're looking at. Built from scratch without frameworks — hand-written HTML, CSS, and vanilla JS. Features a live guestbook backed by Supabase with row-level security and token-based edit/delete ownership, a functional TI-83 graphing calculator, an interactive terminal, a photography lightbox, and a low-performance mode that strips expensive effects on weak hardware. Modular JS architecture, full SEO setup, and a Lighthouse-optimized build.",
     },
     {
         id: "clearvision",
@@ -98,6 +109,10 @@ function buildProjects() {
               ).join("")}</div>`
             : "";
 
+        const statsDiv = p.id === "musicbot"
+            ? `<div class="card-stats" id="proj-stats-musicbot"></div>`
+            : "";
+
         card.innerHTML = `
       <div class="card-img">
         <img src="${p.images[0]}" alt="${p.name}" loading="lazy" id="proj-img-${p.id}"/>
@@ -109,6 +124,7 @@ function buildProjects() {
           <span class="badge">${p.badge}</span>
         </div>
         <div class="card-period">${p.period}</div>
+        ${statsDiv}
         <div class="card-tech">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join("")}</div>
         <div class="card-actions">
           <a class="btn btn-ghost" href="${p.github}" target="_blank">GitHub ↗</a>
@@ -117,6 +133,9 @@ function buildProjects() {
       </div>`;
 
         grid.appendChild(card);
+
+        // Fetch live stats for MusicBot
+        if (p.id === "musicbot") fetchRepoStats(p.repo);
 
         card.querySelectorAll(".img-dot").forEach(dot => {
             dot.addEventListener("click", () => {
@@ -134,16 +153,30 @@ function buildProjects() {
 function buildStack(containerId, items) {
     const g = document.getElementById(containerId);
     if (!g) return;
+    const isTouch = window.matchMedia("(hover:none)").matches;
     items.forEach((item, i) => {
         const card = document.createElement("div");
         card.className = "glass stack-card";
         card.style.transitionDelay = i * 0.04 + "s";
         card.innerHTML = `<span class="icon">${item.icon}</span><span class="name">${item.name}</span>`;
-        card.addEventListener("click", () => {
-            card.style.transform =
-                "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
-            setTimeout(() => (card.style.transform = ""), 500);
-        });
+
+        if (!isTouch) {
+            // Desktop: tilt on hover
+            card.addEventListener("mouseenter", () => {
+                card.style.transform =
+                    "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
+            });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "";
+            });
+        } else {
+            // Mobile: tilt on click
+            card.addEventListener("click", () => {
+                card.style.transform =
+                    "perspective(320px) rotateY(-16deg) rotateX(8deg) translateY(-8px) translateZ(10px)";
+                setTimeout(() => (card.style.transform = ""), 500);
+            });
+        }
         g.appendChild(card);
     });
 }
@@ -210,6 +243,44 @@ function closeModal() {
         if (e.key === "Escape") closeModal();
     });
 })();
+
+// ── GitHub repo stats (stars + forks) ───────────────────────────────────────
+
+async function fetchRepoStats(repo) {
+    const key    = "snow-stats-" + repo;
+    const cached = localStorage.getItem(key);
+    if (cached) {
+        try {
+            const { data, ts } = JSON.parse(cached);
+            if (Date.now() - ts < 3_600_000) { renderRepoStats(data); return; }
+        } catch (_) {}
+    }
+    try {
+        const res = await fetch(`https://api.github.com/repos/${repo}`);
+        if (!res.ok) throw new Error(res.status);
+        const data = await res.json();
+        localStorage.setItem(key, JSON.stringify({ data, ts: Date.now() }));
+        renderRepoStats(data);
+    } catch (_) {}
+}
+
+function renderRepoStats(data) {
+    const fmt = n => n >= 1000 ? (n / 1000).toFixed(1) + "k" : n;
+
+    // Hero social proof strip
+    const starsEl = document.getElementById("mb-stars");
+    const forksEl = document.getElementById("mb-forks");
+    if (starsEl) starsEl.textContent = fmt(data.stargazers_count || 0);
+    if (forksEl) forksEl.textContent = fmt(data.forks_count || 0);
+
+    // Project card stat badge
+    const cardStats = document.getElementById("proj-stats-musicbot");
+    if (cardStats) {
+        cardStats.innerHTML =
+            `<span class="stat-badge">⭐ ${fmt(data.stargazers_count || 0)}</span>` +
+            `<span class="stat-badge">🍴 ${fmt(data.forks_count || 0)}</span>`;
+    }
+}
 
 // ── GitHub commits ───────────────────────────────────────────────────────────
 
