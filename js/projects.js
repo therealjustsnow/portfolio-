@@ -43,7 +43,7 @@ const PROJECTS = [
         images: ["https://image.thum.io/get/width/600/crop/800/https://therealjustsnow.github.io/portfolio-/"],
         github: "https://github.com/therealjustsnow/portfolio-/tree/main",
         repo: "therealjustsnow/portfolio-",
-        desc: "The site you're looking at. Built from scratch without frameworks — hand-written HTML, CSS, and vanilla JS. Features a live guestbook backed by Supabase with row-level security and token-based edit/delete ownership, a functional TI-83 graphing calculator, an interactive terminal, a photography lightbox, and a low-performance mode that strips expensive effects on weak hardware. Modular JS architecture, full SEO setup, and a Lighthouse-optimized build.",
+        desc: "The site you\'re looking at. Built from scratch without frameworks — hand-written HTML, CSS, and vanilla JS. Features a live guestbook backed by Supabase with row-level security and token-based edit/delete ownership, a functional TI-83 graphing calculator, an interactive terminal, a photography lightbox, and a low-performance mode that strips expensive effects on weak hardware. Modular JS architecture, full SEO setup, and a Lighthouse-optimized build.",
     },
     {
         id: "clearvision",
@@ -138,7 +138,6 @@ function buildProjects() {
 
         grid.appendChild(card);
 
-        // Fetch live stats for MusicBot
         if (p.id === "musicbot") fetchRepoStats(p.repo);
 
         card.querySelectorAll(".img-dot").forEach(dot => {
@@ -248,7 +247,7 @@ function closeModal() {
     });
 })();
 
-// ── GitHub repo stats (stars + forks) ───────────────────────────────────────
+// ── GitHub repo stats (stars + forks) ────────────────────────────────────────
 
 async function fetchRepoStats(repo) {
     const key    = "snow-stats-" + repo;
@@ -270,18 +269,10 @@ async function fetchRepoStats(repo) {
 
 function renderRepoStats(data) {
     const fmt = n => n >= 1000 ? (n / 1000).toFixed(1) + "k" : n;
-
-    // Hero social proof strip
     const starsEl = document.getElementById("mb-stars");
     const forksEl = document.getElementById("mb-forks");
     if (starsEl) starsEl.textContent = fmt(data.stargazers_count || 0);
     if (forksEl) forksEl.textContent = fmt(data.forks_count || 0);
-
-    // Update card stat numbers (IDs live inside the card)
-    const starsEls = document.querySelectorAll("#mb-stars");
-    const forksEls = document.querySelectorAll("#mb-forks");
-    starsEls.forEach(el => el.textContent = fmt(data.stargazers_count || 0));
-    forksEls.forEach(el => el.textContent = fmt(data.forks_count || 0));
 }
 
 // ── GitHub commits ───────────────────────────────────────────────────────────
