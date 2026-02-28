@@ -48,32 +48,78 @@ window.addEventListener("load", () => {
 
     if (!isTouch && !window.__lowPerf) {
         // ── Magnetic effect on buttons / nav links ────────────────────────────
-        document.querySelectorAll(".btn, .nav-links a").forEach(item => {
-            let rect = null;
-            item.addEventListener("mouseenter", () => { rect = item.getBoundingClientRect(); });
-            item.addEventListener("mousemove",  e => {
-                if (!rect) return;
-                const x = e.clientX - rect.left - rect.width  / 2;
-                const y = e.clientY - rect.top  - rect.height / 2;
-                item.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+        // Rects cached on load + resize to avoid forced reflow on mouseenter
+        const magneticItems = new Map();
+
+        function cacheRects(selector) {
+            document.querySelectorAll(selector).forEach(item => {
+                magneticItems.set(item, item.getBoundingClientRect());
             });
-            item.addEventListener("mouseleave", () => { rect = null; item.style.transform = ""; });
+        }
+
+        // Read all rects once — no style writes have happened yet
+        cacheRects(".btn, .nav-links a");
+        cacheRects(".project-card, .stack-card, .time-card, .contact-card");
+
+        // Re-cache on resize (rects change) but not on scroll (transforms don't affect flow)
+        window.addEventListener("resize", () => {
+            // Clear transforms first so rects are accurate, then re-cache
+            magneticItems.forEach((_, item) => { item.style.transform = ""; });
+            requestAnimationFrame(() => {
+                cacheRects(".btn, .nav-links a");
+                cacheRects(".project-card, .stack-card, .time-card, .contact-card");
+            });
+        }, { passive: true });
+
+        // Buttons — magnetic nudge
+        document.querySelectorAll(".btn, .nav-links a").forEach(item => {
+            let rafId = null;
+            let mx = 0, my = 0;
+
+            item.addEventListener("mousemove", e => {
+                mx = e.clientX; my = e.clientY;
+                if (rafId) return;
+                rafId = requestAnimationFrame(() => {
+                    rafId = null;
+                    const rect = magneticItems.get(item);
+                    if (!rect) return;
+                    const x = mx - rect.left - rect.width  / 2;
+                    const y = my - rect.top  - rect.height / 2;
+                    item.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+                });
+            }, { passive: true });
+
+            item.addEventListener("mouseleave", () => {
+                if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+                item.style.transform = "";
+            });
         });
 
-        // ── Magnetic 3-D tilt on cards ────────────────────────────────────────
+        // Cards — 3-D tilt
         document.querySelectorAll(".project-card, .stack-card, .time-card, .contact-card").forEach(item => {
-            let rect = null;
-            item.addEventListener("mouseenter", () => { rect = item.getBoundingClientRect(); });
-            item.addEventListener("mousemove",  e => {
-                if (!rect) return;
-                const x = e.clientX - rect.left - rect.width  / 2;
-                const y = e.clientY - rect.top  - rect.height / 2;
-                item.style.transform =
-                    `translate(${x * 0.04}px, ${y * 0.04}px) ` +
-                    `perspective(320px) rotateY(${x * 0.06}deg) rotateX(${-y * 0.06}deg) ` +
-                    `translateY(-8px) translateZ(10px)`;
+            let rafId = null;
+            let mx = 0, my = 0;
+
+            item.addEventListener("mousemove", e => {
+                mx = e.clientX; my = e.clientY;
+                if (rafId) return;
+                rafId = requestAnimationFrame(() => {
+                    rafId = null;
+                    const rect = magneticItems.get(item);
+                    if (!rect) return;
+                    const x = mx - rect.left - rect.width  / 2;
+                    const y = my - rect.top  - rect.height / 2;
+                    item.style.transform =
+                        `translate(${x * 0.04}px, ${y * 0.04}px) ` +
+                        `perspective(320px) rotateY(${x * 0.06}deg) rotateX(${-y * 0.06}deg) ` +
+                        `translateY(-8px) translateZ(10px)`;
+                });
+            }, { passive: true });
+
+            item.addEventListener("mouseleave", () => {
+                if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+                item.style.transform = "";
             });
-            item.addEventListener("mouseleave", () => { rect = null; item.style.transform = ""; });
         });
 
         // ── Particle cursor trail (skipped on low-perf) ──────────────────────
