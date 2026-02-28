@@ -1238,15 +1238,6 @@ function termKeydown(e) {
 
 let photoLoaded = false;
 
-// Map raw filename → human-readable caption
-function photoCaption(filename) {
-    // Try to parse a date from the filename (e.g. IMG_20230730, 20190628)
-    const m = filename.match(/(\d{4})(\d{2})(\d{2})/);
-    if (!m) return filename.replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
-    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    return months[parseInt(m[2], 10) - 1] + " " + m[1];
-}
-
 async function loadPhotography() {
     if (photoLoaded) return;
     photoLoaded = true;
@@ -1302,10 +1293,9 @@ async function loadPhotography() {
         const item = document.createElement("div");
         item.className = "photo-item";
         item.style.animationDelay = (idx * 0.06) + "s";
-        const caption = photoCaption(file.name);
         const src = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
-        item.innerHTML = `<img src="${src}" alt="${caption}" width="400" height="300" loading="lazy" decoding="async">`;
-        item.addEventListener("click", () => openLightbox(src, caption, idx));
+        item.innerHTML = `<img src="${src}" alt="" width="400" height="300" loading="lazy" decoding="async">`;
+        item.addEventListener("click", () => openLightbox(src, "", idx));
         grid.appendChild(item);
     });
 
