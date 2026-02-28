@@ -1238,21 +1238,82 @@ function termKeydown(e) {
 
 let photoLoaded = false;
 
-function loadPhotography() {
+// Map raw filename → human-readable caption
+function photoCaption(filename) {
+    // Try to parse a date from the filename (e.g. IMG_20230730, 20190628)
+    const m = filename.match(/(\d{4})(\d{2})(\d{2})/);
+    if (!m) return filename.replace(/\.[^.]+$/, "").replace(/[_-]/g, " ");
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return months[parseInt(m[2], 10) - 1] + " " + m[1];
+}
+
+async function loadPhotography() {
     if (photoLoaded) return;
     photoLoaded = true;
 
-    const items  = document.querySelectorAll("#photo-grid .photo-item");
+    const grid   = document.getElementById("photo-grid");
     const status = document.getElementById("photo-status");
-    if (status) status.textContent = items.length + " photo" + (items.length !== 1 ? "s" : "");
+    if (!grid) return;
 
-    items.forEach((item, idx) => {
+    // Show loading state
+    if (status) status.textContent = "Loading…";
+    grid.innerHTML = '<div class="photo-loading">Fetching photos…</div>';
+
+    const CACHE_KEY = "snow-photos-v1";
+    const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+    const REPO      = "therealjustsnow/portfolio-";
+    const BRANCH    = "main";
+    const API_URL   = `https://api.github.com/repos/${REPO}/contents/photos?ref=${BRANCH}`;
+    const IMG_EXTS  = /\.(jpe?g|png|webp|gif|avif)$/i;
+    const EXCLUDE   = /favicon/i;
+
+    let files = null;
+
+    // Try cache first
+    try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const { data, ts } = JSON.parse(cached);
+            if (Date.now() - ts < CACHE_TTL) files = data;
+        }
+    } catch (_) {}
+
+    // Fetch from API if no cache
+    if (!files) {
+        try {
+            const res = await fetch(API_URL);
+            if (!res.ok) throw new Error(res.status);
+            const all = await res.json();
+            files = all
+                .filter(f => f.type === "file" && IMG_EXTS.test(f.name) && !EXCLUDE.test(f.name))
+                .map(f => ({ name: f.name, path: f.path }))
+                .sort((a, b) => a.name.localeCompare(b.name));
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ data: files, ts: Date.now() }));
+        } catch (err) {
+            grid.innerHTML = '<div class="photo-loading">Could not load photos. Try again later.</div>';
+            if (status) status.textContent = "";
+            return;
+        }
+    }
+
+    // Build grid
+    grid.innerHTML = "";
+    files.forEach((file, idx) => {
+        const item = document.createElement("div");
+        item.className = "photo-item";
         item.style.animationDelay = (idx * 0.06) + "s";
-        item.addEventListener("click", () => {
-            const img = item.querySelector("img");
-            if (img) openLightbox(img.src, img.alt, idx);
-        });
+        const caption = photoCaption(file.name);
+        const src = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${file.path}`;
+        item.innerHTML = `<img src="${src}" alt="${caption}" width="400" height="300" loading="lazy" decoding="async">`;
+        item.addEventListener("click", () => openLightbox(src, caption, idx));
+        grid.appendChild(item);
     });
+
+    // Update count
+    if (status) {
+        const n = files.length;
+        status.textContent = n + " photo" + (n !== 1 ? "s" : "");
+    }
 }
 
 function openLightbox(src, alt, idx) {
