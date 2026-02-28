@@ -105,15 +105,25 @@
 
         <!-- NAVIGATION -->
         <nav id="nav">
-            <div class="nav-links" id="nav-links">
-                <a href="#projects">Projects</a>
-                <a href="#stack">Stack</a>
-                <a href="#analytics">Analytics</a>
-                <a href="#schedule">Schedule</a>
-                <a href="#contact">Contact</a>
-                <a href="#photography" id="photography-nav" onclick="switchView('photography');return false;">📷 Photography</a>
-                <a href="#guestbook" id="guestbook-nav" onclick="switchView('guestbook');return false;">✍️ Guestbook</a>
-                <a href="#terminal" id="terminal-nav" onclick="switchView('terminal');return false;">⌨️ Terminal</a>
+            <div class="nav-left">
+                <button
+                    id="mobile-menu-btn"
+                    onclick="toggleMobileMenu()"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
+                <div class="nav-links" id="nav-links">
+                    <a href="#projects">Projects</a>
+                    <a href="#stack">Stack</a>
+                    <a href="#analytics">Analytics</a>
+                    <a href="#schedule">Schedule</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#photography" id="photography-nav" onclick="switchView('photography');return false;">📷 Photography</a>
+                    <a href="#guestbook" id="guestbook-nav" onclick="switchView('guestbook');return false;">✍️ Guestbook</a>
+                    <a href="#terminal" id="terminal-nav" onclick="switchView('terminal');return false;">⌨️ Terminal</a>
+                </div>
             </div>
             <div class="nav-right">
                 <button
@@ -125,14 +135,6 @@
                     🎨
                 </button>
                 <button id="ti-toggle" onclick="toggleTI()" aria-label="Toggle TI-83 calculator mode">TI-83</button>
-                <button
-                    id="mobile-menu-btn"
-                    onclick="toggleMobileMenu()"
-                    aria-label="Toggle mobile navigation menu"
-                    aria-expanded="false"
-                >
-                    ☰
-                </button>
             </div>
         </nav>
 
@@ -167,11 +169,12 @@
             <section id="hero">
                 <div class="hero-inner">
                     <div class="hero-text">
-                        <div class="hero-greeting">📍 Des Moines, Iowa • Front End Hobbyist</div>
+                        <div class="hero-greeting">📍 Des Moines, Iowa</div>
                         <h1 class="hero-title">
                             <span class="i-am">I Am </span><br />
                             <span class="name-gradient">Snow</span>
                         </h1>
+                        <div class="hero-role">Front-End Developer <span class="hero-role-sep">&</span> Open-Source Maintainer</div>
                         <p class="hero-tagline">
                             I build tools Discord communities actually rely on.
                         </p>
@@ -185,6 +188,16 @@
                         <div class="hero-links">
                             <a class="btn btn-primary" href="#projects">View Projects</a>
                             <a class="btn btn-ghost" href="https://github.com/BabyBoySnow" target="_blank">GitHub ↗</a>
+                        </div>
+                        <p class="hero-motivation">
+                            I build for communities because the right tool turns chaos into collaboration — and I've seen it happen firsthand.
+                        </p>
+                        <div class="hero-social-proof">
+                            <span class="proof-item">⭐ <span id="mb-stars">—</span> stars</span>
+                            <span class="proof-sep">·</span>
+                            <span class="proof-item">🍴 <span id="mb-forks">—</span> forks</span>
+                            <span class="proof-sep">·</span>
+                            <span class="proof-item">5+ years maintaining</span>
                         </div>
                         <div class="hero-hints">
                             <span class="hero-hint" onclick="toggleTI()" title="Open TI-83">press <kbd>[MODE]</kbd> to unlock something</span>
@@ -331,6 +344,21 @@
                     <div class="section-underline"></div>
                 </div>
                 <div class="contact-cards" id="contact-cards"></div>
+            </section>
+
+            <!-- CTA -->
+            <section id="cta" class="section">
+                <div class="cta-box glass reveal">
+                    <div class="cta-text">
+                        <div class="section-tag">// What's next</div>
+                        <h2 class="cta-title">Let's work together.</h2>
+                        <p class="cta-desc">I'm open to front-end roles, freelance work, and open-source collabs. If you think I'd be a good fit — reach out.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a class="btn btn-primary" href="/cdn-cgi/l/email-protection#c4aeb1b7b0b7aaabb3eaa0a1b284a3a9a5ada8eaa7aba9">Get in Touch ↗</a>
+                        <a class="btn btn-ghost" href="https://github.com/BabyBoySnow" target="_blank">GitHub ↗</a>
+                    </div>
+                </div>
             </section>
 
             <footer>
@@ -524,10 +552,10 @@
             ↑
         </button>
 
-        <script src="js/analytics.js?v=7" defer></script>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/analytics.js?v=7" defer></script>
         <script src="js/theme.js?v=7"     defer></script>
         <script src="js/projects.js?v=7"  defer></script>
-        <script src="js/ti83.js?v=7"      defer></script>
+                <script src="js/ti83.js?v=7"      defer></script>
         <script src="js/effects.js?v=7"   defer></script>
         <script src="js/app.js?v=7"       defer></script>
     </body>
