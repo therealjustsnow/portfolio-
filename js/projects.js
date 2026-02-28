@@ -110,7 +110,11 @@ function buildProjects() {
             : "";
 
         const statsDiv = p.id === "musicbot"
-            ? `<div class="card-stats" id="proj-stats-musicbot"></div>`
+            ? `<div class="card-stats">
+                <span class="stat-badge">⭐ <span id="mb-stars">—</span></span>
+                <span class="stat-badge">🍴 <span id="mb-forks">—</span></span>
+                <span class="stat-badge">5+ yrs</span>
+               </div>`
             : "";
 
         card.innerHTML = `
@@ -273,13 +277,11 @@ function renderRepoStats(data) {
     if (starsEl) starsEl.textContent = fmt(data.stargazers_count || 0);
     if (forksEl) forksEl.textContent = fmt(data.forks_count || 0);
 
-    // Project card stat badge
-    const cardStats = document.getElementById("proj-stats-musicbot");
-    if (cardStats) {
-        cardStats.innerHTML =
-            `<span class="stat-badge">⭐ ${fmt(data.stargazers_count || 0)}</span>` +
-            `<span class="stat-badge">🍴 ${fmt(data.forks_count || 0)}</span>`;
-    }
+    // Update card stat numbers (IDs live inside the card)
+    const starsEls = document.querySelectorAll("#mb-stars");
+    const forksEls = document.querySelectorAll("#mb-forks");
+    starsEls.forEach(el => el.textContent = fmt(data.stargazers_count || 0));
+    forksEls.forEach(el => el.textContent = fmt(data.forks_count || 0));
 }
 
 // ── GitHub commits ───────────────────────────────────────────────────────────
