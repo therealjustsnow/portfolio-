@@ -15,6 +15,28 @@
 ═══════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════
+   LOW-PERFORMANCE DETECTION
+   Checks CPU cores + connection speed. Applies .low-perf
+   to <body> which CSS uses to strip expensive effects.
+════════════════════════════════════════════════════════ */
+(function detectPerf() {
+    const cores = navigator.hardwareConcurrency || 4;
+    const conn  = navigator.connection || {};
+    const slowConn = conn.effectiveType === "2g" || conn.effectiveType === "slow-2g" || conn.saveData === true;
+    const lowCPU  = cores <= 2;
+
+    // Also check if device memory is available and low
+    const lowMem  = navigator.deviceMemory !== undefined && navigator.deviceMemory <= 4;
+
+    if (lowCPU || slowConn || lowMem) {
+        document.body.classList.add("low-perf");
+    }
+
+    // Expose for effects.js to conditionally skip particles/glow
+    window.__lowPerf = lowCPU || slowConn || lowMem;
+})();
+
+/* ════════════════════════════════════════════════════════
    TIME BAR  (SCHEDULE data lives in projects.js)
 ════════════════════════════════════════════════════════ */
 function updateTimes() {

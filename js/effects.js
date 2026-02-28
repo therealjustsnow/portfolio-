@@ -30,21 +30,23 @@ window.addEventListener("load", () => {
     }, { threshold: 0.1 });
     document.querySelectorAll(".reveal, .section-header").forEach(el => ro.observe(el));
 
-    // ── Cursor glow (desktop only) ────────────────────────────────────────────
+    // ── Cursor glow (desktop only, skipped on low-perf) ──────────────────────
     const glow = document.getElementById("cursor-glow");
-    let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2, rafGlow;
+    if (!window.__lowPerf) {
+        let glowX = window.innerWidth / 2, glowY = window.innerHeight / 2, rafGlow;
 
-    document.addEventListener("mousemove", e => {
-        glowX = e.clientX; glowY = e.clientY;
-        if (!rafGlow) rafGlow = requestAnimationFrame(updateGlow);
-    });
+        document.addEventListener("mousemove", e => {
+            glowX = e.clientX; glowY = e.clientY;
+            if (!rafGlow) rafGlow = requestAnimationFrame(updateGlow);
+        });
 
-    function updateGlow() {
-        if (glow) { glow.style.left = glowX + "px"; glow.style.top = glowY + "px"; }
-        rafGlow = null;
+        function updateGlow() {
+            if (glow) { glow.style.left = glowX + "px"; glow.style.top = glowY + "px"; }
+            rafGlow = null;
+        }
     }
 
-    if (!isTouch) {
+    if (!isTouch && !window.__lowPerf) {
         // ── Magnetic effect on buttons / nav links ────────────────────────────
         document.querySelectorAll(".btn, .nav-links a").forEach(item => {
             let rect = null;
@@ -74,7 +76,8 @@ window.addEventListener("load", () => {
             item.addEventListener("mouseleave", () => { rect = null; item.style.transform = ""; });
         });
 
-        // ── Particle cursor trail ─────────────────────────────────────────────
+        // ── Particle cursor trail (skipped on low-perf) ──────────────────────
+        if (!window.__lowPerf) {
         let lastSpawn = 0;
         const SPAWN_INTERVAL = 40, MAX_PARTICLES = 30;
         const particles = [];
@@ -109,6 +112,7 @@ window.addEventListener("load", () => {
                 if (idx > -1) particles.splice(idx, 1);
             }, 700);
         });
+        } // end !window.__lowPerf (particles)
     }
 
     // Visitor insights
