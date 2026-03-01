@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Page Not Found | Snow</title>
+    <meta name="description" content="This page doesn't exist. Head back to snowbuilds.dev." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/png" href="photos/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet"
+    />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --accent: #a855f7;
+            --accent-rgb: 168, 85, 247;
+            --bg: #05060f;
+        }
+
+        body {
+            background: var(--bg);
+            color: #fff;
+            font-family: "DM Sans", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        /* Subtle background glow */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 40%, rgba(168,85,247,0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .code {
+            font-family: "Syne", sans-serif;
+            font-size: clamp(6rem, 20vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--accent), #fff 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -4px;
+            animation: flicker 6s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 95%, 100% { opacity: 1; }
+            96% { opacity: 0.85; }
+            97% { opacity: 1; }
+            98% { opacity: 0.9; }
+        }
+
+        .terminal-line {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.8rem;
+            color: rgba(var(--accent-rgb), 0.7);
+            margin-top: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-family: "Syne", sans-serif;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 700;
+            margin-top: 1.5rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 0.75rem;
+            max-width: 360px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.65rem 1.5rem;
+            border: 1px solid rgba(var(--accent-rgb), 0.5);
+            border-radius: 8px;
+            color: rgba(var(--accent-rgb), 0.9);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.82rem;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn:hover {
+            background: rgba(var(--accent-rgb), 0.1);
+            border-color: rgba(var(--accent-rgb), 0.8);
+        }
+
+        .hint {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.2);
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="code">404</div>
+    <div class="terminal-line">~ error: page not found</div>
+    <h1>You took a wrong turn.</h1>
+    <p>This page doesn't exist — or maybe it did once and I broke it. Either way, there's nothing here.</p>
+    <a class="btn" href="/">← back to snowbuilds.dev</a>
+    <div class="hint">press [MODE] on the home page for something fun</div>
+</body>
+</html>
