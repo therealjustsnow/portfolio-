@@ -165,7 +165,6 @@ window.addEventListener("load", () => {
     renderVisitorInsights();
     setInterval(renderVisitorInsights, 5000);
 
-    // TI-83 grid
-    drawGrid();
+    // TI-83 grid drawn on first open (ti83.js loads lazily)
 
 }); // end window.load

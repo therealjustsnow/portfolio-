@@ -15,6 +15,29 @@
 ═══════════════════════════════════════════════════════════════ */
 
 /* ════════════════════════════════════════════════════════
+   TI-83 LAZY LOADER
+   ti83.js is ~10kb and used by <10% of visitors.
+   Load it only when first toggled.
+════════════════════════════════════════════════════════ */
+let _ti83Loaded = false;
+let _ti83Loading = false;
+
+function toggleTI() {
+    if (_ti83Loaded) { window._toggleTI(); return; }
+    if (_ti83Loading) return;
+    _ti83Loading = true;
+
+    const s = document.createElement("script");
+    s.src = "js/ti83.js?v=7";
+    s.onload = () => {
+        _ti83Loaded  = true;
+        _ti83Loading = false;
+        if (typeof window._toggleTI === "function") window._toggleTI();
+    };
+    document.head.appendChild(s);
+}
+
+/* ════════════════════════════════════════════════════════
    LOW-PERFORMANCE DETECTION
    Checks CPU cores + connection speed. Applies .low-perf
    to <body> which CSS uses to strip expensive effects.

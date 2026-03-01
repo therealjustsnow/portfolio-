@@ -7,7 +7,7 @@
 
 let tiActive = false;
 
-function toggleTI() {
+function _toggleTI() {
     tiActive = !tiActive;
     const overlay = document.getElementById("ti-overlay");
     const calc    = document.getElementById("ti-calc");
@@ -247,3 +247,5 @@ function tiRun() {
     const inp = document.getElementById("ti-input");
     if (inp) inp.addEventListener("keydown", e => { if (e.key === "Enter") tiRun(); });
 })();
+
+window._toggleTI = _toggleTI;
