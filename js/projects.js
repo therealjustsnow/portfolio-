@@ -40,7 +40,7 @@ const PROJECTS = [
         badge: "Owner",
         period: "2025 – Present",
         tech: ["HTML", "CSS", "JavaScript", "Supabase"],
-        images: ["https://image.thum.io/get/width/600/crop/800/https://therealjustsnow.github.io/portfolio-/"],
+        images: ["https://image.thum.io/get/width/600/crop/800/https://snowbuilds.dev/"],
         github: "https://github.com/therealjustsnow/portfolio-/tree/main",
         repo: "therealjustsnow/portfolio-",
         desc: "The site you\'re looking at. Built with vanilla JS to minimize overhead and maximize performance on low-power devices — no framework, no build step, no abstraction layer between the code and the browser. Features a live guestbook backed by Supabase with row-level security and token-based edit/delete ownership, a functional TI-83 graphing calculator, an interactive terminal, a photography lightbox, and a low-performance mode that strips expensive effects on weak hardware. Modular JS architecture, full SEO setup, and a Lighthouse-optimized build.",
@@ -59,29 +59,29 @@ const PROJECTS = [
 ];
 
 const LANGS = [
-    { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">',   name: "Python"   },
-    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Batch">', name: "Batch" },
-    { icon: '<img src="https://cdn.simpleicons.org/markdown/ffffff" alt="Markdown">',  name: "Markdown" },
-    { icon: '<img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML">',       name: "HTML"     },
-    { icon: '<img src="https://cdn.simpleicons.org/css/1572B6" alt="CSS">',          name: "CSS"      },
-    { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SCSS">',        name: "SCSS"     },
-    { icon: '<img src="https://cdn.simpleicons.org/sass/CC6699" alt="SASS">',        name: "SASS"     },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/python/3776AB" alt="Python">',   name: "Python"   },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg" alt="Batch">', name: "Batch" },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/markdown/ffffff" alt="Markdown">',  name: "Markdown" },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML">',       name: "HTML"     },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/css/1572B6" alt="CSS">',          name: "CSS"      },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/sass/CC6699" alt="SCSS">',        name: "SCSS"     },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/sass/CC6699" alt="SASS">',        name: "SASS"     },
 ];
 
 const TOOLS = [
-    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" alt="Windows 11">', name: "Windows 11" },
-    { icon: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">',       name: "VS Code"    },
-    { icon: '<img src="https://cdn.simpleicons.org/git/F05032" alt="Git">',                name: "Git"            },
-    { icon: '<img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions">',name: "GitHub Actions" },
-    { icon: '<img src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier">',      name: "Prettier"       },
-    { icon: '<img src="https://cdn.simpleicons.org/python/3776AB" alt="Black">',           name: "Black"          },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg" alt="Windows 11">', name: "Windows 11" },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code">',       name: "VS Code"    },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/git/F05032" alt="Git">',                name: "Git"            },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GH Actions">',name: "GitHub Actions" },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/prettier/F7B93E" alt="Prettier">',      name: "Prettier"       },
+    { icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/python/3776AB" alt="Black">',           name: "Black"          },
 ];
 
 const CONTACTS = [
     { icon: "💬", label: "Discord", val: "therealjustsnow",    href: "https://discord.com/users/therealjustsnow" },
-    { icon: "📧", label: "Email",   val: "justsnow.dev@gmail.com", href: "mailto:justsnow.dev@gmail.com" },
+    { icon: "📧", label: "Email",   val: "snow@snowbuilds.dev", href: "mailto:snow@snowbuilds.dev" },
     {
-        icon: '<img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
+        icon: '<img loading="lazy" decoding="async" src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="width:1.8rem;height:1.8rem;display:block;margin:0 auto">',
         label: "GitHub", val: "BabyBoySnow", href: "https://github.com/BabyBoySnow",
     },
 ];
