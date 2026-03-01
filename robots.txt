@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://therealjustsnow.github.io/portfolio-/sitemap.xml
+Sitemap: https://snowbuilds.dev/sitemap.xml
