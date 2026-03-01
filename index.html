@@ -21,18 +21,17 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
         <!-- Fonts async — non-render-blocking, font-display=swap prevents invisible text -->
         <link
             rel="preload"
             as="style"
-            href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
             onload="this.onload=null;this.rel='stylesheet'"
         />
         <noscript>
             <link
-                href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
                 rel="stylesheet"
             />
         </noscript>
@@ -59,12 +58,21 @@
 
         <!-- Google Analytics — loaded after page content via defer ─ -->
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag("js", new Date());
-            gtag("config", "G-559BWJ6T8E");
+            // Load GA after page is fully interactive — reduces main thread impact
+            window.addEventListener("load", function() {
+                setTimeout(function() {
+                    var s = document.createElement("script");
+                    s.src = "https://www.googletagmanager.com/gtag/js?id=G-559BWJ6T8E";
+                    s.async = true;
+                    document.head.appendChild(s);
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() { dataLayer.push(arguments); }
+                    window.gtag = gtag;
+                    gtag("js", new Date());
+                    gtag("config", "G-559BWJ6T8E");
+                }, 2000);
+            });
         </script>
-        <script defer src="https://www.googletagmanager.com/gtag/js?id=G-559BWJ6T8E"></script>
     </head>
 
     <body>
@@ -527,8 +535,7 @@
         <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/analytics.js?v=7" defer></script>
         <script src="js/theme.js?v=7"     defer></script>
         <script src="js/projects.js?v=7"  defer></script>
-                <script src="js/ti83.js?v=7"      defer></script>
-        <script src="js/effects.js?v=7"   defer></script>
+                <script src="js/effects.js?v=7"   defer></script>
         <script src="js/app.js?v=7"       defer></script>
     </body>
 </html>
