@@ -73,7 +73,7 @@ export function sanitizeField(raw, maxLen) {
   str = stripTags(str);
   str = blockEmbeds(str);
   str = normalizeWhitespace(str);
-  str = str.slice(0, maxLen);
+  if (str.length > maxLen) throw new ContentError(`Too long (max ${maxLen} characters).`);
   return str;
 }
 
