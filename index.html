@@ -395,8 +395,7 @@
             ↑
         </button>
 
-        <button id="cookie-settings-btn" id="cookie-settings-btn">🍪</button>
-        <script>document.getElementById('cookie-settings-btn').addEventListener('click', openCookieModal);</script>
+        <button id="cookie-settings-btn" aria-label="Cookie preferences" title="Cookie preferences">🍪</button>
 
         <!-- COOKIE SETTINGS MODAL -->
         <div id="cookie-modal-overlay" onclick="if(event.target===this)closeCookieModal()">
@@ -416,6 +415,7 @@
         </div>
 
         <script>
+            document.getElementById('cookie-settings-btn').addEventListener('click', openCookieModal);
             function openCookieModal() {
                 var overlay = document.getElementById('cookie-modal-overlay');
                 if (overlay) overlay.classList.add('open');
