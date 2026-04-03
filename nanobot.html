@@ -557,6 +557,15 @@
             }
         }
 
+        /* Fetch live server count */
+        fetch("/api/nanobot-stats")
+            .then(function (r) { return r.json(); })
+            .then(function (d) {
+                var el = document.getElementById("nb-servers");
+                if (el && d.servers) el.textContent = d.servers;
+            })
+            .catch(function () {});
+
         /* Color picker stub — loads theme.min.js for full support */
         function toggleColorPopup() {
             var popup = document.getElementById("color-popup");
