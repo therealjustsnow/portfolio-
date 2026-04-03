@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NanoBot — Moderation Built for Your Phone</title>
+    <link id="favicon" rel="icon" type="image/png" href="photos/favicon.png" />
+    <link rel="apple-touch-icon" href="photos/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+    </noscript>
+    <link rel="stylesheet" href="css/styles.min.css?v=11" />
+
+    <meta name="description" content="NanoBot — a Discord moderation bot built for your phone. Fast commands, no IDs, no dashboards. Just tap and go." />
+    <link rel="canonical" href="https://snowbuilds.dev/nanobot" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://snowbuilds.dev/nanobot" />
+    <meta property="og:title"       content="NanoBot — Moderation Built for Your Phone" />
+    <meta property="og:description" content="Discord moderation that actually works on mobile. No IDs, no dashboards, no extra steps." />
+    <meta property="og:image"       content="https://snowbuilds.dev/previews/nanobot.webp" />
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="NanoBot — Moderation Built for Your Phone" />
+    <meta name="twitter:description" content="Discord moderation that actually works on mobile. No IDs, no dashboards, no extra steps." />
+    <meta name="twitter:image"       content="https://snowbuilds.dev/previews/nanobot.webp" />
+
+    <script>
+        function loadGA() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            window.gtag = gtag;
+            gtag("js", new Date());
+            gtag("config", "G-559BWJ6T8E");
+            var s = document.createElement("script");
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-559BWJ6T8E";
+            s.async = true;
+            document.head.appendChild(s);
+        }
+        window.addEventListener("load", function () {
+            var consent = localStorage.getItem("cookie-consent");
+            if (consent === "accepted") { setTimeout(loadGA, 2000); return; }
+            if (consent === "declined") return;
+            var banner = document.getElementById("cookie-banner");
+            if (banner) banner.classList.add("visible");
+        });
+    </script>
+
+    <style>
+        /* ── NanoBot page-specific styles ── */
+        .nb-wrap {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: calc(var(--nav-h) + 3rem) 2rem 5rem;
+        }
+
+        /* Hero */
+        .nb-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .nb-emoji-hero {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        .nb-title {
+            font-family: "Syne", sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            letter-spacing: -.04em;
+            line-height: .95;
+            margin-bottom: .75rem;
+        }
+        .nb-title .nb-gradient {
+            background: linear-gradient(135deg, var(--accent), #fff, var(--accent));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #fff0;
+            background-clip: text;
+            animation: nameShimmer 4s ease-in-out infinite;
+        }
+        .nb-tagline {
+            font-family: "DM Sans", sans-serif;
+            font-size: 1.05rem;
+            color: rgb(255 255 255 / .6);
+            line-height: 1.6;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+        .nb-hero-actions {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nb-hero-actions .btn {
+            font-size: .9rem;
+            padding: .7rem 1.8rem;
+        }
+
+        /* Stats bar */
+        .nb-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .nb-stat {
+            text-align: center;
+        }
+        .nb-stat-val {
+            font-family: "Syne", sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .nb-stat-label {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .62rem;
+            color: rgb(255 255 255 / .4);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-top: .15rem;
+        }
+
+        /* Killer feature callout */
+        .nb-callout {
+            padding: 2rem 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            border-color: rgba(var(--accent-rgb), .5);
+            background: rgba(var(--accent-rgb), .08);
+            box-shadow: 0 0 32px rgba(var(--accent-rgb), .18);
+        }
+        .nb-callout:hover {
+            transform: none;
+        }
+        .nb-callout-title {
+            font-family: "Syne", sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: .75rem;
+        }
+        .nb-callout-text {
+            font-size: .92rem;
+            color: rgb(255 255 255 / .7);
+            line-height: 1.65;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .nb-callout-cmd {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: .78rem;
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), .12);
+            border: 1px solid rgba(var(--accent-rgb), .3);
+            border-radius: 6px;
+            padding: .2rem .55rem;
+            margin-top: .75rem;
+        }
+
+        /* Feature sections */
+        .nb-section {
+            margin-bottom: 3rem;
+        }
+        .nb-section-header {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: 1rem;
+        }
+        .nb-section-emoji {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .nb-section-title {
+            font-family: "Syne", sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -.02em;
+        }
+        .nb-section-body {
+            font-size: .9rem;
+            color: rgb(255 255 255 / .65);
+            line-height: 1.7;
+        }
+        .nb-section-body strong {
+            color: rgb(255 255 255 / .85);
+            font-weight: 500;
+        }
+
+        /* Feature grid */
+        .nb-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+        .nb-feature-card {
+            padding: 1.5rem;
+        }
+        .nb-feature-card:hover {
+            transform: translateY(-2px);
+        }
+        .nb-feature-emoji {
+            font-size: 1.6rem;
+            margin-bottom: .75rem;
+            display: block;
+        }
+        .nb-feature-name {
+            font-family: "Syne", sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: .4rem;
+        }
+        .nb-feature-desc {
+            font-size: .82rem;
+            color: rgb(255 255 255 / .55);
+            line-height: 1.6;
+        }
+
+        /* Command styles */
+        .nb-cmd-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: .75rem;
+        }
+        .nb-cmd {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .68rem;
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), .08);
+            border: 1px solid rgba(var(--accent-rgb), .2);
+            border-radius: 4px;
+            padding: .15rem .45rem;
+        }
+
+        /* Input methods */
+        .nb-input-bar {
+            display: flex;
+            justify-content: center;
+            gap: .75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        .nb-input-method {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .72rem;
+            color: rgb(255 255 255 / .5);
+            background: rgb(255 255 255 / .04);
+            border: 1px solid rgb(255 255 255 / .1);
+            border-radius: 8px;
+            padding: .5rem 1rem;
+            text-align: center;
+        }
+        .nb-input-method span {
+            display: block;
+            color: var(--accent);
+            font-size: .8rem;
+            margin-bottom: .15rem;
+        }
+
+        /* CTA */
+        .nb-cta {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-color: rgba(var(--accent-rgb), .4);
+        }
+        .nb-cta:hover {
+            transform: none;
+        }
+        .nb-cta-title {
+            font-family: "Syne", sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+        }
+        .nb-cta-desc {
+            font-size: .88rem;
+            color: rgb(255 255 255 / .55);
+            margin-bottom: 1.5rem;
+        }
+        .nb-cta-actions {
+            display: flex;
+            gap: .75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .nb-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgb(255 255 255 / .05);
+        }
+        .nb-footer-text {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .7rem;
+            color: rgb(255 255 255 / .35);
+            letter-spacing: .04em;
+        }
+        .nb-footer-text a {
+            color: rgba(var(--accent-rgb), .7);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--accent-rgb), .2);
+            transition: color .2s, border-color .2s;
+        }
+        .nb-footer-text a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Divider */
+        .nb-divider {
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin: 0 auto 3rem;
+            box-shadow: 0 0 12px rgba(var(--accent-rgb), .5);
+        }
+
+        @media (max-width: 768px) {
+            .nb-wrap { padding-top: calc(var(--nav-h) + 2rem); }
+            .nb-callout { padding: 1.5rem; }
+            .nb-features { grid-template-columns: 1fr; }
+            .nb-stats { gap: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
+        <p class="cookie-text">This site uses Google Analytics. <a href="/privacy.html" style="color:rgba(var(--accent-rgb),.85);text-decoration:none;border-bottom:1px solid rgba(var(--accent-rgb),.3)">What's collected →</a></p>
+        <div class="cookie-actions">
+            <button class="btn btn-ghost" onclick="localStorage.setItem('cookie-consent','declined');document.getElementById('cookie-banner').classList.remove('visible')">Decline</button>
+            <button class="btn btn-primary" onclick="localStorage.setItem('cookie-consent','accepted');document.getElementById('cookie-banner').classList.remove('visible');setTimeout(loadGA,500)">Accept</button>
+        </div>
+    </div>
+
+    <div class="bg-gradient"></div>
+
+    <nav id="nav">
+        <div class="nav-left">
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <a href="/#projects">Projects</a>
+                <a href="/guestbook">Guestbook</a>
+                <a href="/terminal">Terminal</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="hue-btn" onclick="toggleColorPopup()" title="Pick accent color" aria-label="Open color picker">🎨</button>
+        </div>
+    </nav>
+
+    <div class="nb-wrap">
+        <!-- HERO -->
+        <div class="nb-hero">
+            <span class="nb-emoji-hero">⚡</span>
+            <h1 class="nb-title"><span class="nb-gradient">NanoBot</span></h1>
+            <p class="nb-tagline">
+                Discord moderation built for your phone. Fast commands, no dashboards, no copying user IDs. Just tap and go.
+            </p>
+            <div class="nb-hero-actions">
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&permissions=1494984439894&scope=bot%20applications.commands" target="_blank" rel="noopener">
+                    Add to Server
+                </a>
+                <a class="btn btn-ghost" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
+                    Top.gg
+                </a>
+                <a class="btn btn-ghost" href="https://discord.gg/M7fjxNg72s" target="_blank" rel="noopener">
+                    Support Server
+                </a>
+            </div>
+            <div class="nb-stats" id="nb-stats">
+                <div class="nb-stat">
+                    <div class="nb-stat-val" id="nb-servers">--</div>
+                    <div class="nb-stat-label">Servers</div>
+                </div>
+                <div class="nb-stat">
+                    <div class="nb-stat-val">0ms</div>
+                    <div class="nb-stat-label">Setup Time</div>
+                </div>
+                <div class="nb-stat">
+                    <div class="nb-stat-val">0</div>
+                    <div class="nb-stat-label">Databases Required</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KILLER FEATURE -->
+        <div class="nb-callout glass">
+            <div class="nb-callout-title">📱 No More Copying IDs</div>
+            <p class="nb-callout-text">
+                The biggest pain of mobile moderation: grabbing user IDs. NanoBot removes it entirely. Every mod command auto-targets the last person who sent a message in the channel. See someone break the rules? Just type the command. No selecting, no scrolling, no copy-paste.
+            </p>
+            <span class="nb-callout-cmd">/last — confirm the current target anytime</span>
+        </div>
+
+        <!-- INPUT METHODS -->
+        <div class="nb-input-bar">
+            <div class="nb-input-method">
+                <span>/ban</span>
+                Slash
+            </div>
+            <div class="nb-input-method">
+                <span>n!ban</span>
+                Prefix
+            </div>
+            <div class="nb-input-method">
+                <span>@NanoBot ban</span>
+                Mention
+            </div>
+        </div>
+
+        <div class="nb-divider"></div>
+
+        <!-- FEATURE CARDS -->
+        <div class="nb-features">
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🔨</span>
+                <div class="nb-feature-name">Complete Moderation</div>
+                <p class="nb-feature-desc">
+                    Ban, tempban, clean ban, softban, massban. Kick, timeout, unfreeze. Lock channels, set slowmode with auto-disable. Purge with filters. Move voice users. All timed actions survive restarts.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">⚠️</span>
+                <div class="nb-feature-name">Warning System</div>
+                <p class="nb-feature-desc">
+                    Issue, track, and clear warnings per user. Set auto-kick and auto-ban thresholds so repeat offenders are handled automatically. Pair with private mod notes for full internal tracking.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🛡️</span>
+                <div class="nb-feature-name">AutoMod</div>
+                <p class="nb-feature-desc">
+                    Spam, invite links, external links, caps, mass mentions, bad words, custom regex. Each rule can delete, warn, or timeout. Exempt roles and channels. Runs quietly in the background.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🏷️</span>
+                <div class="nb-feature-name">Tags</div>
+                <p class="nb-feature-desc">
+                    Save messages and reuse them instantly. Personal or server-wide. Supports text and images. Fire any tag with <code class="nb-cmd">n!tagname</code> — no menus, no extra steps.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🎭</span>
+                <div class="nb-feature-name">Role Panels</div>
+                <p class="nb-feature-desc">
+                    Button-based role menus that work great on mobile. Tap to toggle. Single-select mode available. Quick generators for colors, pronouns, age ranges, and regions.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">📋</span>
+                <div class="nb-feature-name">Audit Log</div>
+                <p class="nb-feature-desc">
+                    Message edits and deletes, joins, leaves, bans, unbans, nickname changes, role updates, channel changes. Toggle each event individually. One clean feed.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">⏰</span>
+                <div class="nb-feature-name">Reminders</div>
+                <p class="nb-feature-desc">
+                    One-time reminders with natural language. Recurring reminders that repeat on a schedule, like calendar events but in Discord. All survive restarts.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🎉</span>
+                <div class="nb-feature-name">Fun & Community</div>
+                <p class="nb-feature-desc">
+                    59 social and reaction GIF commands, compatibility shipping, 8-ball, Would You Rather, FML stories, anime images, and ELI5 powered by AI. Because even mods need a break.
+                </p>
+            </div>
+        </div>
+
+        <!-- EXTRAS -->
+        <div class="nb-section">
+            <div class="nb-section-header">
+                <span class="nb-section-emoji">👋</span>
+                <h2 class="nb-section-title">Welcome & Leave Messages</h2>
+            </div>
+            <p class="nb-section-body">
+                Custom join and leave messages with variables like <code class="nb-cmd">{user}</code> <code class="nb-cmd">{mention}</code> <code class="nb-cmd">{server}</code> <code class="nb-cmd">{count}</code>. Supports embeds and images. Test everything before enabling.
+            </p>
+        </div>
+
+        <div class="nb-section">
+            <div class="nb-section-header">
+                <span class="nb-section-emoji">🔍</span>
+                <h2 class="nb-section-title">Clean Info Commands</h2>
+            </div>
+            <p class="nb-section-body">
+                User cards, server info, role breakdowns, avatars, and banners. All formatted to read well on a phone screen.
+            </p>
+        </div>
+
+        <div class="nb-section">
+            <div class="nb-section-header">
+                <span class="nb-section-emoji">📦</span>
+                <h2 class="nb-section-title">Zero Database</h2>
+            </div>
+            <p class="nb-section-body">
+                NanoBot runs on flat JSON files. No setup, no migrations, no external services. Drop it on a server and it just works.
+            </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="nb-cta glass">
+            <div class="nb-cta-title">Try it. It takes 10 seconds.</div>
+            <p class="nb-cta-desc">No setup, no dashboard, no config wizard. Add NanoBot and start moderating.</p>
+            <div class="nb-cta-actions">
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&permissions=1494984439894&scope=bot%20applications.commands" target="_blank" rel="noopener">
+                    Add to Server
+                </a>
+                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="nb-footer">
+            <p class="nb-footer-text">
+                Built by <a href="/">Snow</a> · MIT License · <a href="https://github.com/therealjustsnow/NanoBot">Source</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        /* Mobile menu toggle (matches main site) */
+        function toggleMobileMenu() {
+            var links = document.getElementById("nav-links");
+            var btn = document.getElementById("mobile-menu-btn");
+            if (links && btn) {
+                links.classList.toggle("open");
+                btn.setAttribute("aria-expanded", links.classList.contains("open"));
+            }
+        }
+
+        /* Color picker stub — loads theme.min.js for full support */
+        function toggleColorPopup() {
+            var popup = document.getElementById("color-popup");
+            if (popup) popup.classList.toggle("open");
+        }
+    </script>
+    <script src="js/theme.min.js?v=10" defer></script>
+</body>
+</html>
