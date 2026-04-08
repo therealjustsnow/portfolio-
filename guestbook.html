@@ -16,7 +16,16 @@
     </noscript>
     <link rel="stylesheet" href="css/styles.min.css?v=11" />
     <meta name="description" content="Sign Snow's guestbook — leave a message for a self-taught front-end developer from Des Moines, Iowa." />
+    <meta name="theme-color" content="#05060f" />
     <link rel="canonical" href="https://snowbuilds.dev/guestbook" />
+    <link rel="prefetch" href="/" />
+    <style>
+        .skip-link{position:absolute;left:-9999px;top:0;z-index:9999;background:var(--accent,#a855f7);color:#fff;padding:.75rem 1.25rem;border-radius:0 0 8px 0;font-family:"DM Sans",sans-serif;font-weight:600;font-size:.9rem;text-decoration:none}
+        .skip-link:focus{left:0;outline:2px solid #fff;outline-offset:2px}
+        @media (prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+        }
+    </style>
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content="https://snowbuilds.dev/guestbook" />
     <meta property="og:title"       content="Guestbook — Snow" />
@@ -44,6 +53,7 @@
     </script>
 </head>
 <body>
+    <a class="skip-link" href="#gb-entries">Skip to main content</a>
     <div id="cookie-banner" role="dialog" aria-label="Cookie consent">
         <p class="cookie-text">This site uses Google Analytics. <a href="/privacy.html" style="color:rgba(var(--accent-rgb),.85);text-decoration:none;border-bottom:1px solid rgba(var(--accent-rgb),.3)">What's collected →</a></p>
         <div class="cookie-actions">
@@ -63,9 +73,9 @@
                 <a href="/#analytics">Analytics</a>
                 <a href="/#schedule">Schedule</a>
                 <a href="/#contact">Contact</a>
-                <a href="/photography">📷 Photography</a>
-                <a href="/guestbook" id="guestbook-nav" class="active-nav">✍️ Guestbook</a>
-                <a href="/terminal">⌨️ Terminal</a>
+                <a href="/photography"><span aria-hidden="true">📷</span> Photography</a>
+                <a href="/guestbook" id="guestbook-nav" class="active-nav" aria-current="page"><span aria-hidden="true">✍️</span> Guestbook</a>
+                <a href="/terminal"><span aria-hidden="true">⌨️</span> Terminal</a>
             </div>
         </div>
         <div class="nav-right">
@@ -115,8 +125,7 @@
         </div>
     </main>
 
-    <div id="cursor-glow" aria-hidden="true"></div>
-    <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+    <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><span aria-hidden="true">↑</span></button>
     <button id="cookie-settings-btn" onclick="openCookieModal()" aria-label="Cookie preferences" title="Cookie preferences">🍪</button>
 
     <div id="cookie-modal-overlay" onclick="if(event.target===this)closeCookieModal()">
