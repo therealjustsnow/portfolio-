@@ -391,9 +391,6 @@
                 <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&permissions=1494984439894&scope=bot%20applications.commands" target="_blank" rel="noopener">
                     Add to Server
                 </a>
-                <a class="btn btn-ghost" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
-                    Top.gg
-                </a>
                 <a class="btn btn-ghost" href="https://discord.gg/M7fjxNg72s" target="_blank" rel="noopener">
                     Support Server
                 </a>
@@ -542,16 +539,13 @@
         <!-- CTA -->
         <div class="nb-cta glass">
             <div class="nb-cta-title">Want to dig in?</div>
-            <p class="nb-cta-desc">The source is open, the community is active, and votes on Top.gg help more people find NanoBot.</p>
+            <p class="nb-cta-desc">The source is open and votes on Top.gg help more people find NanoBot.</p>
             <div class="nb-cta-actions">
-                <a class="btn btn-primary" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-                <a class="btn btn-ghost" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
+                <a class="btn btn-primary" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
                     Top.gg
                 </a>
-                <a class="btn btn-ghost" href="https://discord.gg/M7fjxNg72s" target="_blank" rel="noopener">
-                    Support Server
+                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">
+                    GitHub
                 </a>
             </div>
         </div>
@@ -559,7 +553,7 @@
         <!-- FOOTER -->
         <div class="nb-footer">
             <p class="nb-footer-text">
-                Built by <a href="/">Snow</a> · MIT License · <a href="https://github.com/therealjustsnow/NanoBot">Source</a>
+                Built by <a href="/">Snow</a> · MIT License
             </p>
         </div>
     </div>
@@ -576,24 +570,41 @@
         }
 
         /* Fetch live server count with count-up animation */
+        var nbServerCount = null;
+        var nbAnimating = false;
         function countUp(el, target) {
+            if (nbAnimating) return;
+            nbAnimating = true;
             var start = performance.now();
             var duration = 900;
             function step(now) {
                 var p = Math.min((now - start) / duration, 1);
                 var eased = 1 - Math.pow(1 - p, 3);
                 el.textContent = Math.round(eased * target);
-                if (p < 1) requestAnimationFrame(step);
+                if (p < 1) { requestAnimationFrame(step); } else { nbAnimating = false; }
             }
             requestAnimationFrame(step);
         }
         fetch("/api/nanobot-stats")
             .then(function (r) { return r.json(); })
             .then(function (d) {
+                if (!d.servers) return;
+                nbServerCount = d.servers;
                 var el = document.getElementById("nb-servers");
-                if (el && d.servers) countUp(el, d.servers);
+                if (el) countUp(el, nbServerCount);
             })
             .catch(function () {});
+        /* Replay animation each time the stats block scrolls into view */
+        (function () {
+            var stats = document.getElementById("nb-stats");
+            if (!stats || typeof IntersectionObserver === "undefined") return;
+            new IntersectionObserver(function (entries) {
+                if (entries[0].isIntersecting && nbServerCount !== null) {
+                    var el = document.getElementById("nb-servers");
+                    if (el) countUp(el, nbServerCount);
+                }
+            }, { threshold: 0.5 }).observe(stats);
+        }());
 
 </script>
     <script src="js/analytics.min.js?v=10" defer></script>
