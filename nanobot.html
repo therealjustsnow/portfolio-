@@ -349,6 +349,19 @@
 
     <div class="bg-gradient"></div>
 
+    <div id="color-popup" role="dialog" aria-label="Accent color picker">
+        <div class="cp-label">Accent Color</div>
+        <div class="cp-row">
+            <div class="cp-swatch" id="cp-swatch"></div>
+            <input class="cp-hex-input" id="cp-hex-input" type="text" maxlength="7" placeholder="#a855f7" aria-label="Hex color value" spellcheck="false" autocomplete="off" />
+            <button class="cp-apply-btn" id="cp-apply-btn" title="Apply hex color" aria-label="Apply hex color">↵</button>
+        </div>
+        <div class="cp-label">Hue</div>
+        <input type="range" id="hue-track" min="0" max="360" value="280" step="1" aria-label="Hue" />
+        <div class="cp-label" style="margin-top:0.4rem">Opacity</div>
+        <input type="range" id="alpha-track" min="0" max="100" value="100" step="1" aria-label="Opacity" />
+    </div>
+
     <nav id="nav">
         <div class="nav-left">
             <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
@@ -566,12 +579,7 @@
             })
             .catch(function () {});
 
-        /* Color picker stub — loads theme.min.js for full support */
-        function toggleColorPopup() {
-            var popup = document.getElementById("color-popup");
-            if (popup) popup.classList.toggle("open");
-        }
-    </script>
+</script>
     <script src="js/theme.min.js?v=10" defer></script>
 </body>
 </html>
