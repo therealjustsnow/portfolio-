@@ -571,6 +571,7 @@
         /* Fetch live server count with count-up animation */
         var nbServerCount = null;
         var nbAnimating = false;
+        var nbInView = false;
         function countUp(el, target) {
             if (nbAnimating) return;
             nbAnimating = true;
@@ -589,16 +590,20 @@
             .then(function (d) {
                 if (!d.servers) return;
                 nbServerCount = d.servers;
-                var el = document.getElementById("nb-servers");
-                if (el) countUp(el, nbServerCount);
+                /* Only animate now if the stats block is currently visible */
+                if (nbInView) {
+                    var el = document.getElementById("nb-servers");
+                    if (el) countUp(el, nbServerCount);
+                }
             })
             .catch(function () {});
-        /* Replay animation each time the stats block scrolls into view */
+        /* Animate each time the stats block enters the viewport */
         (function () {
             var stats = document.getElementById("nb-stats");
             if (!stats || typeof IntersectionObserver === "undefined") return;
             new IntersectionObserver(function (entries) {
-                if (entries[0].isIntersecting && nbServerCount !== null) {
+                nbInView = entries[0].isIntersecting;
+                if (nbInView && nbServerCount !== null) {
                     var el = document.getElementById("nb-servers");
                     if (el) countUp(el, nbServerCount);
                 }
