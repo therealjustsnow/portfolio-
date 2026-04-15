@@ -54,7 +54,7 @@
         .nb-wrap {
             max-width: 800px;
             margin: 0 auto;
-            padding: calc(var(--nav-h) + 3rem) 2rem 5rem;
+            padding: 3rem 2rem 5rem;
         }
 
         /* Hero */
@@ -331,8 +331,31 @@
             box-shadow: 0 0 12px rgba(var(--accent-rgb), .5);
         }
 
+        /* Floating accent color button */
+        #hue-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 200;
+            background: rgb(255 255 255 / .07);
+            border: 1px solid rgb(255 255 255 / .12);
+            border-radius: 50%;
+            width: 2.6rem;
+            height: 2.6rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s, border-color .2s;
+        }
+        #hue-btn:hover {
+            background: rgb(255 255 255 / .13);
+            border-color: rgb(255 255 255 / .22);
+        }
+
         @media (max-width: 768px) {
-            .nb-wrap { padding-top: calc(var(--nav-h) + 2rem); }
+            .nb-wrap { padding-top: 2rem; }
             .nb-callout { padding: 1.5rem; }
             .nb-features { grid-template-columns: 1fr; }
             .nb-stats { gap: 1.25rem; }
@@ -363,21 +386,7 @@
         <input type="range" id="alpha-track" min="0" max="100" value="100" step="1" aria-label="Opacity" />
     </div>
 
-    <nav id="nav">
-        <div class="nav-left">
-            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
-            <div class="nav-links" id="nav-links">
-                <a href="/">Home</a>
-                <a href="/#projects">Projects</a>
-                <a href="/guestbook">Guestbook</a>
-                <a href="/terminal">Terminal</a>
-                <a href="/nanobot" class="active-nav">⚡ NanoBot</a>
-            </div>
-        </div>
-        <div class="nav-right">
-            <button id="hue-btn" onclick="toggleColorPopup()" title="Pick accent color" aria-label="Open color picker">🎨</button>
-        </div>
-    </nav>
+    <button id="hue-btn" onclick="toggleColorPopup()" title="Pick accent color" aria-label="Open color picker">🎨</button>
 
     <div class="nb-wrap">
         <!-- HERO -->
@@ -559,16 +568,6 @@
     </div>
 
     <script>
-        /* Mobile menu toggle (matches main site) */
-        function toggleMobileMenu() {
-            var links = document.getElementById("nav-links");
-            var btn = document.getElementById("mobile-menu-btn");
-            if (links && btn) {
-                links.classList.toggle("open");
-                btn.setAttribute("aria-expanded", links.classList.contains("open"));
-            }
-        }
-
         /* Fetch live server count with count-up animation */
         var nbServerCount = null;
         var nbAnimating = false;
