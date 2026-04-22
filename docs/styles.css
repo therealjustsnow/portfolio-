@@ -239,6 +239,7 @@ h3{font-size:1.08rem}
 .search{
   display:grid;
   gap:.45rem;
+  matgin: 5px;
 }
 .search__label{
   font-weight:800;
