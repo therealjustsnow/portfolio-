@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Self-Hosting | NanoBot Docs</title>
+  <meta name="description" content="Config, Docker, data paths, logs, and owner operations.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="self-hosting.html">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">
+          <span class="brand__eyebrow">NanoBot docs</span>
+          <strong class="brand__name">Built for mobile mods</strong>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          <a class='topnav__link' href='index.html'>Overview</a><a class='topnav__link' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link is-active' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a>
+        </nav>
+      </div>
+    </header>
+    <main class="page">
+      
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Operations and runtime</p>
+    <h1>Self-hosting guide</h1>
+    <p class="lede">Everything after first launch: config keys, data paths, logs, Docker, and bot-owner maintenance commands.</p>
+    <div class="button-row"><a class='button' href='setup.html'>Setup</a><a class='button' href='#owner-admin'>Owner commands</a></div>
+  </div>
+  <div class="hero__card">
+    <div class="hero-card__stripe"></div>
+    <p class="hero-card__label">Phone-first ideas</p>
+    <ul class="bullet-list">
+      <li>Big tap targets and short sections.</li>
+      <li>Separate pages instead of one long dump.</li>
+      <li>Command docs grouped by moderation job, not raw source file.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="split-card">
+    <div>
+      <p class="eyebrow">Python path</p>
+      <h2>Direct local run</h2>
+      <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python run.py</code></pre>
+    </div>
+    <div>
+      <p class="eyebrow">Docker path</p>
+      <h2>Container option in repo</h2>
+      <pre><code>docker compose up --build -d</code></pre>
+      <p>Compose mounts <code>config.ini</code>, <code>data/</code>, and <code>logs/</code> from host.</p>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Persistence</p>
+    <h2>Files and directories repo expects</h2>
+    <p>SQLite and logs stay local. No cloud database required.</p>
+  </div>
+  <div class="card-grid">
+    
+<article class="info-card">
+  <h3>data/</h3>
+  <p>SQLite data store and other runtime state live here.</p>
+  
+</article>
+
+    
+<article class="info-card">
+  <h3>logs/</h3>
+  <p>Rotating logs write to logs/nanobot.log.</p>
+  
+</article>
+
+    
+<article class="info-card">
+  <h3>config.ini</h3>
+  <p>Primary config file. Owner commands can reload and edit values.</p>
+  
+</article>
+
+    
+<article class="info-card">
+  <h3>run.py</h3>
+  <p>Preflight checker validates Python version, deps, structure, config, and token format before launch.</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Dependency base</p>
+    <h2>Runtime packages</h2>
+    <p><code>discord.py&gt;=2.3.0 aiosqlite&gt;=0.19.0 aiohttp&gt;=3.9.0 psutil&gt;=5.9.0 Pillow&gt;=10.0.0</code></p>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Config reference</p>
+    <h2>example_config.ini broken into sections</h2>
+    <p>Descriptions below come from comments in repo's sample config.</p>
+  </div>
+  <div class="config-grid">
+    
+<article class="config-card">
+  <h3>[bot]</h3>
+  <ul class="config-list">
+<li>
+  <strong>token</strong>
+  <code>YOUR_BOT_TOKEN_HERE</code>
+  <span>Bot token from the Discord Developer Portal.</span>
+</li>
+
+<li>
+  <strong>default_prefix</strong>
+  <code>n!</code>
+  <span>Default command prefix (max 5 chars, no spaces).</span>
+</li>
+
+<li>
+  <strong>owner_id</strong>
+  <code>(blank)</code>
+  <span>Discord user ID of the bot owner. Leave blank to use the application owner.</span>
+</li>
+</ul>
+</article>
+
+<article class="config-card">
+  <h3>[logging]</h3>
+  <ul class="config-list">
+<li>
+  <strong>log_level</strong>
+  <code>INFO</code>
+  <span>DEBUG / INFO / WARNING / ERROR / CRITICAL</span>
+</li>
+
+<li>
+  <strong>log_http</strong>
+  <code>false</code>
+  <span>true = log every raw HTTP request (very noisy).</span>
+</li>
+</ul>
+</article>
+
+<article class="config-card">
+  <h3>[votes]</h3>
+  <ul class="config-list">
+<li>
+  <strong>topgg_token</strong>
+  <code>(blank)</code>
+  <span>top.gg AUTH token.</span>
+</li>
+
+<li>
+  <strong>topgg_v1_token</strong>
+  <code>(blank)</code>
+  <span>top.gg v1 API token used for commands sync.</span>
+</li>
+
+<li>
+  <strong>dbl_token</strong>
+  <code>(blank)</code>
+  <span>discordbotlist.com bot token.</span>
+</li>
+
+<li>
+  <strong>discordbotsgg_token</strong>
+  <code>(blank)</code>
+  <span>discord.bots.gg bot token.</span>
+</li>
+
+<li>
+  <strong>vote_webhook_port</strong>
+  <code>5000</code>
+  <span>Local port the vote webhook listens on.</span>
+</li>
+
+<li>
+  <strong>vote_webhook_secret</strong>
+  <code>(blank)</code>
+  <span>Shared secret used by bot lists to authenticate webhooks.</span>
+</li>
+</ul>
+</article>
+
+<article class="config-card">
+  <h3>[groq]</h3>
+  <ul class="config-list">
+<li>
+  <strong>groq_api_key</strong>
+  <code>(blank)</code>
+  <span>Groq API key (free at console.groq.com). Powers /eli5 and WYR generation. The GROQ_API_KEY environment variable takes priority if set.</span>
+</li>
+</ul>
+</article>
+
+<article class="config-card">
+  <h3>[scraper]</h3>
+  <ul class="config-list">
+<li>
+  <strong>fml_pages_per_scrape</strong>
+  <code>500</code>
+  <span>FML pages fetched per daily scrape (~5-10 stories each).</span>
+</li>
+
+<li>
+  <strong>wyr_requests_per_scrape</strong>
+  <code>500</code>
+  <span>Would-You-Rather API requests per rating per daily scrape.</span>
+</li>
+
+<li>
+  <strong>nekos_per_endpoint</strong>
+  <code>400</code>
+  <span>nekos.best images fetched per endpoint per daily scrape.</span>
+</li>
+
+<li>
+  <strong>nekosia_per_tag</strong>
+  <code>400</code>
+  <span>Nekosia images fetched per tag per daily scrape.</span>
+</li>
+
+<li>
+  <strong>revalidate_age</strong>
+  <code>604800</code>
+  <span>Age (seconds) before a cached URL is rechecked with HEAD. 604800 = 7 days.</span>
+</li>
+
+<li>
+  <strong>revalidate_batch</strong>
+  <code>1000</code>
+  <span>Max URLs to HEAD-check per 6-hour revalidation cycle.</span>
+</li>
+
+<li>
+  <strong>groq_wyr_system</strong>
+  <code>You generate Would You Rather questions for a Discord bot. Return ONLY...</code>
+  <span>System prompt used when Groq generates fresh WYR questions daily.</span>
+</li>
+</ul>
+</article>
+
+  </div>
+</section>
+
+<section class="stack" id="owner-admin">
+  <div class="section-head">
+    <p class="eyebrow">Owner only</p>
+    <h2>Maintenance commands</h2>
+    <p>All commands in <code>cogs/admin.py</code> require bot ownership.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>cachestats</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>show cache DB statistics (FML, WYR, images)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!cachestats</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cachestats</code></p>
+  <p class='meta-line'><strong>Aliases</strong> cs</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>config</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>DM-only: show/get/set config values</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
+  <p class='meta-line'><strong>Aliases</strong> cfg</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>fmlpurge</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>wipe all cached FML stories (forces re-scrape)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!fmlpurge</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!fmlpurge</code></p>
+  
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>logs</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>tail the log file right in Discord</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!logs [lines]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!logs [lines]</code></p>
+  <p class='meta-line'><strong>Aliases</strong> log</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>reload</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>hot-reload one cog or every cog</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!reload [cog]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reload [cog]</code></p>
+  <p class='meta-line'><strong>Aliases</strong> rl</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>reloadconfig</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>re-read config.ini without restarting</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!reloadconfig</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reloadconfig</code></p>
+  <p class='meta-line'><strong>Aliases</strong> rlc, rlconfig</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>restart</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>graceful shutdown then re-exec the process</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!restart</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!restart</code></p>
+  <p class='meta-line'><strong>Aliases</strong> reboot, rs</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>scrape</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>manually trigger the daily content cache scrape</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!scrape</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!scrape</code></p>
+  
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>servers</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p></p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!servers [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!servers [page]</code></p>
+  <p class='meta-line'><strong>Aliases</strong> guilds, serverlist</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>setloglevel</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>change log level live and persist to config.ini</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!setloglevel &lt;level&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!setloglevel &lt;level&gt;</code></p>
+  <p class='meta-line'><strong>Aliases</strong> loglevel, loglvl</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>shutdown</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>graceful shutdown (flushes logs, closes connection)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shutdown</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shutdown</code></p>
+  <p class='meta-line'><strong>Aliases</strong> die, stop</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>sync</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>push slash commands to Discord (global or one guild)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sync [target] [guild_id]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!sync [target] [guild_id]</code></p>
+  
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>unload</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>unload a single cog without restarting</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!unload &lt;cog&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unload &lt;cog&gt;</code></p>
+  <p class='meta-line'><strong>Aliases</strong> ul</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>update</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>git pull + reload all cogs (no slash command sync)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!update</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!update</code></p>
+  <p class='meta-line'><strong>Aliases</strong> pull</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>upgrade</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>git pull + pip install + spawn new process + close</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!upgrade</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!upgrade</code></p>
+  <p class='meta-line'><strong>Aliases</strong> deploy, ud</p>
+</article>
+
+  </div>
+</section>
+
+    </main>
+  </div>
+  <nav class="dock" aria-label="Mobile">
+    <a class='dock__link' href='index.html'>Overview</a><a class='dock__link' href='commands.html'>Commands</a><a class='dock__link' href='setup.html'>Setup</a><a class='dock__link is-active' href='self-hosting.html'>Self-Hosting</a><a class='dock__link' href='faq.html'>FAQ</a>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>

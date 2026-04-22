@@ -1,0 +1,3129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Commands | NanoBot Docs</title>
+  <meta name="description" content="Fast command reference, grouped for phone moderation.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="commands.html">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">
+          <span class="brand__eyebrow">NanoBot docs</span>
+          <strong class="brand__name">Built for mobile mods</strong>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          <a class='topnav__link' href='index.html'>Overview</a><a class='topnav__link is-active' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a>
+        </nav>
+      </div>
+    </header>
+    <main class="page">
+      
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Phone-friendly command browser</p>
+    <h1>Command reference</h1>
+    <p class="lede">Grouped for actual moderation tasks, not buried in one giant page. Search by command name, category, alias, or permission.</p>
+    <div class="button-row"><a class='button' href='setup.html'>Setup guide</a><a class='button' href='self-hosting.html'>Self-hosting</a></div>
+  </div>
+  <div class="hero__card">
+    <div class="hero-card__stripe"></div>
+    <p class="hero-card__label">Phone-first ideas</p>
+    <ul class="bullet-list">
+      <li>Big tap targets and short sections.</li>
+      <li>Separate pages instead of one long dump.</li>
+      <li>Command docs grouped by moderation job, not raw source file.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="toolbar">
+    <label class="search">
+      <span class="search__label">Search commands</span>
+      <input id="command-search" type="search" placeholder="Try ban, reminders, automod, prefix, owner">
+    </label>
+    <div class="chip-row" role="tablist" aria-label="Command cluster filter">
+      <button class="chip is-active" data-filter="All" type="button">All</button>
+      <button class="chip" data-filter="Moderation" type="button">Moderation</button>
+      <button class="chip" data-filter="Utility" type="button">Utility</button>
+      <button class="chip" data-filter="Fun" type="button">Fun</button>
+      <button class="chip" data-filter="Owner" type="button">Owner</button>
+    </div>
+    <p class="toolbar__note">Restricted cards stay in section flow, but also surface under Owner/Admin area on this page.</p>
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Banning <span class="count-pill">5</span></h2>
+    <p>Raid control and member removal tools built for fast phone moderation.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="ban permanently ban a user with an optional dm. /ban [user] [message] | n!ban [user] [message] n!ban @user you have been permanently banned. banning ban members ">
+  <div class="command-card__top">
+    <h3><code>ban</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Permanently ban a user with an optional DM.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ban [user] [message] | n!ban [user] [message]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!ban @user You have been permanently banned.</code></p>
+  <p class="meta-line"><strong>Permission</strong> Ban Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="cban ban + delete message history. optional timed unban &amp; dm. /cban [user] [days] [wait] [message] | n!cban [user] [days] [wait] [message] n!cban @user 7 24h see you tomorrow. banning ban members cleanban">
+  <div class="command-card__top">
+    <h3><code>cban</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Ban + delete message history. Optional timed unban &amp; DM.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/cban [user] [days] [wait] [message] | n!cban [user] [days] [wait] [message]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cban @user 7 24h See you tomorrow.</code></p>
+  <p class="meta-line"><strong>Permission</strong> Ban Members</p>
+  <p class='meta-line'><strong>Aliases</strong> cleanban</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="massban ban multiple users by id. paste ids separated by spaces. /massban &lt;id1 id2 ...&gt; [reason] | n!massban &lt;id1 id2 ...&gt; [reason] n!massban 111 222 333 raid cleanup banning ban members ">
+  <div class="command-card__top">
+    <h3><code>massban</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Ban multiple users by ID. Paste IDs separated by spaces.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/massban &lt;id1 id2 ...&gt; [reason] | n!massban &lt;id1 id2 ...&gt; [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!massban 111 222 333 Raid cleanup</code></p>
+  <p class="meta-line"><strong>Permission</strong> Ban Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="tempban ban a user for a set duration. auto-unbans when it expires. /tempban [user] [duration] [reason] | n!tempban [user] [duration] [reason] n!tempban @user 3d repeated rule violations banning ban members ">
+  <div class="command-card__top">
+    <h3><code>tempban</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Ban a user for a set duration. Auto-unbans when it expires.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tempban [user] [duration] [reason] | n!tempban [user] [duration] [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!tempban @user 3d Repeated rule violations</code></p>
+  <p class="meta-line"><strong>Permission</strong> Ban Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="unban unban a user by their user id. /unban &lt;user_id&gt; [reason] | n!unban &lt;user_id&gt; [reason] n!unban 123456789012345678 banning ban members ">
+  <div class="command-card__top">
+    <h3><code>unban</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Unban a user by their User ID.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/unban &lt;user_id&gt; [reason] | n!unban &lt;user_id&gt; [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unban 123456789012345678</code></p>
+  <p class="meta-line"><strong>Permission</strong> Ban Members</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Kicking &amp; Timeouts <span class="count-pill">3</span></h2>
+    <p>Fast kick and timeout actions for live moderation.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="freeze timeout a user (default 10m). they can&#x27;t speak, react, or join vcs. /freeze [user] [duration] [reason] | n!freeze [user] [duration] [reason] n!freeze @user 30m please cool down. kicking &amp; timeouts moderate members ">
+  <div class="command-card__top">
+    <h3><code>freeze</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Timeout a user (default 10m). They can&#x27;t speak, react, or join VCs.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/freeze [user] [duration] [reason] | n!freeze [user] [duration] [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!freeze @user 30m Please cool down.</code></p>
+  <p class="meta-line"><strong>Permission</strong> Moderate Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="kick kick a user. defaults to last message sender. /kick [user] [message] | n!kick [user] [message] n!kick @user please review the rules. kicking &amp; timeouts kick members ">
+  <div class="command-card__top">
+    <h3><code>kick</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Kick a user. Defaults to last message sender.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/kick [user] [message] | n!kick [user] [message]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!kick @user Please review the rules.</code></p>
+  <p class="meta-line"><strong>Permission</strong> Kick Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="unfreeze remove a timeout from a user early. /unfreeze &lt;user&gt; | n!unfreeze &lt;user&gt; n!unfreeze @user kicking &amp; timeouts moderate members ">
+  <div class="command-card__top">
+    <h3><code>unfreeze</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a timeout from a user early.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/unfreeze &lt;user&gt; | n!unfreeze &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unfreeze @user</code></p>
+  <p class="meta-line"><strong>Permission</strong> Moderate Members</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Channel Controls <span class="count-pill">10</span></h2>
+    <p>Locks, slowmode, cleanup, channel visibility, and voice moves.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="clean delete recent nanobot messages from this channel. /clean [amount] | n!clean [amount] n!clean 20 channel controls manage messages ">
+  <div class="command-card__top">
+    <h3><code>clean</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Delete recent NanoBot messages from this channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/clean [amount] | n!clean [amount]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!clean 20</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="echo send a message as nanobot. /echo [channel] &lt;message&gt; | n!echo [channel] &lt;message&gt; n!echo #announcements server maintenance in 10 minutes! channel controls manage messages ">
+  <div class="command-card__top">
+    <h3><code>echo</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Send a message as NanoBot.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/echo [channel] &lt;message&gt; | n!echo [channel] &lt;message&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!echo #announcements Server maintenance in 10 minutes!</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="hide hide a channel from @everyone. /hide [channel] | n!hide [channel] n!hide #staff-only channel controls manage channels ">
+  <div class="command-card__top">
+    <h3><code>hide</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Hide a channel from @everyone.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/hide [channel] | n!hide [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!hide #staff-only</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Channels</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="lock toggle @everyone channel lock. run again to unlock. /lock [channel] [reason] | n!lock [channel] [reason] n!lock #general temporary lock during raid. channel controls manage channels ">
+  <div class="command-card__top">
+    <h3><code>lock</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle @everyone channel lock. Run again to unlock.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/lock [channel] [reason] | n!lock [channel] [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!lock #general Temporary lock during raid.</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Channels</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="moveall move all members from one voice channel to another. /moveall &lt;to_channel&gt; [from_channel] | n!moveall &lt;to_channel&gt; [from_channel] n!moveall #general channel controls move members ">
+  <div class="command-card__top">
+    <h3><code>moveall</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Move all members from one voice channel to another.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/moveall &lt;to_channel&gt; [from_channel] | n!moveall &lt;to_channel&gt; [from_channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!moveall #General</code></p>
+  <p class="meta-line"><strong>Permission</strong> Move Members</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="nuke clone this channel and delete the original — permanently wipes all messages. /nuke [reason] | n!nuke [reason] n!nuke raid cleanup channel controls manage channels ">
+  <div class="command-card__top">
+    <h3><code>nuke</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Clone this channel and delete the original — permanently wipes all messages.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/nuke [reason] | n!nuke [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!nuke raid cleanup</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Channels</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="purge bulk delete messages with optional filters. /purge &lt;amount&gt; [bots] [user] [contains] [starts_with] [ends_with] | n!purge &lt;amount&gt; [bots] [user] [contains] [starts_with] [ends_with] n!purge 50 user:@spammer channel controls manage messages ">
+  <div class="command-card__top">
+    <h3><code>purge</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Bulk delete messages with optional filters.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/purge &lt;amount&gt; [bots] [user] [contains] [starts_with] [ends_with] | n!purge &lt;amount&gt; [bots] [user] [contains] [starts_with] [ends_with]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!purge 50 user:@spammer</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="slow toggle slowmode. no args = toggle. add delay and optional timer. /slow [delay] [length] | n!slow [delay] [length] n!slow 2m 1h channel controls manage channels ">
+  <div class="command-card__top">
+    <h3><code>slow</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle slowmode. No args = toggle. Add delay and optional timer.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/slow [delay] [length] | n!slow [delay] [length]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!slow 2m 1h</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Channels</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="snailpurge slow delete of older messages (no 14-day limit). requires confirmation. /snailpurge &lt;amount&gt; | n!snailpurge &lt;amount&gt; n!snailpurge 200 channel controls manage messages ">
+  <div class="command-card__top">
+    <h3><code>snailpurge</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Slow delete of older messages (no 14-day limit). Requires confirmation.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/snailpurge &lt;amount&gt; | n!snailpurge &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!snailpurge 200</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="unhide restore @everyone visibility on a hidden channel. /unhide [channel] | n!unhide [channel] n!unhide #announcements channel controls manage channels ">
+  <div class="command-card__top">
+    <h3><code>unhide</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Restore @everyone visibility on a hidden channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/unhide [channel] | n!unhide [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unhide #announcements</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Channels</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Warnings <span class="count-pill">8</span></h2>
+    <p>Warn, list, clear, and configure warning thresholds.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="clearwarnings wipe all warnings for a user. admin only. n!clearwarnings &lt;user&gt; n!clearwarnings @reformed warnings administrator ">
+  <div class="command-card__top">
+    <h3><code>clearwarnings</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Wipe all warnings for a user. Admin only.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!clearwarnings &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!clearwarnings @Reformed</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warn issue a warning to a user. configurable auto-kick/ban thresholds apply. n!warn &lt;user&gt; [reason] n!warn @troublemaker spamming in general warnings manage messages ">
+  <div class="command-card__top">
+    <h3><code>warn</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Issue a warning to a user. Configurable auto-kick/ban thresholds apply.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!warn &lt;user&gt; [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!warn @Troublemaker Spamming in general</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warn clear clear all warnings for a user. admin only. /warn clear &lt;user&gt; /warn clear &lt;user&gt; warnings administrator, manage messages ">
+  <div class="command-card__top">
+    <h3><code>warn clear</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Clear all warnings for a user. Admin only.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/warn clear &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/warn clear &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warn config configure auto-actions for warnings. /warn config [kick_at] [ban_at] [dm_user] /warn config [kick_at] [ban_at] [dm_user] warnings manage messages ">
+  <div class="command-card__top">
+    <h3><code>warn config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Configure auto-actions for warnings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/warn config [kick_at] [ban_at] [dm_user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/warn config [kick_at] [ban_at] [dm_user]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warn issue issue a warning to a user. /warn issue &lt;user&gt; [reason] /warn issue &lt;user&gt; [reason] warnings manage messages ">
+  <div class="command-card__top">
+    <h3><code>warn issue</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Issue a warning to a user.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/warn issue &lt;user&gt; [reason]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/warn issue &lt;user&gt; [reason]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warn list view all warnings for a user. /warn list &lt;user&gt; /warn list &lt;user&gt; warnings manage messages ">
+  <div class="command-card__top">
+    <h3><code>warn list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>View all warnings for a user.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/warn list &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/warn list &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warnconfig configure auto-kick/ban thresholds and dm behavior. n!warnconfig [kick_at] [ban_at] [dm_user] n!warnconfig 3 5 true | n!warnconfig warnings administrator ">
+  <div class="command-card__top">
+    <h3><code>warnconfig</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Configure auto-kick/ban thresholds and DM behavior.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!warnconfig [kick_at] [ban_at] [dm_user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!warnconfig 3 5 true | n!warnconfig</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="warnings view all warnings for a user on this server. n!warnings &lt;user&gt; n!warnings @troublemaker warnings manage messages ">
+  <div class="command-card__top">
+    <h3><code>warnings</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>View all warnings for a user on this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!warnings &lt;user&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!warnings @Troublemaker</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>AutoMod <span class="count-pill">16</span></h2>
+    <p>Passive rule system for spam, caps, mentions, bad words, regex, and ignores.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod badword add add a word to the filter. /automod badword add &lt;word&gt; /automod badword add &lt;word&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod badword add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a word to the filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod badword add &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod badword add &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod badword list list all filtered words (shown only to you). /automod badword list /automod badword list automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod badword list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>List all filtered words (shown only to you).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod badword list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod badword list</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod badword remove remove a word from the filter. /automod badword remove &lt;word&gt; /automod badword remove &lt;word&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod badword remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a word from the filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod badword remove &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod badword remove &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod caps configure the caps-abuse filter. /automod caps [percent] [min_length] /automod caps [percent] [min_length] automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod caps</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Configure the caps-abuse filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod caps [percent] [min_length]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod caps [percent] [min_length]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod disable disable automod for this server. /automod disable /automod disable automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Disable AutoMod for this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod disable</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod disable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod enable enable automod for this server. /automod enable /automod enable automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod enable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Enable AutoMod for this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod enable</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod enable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod ignore channel toggle a channel exemption. /automod ignore channel &lt;channel&gt; /automod ignore channel &lt;channel&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod ignore channel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle a channel exemption.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod ignore channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod ignore channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod ignore role toggle a role exemption. /automod ignore role &lt;role&gt; /automod ignore role &lt;role&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod ignore role</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle a role exemption.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod ignore role &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod ignore role &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod mentions set the max @mentions allowed in a single message. /automod mentions [limit] /automod mentions [limit] automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod mentions</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the max @mentions allowed in a single message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod mentions [limit]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod mentions [limit]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod regex add add a regex pattern to the filter. /automod regex add &lt;pattern&gt; [label] /automod regex add &lt;pattern&gt; [label] automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod regex add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a regex pattern to the filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod regex add &lt;pattern&gt; [label]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod regex add &lt;pattern&gt; [label]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod regex list list all regex patterns in the filter (shown only to you). /automod regex list /automod regex list automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod regex list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>List all regex patterns in the filter (shown only to you).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod regex list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod regex list</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod regex remove remove a regex pattern from the filter. /automod regex remove &lt;pattern&gt; /automod regex remove &lt;pattern&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod regex remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a regex pattern from the filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod regex remove &lt;pattern&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod regex remove &lt;pattern&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod regex test test a string against all active regex patterns (shown only to you). /automod regex test &lt;text&gt; /automod regex test &lt;text&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod regex test</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Test a string against all active regex patterns (shown only to you).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod regex test &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod regex test &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod rule toggle a rule on/off and set its action. /automod rule &lt;rule&gt; &lt;enabled&gt; [action] /automod rule &lt;rule&gt; &lt;enabled&gt; [action] automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod rule</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle a rule on/off and set its action.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod rule &lt;rule&gt; &lt;enabled&gt; [action]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod rule &lt;rule&gt; &lt;enabled&gt; [action]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod spam set the spam detection threshold (messages per time window). /automod spam &lt;count&gt; &lt;seconds&gt; /automod spam &lt;count&gt; &lt;seconds&gt; automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod spam</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the spam detection threshold (messages per time window).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod spam &lt;count&gt; &lt;seconds&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod spam &lt;count&gt; &lt;seconds&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod status show the current automod configuration. /automod status /automod status automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod status</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current AutoMod configuration.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod status</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod status</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Audit Log <span class="count-pill">5</span></h2>
+    <p>Server event logging to one channel, tuned for moderation workflows.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog channel set the channel for audit log entries. /auditlog channel &lt;channel&gt; /auditlog channel &lt;channel&gt; audit log administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>auditlog channel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the channel for audit log entries.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/auditlog channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/auditlog channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog disable disable the audit log. /auditlog disable /auditlog disable audit log administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>auditlog disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Disable the audit log.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/auditlog disable</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/auditlog disable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog enable enable the audit log. /auditlog enable /auditlog enable audit log administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>auditlog enable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Enable the audit log.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/auditlog enable</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/auditlog enable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog events toggle which events get logged. /auditlog events /auditlog events audit log administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>auditlog events</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle which events get logged.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/auditlog events</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/auditlog events</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog status show the current audit log configuration. /auditlog status /auditlog status audit log administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>auditlog status</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current audit log configuration.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/auditlog status</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/auditlog status</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Role Panels <span class="count-pill">12</span></h2>
+    <p>Self-assign role panels and autogen role packs.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles add add a role to a panel. /roles add &lt;panel_id&gt; &lt;role&gt; [label] [emoji] [style] /roles add &lt;panel_id&gt; &lt;role&gt; [label] [emoji] [style] role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a role to a panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles add &lt;panel_id&gt; &lt;role&gt; [label] [emoji] [style]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles add &lt;panel_id&gt; &lt;role&gt; [label] [emoji] [style]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles autogen age generate age-range roles (13-17, 18-20, 21-25, 26-30, 31+) and a panel. /roles autogen age &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] /roles autogen age &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] role panels administrator ">
+  <div class="command-card__top">
+    <h3><code>roles autogen age</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Generate age-range roles (13-17, 18-20, 21-25, 26-30, 31+) and a panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles autogen age &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles autogen age &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles autogen colors generate 18 cosmetic colour roles and a single-choice colour panel. /roles autogen colors &lt;channel&gt; [prefix] [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] /roles autogen colors &lt;channel&gt; [prefix] [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] role panels administrator ">
+  <div class="command-card__top">
+    <h3><code>roles autogen colors</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Generate 18 cosmetic colour roles and a single-choice colour panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles autogen colors &lt;channel&gt; [prefix] [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles autogen colors &lt;channel&gt; [prefix] [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles autogen pronouns generate she/her, he/him, they/them, it/its, any/all roles and a panel. /roles autogen pronouns &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] /roles autogen pronouns &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] role panels administrator ">
+  <div class="command-card__top">
+    <h3><code>roles autogen pronouns</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Generate She/Her, He/Him, They/Them, It/Its, Any/All roles and a panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles autogen pronouns &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles autogen pronouns &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles autogen region generate 7 world-region roles (n. america, europe, asia…) and a panel. /roles autogen region &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] /roles autogen region &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5] role panels administrator ">
+  <div class="command-card__top">
+    <h3><code>roles autogen region</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Generate 7 world-region roles (N. America, Europe, Asia…) and a panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles autogen region &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles autogen region &lt;channel&gt; [extra_role_1] [extra_role_2] [extra_role_3] [extra_role_4] [extra_role_5]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel create create a new role panel (not posted yet). /roles panel create &lt;title&gt; [description] [mode] /roles panel create &lt;title&gt; [description] [mode] role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel create</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Create a new role panel (not posted yet).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel create &lt;title&gt; [description] [mode]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel create &lt;title&gt; [description] [mode]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel delete delete a panel and remove its message. /roles panel delete &lt;panel_id&gt; /roles panel delete &lt;panel_id&gt; role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel delete</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Delete a panel and remove its message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel delete &lt;panel_id&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel delete &lt;panel_id&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel edit edit a panel&#x27;s title, description, or mode. /roles panel edit &lt;panel_id&gt; [title] [description] [mode] /roles panel edit &lt;panel_id&gt; [title] [description] [mode] role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel edit</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Edit a panel&#x27;s title, description, or mode.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel edit &lt;panel_id&gt; [title] [description] [mode]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel edit &lt;panel_id&gt; [title] [description] [mode]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel list list all role panels in this server. /roles panel list /roles panel list role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>List all role panels in this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel list</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel post post (or re-post) a panel to a channel. /roles panel post &lt;panel_id&gt; [channel] /roles panel post &lt;panel_id&gt; [channel] role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel post</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Post (or re-post) a panel to a channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel post &lt;panel_id&gt; [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel post &lt;panel_id&gt; [channel]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles panel reload re-post all panels in this server to refresh their messages. /roles panel reload /roles panel reload role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles panel reload</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Re-post all panels in this server to refresh their messages.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles panel reload</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles panel reload</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="roles remove remove a role from a panel. /roles remove &lt;panel_id&gt; &lt;role&gt; /roles remove &lt;panel_id&gt; &lt;role&gt; role panels manage roles ">
+  <div class="command-card__top">
+    <h3><code>roles remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a role from a panel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/roles remove &lt;panel_id&gt; &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/roles remove &lt;panel_id&gt; &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Welcome &amp; Leave <span class="count-pill">6</span></h2>
+    <p>Join and leave messages with template variables and previews.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Moderation" data-access="Public" data-search="leave configure or view leave message settings. /leave [set|test] | n!leave [set|test] /leave set enabled:true channel:#goodbye | /leave test welcome &amp; leave none ">
+  <div class="command-card__top">
+    <h3><code>leave</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Configure or view leave message settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/leave [set|test] | n!leave [set|test]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/leave set enabled:True channel:#goodbye | /leave test</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="leave set configure the leave message. /leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] or n!leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] /leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] | n!leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] welcome &amp; leave administrator ">
+  <div class="command-card__top">
+    <h3><code>leave set</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Configure the leave message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] or n!leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] | n!leave set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="leave test preview the leave message as if you just left. /leave test or n!leave test /leave test | n!leave test welcome &amp; leave administrator ">
+  <div class="command-card__top">
+    <h3><code>leave test</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Preview the leave message as if you just left.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/leave test or n!leave test</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/leave test | n!leave test</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Public" data-search="welcome configure or view welcome message settings. /welcome [set|test] | n!welcome [set|test] /welcome set enabled:true channel:#welcome | /welcome test welcome &amp; leave none ">
+  <div class="command-card__top">
+    <h3><code>welcome</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Configure or view welcome message settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/welcome [set|test] | n!welcome [set|test]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/welcome set enabled:True channel:#welcome | /welcome test</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="welcome set configure the welcome message. /welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] or n!welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] /welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] | n!welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] welcome &amp; leave administrator ">
+  <div class="command-card__top">
+    <h3><code>welcome set</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Configure the welcome message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] or n!welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm] | n!welcome set [enabled] [channel] [title] [content] [image_url] [image_text] [footer_text] [thumbnail] [color] [dm]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="welcome test preview the welcome message as if you just joined. /welcome test or n!welcome test /welcome test | n!welcome test welcome &amp; leave administrator ">
+  <div class="command-card__top">
+    <h3><code>welcome test</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Preview the welcome message as if you just joined.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/welcome test or n!welcome test</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/welcome test | n!welcome test</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Utility">
+  <div class="section-head">
+    <p class="eyebrow">Utility</p>
+    <h2>Tags <span class="count-pill">10</span></h2>
+    <p>Reusable text snippets and image tags, including fast mobile shorthand.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag manage and use tags. /tag list, /tag create, /tag use, etc. /tag [shorthand or subcommand] | n!tag [shorthand or subcommand] n!tag + rules | read #rules before posting! | n!rules tags none ">
+  <div class="command-card__top">
+    <h3><code>tag</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Manage and use tags. /tag list, /tag create, /tag use, etc.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag [shorthand or subcommand] | n!tag [shorthand or subcommand]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!tag + rules | Read #rules before posting! | n!rules</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag create create a personal tag with optional image. /tag create &lt;name&gt; [content] [image] [image_url] or n!tag create &lt;name&gt; [content] [image] [image_url] /tag create &lt;name&gt; [content] [image] [image_url] | n!tag create &lt;name&gt; [content] [image] [image_url] tags none ">
+  <div class="command-card__top">
+    <h3><code>tag create</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Create a personal tag with optional image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag create &lt;name&gt; [content] [image] [image_url] or n!tag create &lt;name&gt; [content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag create &lt;name&gt; [content] [image] [image_url] | n!tag create &lt;name&gt; [content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag delete delete a tag (personal, or global if you&#x27;re a mod). /tag delete &lt;name&gt; or n!tag delete &lt;name&gt; /tag delete &lt;name&gt; | n!tag delete &lt;name&gt; tags none ">
+  <div class="command-card__top">
+    <h3><code>tag delete</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Delete a tag (personal, or global if you&#x27;re a mod).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag delete &lt;name&gt; or n!tag delete &lt;name&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag delete &lt;name&gt; | n!tag delete &lt;name&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag edit edit a tag&#x27;s content and/or image. /tag edit &lt;name&gt; [new_content] [image] [image_url] or n!tag edit &lt;name&gt; [new_content] [image] [image_url] /tag edit &lt;name&gt; [new_content] [image] [image_url] | n!tag edit &lt;name&gt; [new_content] [image] [image_url] tags none ">
+  <div class="command-card__top">
+    <h3><code>tag edit</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Edit a tag&#x27;s content and/or image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag edit &lt;name&gt; [new_content] [image] [image_url] or n!tag edit &lt;name&gt; [new_content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag edit &lt;name&gt; [new_content] [image] [image_url] | n!tag edit &lt;name&gt; [new_content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag export download all your personal tags as a json file you can re-import later. /tag export or n!tag export /tag export | n!tag export tags none ">
+  <div class="command-card__top">
+    <h3><code>tag export</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Download all your personal tags as a JSON file you can re-import later.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag export or n!tag export</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag export | n!tag export</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Restricted" data-search="tag global create a global server tag usable by anyone. mods only. /tag global &lt;name&gt; [content] [image] [image_url] or n!tag global &lt;name&gt; [content] [image] [image_url] /tag global &lt;name&gt; [content] [image] [image_url] | n!tag global &lt;name&gt; [content] [image] [image_url] tags manage messages ">
+  <div class="command-card__top">
+    <h3><code>tag global</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Create a global server tag usable by anyone. Mods only.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag global &lt;name&gt; [content] [image] [image_url] or n!tag global &lt;name&gt; [content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag global &lt;name&gt; [content] [image] [image_url] | n!tag global &lt;name&gt; [content] [image] [image_url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Messages</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag import import personal tags from a file exported by /tag export. /tag import [file] or n!tag import [file] /tag import [file] | n!tag import [file] tags none ">
+  <div class="command-card__top">
+    <h3><code>tag import</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Import personal tags from a file exported by /tag export.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag import [file] or n!tag import [file]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag import [file] | n!tag import [file]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag list list your personal tags and global server tags. /tag list or n!tag list /tag list | n!tag list tags none ">
+  <div class="command-card__top">
+    <h3><code>tag list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>List your personal tags and global server tags.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag list or n!tag list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag list | n!tag list</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag preview preview a tag — only you see this response. /tag preview &lt;name&gt; or n!tag preview &lt;name&gt; /tag preview &lt;name&gt; | n!tag preview &lt;name&gt; tags none ">
+  <div class="command-card__top">
+    <h3><code>tag preview</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Preview a tag — only you see this response.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag preview &lt;name&gt; or n!tag preview &lt;name&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag preview &lt;name&gt; | n!tag preview &lt;name&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="tag use post a tag in this channel, or dm it to a specific user. /tag use &lt;name&gt; [dm_user] or n!tag use &lt;name&gt; [dm_user] /tag use &lt;name&gt; [dm_user] | n!tag use &lt;name&gt; [dm_user] tags none ">
+  <div class="command-card__top">
+    <h3><code>tag use</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Post a tag in this channel, or DM it to a specific user.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/tag use &lt;name&gt; [dm_user] or n!tag use &lt;name&gt; [dm_user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/tag use &lt;name&gt; [dm_user] | n!tag use &lt;name&gt; [dm_user]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Utility">
+  <div class="section-head">
+    <p class="eyebrow">Utility</p>
+    <h2>Reminders <span class="count-pill">7</span></h2>
+    <p>One-time reminder flow plus reminder listing and cancel actions.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="every set a recurring reminder — like a repeating calendar event. /every &lt;interval&gt; &lt;message&gt; [label] [dm] | n!every &lt;interval&gt; &lt;message&gt; [label] [dm] n!every 2w payday! | n!every daily stand up meeting reminders none ">
+  <div class="command-card__top">
+    <h3><code>every</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Set a recurring reminder — like a repeating calendar event.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/every &lt;interval&gt; &lt;message&gt; [label] [dm] | n!every &lt;interval&gt; &lt;message&gt; [label] [dm]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!every 2w Payday! | n!every daily Stand up meeting</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="recurring manage your recurring reminders — list, pause, resume, or cancel. /recurring [pause|resume|cancel &lt;id&gt;] | n!recurring [pause|resume|cancel &lt;id&gt;] n!recurring | n!recurring pause abc123 | n!recurring cancel abc123 reminders none repeating repeat">
+  <div class="command-card__top">
+    <h3><code>recurring</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Manage your recurring reminders — list, pause, resume, or cancel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/recurring [pause|resume|cancel &lt;id&gt;] | n!recurring [pause|resume|cancel &lt;id&gt;]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!recurring | n!recurring pause abc123 | n!recurring cancel abc123</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> repeating, repeat</p>
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="remind set a reminder for another user. /remind &lt;@user&gt; &lt;message with duration&gt; | n!remind &lt;@user&gt; &lt;message with duration&gt; n!remind @user check that pr 2h reminders none ">
+  <div class="command-card__top">
+    <h3><code>remind</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Set a reminder for another user.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/remind &lt;@user&gt; &lt;message with duration&gt; | n!remind &lt;@user&gt; &lt;message with duration&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!remind @user check that PR 2h</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="reminders list your active reminders, or cancel one. /reminders [cancel &lt;number&gt;] | n!reminders [cancel &lt;number&gt;] n!reminders cancel 2 reminders none reminder">
+  <div class="command-card__top">
+    <h3><code>reminders</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>List your active reminders, or cancel one.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/reminders [cancel &lt;number&gt;] | n!reminders [cancel &lt;number&gt;]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reminders cancel 2</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> reminder</p>
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="reminders cancel cancel an active reminder by its list number. /reminders cancel &lt;number&gt; or n!reminders cancel &lt;number&gt; /reminders cancel &lt;number&gt; | n!reminders cancel &lt;number&gt; reminders none ">
+  <div class="command-card__top">
+    <h3><code>reminders cancel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Cancel an active reminder by its list number.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/reminders cancel &lt;number&gt; or n!reminders cancel &lt;number&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/reminders cancel &lt;number&gt; | n!reminders cancel &lt;number&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="reminders list list your active reminders. /reminders list or n!reminders list /reminders list | n!reminders list reminders none ">
+  <div class="command-card__top">
+    <h3><code>reminders list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>List your active reminders.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/reminders list or n!reminders list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/reminders list | n!reminders list</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="remindme set a reminder for yourself. duration can be part of the message. /remindme &lt;message with duration&gt; | n!remindme &lt;message with duration&gt; n!remindme stand up in 1 hour reminders none rm">
+  <div class="command-card__top">
+    <h3><code>remindme</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Set a reminder for yourself. Duration can be part of the message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/remindme &lt;message with duration&gt; | n!remindme &lt;message with duration&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!remindme stand up in 1 hour</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> rm</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Utility">
+  <div class="section-head">
+    <p class="eyebrow">Utility</p>
+    <h2>Recurring Reminders <span class="count-pill">4</span></h2>
+    <p>Repeating reminders with pause, resume, and cancel flow.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="recurring cancel permanently delete a recurring reminder. /recurring cancel &lt;reminder_id&gt; or n!recurring cancel &lt;reminder_id&gt; /recurring cancel &lt;reminder_id&gt; | n!recurring cancel &lt;reminder_id&gt; recurring reminders none ">
+  <div class="command-card__top">
+    <h3><code>recurring cancel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Permanently delete a recurring reminder.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/recurring cancel &lt;reminder_id&gt; or n!recurring cancel &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/recurring cancel &lt;reminder_id&gt; | n!recurring cancel &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="recurring list list all your recurring reminders. /recurring list or n!recurring list /recurring list | n!recurring list recurring reminders none ">
+  <div class="command-card__top">
+    <h3><code>recurring list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>List all your recurring reminders.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/recurring list or n!recurring list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/recurring list | n!recurring list</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="recurring pause pause a recurring reminder — it won&#x27;t fire until you resume it. /recurring pause &lt;reminder_id&gt; or n!recurring pause &lt;reminder_id&gt; /recurring pause &lt;reminder_id&gt; | n!recurring pause &lt;reminder_id&gt; recurring reminders none ">
+  <div class="command-card__top">
+    <h3><code>recurring pause</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Pause a recurring reminder — it won&#x27;t fire until you resume it.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/recurring pause &lt;reminder_id&gt; or n!recurring pause &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/recurring pause &lt;reminder_id&gt; | n!recurring pause &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="recurring resume resume a paused recurring reminder. /recurring resume &lt;reminder_id&gt; or n!recurring resume &lt;reminder_id&gt; /recurring resume &lt;reminder_id&gt; | n!recurring resume &lt;reminder_id&gt; recurring reminders none ">
+  <div class="command-card__top">
+    <h3><code>recurring resume</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Resume a paused recurring reminder.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/recurring resume &lt;reminder_id&gt; or n!recurring resume &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/recurring resume &lt;reminder_id&gt; | n!recurring resume &lt;reminder_id&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Utility">
+  <div class="section-head">
+    <p class="eyebrow">Utility</p>
+    <h2>Config &amp; Info <span class="count-pill">8</span></h2>
+    <p>Prefix, help, status, server info, and general bot utility.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="about what nanobot is and why it exists. /about | n!about n!about config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>about</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>What NanoBot is and why it exists.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/about | n!about</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!about</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="eli5 explain a topic like i&#x27;m 5 years old. /eli5 &lt;topic&gt; | n!eli5 &lt;topic&gt; n!eli5 black holes | n!eli5 why the sky is blue config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>eli5</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Explain a topic like I&#x27;m 5 years old.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/eli5 &lt;topic&gt; | n!eli5 &lt;topic&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!eli5 black holes | n!eli5 why the sky is blue</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="help command reference. use /help &lt;command&gt; for detail, or /help &lt;category&gt; to browse. /help [command|category|page] | n!help [command|category|page] n!help | n!help ban | n!help banning | n!help 3 config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>help</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Command reference. Use /help &lt;command&gt; for detail, or /help &lt;category&gt; to browse.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/help [command|category|page] | n!help [command|category|page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!help | n!help ban | n!help banning | n!help 3</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="invite get nanobot&#x27;s invite link with the correct permissions. /invite | n!invite n!invite config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>invite</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get NanoBot&#x27;s invite link with the correct permissions.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/invite | n!invite</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!invite</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="ping check nanobot&#x27;s latency. /ping | n!ping n!ping config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>ping</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Check NanoBot&#x27;s latency.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ping | n!ping</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!ping</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="prefix view or change nanobot&#x27;s prefix for this server. /prefix [new_prefix] | n!prefix [new_prefix] n!prefix ? config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>prefix</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>View or change NanoBot&#x27;s prefix for this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/prefix [new_prefix] | n!prefix [new_prefix]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!prefix ?</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="stats nanobot runtime statistics since last start. /stats | n!stats n!stats config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>stats</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>NanoBot runtime statistics since last start.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/stats | n!stats</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!stats</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="support get a link to the nanobot support server. /support | n!support n!support config &amp; info none helpserver">
+  <div class="command-card__top">
+    <h3><code>support</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a link to the NanoBot support server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/support | n!support</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!support</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> helpserver</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Utility">
+  <div class="section-head">
+    <p class="eyebrow">Utility</p>
+    <h2>Voting <span class="count-pill">1</span></h2>
+    <p>Bot list vote tracking and vote status checks.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="vote vote for nanobot on bot lists and see your voting status. /vote [notify [on|off]] | n!vote [notify [on|off]] n!vote | n!vote notify off voting none ">
+  <div class="command-card__top">
+    <h3><code>vote</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Vote for NanoBot on bot lists and see your voting status.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/vote [notify [on|off]] | n!vote [notify [on|off]]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!vote | n!vote notify off</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Fun">
+  <div class="section-head">
+    <p class="eyebrow">Fun</p>
+    <h2>Images <span class="count-pill">4</span></h2>
+    <p>Random image commands backed by cached image endpoints.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="husbando get a random husbando image. /husbando | n!husbando n!husbando images none ">
+  <div class="command-card__top">
+    <h3><code>husbando</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random husbando image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/husbando | n!husbando</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!husbando</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="kitsune get a random kitsune image. /kitsune | n!kitsune n!kitsune images none ">
+  <div class="command-card__top">
+    <h3><code>kitsune</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random kitsune image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/kitsune | n!kitsune</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!kitsune</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="neko get a random neko image. /neko | n!neko n!neko images none ">
+  <div class="command-card__top">
+    <h3><code>neko</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random neko image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/neko | n!neko</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!neko</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="waifu get a random waifu image. /waifu | n!waifu n!waifu images none ">
+  <div class="command-card__top">
+    <h3><code>waifu</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random waifu image.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/waifu | n!waifu</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!waifu</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Fun">
+  <div class="section-head">
+    <p class="eyebrow">Fun</p>
+    <h2>Fun <span class="count-pill">6</span></h2>
+    <p>Games and lightweight entertainment commands.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="8ball ask a yes/no question and the magic 8-ball will answer. n!8ball &lt;question&gt; n!8ball will i pass my exam? fun none eightball magic8ball">
+  <div class="command-card__top">
+    <h3><code>8ball</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Ask a yes/no question and the magic 8-ball will answer.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!8ball &lt;question&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!8ball Will I pass my exam?</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> eightball, magic8ball</p>
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="fml get a random fml story from fmylife.com. n!fml n!fml fun none ">
+  <div class="command-card__top">
+    <h3><code>fml</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random FML story from fmylife.com.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!fml</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!fml</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="rps challenge someone to rock paper scissors! leave user empty to play vs the bot. n!rps [user] n!rps @snow fun none rockpaperscissors">
+  <div class="command-card__top">
+    <h3><code>rps</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Challenge someone to Rock Paper Scissors! Leave user empty to play vs the bot.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!rps [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!rps @Snow</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> rockpaperscissors</p>
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="ship smashes two users&#x27; names together and gives a compatibility score. n!ship &lt;user1&gt; &lt;user2&gt; n!ship @snow @nano fun none ">
+  <div class="command-card__top">
+    <h3><code>ship</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Smashes two users&#x27; names together and gives a compatibility score.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!ship &lt;user1&gt; &lt;user2&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!ship @Snow @Nano</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="thigh get a random anime thigh pic (sfw). n!thigh n!thigh fun none thighs legs leg">
+  <div class="command-card__top">
+    <h3><code>thigh</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Get a random anime thigh pic (SFW).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!thigh</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!thigh</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> thighs, legs, leg</p>
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="wyr start a would you rather poll with buttons. duration examples: 30m, 2h, 1h30m. default: 1h. max: 24h. n!wyr [duration] n!wyr 30m fun none wouldyourather">
+  <div class="command-card__top">
+    <h3><code>wyr</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Start a Would You Rather poll with buttons. Duration examples: 30m, 2h, 1h30m. Default: 1h. Max: 24h.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!wyr [duration]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!wyr 30m</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> wouldyourather</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Fun">
+  <div class="section-head">
+    <p class="eyebrow">Fun</p>
+    <h2>Fun Social <span class="count-pill">26</span></h2>
+    <p>Targeted social action commands from the fun system.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="bite bite someone! n!bite [user] n!bite @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>bite</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Bite someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!bite [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bite @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="blowkiss blow someone a kiss! n!blowkiss [user] n!blowkiss @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>blowkiss</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Blow someone a kiss!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!blowkiss [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!blowkiss @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="bonk bonk someone! n!bonk [user] n!bonk @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>bonk</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Bonk someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!bonk [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bonk @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="boop boop someone&#x27;s snoot! n!boop [user] n!boop @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>boop</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Boop someone&#x27;s snoot!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!boop [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!boop @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="cheekskiss give someone a sweet cheek kiss! n!cheekskiss [user] n!cheekskiss @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>cheekskiss</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Give someone a sweet cheek kiss!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!cheekskiss [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cheekskiss @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="cuddle cuddle someone! n!cuddle [user] n!cuddle @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>cuddle</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Cuddle someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!cuddle [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cuddle @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="feed feed someone! n!feed [user] n!feed @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>feed</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Feed someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!feed [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!feed @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="funkick kick someone (for fun)! n!funkick [user] n!funkick @member fun social none fk">
+  <div class="command-card__top">
+    <h3><code>funkick</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Kick someone (for fun)!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!funkick [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!funkick @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> fk</p>
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="handhold hold someone&#x27;s hand! n!handhold [user] n!handhold @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>handhold</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Hold someone&#x27;s hand!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!handhold [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!handhold @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="handshake shake someone&#x27;s hand! n!handshake [user] n!handshake @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>handshake</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Shake someone&#x27;s hand!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!handshake [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!handshake @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="highfive high five someone! n!highfive [user] n!highfive @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>highfive</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>High five someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!highfive [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!highfive @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="hug give someone a warm hug. n!hug [user] n!hug @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>hug</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Give someone a warm hug.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!hug [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!hug @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="kiss kiss someone! n!kiss [user] n!kiss @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>kiss</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Kiss someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!kiss [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!kiss @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="lappillow offer someone a lap pillow! n!lappillow [user] n!lappillow @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>lappillow</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Offer someone a lap pillow!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!lappillow [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!lappillow @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="nom nom on someone! n!nom [user] n!nom @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>nom</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Nom on someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!nom [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!nom @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="pat give someone a comforting head pat. n!pat [user] n!pat @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>pat</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Give someone a comforting head pat.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!pat [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!pat @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="peck give someone a quick peck! n!peck [user] n!peck @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>peck</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Give someone a quick peck!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!peck [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!peck @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="poke poke someone! n!poke [user] n!poke @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>poke</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Poke someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!poke [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!poke @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="punch punch someone! n!punch [user] n!punch @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>punch</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Punch someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!punch [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!punch @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="shake shake someone! n!shake [user] n!shake @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>shake</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Shake someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shake [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shake @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="shoot finger guns! n!shoot [user] n!shoot @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>shoot</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Finger guns!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shoot [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shoot @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="slap slap someone! n!slap [user] n!slap @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>slap</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Slap someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!slap [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!slap @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="stare stare at someone! n!stare [user] n!stare @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>stare</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Stare at someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!stare [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!stare @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="tickle tickle someone! n!tickle [user] n!tickle @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>tickle</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Tickle someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!tickle [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!tickle @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="wave wave at someone! n!wave [user] n!wave @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>wave</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Wave at someone!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!wave [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!wave @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="yeet yeet someone into orbit! n!yeet [user] n!yeet @member fun social none ">
+  <div class="command-card__top">
+    <h3><code>yeet</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Yeet someone into orbit!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!yeet [user]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!yeet @member</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Fun">
+  <div class="section-head">
+    <p class="eyebrow">Fun</p>
+    <h2>React <span class="count-pill">33</span></h2>
+    <p>Solo reaction commands for quick expression.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="angry be angry! n!angry n!angry react none ">
+  <div class="command-card__top">
+    <h3><code>angry</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Be angry!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!angry</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!angry</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="baka yell baka! n!baka n!baka react none ">
+  <div class="command-card__top">
+    <h3><code>baka</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Yell BAKA!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!baka</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!baka</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="bleh stick your tongue out! n!bleh n!bleh react none ">
+  <div class="command-card__top">
+    <h3><code>bleh</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Stick your tongue out!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!bleh</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bleh</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="blush blush! n!blush n!blush react none ">
+  <div class="command-card__top">
+    <h3><code>blush</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Blush!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!blush</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!blush</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="bored be bored. n!bored n!bored react none ">
+  <div class="command-card__top">
+    <h3><code>bored</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Be bored.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!bored</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bored</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="clap clap! n!clap n!clap react none ">
+  <div class="command-card__top">
+    <h3><code>clap</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Clap!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!clap</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!clap</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="confused be confused. n!confused n!confused react none ">
+  <div class="command-card__top">
+    <h3><code>confused</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Be confused.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!confused</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!confused</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="cry express your sadness. n!cry n!cry react none ">
+  <div class="command-card__top">
+    <h3><code>cry</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Express your sadness.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!cry</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cry</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="dance show off your moves! n!dance n!dance react none ">
+  <div class="command-card__top">
+    <h3><code>dance</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show off your moves!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!dance</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!dance</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="facepalm facepalm. n!facepalm n!facepalm react none ">
+  <div class="command-card__top">
+    <h3><code>facepalm</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Facepalm.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!facepalm</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!facepalm</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="happy be happy! n!happy n!happy react none ">
+  <div class="command-card__top">
+    <h3><code>happy</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Be happy!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!happy</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!happy</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="laugh laugh out loud! n!laugh n!laugh react none ">
+  <div class="command-card__top">
+    <h3><code>laugh</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Laugh out loud!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!laugh</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!laugh</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="lurk lurk in the shadows. n!lurk n!lurk react none ">
+  <div class="command-card__top">
+    <h3><code>lurk</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Lurk in the shadows.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!lurk</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!lurk</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="nod nod. n!nod n!nod react none ">
+  <div class="command-card__top">
+    <h3><code>nod</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Nod.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!nod</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!nod</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="nope nope! n!nope n!nope react none ">
+  <div class="command-card__top">
+    <h3><code>nope</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Nope!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!nope</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!nope</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="nya go nya~! n!nya n!nya react none ">
+  <div class="command-card__top">
+    <h3><code>nya</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Go nya~!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!nya</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!nya</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="pout pout! n!pout n!pout react none ">
+  <div class="command-card__top">
+    <h3><code>pout</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Pout!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!pout</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!pout</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="run run away! n!run n!run react none ">
+  <div class="command-card__top">
+    <h3><code>run</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Run away!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!run</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!run</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="salute salute! n!salute n!salute react none ">
+  <div class="command-card__top">
+    <h3><code>salute</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Salute!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!salute</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!salute</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="shocked be shocked! n!shocked n!shocked react none ">
+  <div class="command-card__top">
+    <h3><code>shocked</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Be shocked!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shocked</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shocked</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="shrug shrug it off. n!shrug n!shrug react none ">
+  <div class="command-card__top">
+    <h3><code>shrug</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Shrug it off.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shrug</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shrug</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="sip take a sip. n!sip n!sip react none ">
+  <div class="command-card__top">
+    <h3><code>sip</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Take a sip.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sip</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!sip</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="sleep sleepy time. n!sleep n!sleep react none ">
+  <div class="command-card__top">
+    <h3><code>sleep</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Sleepy time.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sleep</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!sleep</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="smile smile! n!smile n!smile react none ">
+  <div class="command-card__top">
+    <h3><code>smile</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Smile!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!smile</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!smile</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="smug look smug. n!smug n!smug react none ">
+  <div class="command-card__top">
+    <h3><code>smug</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Look smug.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!smug</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!smug</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="spin spin! n!spin n!spin react none ">
+  <div class="command-card__top">
+    <h3><code>spin</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Spin!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!spin</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!spin</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="tableflip flip the table! n!tableflip n!tableflip react none ">
+  <div class="command-card__top">
+    <h3><code>tableflip</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Flip the table!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!tableflip</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!tableflip</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="teehee giggle! n!teehee n!teehee react none ">
+  <div class="command-card__top">
+    <h3><code>teehee</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Giggle!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!teehee</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!teehee</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="think think hard. n!think n!think react none ">
+  <div class="command-card__top">
+    <h3><code>think</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Think hard.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!think</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!think</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="thumbsup give a thumbs up! n!thumbsup n!thumbsup react none ">
+  <div class="command-card__top">
+    <h3><code>thumbsup</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Give a thumbs up!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!thumbsup</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!thumbsup</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="wag wag your tail! n!wag n!wag react none ">
+  <div class="command-card__top">
+    <h3><code>wag</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Wag your tail!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!wag</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!wag</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="wink wink! n!wink n!wink react none ">
+  <div class="command-card__top">
+    <h3><code>wink</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Wink!</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!wink</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!wink</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Fun" data-access="Public" data-search="yawn yawn. n!yawn n!yawn react none ">
+  <div class="command-card__top">
+    <h3><code>yawn</code></h3>
+    <div class="badge-row">
+      <span class="badge">Fun</span>
+      <span class="badge">Prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Yawn.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!yawn</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!yawn</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Owner">
+  <div class="section-head">
+    <p class="eyebrow">Owner</p>
+    <h2>Owner Admin <span class="count-pill">15</span></h2>
+    <p>Bot-owner maintenance commands for reloads, updates, sync, logs, and runtime control.</p>
+  </div>
+  <div class="command-grid">
+    
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="cachestats show cache db statistics (fml, wyr, images) n!cachestats n!cachestats owner admin none cs">
+  <div class="command-card__top">
+    <h3><code>cachestats</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>show cache DB statistics (FML, WYR, images)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!cachestats</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!cachestats</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> cs</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="config dm-only: show/get/set config values n!config &lt;action&gt; [key] [value] n!config &lt;action&gt; [key] [value] owner admin none cfg">
+  <div class="command-card__top">
+    <h3><code>config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>DM-only: show/get/set config values</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> cfg</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="fmlpurge wipe all cached fml stories (forces re-scrape) n!fmlpurge n!fmlpurge owner admin none ">
+  <div class="command-card__top">
+    <h3><code>fmlpurge</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>wipe all cached FML stories (forces re-scrape)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!fmlpurge</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!fmlpurge</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="logs tail the log file right in discord n!logs [lines] n!logs [lines] owner admin none log">
+  <div class="command-card__top">
+    <h3><code>logs</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>tail the log file right in Discord</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!logs [lines]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!logs [lines]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> log</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="reload hot-reload one cog or every cog n!reload [cog] n!reload [cog] owner admin none rl">
+  <div class="command-card__top">
+    <h3><code>reload</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>hot-reload one cog or every cog</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!reload [cog]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reload [cog]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> rl</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="reloadconfig re-read config.ini without restarting n!reloadconfig n!reloadconfig owner admin none rlc rlconfig">
+  <div class="command-card__top">
+    <h3><code>reloadconfig</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>re-read config.ini without restarting</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!reloadconfig</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reloadconfig</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> rlc, rlconfig</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="restart graceful shutdown then re-exec the process n!restart n!restart owner admin none reboot rs">
+  <div class="command-card__top">
+    <h3><code>restart</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>graceful shutdown then re-exec the process</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!restart</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!restart</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> reboot, rs</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="scrape manually trigger the daily content cache scrape n!scrape n!scrape owner admin none ">
+  <div class="command-card__top">
+    <h3><code>scrape</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>manually trigger the daily content cache scrape</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!scrape</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!scrape</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="servers  n!servers [page] n!servers [page] owner admin none guilds serverlist">
+  <div class="command-card__top">
+    <h3><code>servers</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p></p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!servers [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!servers [page]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> guilds, serverlist</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="setloglevel change log level live and persist to config.ini n!setloglevel &lt;level&gt; n!setloglevel &lt;level&gt; owner admin none loglevel loglvl">
+  <div class="command-card__top">
+    <h3><code>setloglevel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>change log level live and persist to config.ini</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!setloglevel &lt;level&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!setloglevel &lt;level&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> loglevel, loglvl</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="shutdown graceful shutdown (flushes logs, closes connection) n!shutdown n!shutdown owner admin none die stop">
+  <div class="command-card__top">
+    <h3><code>shutdown</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>graceful shutdown (flushes logs, closes connection)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!shutdown</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shutdown</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> die, stop</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="sync push slash commands to discord (global or one guild) n!sync [target] [guild_id] n!sync [target] [guild_id] owner admin none ">
+  <div class="command-card__top">
+    <h3><code>sync</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>push slash commands to Discord (global or one guild)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sync [target] [guild_id]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!sync [target] [guild_id]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="unload unload a single cog without restarting n!unload &lt;cog&gt; n!unload &lt;cog&gt; owner admin none ul">
+  <div class="command-card__top">
+    <h3><code>unload</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>unload a single cog without restarting</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!unload &lt;cog&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unload &lt;cog&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> ul</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="update git pull + reload all cogs (no slash command sync) n!update n!update owner admin none pull">
+  <div class="command-card__top">
+    <h3><code>update</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>git pull + reload all cogs (no slash command sync)</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!update</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!update</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> pull</p>
+</article>
+
+<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="upgrade git pull + pip install + spawn new process + close n!upgrade n!upgrade owner admin none deploy ud">
+  <div class="command-card__top">
+    <h3><code>upgrade</code></h3>
+    <div class="badge-row">
+      <span class="badge">Owner</span>
+      <span class="badge">Prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>git pull + pip install + spawn new process + close</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!upgrade</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!upgrade</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+  <p class='meta-line'><strong>Aliases</strong> deploy, ud</p>
+</article>
+
+  </div>
+</section>
+
+    </main>
+  </div>
+  <nav class="dock" aria-label="Mobile">
+    <a class='dock__link' href='index.html'>Overview</a><a class='dock__link is-active' href='commands.html'>Commands</a><a class='dock__link' href='setup.html'>Setup</a><a class='dock__link' href='self-hosting.html'>Self-Hosting</a><a class='dock__link' href='faq.html'>FAQ</a>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>

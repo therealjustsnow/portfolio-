@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Setup | NanoBot Docs</title>
+  <meta name="description" content="Shortest path from clone to working bot.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="setup.html">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">
+          <span class="brand__eyebrow">NanoBot docs</span>
+          <strong class="brand__name">Built for mobile mods</strong>
+        </a>
+        <nav class="topnav" aria-label="Primary">
+          <a class='topnav__link' href='index.html'>Overview</a><a class='topnav__link' href='commands.html'>Commands</a><a class='topnav__link is-active' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a>
+        </nav>
+      </div>
+    </header>
+    <main class="page">
+      
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Quick start</p>
+    <h1>Setup guide</h1>
+    <p class="lede">Fastest path from fresh clone to working NanoBot instance, with mobile-friendly chunks instead of one long wall.</p>
+    <div class="button-row"><a class='button' href='commands.html'>Commands</a><a class='button' href='faq.html'>FAQ</a></div>
+  </div>
+  <div class="hero__card">
+    <div class="hero-card__stripe"></div>
+    <p class="hero-card__label">Phone-first ideas</p>
+    <ul class="bullet-list">
+      <li>Big tap targets and short sections.</li>
+      <li>Separate pages instead of one long dump.</li>
+      <li>Command docs grouped by moderation job, not raw source file.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="step-grid">
+    <article class="step-card">
+      <span class="step-card__num">1</span>
+      <h2>Clone and enter repo</h2>
+      <pre><code>git clone https://github.com/therealjustsnow/NanoBot.git
+cd NanoBot</code></pre>
+    </article>
+    <article class="step-card">
+      <span class="step-card__num">2</span>
+      <h2>Create env and install</h2>
+      <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt</code></pre>
+    </article>
+    <article class="step-card">
+      <span class="step-card__num">3</span>
+      <h2>Create config.ini</h2>
+      <p>Copy <code>example_config.ini</code> to <code>config.ini</code>, then fill at least bot token.</p>
+      <pre><code>[bot]
+token = YOUR_BOT_TOKEN_HERE
+default_prefix = n!
+owner_id =
+
+[groq]
+groq_api_key =</code></pre>
+    </article>
+    <article class="step-card">
+      <span class="step-card__num">4</span>
+      <h2>Enable Discord intents</h2>
+      <ul class="bullet-list">
+        <li>Server Members Intent</li>
+        <li>Message Content Intent</li>
+      </ul>
+      <p>Without both, prefix commands and several moderation flows break.</p>
+    </article>
+    <article class="step-card">
+      <span class="step-card__num">5</span>
+      <h2>Run preflight</h2>
+      <pre><code>python run.py</code></pre>
+      <p>Repo ships preflight checker before full bot launch.</p>
+    </article>
+    <article class="step-card">
+      <span class="step-card__num">6</span>
+      <h2>Launch bot</h2>
+      <pre><code>python main.py</code></pre>
+      <p>Logs write to <code>logs/nanobot.log</code>.</p>
+    </article>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="split-card">
+    <div>
+      <p class="eyebrow">Minimal success path</p>
+      <h2>What is truly required</h2>
+      <ul class="bullet-list">
+        <li>Python 3.11 or newer.</li>
+        <li>Discord bot token.</li>
+        <li>Enabled Server Members and Message Content intents.</li>
+        <li>Installed requirements from <code>requirements.txt</code>.</li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">Optional now, useful later</p>
+      <h2>Features that need extra config</h2>
+      <ul class="bullet-list">
+        <li><code>GROQ_API_KEY</code> or <code>[groq] groq_api_key</code> for <code>/eli5</code>.</li>
+        <li>Bot-list tokens for vote webhooks and posting.</li>
+        <li><code>[bot] owner_id</code> if you want explicit owner override.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">If upgrading</p>
+    <h2>Old JSON data migration</h2>
+    <p>Repo includes migration path for older JSON storage.</p>
+  </div>
+  <pre><code>python migrate.py</code></pre>
+</section>
+
+    </main>
+  </div>
+  <nav class="dock" aria-label="Mobile">
+    <a class='dock__link' href='index.html'>Overview</a><a class='dock__link' href='commands.html'>Commands</a><a class='dock__link is-active' href='setup.html'>Setup</a><a class='dock__link' href='self-hosting.html'>Self-Hosting</a><a class='dock__link' href='faq.html'>FAQ</a>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
