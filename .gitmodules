@@ -1,0 +1,3 @@
+[submodule "external/NanoBot"]
+	path = external/NanoBot
+	url = https://github.com/therealjustsnow/NanoBot
