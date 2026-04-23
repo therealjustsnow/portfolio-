@@ -13,7 +13,7 @@
       <div class="site-header__inner">
         <a class="brand" href="/nanobot-docs.html">
           <span class="brand__eyebrow">NanoBot docs</span>
-          <strong class="brand__name">Built for mobile mods</strong>
+          <strong class="brand__name">Built for mobile moderators</strong>
         </a>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="topnav" aria-label="Primary">
@@ -47,9 +47,9 @@ python run.py</code></pre>
     </div>
     <div>
       <p class="eyebrow">Docker path</p>
-      <h2>Container option in repo</h2>
+      <h2>Container option in the repository</h2>
       <pre><code>docker compose up --build -d</code></pre>
-      <p>Compose mounts <code>config.ini</code>, <code>data/</code>, and <code>logs/</code> from host.</p>
+      <p>Docker Compose mounts <code>config.ini</code>, <code>data/</code>, and <code>logs/</code> from the host.</p>
     </div>
   </div>
 </section>
@@ -57,7 +57,7 @@ python run.py</code></pre>
 <section class="stack">
   <div class="section-head">
     <p class="eyebrow">Persistence</p>
-    <h2>Files and directories repo expects</h2>
+    <h2>Files and directories the repository expects</h2>
     <p>SQLite and logs stay local. No cloud database required.</p>
   </div>
   <div class="card-grid">
@@ -96,15 +96,15 @@ python run.py</code></pre>
   <div class="section-head">
     <p class="eyebrow">Dependency base</p>
     <h2>Runtime packages</h2>
-    <p><code>discord.py&gt;=2.3.0 aiosqlite&gt;=0.19.0 aiohttp&gt;=3.9.0 psutil&gt;=5.9.0 Pillow&gt;=10.0.0</code></p>
+    <p><code>discord.py &gt;= 2.3.0, aiosqlite &gt;= 0.19.0, aiohttp &gt;= 3.9.0, psutil &gt;= 5.9.0, Pillow &gt;= 10.0.0</code></p>
   </div>
 </section>
 
 <section class="stack">
   <div class="section-head">
     <p class="eyebrow">Config reference</p>
-    <h2>example_config.ini broken into sections</h2>
-    <p>Descriptions below come from comments in repo's sample config.</p>
+    <h2><code>example_config.ini</code> broken into sections</h2>
+    <p>The descriptions below come from comments in the repository's sample config.</p>
   </div>
   <div class="config-grid">
     

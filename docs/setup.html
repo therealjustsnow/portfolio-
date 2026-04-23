@@ -13,7 +13,7 @@
       <div class="site-header__inner">
         <a class="brand" href="/nanobot-docs.html">
           <span class="brand__eyebrow">NanoBot docs</span>
-          <strong class="brand__name">Built for mobile mods</strong>
+          <strong class="brand__name">Built for mobile moderators</strong>
         </a>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="topnav" aria-label="Primary">
@@ -30,7 +30,7 @@
   <div class="hero__copy">
     <p class="eyebrow">Quick start</p>
     <h1>Setup guide</h1>
-    <p class="lede">Fastest path from fresh clone to working NanoBot instance, with mobile-friendly chunks instead of one long wall.</p>
+    <p class="lede">The fastest path from a fresh clone to a working NanoBot instance, presented in mobile-friendly steps.</p>
     <div class="button-row"><a class='button' href='commands.html'>Commands</a><a class='button' href='faq.html'>FAQ</a></div>
   </div>
 </section>
@@ -45,7 +45,7 @@ cd NanoBot</code></pre>
     </article>
     <article class="step-card">
       <span class="step-card__num">2</span>
-      <h2>Create env and install</h2>
+      <h2>Create a virtual environment and install dependencies</h2>
       <pre><code>python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt</code></pre>
@@ -53,7 +53,7 @@ pip install -r requirements.txt</code></pre>
     <article class="step-card">
       <span class="step-card__num">3</span>
       <h2>Create config.ini</h2>
-      <p>Copy <code>example_config.ini</code> to <code>config.ini</code>, then fill at least bot token.</p>
+      <p>Copy <code>example_config.ini</code> to <code>config.ini</code>, then fill in at least the bot token.</p>
       <pre><code>[bot]
 token = YOUR_BOT_TOKEN_HERE
 default_prefix = n!
@@ -69,13 +69,13 @@ groq_api_key =</code></pre>
         <li>Server Members Intent</li>
         <li>Message Content Intent</li>
       </ul>
-      <p>Without both, prefix commands and several moderation flows break.</p>
+      <p>Without both intents, prefix commands and several moderation workflows will fail.</p>
     </article>
     <article class="step-card">
       <span class="step-card__num">5</span>
       <h2>Run preflight</h2>
       <pre><code>python run.py</code></pre>
-      <p>Repo ships preflight checker before full bot launch.</p>
+      <p>The repository includes a preflight check before a full bot launch.</p>
     </article>
     <article class="step-card">
       <span class="step-card__num">6</span>
@@ -90,7 +90,7 @@ groq_api_key =</code></pre>
   <div class="split-card">
     <div>
       <p class="eyebrow">Minimal success path</p>
-      <h2>What is truly required</h2>
+      <h2>What is required</h2>
       <ul class="bullet-list">
         <li>Python 3.11 or newer.</li>
         <li>Discord bot token.</li>
@@ -114,7 +114,7 @@ groq_api_key =</code></pre>
   <div class="section-head">
     <p class="eyebrow">If upgrading</p>
     <h2>Old JSON data migration</h2>
-    <p>Repo includes migration path for older JSON storage.</p>
+    <p>The repository includes a migration path for older JSON storage.</p>
   </div>
   <pre><code>python migrate.py</code></pre>
 </section>

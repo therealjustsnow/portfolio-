@@ -13,7 +13,7 @@
       <div class="site-header__inner">
         <a class="brand" href="/nanobot-docs.html">
           <span class="brand__eyebrow">NanoBot docs</span>
-          <strong class="brand__name">Built for mobile mods</strong>
+          <strong class="brand__name">Built for mobile moderators</strong>
         </a>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="topnav" aria-label="Primary">
@@ -28,18 +28,18 @@
       
 <section class="hero">
   <div class="hero__copy">
-    <p class="eyebrow">Phone-friendly command browser</p>
+    <p class="eyebrow">Mobile-friendly command browser</p>
     <h1>Command reference</h1>
-    <p class="lede">Grouped for actual moderation tasks, not buried in one giant page. Search by command name, category, alias, or permission.</p>
+    <p class="lede">Organized around real moderation tasks instead of one giant page. Search by command name, category, alias, or permission.</p>
     <div class="button-row"><a class='button' href='setup.html'>Setup guide</a><a class='button' href='self-hosting.html'>Self-hosting</a></div>
   </div>
   <div class="hero__card">
     <div class="hero-card__stripe"></div>
-    <p class="hero-card__label">Phone-first ideas</p>
+    <p class="hero-card__label">Designed for phones first</p>
     <ul class="bullet-list">
       <li>Big tap targets and short sections.</li>
-      <li>Separate pages instead of one long dump.</li>
-      <li>Command docs grouped by moderation job, not raw source file.</li>
+      <li>Separate pages instead of one long scroll.</li>
+      <li>Command docs grouped by moderation tasks, not source files.</li>
     </ul>
   </div>
 </section>
@@ -48,16 +48,15 @@
   <div class="toolbar">
     <label class="search">
       <span class="search__label">Search commands</span>
-      <input id="command-search" type="search" placeholder="Try ban, reminders, automod, prefix, owner">
+      <input id="command-search" type="search" placeholder="Try ban, reminders, automod, prefix">
     </label>
     <div class="chip-row" role="tablist" aria-label="Command cluster filter">
       <button class="chip is-active" data-filter="All" type="button">All</button>
       <button class="chip" data-filter="Moderation" type="button">Moderation</button>
       <button class="chip" data-filter="Utility" type="button">Utility</button>
       <button class="chip" data-filter="Fun" type="button">Fun</button>
-      <button class="chip" data-filter="Owner" type="button">Owner</button>
     </div>
-    <p class="toolbar__note">Restricted cards stay in section flow, but also surface under Owner/Admin area on this page.</p>
+    <p class="toolbar__note">Owner-only commands live in the Self-Hosting guide. This page only lists public and server staff commands.</p>
   </div>
 </section>
 
@@ -2872,256 +2871,6 @@
   </div>
 </section>
 
-<section class="command-section" data-cluster="Owner">
-  <div class="section-head">
-    <p class="eyebrow">Owner</p>
-    <h2>Owner Admin <span class="count-pill">15</span></h2>
-    <p>Bot-owner maintenance commands for reloads, updates, sync, logs, and runtime control.</p>
-  </div>
-  <div class="command-grid">
-    
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="cachestats show cache db statistics (fml, wyr, images) n!cachestats n!cachestats owner admin none cs">
-  <div class="command-card__top">
-    <h3><code>cachestats</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>show cache DB statistics (FML, WYR, images)</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!cachestats</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!cachestats</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> cs</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="config dm-only: show/get/set config values n!config &lt;action&gt; [key] [value] n!config &lt;action&gt; [key] [value] owner admin none cfg">
-  <div class="command-card__top">
-    <h3><code>config</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>DM-only: show/get/set config values</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> cfg</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="fmlpurge wipe all cached fml stories (forces re-scrape) n!fmlpurge n!fmlpurge owner admin none ">
-  <div class="command-card__top">
-    <h3><code>fmlpurge</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>wipe all cached FML stories (forces re-scrape)</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!fmlpurge</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!fmlpurge</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="logs tail the log file right in discord n!logs [lines] n!logs [lines] owner admin none log">
-  <div class="command-card__top">
-    <h3><code>logs</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>tail the log file right in Discord</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!logs [lines]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!logs [lines]</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> log</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="reload hot-reload one cog or every cog n!reload [cog] n!reload [cog] owner admin none rl">
-  <div class="command-card__top">
-    <h3><code>reload</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>hot-reload one cog or every cog</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!reload [cog]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!reload [cog]</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> rl</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="reloadconfig re-read config.ini without restarting n!reloadconfig n!reloadconfig owner admin none rlc rlconfig">
-  <div class="command-card__top">
-    <h3><code>reloadconfig</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>re-read config.ini without restarting</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!reloadconfig</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!reloadconfig</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> rlc, rlconfig</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="restart graceful shutdown then re-exec the process n!restart n!restart owner admin none reboot rs">
-  <div class="command-card__top">
-    <h3><code>restart</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>graceful shutdown then re-exec the process</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!restart</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!restart</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> reboot, rs</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="scrape manually trigger the daily content cache scrape n!scrape n!scrape owner admin none ">
-  <div class="command-card__top">
-    <h3><code>scrape</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>manually trigger the daily content cache scrape</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!scrape</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!scrape</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="servers  n!servers [page] n!servers [page] owner admin none guilds serverlist">
-  <div class="command-card__top">
-    <h3><code>servers</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p></p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!servers [page]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!servers [page]</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> guilds, serverlist</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="setloglevel change log level live and persist to config.ini n!setloglevel &lt;level&gt; n!setloglevel &lt;level&gt; owner admin none loglevel loglvl">
-  <div class="command-card__top">
-    <h3><code>setloglevel</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>change log level live and persist to config.ini</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!setloglevel &lt;level&gt;</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!setloglevel &lt;level&gt;</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> loglevel, loglvl</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="shutdown graceful shutdown (flushes logs, closes connection) n!shutdown n!shutdown owner admin none die stop">
-  <div class="command-card__top">
-    <h3><code>shutdown</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>graceful shutdown (flushes logs, closes connection)</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!shutdown</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!shutdown</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> die, stop</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="sync push slash commands to discord (global or one guild) n!sync [target] [guild_id] n!sync [target] [guild_id] owner admin none ">
-  <div class="command-card__top">
-    <h3><code>sync</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>push slash commands to Discord (global or one guild)</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!sync [target] [guild_id]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!sync [target] [guild_id]</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="unload unload a single cog without restarting n!unload &lt;cog&gt; n!unload &lt;cog&gt; owner admin none ul">
-  <div class="command-card__top">
-    <h3><code>unload</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>unload a single cog without restarting</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!unload &lt;cog&gt;</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!unload &lt;cog&gt;</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> ul</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="update git pull + reload all cogs (no slash command sync) n!update n!update owner admin none pull">
-  <div class="command-card__top">
-    <h3><code>update</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>git pull + reload all cogs (no slash command sync)</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!update</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!update</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> pull</p>
-</article>
-
-<article class="command-card" data-cluster="Owner" data-access="Restricted" data-search="upgrade git pull + pip install + spawn new process + close n!upgrade n!upgrade owner admin none deploy ud">
-  <div class="command-card__top">
-    <h3><code>upgrade</code></h3>
-    <div class="badge-row">
-      <span class="badge">Owner</span>
-      <span class="badge">Prefix</span>
-      <span class="badge badge--strong">Restricted</span>
-    </div>
-  </div>
-  <p>git pull + pip install + spawn new process + close</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!upgrade</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!upgrade</code></p>
-  <p class="meta-line"><strong>Permission</strong> None</p>
-  <p class='meta-line'><strong>Aliases</strong> deploy, ud</p>
-</article>
-
-  </div>
-</section>
 
     </main>
   </div>
