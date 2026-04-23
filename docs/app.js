@@ -1,4 +1,59 @@
 (() => {
+  const menuButton = document.querySelector("[data-menu-toggle]");
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+  const scrollTopButton = document.querySelector("[data-scroll-top]");
+
+  if (menuButton && mobileMenu) {
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation menu");
+      mobileMenu.hidden = true;
+    };
+
+    const openMenu = () => {
+      menuButton.setAttribute("aria-expanded", "true");
+      menuButton.setAttribute("aria-label", "Close navigation menu");
+      mobileMenu.hidden = false;
+    };
+
+    menuButton.addEventListener("click", () => {
+      const expanded = menuButton.getAttribute("aria-expanded") === "true";
+      if (expanded) closeMenu();
+      else openMenu();
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      if (mobileMenu.hidden) return;
+      if (mobileMenu.contains(target) || menuButton.contains(target)) return;
+      closeMenu();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !mobileMenu.hidden) {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
+  }
+
+  if (scrollTopButton) {
+    const toggleScrollTop = () => {
+      scrollTopButton.classList.toggle("is-visible", window.scrollY > 260);
+    };
+
+    window.addEventListener("scroll", toggleScrollTop, { passive: true });
+    scrollTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    toggleScrollTop();
+  }
+
   const page = document.body.dataset.page;
   if (page !== "commands.html") return;
 
