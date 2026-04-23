@@ -459,8 +459,8 @@ h3 { font-size: 1.05rem; }
 }
 
 /* ── Toolbar / search ── */
-.toolbar { display: grid; gap: 1rem; padding: 1rem; }
-.search { display: grid; gap: .45rem; }
+.toolbar { display: grid; gap: 1rem; padding: 2rem; margin: 1rem; }
+.search { display: grid; gap: .45rem; l }
 .search__label { font-weight: 800; font-size: .9rem; }
 
 input[type="search"] {
@@ -488,7 +488,9 @@ input[type="search"]:focus {
 /* ── Filter chips ── */
 .chip {
   min-height: 44px;
-  padding: .55rem .95rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: .55rem 1rem;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--chip);
