@@ -331,7 +331,7 @@ h3 { font-size: 1.05rem; }
 }
 
 /* ── Button row ── */
-.button-row, .badge-row, .chip-row, .evidence-list {
+.button-row, .badge-row, .chip-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

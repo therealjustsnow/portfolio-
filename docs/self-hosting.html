@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Self-Hosting | NanoBot Docs</title>
   <meta name="description" content="Config, Docker, data paths, logs, and owner operations.">
+  <link rel="icon" type="image/png" href="/photos/favicon.png">
+  <link rel="apple-touch-icon" href="/photos/favicon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-page="self-hosting.html">
@@ -269,9 +271,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>show cache DB statistics (FML, WYR, images)</p>
+  <p>Show cache DB statistics for FML, WYR, and image pools.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!cachestats</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!cachestats</code></p>
   <p class='meta-line'><strong>Aliases</strong> cs</p>
 </article>
 
@@ -283,9 +284,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>DM-only: show/get/set config values</p>
+  <p>DM-only: show, get, or set config values without restarting.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!config &lt;action&gt; [key] [value]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!config set default_prefix !</code></p>
   <p class='meta-line'><strong>Aliases</strong> cfg</p>
 </article>
 
@@ -297,10 +298,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>wipe all cached FML stories (forces re-scrape)</p>
+  <p>Wipe all cached FML stories and force a fresh scrape on next run.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!fmlpurge</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!fmlpurge</code></p>
-  
+
 </article>
 
 <article class="command-card">
@@ -311,9 +311,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>tail the log file right in Discord</p>
+  <p>Print the last N lines of the log file directly in Discord. Defaults to 20 lines.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!logs [lines]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!logs [lines]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!logs 50</code></p>
   <p class='meta-line'><strong>Aliases</strong> log</p>
 </article>
 
@@ -325,9 +325,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>hot-reload one cog or every cog</p>
+  <p>Hot-reload one cog by name, or reload every cog if no argument given.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!reload [cog]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!reload [cog]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!reload moderation</code></p>
   <p class='meta-line'><strong>Aliases</strong> rl</p>
 </article>
 
@@ -339,9 +339,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>re-read config.ini without restarting</p>
+  <p>Re-read config.ini at runtime without restarting the bot.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!reloadconfig</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!reloadconfig</code></p>
   <p class='meta-line'><strong>Aliases</strong> rlc, rlconfig</p>
 </article>
 
@@ -353,9 +352,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>graceful shutdown then re-exec the process</p>
+  <p>Graceful shutdown then re-exec the process — equivalent to stop + start.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!restart</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!restart</code></p>
   <p class='meta-line'><strong>Aliases</strong> reboot, rs</p>
 </article>
 
@@ -367,10 +365,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>manually trigger the daily content cache scrape</p>
+  <p>Manually trigger the daily content cache scrape without waiting for the scheduler.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!scrape</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!scrape</code></p>
-  
+
 </article>
 
 <article class="command-card">
@@ -381,9 +378,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p></p>
+  <p>List all servers the bot is in, with member counts and IDs. Paginated.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!servers [page]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!servers [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!servers 2</code></p>
   <p class='meta-line'><strong>Aliases</strong> guilds, serverlist</p>
 </article>
 
@@ -395,9 +392,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>change log level live and persist to config.ini</p>
+  <p>Change the active log level immediately and persist the new value to config.ini.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!setloglevel &lt;level&gt;</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!setloglevel &lt;level&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!setloglevel DEBUG</code></p>
   <p class='meta-line'><strong>Aliases</strong> loglevel, loglvl</p>
 </article>
 
@@ -409,9 +406,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>graceful shutdown (flushes logs, closes connection)</p>
+  <p>Flush logs and close the Discord connection before exiting the process.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!shutdown</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!shutdown</code></p>
   <p class='meta-line'><strong>Aliases</strong> die, stop</p>
 </article>
 
@@ -423,10 +419,10 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>push slash commands to Discord (global or one guild)</p>
+  <p>Push slash command definitions to Discord — globally or scoped to a single guild.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!sync [target] [guild_id]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!sync [target] [guild_id]</code></p>
-  
+  <p class="meta-line"><strong>Example</strong> <code>n!sync guild 123456789012345678</code></p>
+
 </article>
 
 <article class="command-card">
@@ -437,9 +433,9 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>unload a single cog without restarting</p>
+  <p>Unload a single cog by name without restarting the bot.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!unload &lt;cog&gt;</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!unload &lt;cog&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!unload fun</code></p>
   <p class='meta-line'><strong>Aliases</strong> ul</p>
 </article>
 
@@ -451,9 +447,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>git pull + reload all cogs (no slash command sync)</p>
+  <p>Pull latest code from git and reload all cogs. Does not re-sync slash commands.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!update</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!update</code></p>
   <p class='meta-line'><strong>Aliases</strong> pull</p>
 </article>
 
@@ -465,9 +460,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>git pull + pip install + spawn new process + close</p>
+  <p>Full upgrade: git pull, pip install, spawn a new process, then shut down the old one.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!upgrade</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!upgrade</code></p>
   <p class='meta-line'><strong>Aliases</strong> deploy, ud</p>
 </article>
 
