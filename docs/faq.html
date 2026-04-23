@@ -13,7 +13,7 @@
       <div class="site-header__inner">
         <a class="brand" href="/nanobot-docs.html">
           <span class="brand__eyebrow">NanoBot docs</span>
-          <strong class="brand__name">Built for mobile mods</strong>
+          <strong class="brand__name">Built for mobile moderators</strong>
         </a>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="topnav" aria-label="Primary">
@@ -28,9 +28,9 @@
       
 <section class="hero">
   <div class="hero__copy">
-    <p class="eyebrow">Repository-backed answers</p>
+    <p class="eyebrow">Repository-based answers</p>
     <h1>FAQ</h1>
-    <p class="lede">Short answers for setup, hosting, permissions, persistence, and why NanoBot behaves the way it does.</p>
+    <p class="lede">Short answers covering setup, hosting, permissions, persistence, and why NanoBot behaves the way it does.</p>
     <div class="button-row"><a class='button' href='setup.html'>Setup</a><a class='button' href='self-hosting.html'>Self-hosting</a></div>
   </div>
 </section>
@@ -40,12 +40,12 @@
     
 <details class="faq-item">
   <summary>Does NanoBot support slash commands and prefix commands?</summary>
-  <p>Yes. NanoBot commands work as slash commands, prefix commands, and @mention unless noted otherwise.</p>
+  <p>Yes. Unless noted otherwise, NanoBot commands work as slash commands, prefix commands, and @mentions.</p>
 </details>
 
 <details class="faq-item">
   <summary>Which Discord intents are required?</summary>
-  <p>Server Members Intent and Message Content Intent. Prefix commands and several moderation commands fail without them.</p>
+  <p>You need Server Members Intent and Message Content Intent. Without them, prefix commands and several moderation workflows will fail.</p>
 </details>
 
 <details class="faq-item">
@@ -55,7 +55,7 @@
 
 <details class="faq-item">
   <summary>Does reminder and moderation state survive restarts?</summary>
-  <p>Yes features explicitly timed bans, reminders, recurring reminders, and role panels all persist across restarts via stored state.</p>
+  <p>Yes. Timed bans, reminders, recurring reminders, and role panels all persist across restarts through stored state.</p>
 </details>
 
 <details class="faq-item">
@@ -65,27 +65,27 @@
 
 <details class="faq-item">
   <summary>Do I need Groq key for whole bot?</summary>
-  <p>No. Groq key is optional and only needed for /eli5 plus daily WYR generation described in README and cogs/eli5.py.</p>
+  <p>No. A Groq key is optional and only needed for <code>/eli5</code> and daily WYR generation described in the README and <code>cogs/eli5.py</code>.</p>
 </details>
 
 <details class="faq-item">
   <summary>Can I reload config without restart?</summary>
-  <p>Yes. README and admin cog both document reloadconfig and config set/get flows.</p>
+  <p>Yes. The README and admin cog both document <code>reloadconfig</code> and <code>config set/get</code> workflows.</p>
 </details>
 
 <details class="faq-item">
   <summary>Where do logs go?</summary>
-  <p>Logs are written to logs/nanobot.log. docker-compose.yml also mounts host logs directory into container.</p>
+  <p>Logs are written to <code>logs/nanobot.log</code>. <code>docker-compose.yml</code> also mounts the host logs directory into the container.</p>
 </details>
 
 <details class="faq-item">
   <summary>Can older JSON installs be migrated?</summary>
-  <p>Yes. Use the python migrate.py for importing old JSON data into SQLite.</p>
+  <p>Yes. Run <code>python migrate.py</code> to import old JSON data into SQLite.</p>
 </details>
 
 <details class="faq-item">
   <summary>Is Docker supported?</summary>
-  <p>Repo includes Dockerfile and docker-compose.yml. Compose mounts config.ini, data/, and logs/ from host.</p>
+  <p>Yes. The repository includes a <code>Dockerfile</code> and <code>docker-compose.yml</code>. Compose mounts <code>config.ini</code>, <code>data/</code>, and <code>logs/</code> from the host.</p>
 </details>
 
 <details class="faq-item">
