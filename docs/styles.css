@@ -459,7 +459,7 @@ h3 { font-size: 1.05rem; }
 }
 
 /* ── Toolbar / search ── */
-.toolbar { padding: 1rem; }
+.toolbar { display: grid; gap: 1rem; padding: 1rem; }
 .search { display: grid; gap: .45rem; }
 .search__label { font-weight: 800; font-size: .9rem; }
 
@@ -492,6 +492,7 @@ input[type="search"]:focus {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--chip);
+  color: var(--ink);
   font: inherit;
   font-size: .88rem;
   font-weight: 700;
