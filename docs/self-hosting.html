@@ -258,7 +258,7 @@ python run.py</code></pre>
   <div class="section-head">
     <p class="eyebrow">Owner only</p>
     <h2>Maintenance commands</h2>
-    <p>All commands in <code>cogs/admin.py</code> require bot ownership.</p>
+    <p>Commands in <code>cogs/admin.py</code> and <code>cogs/debug.py</code> require bot ownership.</p>
   </div>
   <div class="command-grid">
     
@@ -462,6 +462,34 @@ python run.py</code></pre>
   <p>Full upgrade: git pull, pip install, spawn a new process, then shut down the old one.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!upgrade</code></p>
   <p class='meta-line'><strong>Aliases</strong> deploy, ud</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>sh</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>Run a shell command and see stdout + stderr in Discord. 60-second timeout; output truncated at 900 chars per stream.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sh &lt;command&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!sh df -h</code></p>
+  <p class='meta-line'><strong>Aliases</strong> shell, exec</p>
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>py</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>Evaluate Python code inside the running bot process. Top-level <code>await</code> works. Output truncated at 900 chars.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!py &lt;code&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!py len(bot.guilds)</code></p>
+  <p class='meta-line'><strong>Aliases</strong> eval, python</p>
 </article>
 
   </div>

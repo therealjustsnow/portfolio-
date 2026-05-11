@@ -518,8 +518,8 @@
 <section class="command-section" data-cluster="Moderation">
   <div class="section-head">
     <p class="eyebrow">Moderation</p>
-    <h2>AutoMod <span class="count-pill">16</span></h2>
-    <p>Passive rule system for spam, caps, mentions, bad words, regex, and ignores.</p>
+    <h2>AutoMod <span class="count-pill">20</span></h2>
+    <p>Passive rule system for spam, caps, mentions, bad words, regex, attachment filtering, and ignores.</p>
   </div>
   <div class="command-grid">
     
@@ -731,7 +731,7 @@
   
 </article>
 
-<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod rule toggle a rule on/off and set its action. /automod rule &lt;rule&gt; &lt;enabled&gt; [action] /automod rule &lt;rule&gt; &lt;enabled&gt; [action] automod administrator, manage server ">
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod rule toggle a rule on/off and set its action. delete warn timeout kick softban /automod rule &lt;rule&gt; &lt;enabled&gt; [action] [dm_message] /automod rule spam true kick automod administrator, manage server ">
   <div class="command-card__top">
     <h3><code>automod rule</code></h3>
     <div class="badge-row">
@@ -741,10 +741,11 @@
     </div>
   </div>
   <p>Toggle a rule on/off and set its action.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>/automod rule &lt;rule&gt; &lt;enabled&gt; [action]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>/automod rule &lt;rule&gt; &lt;enabled&gt; [action]</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod rule &lt;rule&gt; &lt;enabled&gt; [action] [dm_message]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod rule spam true kick</code></p>
+  <p class="meta-line"><strong>Actions</strong> <code>delete</code> · <code>warn</code> · <code>timeout</code> · <code>kick</code> · <code>softban</code></p>
   <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
-  
+
 </article>
 
 <article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod spam set the spam detection threshold (messages per time window). /automod spam &lt;count&gt; &lt;seconds&gt; /automod spam &lt;count&gt; &lt;seconds&gt; automod administrator, manage server ">
@@ -776,7 +777,71 @@
   <p class="meta-line"><strong>Usage</strong> <code>/automod status</code></p>
   <p class="meta-line"><strong>Example</strong> <code>/automod status</code></p>
   <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
-  
+
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod attachments set minimum attachment count that triggers the word+attachment rule. /automod attachments [min_attachments] /automod attachments 2 automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod attachments</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the minimum attachment count that triggers the word+attachment rule.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod attachments [min_attachments]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod attachments 2</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod attachword add add a word to the attachment-word filter. /automod attachword add &lt;word&gt; /automod attachword add nitro automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod attachword add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a word to the attachment-word filter. Messages containing this word and enough attachments trigger the rule.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod attachword add &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod attachword add nitro</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod attachword remove remove a word from the attachment-word filter. /automod attachword remove &lt;word&gt; /automod attachword remove nitro automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod attachword remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a word from the attachment-word filter.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod attachword remove &lt;word&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod attachword remove nitro</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod attachword list list all words in the attachment-word filter. /automod attachword list /automod attachword list automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod attachword list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>List all words in the attachment-word filter (shown only to you).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod attachword list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod attachword list</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
 </article>
 
   </div>
