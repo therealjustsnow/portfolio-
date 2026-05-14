@@ -518,7 +518,7 @@
 <section class="command-section" data-cluster="Moderation">
   <div class="section-head">
     <p class="eyebrow">Moderation</p>
-    <h2>AutoMod <span class="count-pill">20</span></h2>
+    <h2>AutoMod <span class="count-pill">21</span></h2>
     <p>Passive rule system for spam, caps, mentions, bad words, regex, attachment filtering, and ignores.</p>
   </div>
   <div class="command-grid">
@@ -792,6 +792,22 @@
   <p>Set the minimum attachment count that triggers the word+attachment rule.</p>
   <p class="meta-line"><strong>Usage</strong> <code>/automod attachments [min_attachments]</code></p>
   <p class="meta-line"><strong>Example</strong> <code>/automod attachments 2</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod timeout set how long the timeout action lasts (default 10 minutes). /automod timeout &lt;minutes&gt; /automod timeout 30 automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod timeout</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set how long the timeout action lasts (1&ndash;10080 minutes, default 10).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod timeout &lt;minutes&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod timeout 30</code></p>
   <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
 
 </article>
@@ -1620,7 +1636,7 @@
 <section class="command-section" data-cluster="Utility">
   <div class="section-head">
     <p class="eyebrow">Utility</p>
-    <h2>Config &amp; Info <span class="count-pill">8</span></h2>
+    <h2>Config &amp; Info <span class="count-pill">9</span></h2>
     <p>Prefix, help, status, server info, and general bot utility.</p>
   </div>
   <div class="command-grid">
@@ -1718,7 +1734,23 @@
   <p class="meta-line"><strong>Usage</strong> <code>/prefix [new_prefix] | n!prefix [new_prefix]</code></p>
   <p class="meta-line"><strong>Example</strong> <code>n!prefix ?</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
-  
+
+</article>
+
+<article class="command-card" data-cluster="Utility" data-access="Public" data-search="source show the source code for a bot command. /source &lt;command&gt; | n!source &lt;command&gt; n!source ban config &amp; info none ">
+  <div class="command-card__top">
+    <h3><code>source</code></h3>
+    <div class="badge-row">
+      <span class="badge">Utility</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the source code for a bot command. The embed title links to the exact lines on GitHub.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/source &lt;command&gt; | n!source &lt;command&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!source ban</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+
 </article>
 
 <article class="command-card" data-cluster="Utility" data-access="Public" data-search="stats nanobot runtime statistics since last start. /stats | n!stats n!stats config &amp; info none ">
