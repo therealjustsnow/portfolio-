@@ -472,8 +472,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>Run a shell command and see stdout + stderr in Discord. 60-second timeout; output truncated at 900 chars per stream.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!sh &lt;command&gt;</code></p>
+  <p>Run a shell command and see stdout + stderr in Discord. 60-second timeout by default — pass <code>--disable-timeout</code> for long jobs like downloads. Output truncated at 900 chars per stream.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!sh [--disable-timeout] &lt;command&gt;</code></p>
   <p class="meta-line"><strong>Example</strong> <code>n!sh df -h</code></p>
   <p class='meta-line'><strong>Aliases</strong> shell, exec</p>
 </article>
@@ -486,8 +486,8 @@ python run.py</code></pre>
       <span class="badge">Prefix</span>
     </div>
   </div>
-  <p>Evaluate Python code inside the running bot process. Top-level <code>await</code> works. Output truncated at 900 chars.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>n!py &lt;code&gt;</code></p>
+  <p>Evaluate Python code inside the running bot process. Top-level <code>await</code> works. 60-second timeout by default — pass <code>--disable-timeout</code> to remove it. Output truncated at 900 chars.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!py [--disable-timeout] &lt;code&gt;</code></p>
   <p class="meta-line"><strong>Example</strong> <code>n!py len(bot.guilds)</code></p>
   <p class='meta-line'><strong>Aliases</strong> eval, python</p>
 </article>
