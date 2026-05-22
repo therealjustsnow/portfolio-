@@ -22,11 +22,11 @@
         </a>
         <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
         <nav class="topnav" aria-label="Primary">
-          <a class='topnav__link' href='/nanobot-docs.html'>Overview</a><a class='topnav__link is-active' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a>
+          <a class='topnav__link' href='/nanobot-docs.html'>Overview</a><a class='topnav__link is-active' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a><a class='topnav__link' href='changelog.html'>Changelog</a>
         </nav>
       </div>
       <nav class="mobile-menu" id="mobile-menu" data-mobile-menu aria-label="Mobile docs" hidden>
-        <a class='mobile-menu__link' href='/nanobot-docs.html'>Overview</a><a class='mobile-menu__link is-active' href='commands.html'>Commands</a><a class='mobile-menu__link' href='setup.html'>Setup</a><a class='mobile-menu__link' href='self-hosting.html'>Self-Hosting</a><a class='mobile-menu__link' href='faq.html'>FAQ</a>
+        <a class='mobile-menu__link' href='/nanobot-docs.html'>Overview</a><a class='mobile-menu__link is-active' href='commands.html'>Commands</a><a class='mobile-menu__link' href='setup.html'>Setup</a><a class='mobile-menu__link' href='self-hosting.html'>Self-Hosting</a><a class='mobile-menu__link' href='faq.html'>FAQ</a><a class='mobile-menu__link' href='changelog.html'>Changelog</a>
       </nav>
     </header>
     <main class="page">
@@ -50,6 +50,7 @@
       <button class="chip" data-filter="Moderation" type="button">Moderation</button>
       <button class="chip" data-filter="Utility" type="button">Utility</button>
       <button class="chip" data-filter="Fun" type="button">Fun</button>
+      <button class="chip" data-filter="Music" type="button">Music</button>
     </div>
     <p class="toolbar__note">Owner-only commands live in the Self-Hosting guide. This page only lists public and server staff commands.</p>
   </div>
@@ -2963,6 +2964,516 @@
   </div>
 </section>
 
+
+
+<section class="command-section" data-cluster="Music">
+  <div class="section-head">
+    <p class="eyebrow">Music</p>
+    <h2>Playback <span class="count-pill">7</span></h2>
+    <p>Queue songs from YouTube or Spotify, search interactively, and connect to voice.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="play p queue a song or playlist url spotify link or search n!play [query] n!play lofi hip hop music public none">
+  <div class="command-card__top">
+    <h3><code>play</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Queue a song or playlist. Accepts YouTube URLs, Spotify links, or a search query.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>p</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/play [query] | n!play [query]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!play lofi hip hop</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="playnext pn queue a track to play immediately after the current one n!playnext [query] music public none">
+  <div class="command-card__top">
+    <h3><code>playnext</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Insert a track at the front of the queue, playing after the current song.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>pn</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/playnext [query] | n!playnext [query]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="playnow ps skip current track and play this immediately n!playnow [query] music public none">
+  <div class="command-card__top">
+    <h3><code>playnow</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Skip the current track and start playing the given song immediately.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>ps</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/playnow [query] | n!playnow [query]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="stream queue a livestream or direct media url n!stream [url] music public none">
+  <div class="command-card__top">
+    <h3><code>stream</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Queue a livestream or direct media URL without buffering.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/stream [url] | n!stream [url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="shuffleplay sp queue a playlist with its tracks shuffled n!shuffleplay [url] music public none">
+  <div class="command-card__top">
+    <h3><code>shuffleplay</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Queue a playlist with its tracks pre-shuffled.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>sp</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shuffleplay [url] | n!shuffleplay [url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="search search youtube and pick a result from a menu n!search [query] music public none">
+  <div class="command-card__top">
+    <h3><code>search</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Search YouTube and pick a result from an interactive menu.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/search [query] | n!search [query]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="join summon connect bot to your voice channel n!join music public none">
+  <div class="command-card__top">
+    <h3><code>join</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Connect the bot to your current voice channel.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>summon</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/join | n!join</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Music">
+  <div class="section-head">
+    <p class="eyebrow">Music</p>
+    <h2>Playback Control <span class="count-pill">6</span></h2>
+    <p>Skip, pause, stop, and jump between tracks.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="pause toggle pause playback n!pause music public none">
+  <div class="command-card__top">
+    <h3><code>pause</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Pause playback.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/pause | n!pause</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="resume resume playback n!resume music public none">
+  <div class="command-card__top">
+    <h3><code>resume</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Resume paused playback.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/resume | n!resume</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="skip s vote-skip current track requester skips immediately n!skip music public none">
+  <div class="command-card__top">
+    <h3><code>skip</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Vote-skip the current track. The requester or a user with Manage Server skips immediately.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>s</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/skip | n!skip</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Restricted" data-search="forceskip fs force-skip current track manage server n!forceskip music restricted manage server">
+  <div class="command-card__top">
+    <h3><code>forceskip</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Force-skip the current track immediately, bypassing the vote requirement.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>fs</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/forceskip | n!forceskip</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="jump skip ahead to a specific queue position n!jump [position] music public none">
+  <div class="command-card__top">
+    <h3><code>jump</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Skip ahead to a specific position in the queue.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/jump [position] | n!jump [position]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="stop dc stop playback clear queue disconnect bot n!stop music public none">
+  <div class="command-card__top">
+    <h3><code>stop</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Stop playback, clear the queue, and disconnect the bot from the voice channel.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>dc</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/stop | n!stop</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Music">
+  <div class="section-head">
+    <p class="eyebrow">Music</p>
+    <h2>Queue Management <span class="count-pill">6</span></h2>
+    <p>View, reorder, remove, and export the playback queue.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="queue q show upcoming queue n!queue music public none">
+  <div class="command-card__top">
+    <h3><code>queue</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the upcoming queue.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>q</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/queue | n!queue</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="move reorder a track in the queue n!move [from] [to] music public none">
+  <div class="command-card__top">
+    <h3><code>move</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Move a track from one queue position to another.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/move [from] [to] | n!move [from] [to]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="remove remove a queued track by position n!remove [position] music public none">
+  <div class="command-card__top">
+    <h3><code>remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Remove a single track from the queue by its position number.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/remove [position] | n!remove [position]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="clear remove all tracks from queue n!clear music public none">
+  <div class="command-card__top">
+    <h3><code>clear</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Clear all tracks from the queue without stopping the current song.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/clear | n!clear</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="shuffle shuffle the queue n!shuffle music public none">
+  <div class="command-card__top">
+    <h3><code>shuffle</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Randomly shuffle all tracks currently in the queue.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shuffle | n!shuffle</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="pldump export queue urls to a text file n!pldump music public none">
+  <div class="command-card__top">
+    <h3><code>pldump</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Export all queued track URLs to a text file.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/pldump | n!pldump</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Music">
+  <div class="section-head">
+    <p class="eyebrow">Music</p>
+    <h2>Player Settings <span class="count-pill">6</span></h2>
+    <p>Volume, speed, audio effects, loop modes, and seeking.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="volume vol set playback volume 0-200 n!volume [level] music public none">
+  <div class="command-card__top">
+    <h3><code>volume</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Set the playback volume (0–200). Defaults to 100.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>vol</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/volume [level] | n!volume [level]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!volume 150</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="speed set playback speed 0.5-3.0 n!speed [multiplier] music public none">
+  <div class="command-card__top">
+    <h3><code>speed</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Set the playback speed multiplier (0.5–3.0).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/speed [multiplier] | n!speed [multiplier]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!speed 1.5</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="filter fx apply audio effect bassboost nightcore vaporwave n!filter [effect] music public none">
+  <div class="command-card__top">
+    <h3><code>filter</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Apply an audio effect to the current track. Available effects include bassboost, nightcore, vaporwave, and more.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>fx</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/filter [effect] | n!filter [effect]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!filter bassboost</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="loop repeat cycle loop mode off track queue n!loop music public none">
+  <div class="command-card__top">
+    <h3><code>loop</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Cycle through loop modes: off → track → queue.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>repeat</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/loop | n!loop</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="seek jump to timestamp in current track n!seek [time] music public none">
+  <div class="command-card__top">
+    <h3><code>seek</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Jump to a specific timestamp in the current track.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/seek [time] | n!seek [time]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!seek 1:30</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="replay restart current track from beginning n!replay music public none">
+  <div class="command-card__top">
+    <h3><code>replay</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Restart the current track from the beginning.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/replay | n!replay</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Music">
+  <div class="section-head">
+    <p class="eyebrow">Music</p>
+    <h2>Info & Extras <span class="count-pill">6</span></h2>
+    <p>Now Playing card, lyrics, autoplaylist, and more.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="nowplaying np show now playing card current track n!nowplaying music public none">
+  <div class="command-card__top">
+    <h3><code>nowplaying</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the live Now Playing card with track info and progress.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>np</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/nowplaying | n!nowplaying</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="lyrics fetch lyrics for current track n!lyrics music public none">
+  <div class="command-card__top">
+    <h3><code>lyrics</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Fetch lyrics for the currently playing track.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/lyrics | n!lyrics</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="grab save dm yourself current track n!grab music public none">
+  <div class="command-card__top">
+    <h3><code>grab</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>DM yourself the current track's info and URL.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>save</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/grab | n!grab</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="autoplay toggle autoplaylist when queue empties n!autoplay music public none">
+  <div class="command-card__top">
+    <h3><code>autoplay</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Toggle autoplay mode — keeps playing from the server autoplaylist when the queue empties.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/autoplay | n!autoplay</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="autoplaylist apl manage persistent server autoplaylist add remove list n!autoplaylist music public none">
+  <div class="command-card__top">
+    <h3><code>autoplaylist</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Manage the server's persistent autoplaylist. Subcommands: <code>add</code>, <code>remove</code>, <code>list</code>. <code>clear</code> requires Manage Server.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>apl</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/autoplaylist add [url]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None (clear requires Manage Server)</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="follow make bot follow you between voice channels n!follow music public none">
+  <div class="command-card__top">
+    <h3><code>follow</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Make the bot follow you when you switch voice channels.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/follow | n!follow</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
 
     </main>
   </div>
