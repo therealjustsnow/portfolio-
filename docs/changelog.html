@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Changelog | NanoBot Docs</title>
+  <meta name="description" content="NanoBot release history — features, fixes, and what changed in each version.">
+  <link rel="icon" type="image/png" href="/photos/favicon.png">
+  <link rel="apple-touch-icon" href="/photos/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="changelog.html">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="/nanobot-docs.html">
+          <img class="brand__logo" src="/photos/favicon.png" alt="NanoBot">
+          <span class="brand__text">
+            <span class="brand__eyebrow">NanoBot docs</span>
+            <strong class="brand__name">Moderation for your phone</strong>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
+        <nav class="topnav" aria-label="Primary">
+          <a class='topnav__link' href='/nanobot-docs.html'>Overview</a><a class='topnav__link' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a><a class='topnav__link is-active' href='changelog.html'>Changelog</a>
+        </nav>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" data-mobile-menu aria-label="Mobile docs" hidden>
+        <a class='mobile-menu__link' href='/nanobot-docs.html'>Overview</a><a class='mobile-menu__link' href='commands.html'>Commands</a><a class='mobile-menu__link' href='setup.html'>Setup</a><a class='mobile-menu__link' href='self-hosting.html'>Self-Hosting</a><a class='mobile-menu__link' href='faq.html'>FAQ</a><a class='mobile-menu__link is-active' href='changelog.html'>Changelog</a>
+      </nav>
+    </header>
+    <main class="page">
+
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Release history</p>
+    <h1>Changelog</h1>
+    <p class="lede">Every NanoBot release, newest first. Full release notes on <a href="https://github.com/therealjustsnow/NanoBot/releases" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="faq-list">
+
+<details class="faq-item" open>
+  <summary><strong>v2.6.0</strong> — Music &nbsp;<small style="font-weight:400;opacity:.6;">May 22, 2026</small></summary>
+  <p>Introduces a full-featured voice music player supporting YouTube and Spotify streams. Playback commands (<code>n!play</code>, <code>n!pause</code>, <code>n!skip</code>), queue management, audio filters (bassboost, nightcore, vaporwave, and more), and a persistent per-guild autoplaylist. Includes stability fixes for YouTube format selection and stream blocking.</p>
+  <p>Also adds a Debug cog for remote administration and last-banned-user tracking for easier mobile unbans.</p>
+  <p><strong>New commands:</strong> play, playnext, playnow, stream, shuffleplay, search, join, pause, resume, skip, forceskip, jump, stop, queue, move, remove, clear, shuffle, pldump, volume, speed, filter, loop, seek, replay, nowplaying, lyrics, grab, autoplay, autoplaylist, follow</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v2.5.0</strong> — AutoMod Escalation &amp; Help Overhaul &nbsp;<small style="font-weight:400;opacity:.6;">April 30, 2026</small></summary>
+  <p>AutoMod gains <code>kick</code> and <code>softban</code> escalation actions, configurable timeout durations (1–10,080 minutes), and a compound <code>attachment_word</code> rule for scam detection. DM notifications now fire for all rule actions.</p>
+  <p>Help system receives major fixes including direct page jumping, improved category navigation, and corrected DM command responsiveness. Test suite expanded from 66 to 234 tests.</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v2.4.0</strong> — Bug Fixes &amp; More &nbsp;<small style="font-weight:400;opacity:.6;">April 16, 2026</small></summary>
+  <p>New mobile-first commands: <code>n!modcheck</code> combines user info and warnings, <code>n!firstmsg</code> jumps to oldest messages, <code>n!mc</code> shows member count, and <code>n!id</code> displays copyable identifiers. Adds Rock-Paper-Scissors game (<code>n!rps</code>).</p>
+  <p>Welcome embeds gain customization: hex colors, thumbnail options, footer text, and text overlay on banners via Pillow.</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v2.3.0</strong> — New Help &nbsp;<small style="font-weight:400;opacity:.6;">March 28, 2026</small></summary>
+  <p>Launches four new cogs: <strong>Fun</strong> (59 social/reaction commands plus ship and magic 8-ball), <strong>Images</strong> (anime image pulls), <strong>ELI5</strong> (Groq-powered plain-language explanations), and <strong>Recurring Reminders</strong> (persistent scheduled reminders). Adds custom regex filtering to AutoMod and discord.bots.gg bot list support. Dynamic help system replaces static dictionary. Implements tag import/export functionality.</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v2.2.0</strong> — Four New Cogs &nbsp;<small style="font-weight:400;opacity:.6;">March 13, 2026</small></summary>
+  <p>Introduces <strong>AutoMod</strong> with six toggleable rules (spam, invites, links, caps, mentions, badwords) and three actions (delete, warn, timeout). Adds <strong>Audit Log</strong> for twelve event types, <strong>Role Panels</strong> with persistent button-based self-assignment and autogen presets, and <strong>Bot List Integration</strong> supporting top.gg and discordbotlist.com with vote tracking and webhooks.</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v2.1.1</strong> — Overhaul &nbsp;<small style="font-weight:400;opacity:.6;">March 10, 2026</small></summary>
+  <p>Migrates storage from JSON flat files to SQLite for concurrent access and performance. Introduces <strong>Warnings</strong> cog with configurable auto-kick/auto-ban thresholds and <strong>Welcome &amp; Leave</strong> cog with template variables (<code>{user}</code>, <code>{mention}</code>, <code>{server}</code>, <code>{count}</code>). Adds seven moderation commands: softban, massban, tempban, snailpurge, nuke, hide/unhide, and echo. Implements centralized permission decorators and enhanced help with category browsing.</p>
+</details>
+
+<details class="faq-item">
+  <summary><strong>v1.0.0</strong> — Initial Release &nbsp;<small style="font-weight:400;opacity:.6;">March 6, 2026</small></summary>
+  <p>Foundation release featuring moderation tools (cban, ban, unban, kick, freeze, slow, lock, purge), mod notes system, personal and global tag system with image support, reminders (25 per user max), and info commands (server, user, avatar, banner, roleinfo). Includes owner/admin tools for cog reloading, restarts, and live log management. JSON-based storage with atomic writes and restart-safe timed actions.</p>
+</details>
+
+  </div>
+</section>
+
+    </main>
+  </div>
+  <button class="scroll-top" type="button" data-scroll-top aria-label="Scroll to top">↑ Top</button>
+  <script src="app.js"></script>
+</body>
+</html>
