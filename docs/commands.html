@@ -519,7 +519,7 @@
 <section class="command-section" data-cluster="Moderation">
   <div class="section-head">
     <p class="eyebrow">Moderation</p>
-    <h2>AutoMod <span class="count-pill">21</span></h2>
+    <h2>AutoMod <span class="count-pill">22</span></h2>
     <p>Passive rule system for spam, caps, mentions, bad words, regex, attachment filtering, and ignores.</p>
   </div>
   <div class="command-grid">
@@ -861,6 +861,23 @@
 
 </article>
 
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="automod logchannel set a dedicated channel for automod action logs. /automod logchannel [channel] /automod logchannel #mod-actions automod administrator, manage server ">
+  <div class="command-card__top">
+    <h3><code>automod logchannel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set a dedicated channel for AutoMod action logs. When set, AutoMod events post here instead of the main audit log channel. Omit <code>channel</code> to clear and fall back to the audit log channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/automod logchannel [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>/automod logchannel #mod-actions</code></p>
+  <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
+
+</article>
+
   </div>
 </section>
 
@@ -920,7 +937,7 @@
   
 </article>
 
-<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog events toggle which events get logged. /auditlog events /auditlog events audit log administrator, manage server ">
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog events toggle which events get logged. /auditlog events /auditlog events audit log automod_actions message_edit message_delete joins leaves bans unbans nickname role channel administrator, manage server ">
   <div class="command-card__top">
     <h3><code>auditlog events</code></h3>
     <div class="badge-row">
@@ -929,11 +946,11 @@
       <span class="badge badge--strong">Restricted</span>
     </div>
   </div>
-  <p>Toggle which events get logged.</p>
+  <p>Toggle which events get logged. Available events: <code>message_edit</code>, <code>message_delete</code>, <code>join</code>, <code>leave</code>, <code>ban</code>, <code>unban</code>, <code>nickname</code>, <code>role_update</code>, <code>channel_update</code>, <code>automod_actions</code>.</p>
   <p class="meta-line"><strong>Usage</strong> <code>/auditlog events</code></p>
   <p class="meta-line"><strong>Example</strong> <code>/auditlog events</code></p>
   <p class="meta-line"><strong>Permission</strong> Administrator, Manage Server</p>
-  
+
 </article>
 
 <article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="auditlog status show the current audit log configuration. /auditlog status /auditlog status audit log administrator, manage server ">
