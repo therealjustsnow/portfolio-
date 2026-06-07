@@ -497,10 +497,12 @@
                 if (!rgb || !rgb.trim()) return;
                 var hex = rgbToHex(rgb);
                 var text = 'e2e8f0';
+                // Static profile-summary SVG cards are pre-generated and must not be
+                // rewritten here. Only the streak card (demolab) supports live accent
+                // recoloring via URL params; it is the last card in the grid.
                 var imgs = document.querySelectorAll('.analytics-grid .stat-card img');
-                if (imgs[0]) imgs[0].src = 'https://github-readme-stats.vercel.app/api/top-langs/?username=therealjustsnow&layout=compact&theme=transparent&hide_border=true&langs_count=6&title_color=' + hex + '&text_color=' + text;
-                if (imgs[1]) imgs[1].src = 'https://github-readme-stats.vercel.app/api?username=therealjustsnow&theme=transparent&hide_border=true&show_icons=true&include_all_commits=true&count_private=true&title_color=' + hex + '&text_color=' + text + '&icon_color=' + hex;
-                if (imgs[2]) imgs[2].src = 'https://streak-stats.demolab.com/?user=therealjustsnow&theme=transparent&hide_border=true&stroke=' + hex + '&ring=' + hex + '&fire=' + hex + '&currStreakLabel=' + hex + '&sideLabels=' + text + '&dates=' + text + '&sideNums=' + text + '&currStreakNum=' + text;
+                var streak = imgs[imgs.length - 1];
+                if (streak) streak.src = 'https://streak-stats.demolab.com/?user=therealjustsnow&theme=transparent&hide_border=true&stroke=' + hex + '&ring=' + hex + '&fire=' + hex + '&currStreakLabel=' + hex + '&sideLabels=' + text + '&dates=' + text + '&sideNums=' + text + '&currStreakNum=' + text;
             }
             document.addEventListener('DOMContentLoaded', function () {
                 updateAnalyticsCards();
