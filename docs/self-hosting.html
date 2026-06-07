@@ -251,6 +251,113 @@ python run.py</code></pre>
 </ul>
 </article>
 
+
+<article class="config-card">
+  <h3>[music]</h3>
+  <ul class="config-list">
+<li>
+  <strong>music_cookie_file</strong>
+  <code>(blank)</code>
+  <span>Path to a Netscape cookies file exported from a logged-in browser. Needed for age-restricted or login-only content.</span>
+</li>
+<li>
+  <strong>music_default_volume</strong>
+  <code>50</code>
+  <span>Default playback volume (0–200).</span>
+</li>
+<li>
+  <strong>music_idle_timeout</strong>
+  <code>180</code>
+  <span>Seconds the player waits while idle or alone before leaving the channel. Minimum 30.</span>
+</li>
+<li>
+  <strong>music_skip_ratio</strong>
+  <code>50</code>
+  <span>Percent of voice-channel listeners who must vote to skip (0–100). Requesters and Manage Server can always force-skip.</span>
+</li>
+<li>
+  <strong>music_max_queue</strong>
+  <code>500</code>
+  <span>Maximum tracks allowed in a single server's queue.</span>
+</li>
+<li>
+  <strong>music_js_runtime_path</strong>
+  <code>(blank)</code>
+  <span>Path to a deno, node, or bun binary for yt-dlp's JavaScript interpreter. Leave blank to auto-detect.</span>
+</li>
+<li>
+  <strong>music_use_opus</strong>
+  <code>true</code>
+  <span>Send audio as Opus (default, cheaper) or PCM (true = instant volume/speed changes).</span>
+</li>
+<li>
+  <strong>music_persist_queue</strong>
+  <code>true</code>
+  <span>Save queue to disk so it survives a restart. Bot reconnects and resumes on startup.</span>
+</li>
+<li>
+  <strong>music_predownload</strong>
+  <code>true</code>
+  <span>Download the next queued track while the current one plays for instant track switching. Live streams are never pre-downloaded.</span>
+</li>
+<li>
+  <strong>music_self_deafen</strong>
+  <code>true</code>
+  <span>Self-deafen when joining a voice channel.</span>
+</li>
+<li>
+  <strong>music_default_speed</strong>
+  <code>1.0</code>
+  <span>Default playback speed (0.5–3.0).</span>
+</li>
+<li>
+  <strong>music_search_service</strong>
+  <code>ytsearch</code>
+  <span>Search service for non-URL queries: <code>ytsearch</code>, <code>ytmsearch</code>, or <code>scsearch</code>.</span>
+</li>
+<li>
+  <strong>music_proxy</strong>
+  <code>(blank)</code>
+  <span>HTTP/HTTPS proxy URL for yt-dlp. Example: <code>http://user:pass@host:port</code>.</span>
+</li>
+<li>
+  <strong>music_save_videos</strong>
+  <code>false</code>
+  <span>Keep downloaded audio in <code>data/music_cache/</code> for instant replays. Pair with cache limits below.</span>
+</li>
+<li>
+  <strong>music_cache_max_mb</strong>
+  <code>0</code>
+  <span>Max cache size in MB (0 = unlimited). Only used when <code>music_save_videos</code> is on.</span>
+</li>
+<li>
+  <strong>music_cache_max_age_days</strong>
+  <code>0</code>
+  <span>Delete cached audio older than this many days (0 = never).</span>
+</li>
+<li>
+  <strong>music_save_history</strong>
+  <code>true</code>
+  <span>Save a per-server played-track history (for the <code>n!history</code> command).</span>
+</li>
+<li>
+  <strong>music_metadata_lookup</strong>
+  <code>true</code>
+  <span>Fill missing artist info via Apple's free iTunes Search API.</span>
+</li>
+<li>
+  <strong>music_sponsorblock</strong>
+  <code>false</code>
+  <span>Skip sponsor/non-music segments using the crowd-sourced SponsorBlock database. Forces a download before playback; live streams are unaffected.</span>
+</li>
+<li>
+  <strong>music_sponsorblock_categories</strong>
+  <code>music_offtopic</code>
+  <span>Comma-separated SponsorBlock categories to remove. Valid: <code>sponsor</code>, <code>intro</code>, <code>outro</code>, <code>selfpromo</code>, <code>preview</code>, <code>filler</code>, <code>interaction</code>, <code>music_offtopic</code>, <code>poi_highlight</code>.</span>
+</li>
+</ul>
+</article>
+
   </div>
 </section>
 
@@ -258,7 +365,7 @@ python run.py</code></pre>
   <div class="section-head">
     <p class="eyebrow">Owner only</p>
     <h2>Maintenance commands</h2>
-    <p>Commands in <code>cogs/admin.py</code> and <code>cogs/debug.py</code> require bot ownership.</p>
+    <p>Commands in <code>cogs/admin/</code> and <code>cogs/debug.py</code> require bot ownership.</p>
   </div>
   <div class="command-grid">
     

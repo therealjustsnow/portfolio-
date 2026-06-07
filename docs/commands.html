@@ -3429,7 +3429,7 @@
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
-<article class="command-card" data-cluster="Music" data-access="Public" data-search="autoplay toggle autoplaylist when queue empties n!autoplay music public none">
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="autoplay toggle smart autoplay queues youtube-related tracks when queue empties n!autoplay music public none">
   <div class="command-card__top">
     <h3><code>autoplay</code></h3>
     <div class="badge-row">
@@ -3438,23 +3438,37 @@
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Toggle autoplay mode — keeps playing from the server autoplaylist when the queue empties.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>/autoplay | n!autoplay</code></p>
+  <p>Toggle smart autoplay — queues YouTube-related tracks when the queue empties. Requires a YouTube track to have played first to seed the mix.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/music autoplay | n!autoplay</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
-<article class="command-card" data-cluster="Music" data-access="Public" data-search="autoplaylist apl manage persistent server autoplaylist add remove list n!autoplaylist music public none">
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="guildplay toggle guild playlist playback when queue empties n!guildplay music public none">
   <div class="command-card__top">
-    <h3><code>autoplaylist</code></h3>
+    <h3><code>guildplay</code></h3>
+    <div class="badge-row">
+      <span class="badge">Music</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Toggle guild-playlist mode — keeps playing from the server's saved guild playlist when the queue empties.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/music guildplay | n!guildplay</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="guildplaylist gpl manage persistent server guild playlist add remove list n!guildplaylist music public none">
+  <div class="command-card__top">
+    <h3><code>guildplaylist</code></h3>
     <div class="badge-row">
       <span class="badge">Music</span>
       <span class="badge">Slash</span>
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Manage the server's persistent autoplaylist. Subcommands: <code>add</code>, <code>remove</code>, <code>list</code>. <code>clear</code> requires Manage Server.</p>
-  <p class="meta-line"><strong>Aliases</strong> <code>apl</code></p>
-  <p class="meta-line"><strong>Usage</strong> <code>/autoplaylist add [url]</code></p>
+  <p>Manage the server's persistent guild playlist. Subcommands: <code>add</code>, <code>remove</code>, <code>list</code>. <code>clear</code> requires Manage Server.</p>
+  <p class="meta-line"><strong>Aliases</strong> <code>gpl</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/guildplaylist add [url]</code></p>
   <p class="meta-line"><strong>Permission</strong> None (clear requires Manage Server)</p>
 </article>
 
@@ -3470,6 +3484,298 @@
   <p>Make the bot follow you when you switch voice channels.</p>
   <p class="meta-line"><strong>Usage</strong> <code>/follow | n!follow</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+  </div>
+</section>
+
+
+<section class="command-section" data-cluster="Moderation">
+  <div class="section-head">
+    <p class="eyebrow">Moderation</p>
+    <h2>Gatekeeper <span class="count-pill">20</span></h2>
+    <p>New-account muting and captcha verification to keep bots and raid accounts out.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk setup create the muted role and lock it down. /gk setup /gk setup gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk setup</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Create the Muted role and lock it out of all channels.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk setup</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk enable enable gatekeeper. /gk enable /gk enable gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk enable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Enable the gatekeeper.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk enable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk disable disable gatekeeper. /gk disable /gk disable gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Disable the gatekeeper.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk disable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk status show current gatekeeper settings. /gk status /gk status gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk status</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current gatekeeper configuration.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk status</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk role use existing role as mute role. /gk role &lt;role&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk role</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Use an existing role as the mute role instead of creating a new one.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk role &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk channel set fallback quarantine channel for dm-closed members. /gk channel &lt;channel&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk channel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the fallback quarantine channel for members who have DMs closed.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk logchannel set gatekeeper log channel. /gk logchannel &lt;channel&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk logchannel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the channel for gatekeeper mute, verify, and kick log entries.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk logchannel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk minage mute accounts younger than this duration. /gk minage &lt;duration&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk minage</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Mute accounts younger than the given age. Example: <code>7d</code>, <code>30d</code>.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk minage &lt;duration&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk unmuteage auto-unmute once accounts reach this age. /gk unmuteage &lt;duration&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk unmuteage</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Auto-unmute muted members once their account reaches this age. Example: <code>35d</code>.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk unmuteage &lt;duration&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk kicktimeout kick unverified members after this duration. /gk kicktimeout &lt;duration&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk kicktimeout</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Kick muted members who do not verify within this duration. Example: <code>48h</code>.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk kicktimeout &lt;duration&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk newaccounts toggle muting by account age. /gk newaccounts gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk newaccounts</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle automatic muting of accounts younger than the configured minimum age.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk newaccounts</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk noavatar toggle muting members with no avatar. /gk noavatar gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk noavatar</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle automatic muting of members who join with no avatar set.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk noavatar</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk stockavatar toggle muting members using catalogued stock avatars. /gk stockavatar gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk stockavatar</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle automatic muting of members whose avatar matches a catalogued stock avatar.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk stockavatar</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk verify toggle captcha verification prompt. /gk verify gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk verify</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle the captcha verification prompt that muted members must pass to regain access.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk verify</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk message set the verification prompt text. /gk message &lt;text&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk message</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the text shown to muted members in the verification prompt.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk message &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk learnavatar add avatar to stock-avatar catalog. /gk learnavatar &lt;member&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk learnavatar</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a member's current avatar to the stock-avatar catalog for future detection.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk learnavatar &lt;member&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk checkavatar test whether a member avatar matches the catalog. /gk checkavatar &lt;member&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk checkavatar</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Test whether a member's avatar would match the stock-avatar catalog.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk checkavatar &lt;member&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk sensitivity set how close avatar must match catalog. /gk sensitivity &lt;value&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk sensitivity</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set how closely an avatar must match the catalog to trigger muting. 0 = exact match; higher values are looser.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk sensitivity &lt;value&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk matchmode set how account-age and avatar checks combine and or. /gk matchmode &lt;mode&gt; gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk matchmode</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set whether the account-age and avatar checks must both trigger (AND) or either one (OR) to mute a member.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk matchmode &lt;and|or&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+<article class="command-card" data-cluster="Moderation" data-access="Restricted" data-search="gk ageunmute auto-unmute age-flagged members once old enough. /gk ageunmute gatekeeper manage guild">
+  <div class="command-card__top">
+    <h3><code>gk ageunmute</code></h3>
+    <div class="badge-row">
+      <span class="badge">Moderation</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle automatic unmuting of age-flagged members once their account is old enough.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/gk ageunmute</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
 </article>
 
   </div>
