@@ -20,7 +20,7 @@ Counting rules:
   - Every @command / @hybrid_command / @hybrid_group / @<group>.command
     decorator on a direct method of a Cog class counts once. Nested factory
     templates (fun's social_cmd / react_cmd) are skipped automatically.
-  - Each entry in fun.py's _SOCIAL_ACTIONS / _REACT_ACTIONS dict is a
+  - Each entry in cogs/fun/actions.py's _SOCIAL_ACTIONS / _REACT_ACTIONS dict is a
     dynamically-registered prefix command and counts once.
   - Owner:      cog gates everything via a cog_check that calls is_owner,
                 or the command itself has @commands.is_owner.
@@ -46,7 +46,7 @@ RESTRICT_DECORATOR_ATTRS = {
 COMMAND_DECORATOR_ATTRS = {"command", "hybrid_command", "hybrid_group", "group"}
 GROUP_DECORATOR_ATTRS = {"hybrid_group", "group"}
 
-# Dicts in fun.py whose entries each become a registered prefix command.
+# Dicts in cogs/fun/ whose entries each become a registered prefix command.
 DYNAMIC_COMMAND_DICTS = ("_SOCIAL_ACTIONS", "_REACT_ACTIONS")
 
 STAT_LABELS = {
@@ -137,7 +137,10 @@ def classify(repo):
 
     public = restricted = owner = dynamic = 0
 
-    for path in sorted(cogs_dir.glob("*.py")):
+    # NanoBot's larger cogs are Python packages (cogs/music/, cogs/admin/,
+    # cogs/fun/, …), so recurse — a flat glob would silently miss every
+    # command and dynamic action defined inside a subpackage.
+    for path in sorted(cogs_dir.rglob("*.py")):
         tree = ast.parse(path.read_text(), filename=str(path))
 
         # Dynamically-registered fun commands (one per dict entry).
