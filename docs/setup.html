@@ -116,11 +116,12 @@ groq_api_key =</code></pre>
 
 <section class="stack">
   <div class="section-head">
-    <p class="eyebrow">If upgrading</p>
-    <h2>Old JSON data migration</h2>
-    <p>The repository includes a migration path for older JSON storage.</p>
+    <p class="eyebrow">Shortcut</p>
+    <h2>One-command install and launch</h2>
+    <p>Platform scripts wrap the steps above: <code>install.sh</code> / <code>install.ps1</code> / <code>install.bat</code> set up system packages, a virtual environment, dependencies, and <code>config.ini</code>; <code>run.sh</code> / <code>run.bat</code> pick a suitable Python and hand off to the preflight launcher.</p>
   </div>
-  <pre><code>python migrate.py</code></pre>
+  <pre><code>./install.sh   # Linux/macOS — or install.ps1 / install.bat on Windows
+./run.sh       # launch (run.bat on Windows)</code></pre>
 </section>
 
     </main>

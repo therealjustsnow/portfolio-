@@ -3283,7 +3283,7 @@
   </div>
   <div class="command-grid">
 
-<article class="command-card" data-cluster="Music" data-access="Public" data-search="volume vol set playback volume 0-200 n!volume [level] music public none">
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="volume vol set check playback volume 0-200 relative offset plus minus n!volume [level] music public none">
   <div class="command-card__top">
     <h3><code>volume</code></h3>
     <div class="badge-row">
@@ -3292,14 +3292,14 @@
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Set the playback volume (0–200). Defaults to 100.</p>
+  <p>Check or set the playback volume. Run it with no argument to see the current level (it reports the configured default when nothing is playing). Pass a number (0–200) to set it, or a leading <code>+</code>/<code>-</code> to adjust relative to the current volume.</p>
   <p class="meta-line"><strong>Aliases</strong> <code>vol</code></p>
-  <p class="meta-line"><strong>Usage</strong> <code>/volume [level] | n!volume [level]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!volume 150</code></p>
+  <p class="meta-line"><strong>Usage</strong> <code>/volume [amount] | n!volume [amount]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!volume +10</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
-<article class="command-card" data-cluster="Music" data-access="Public" data-search="speed set playback speed 0.5-3.0 n!speed [multiplier] music public none">
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="speed set adjust playback speed 0.5-3.0 relative offset plus minus n!speed [rate] music public none">
   <div class="command-card__top">
     <h3><code>speed</code></h3>
     <div class="badge-row">
@@ -3308,9 +3308,9 @@
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Set the playback speed multiplier (0.5–3.0).</p>
-  <p class="meta-line"><strong>Usage</strong> <code>/speed [multiplier] | n!speed [multiplier]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!speed 1.5</code></p>
+  <p>Set the playback speed (0.5–3.0, where 1.0 is normal). Pass a number to set it, or a leading <code>+</code>/<code>-</code> to adjust relative to the current speed.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/speed &lt;rate&gt; | n!speed &lt;rate&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!speed +0.25</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
@@ -3345,7 +3345,7 @@
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
-<article class="command-card" data-cluster="Music" data-access="Public" data-search="seek jump to timestamp in current track n!seek [time] music public none">
+<article class="command-card" data-cluster="Music" data-access="Public" data-search="seek jump timestamp fast forward rewind relative offset plus minus current track n!seek [time] music public none">
   <div class="command-card__top">
     <h3><code>seek</code></h3>
     <div class="badge-row">
@@ -3354,9 +3354,9 @@
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Jump to a specific timestamp in the current track.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>/seek [time] | n!seek [time]</code></p>
-  <p class="meta-line"><strong>Example</strong> <code>n!seek 1:30</code></p>
+  <p>Jump to a point in the current track. Give an absolute timestamp (<code>1:30</code>) or seconds (<code>90</code>), or a leading <code>+</code>/<code>-</code> offset to fast-forward or rewind from the current position.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/seek &lt;position&gt; | n!seek &lt;position&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!seek +30</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 

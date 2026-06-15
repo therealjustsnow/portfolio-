@@ -100,7 +100,7 @@ python run.py</code></pre>
   <div class="section-head">
     <p class="eyebrow">Dependency base</p>
     <h2>Runtime packages</h2>
-    <p><code>discord.py &gt;= 2.3.0, aiosqlite &gt;= 0.19.0, aiohttp &gt;= 3.9.0, psutil &gt;= 5.9.0, Pillow &gt;= 10.0.0</code></p>
+    <p><code>discord.py &gt;= 2.7.1, aiosqlite &gt;= 0.22.1, aiohttp &gt;= 3.14.1, psutil &gt;= 7.2.2, Pillow &gt;= 12.2.0, PyNaCl &gt;= 1.6.2, yt-dlp &gt;= 2026.6.9</code></p>
   </div>
 </section>
 
@@ -122,6 +122,12 @@ python run.py</code></pre>
 </li>
 
 <li>
+  <strong>db_encryption_key</strong>
+  <code>(blank)</code>
+  <span>Passphrase that encrypts both SQLite databases at rest via SQLCipher. Blank = no encryption. Requires <code>pip install sqlcipher3-binary</code>; the <code>NANOBOT_DB_KEY</code> env var overrides it. An existing plaintext database is encrypted on the next start. No key recovery — losing the key loses the data.</span>
+</li>
+
+<li>
   <strong>default_prefix</strong>
   <code>n!</code>
   <span>Default command prefix (max 5 chars, no spaces).</span>
@@ -131,6 +137,18 @@ python run.py</code></pre>
   <strong>owner_id</strong>
   <code>(blank)</code>
   <span>Discord user ID of the bot owner. Leave blank to use the application owner.</span>
+</li>
+
+<li>
+  <strong>health_check_port</strong>
+  <code>0</code>
+  <span>Port for a plain-HTTP health endpoint (GET <code>/health</code>) for containers and orchestrators. Returns 200 once ready, 503 while starting. 0 disables it. May share a port with <code>vote_webhook_port</code> — the health route and vote webhook then use one listener.</span>
+</li>
+
+<li>
+  <strong>health_check_host</strong>
+  <code>0.0.0.0</code>
+  <span>Bind address for the health endpoint. 0.0.0.0 = all interfaces (needed for orchestrators / panels); 127.0.0.1 = host-local only. The payload is unauthenticated, so lock it down if the port is reachable.</span>
 </li>
 </ul>
 </article>
@@ -148,6 +166,18 @@ python run.py</code></pre>
   <strong>log_http</strong>
   <code>false</code>
   <span>true = log every raw HTTP request (very noisy).</span>
+</li>
+
+<li>
+  <strong>log_events_jsonl</strong>
+  <code>true</code>
+  <span>Also write structured command-lifecycle events (start/ok/error with timings and a correlation id) to <code>logs/events.jsonl</code>, one JSON object per line. The human-readable log is unaffected.</span>
+</li>
+
+<li>
+  <strong>db_slow_query_ms</strong>
+  <code>0</code>
+  <span>Log any SQLite query slower than this many milliseconds, so a slow/contended database surfaces in the logs. 0 disables it (zero overhead). A starting point on a busy bot: 200.</span>
 </li>
 </ul>
 </article>
@@ -268,7 +298,7 @@ python run.py</code></pre>
 <li>
   <strong>music_idle_timeout</strong>
   <code>180</code>
-  <span>Seconds the player waits while idle or alone before leaving the channel. Minimum 30.</span>
+  <span>Seconds before leaving after the channel empties or the queue runs out. When everyone leaves, playback pauses immediately and resumes automatically if someone returns within this window. Values below 30 are clamped to 30.</span>
 </li>
 <li>
   <strong>music_skip_ratio</strong>
@@ -406,6 +436,19 @@ python run.py</code></pre>
   </div>
   <p>Wipe all cached FML stories and force a fresh scrape on next run.</p>
   <p class="meta-line"><strong>Usage</strong> <code>n!fmlpurge</code></p>
+
+</article>
+
+<article class="command-card">
+  <div class="command-card__top">
+    <h3><code>health</code></h3>
+    <div class="badge-row">
+      <span class="badge badge--strong">Owner</span>
+      <span class="badge">Prefix</span>
+    </div>
+  </div>
+  <p>Probe the bot's HTTP <code>/health</code> endpoint and show the response, verifying it is reachable from outside the bot process. Requires <code>health_check_port</code> in config.ini.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>n!health</code></p>
 
 </article>
 
