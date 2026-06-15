@@ -665,6 +665,60 @@ input[type="search"]:focus {
   .command-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
+/* ── Document prose (privacy policy, long-form pages) ── */
+.doc-prose {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  padding: 1.4rem 1.45rem;
+  display: grid;
+  gap: .9rem;
+}
+.doc-prose > :first-child { margin-top: 0; }
+.doc-prose p { margin: 0; color: var(--ink); line-height: 1.7; }
+.doc-prose h3 {
+  margin: .35rem 0 -.15rem;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+}
+.doc-prose a { color: var(--accent-strong); }
+.doc-prose strong { color: var(--ink); }
+.doc-prose .bullet-list li { color: var(--ink); }
+.doc-prose .bullet-list code,
+.doc-prose p code,
+.doc-prose .doc-table code { font-size: .85em; }
+
+/* ── Tables ── */
+.doc-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.doc-table {
+  width: 100%;
+  min-width: 460px;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.doc-table th,
+.doc-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: .6rem .75rem;
+  border-bottom: 1px solid var(--line);
+}
+.doc-table thead th {
+  color: var(--accent-strong);
+  background: rgba(26, 108, 245, 0.1);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+.doc-table tbody td { color: var(--muted); }
+.doc-table td:first-child { color: var(--ink); }
+.doc-table tbody tr:last-child td { border-bottom: none; }
+
 /* ── iOS safe area bottom ── */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .site-shell { padding-bottom: calc(56px + env(safe-area-inset-bottom)); }
