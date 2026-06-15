@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy | NanoBot Docs</title>
+  <meta name="description" content="What NanoBot collects when added to a Discord server, how it's used, where it's stored, and how to have it removed.">
+  <link rel="icon" type="image/png" href="/photos/favicon.png">
+  <link rel="apple-touch-icon" href="/photos/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="privacy.html">
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="/nanobot-docs.html">
+          <img class="brand__logo" src="/photos/favicon.png" alt="NanoBot">
+          <span class="brand__text">
+            <span class="brand__eyebrow">NanoBot docs</span>
+            <strong class="brand__name">Moderation for your phone</strong>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">☰ Menu</button>
+        <nav class="topnav" aria-label="Primary">
+          <a class='topnav__link' href='/nanobot-docs.html'>Overview</a><a class='topnav__link' href='commands.html'>Commands</a><a class='topnav__link' href='setup.html'>Setup</a><a class='topnav__link' href='self-hosting.html'>Self-Hosting</a><a class='topnav__link' href='faq.html'>FAQ</a><a class='topnav__link' href='changelog.html'>Changelog</a><a class='topnav__link is-active' href='privacy.html'>Privacy</a>
+        </nav>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" data-mobile-menu aria-label="Mobile docs" hidden>
+        <a class='mobile-menu__link' href='/nanobot-docs.html'>Overview</a><a class='mobile-menu__link' href='commands.html'>Commands</a><a class='mobile-menu__link' href='setup.html'>Setup</a><a class='mobile-menu__link' href='self-hosting.html'>Self-Hosting</a><a class='mobile-menu__link' href='faq.html'>FAQ</a><a class='mobile-menu__link' href='changelog.html'>Changelog</a><a class='mobile-menu__link is-active' href='privacy.html'>Privacy</a>
+      </nav>
+    </header>
+    <main class="page">
+
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Last updated: June 11, 2026</p>
+    <h1>Privacy Policy</h1>
+    <p class="lede">What data NanoBot ("the bot", "we") collects when it is added to a Discord server, how that data is used, where it is stored, and how you can have it removed.</p>
+  </div>
+</section>
+
+<section class="stack">
+  <article class="doc-prose">
+    <p>NanoBot is an open-source Discord moderation bot. Its source code is publicly available at <a href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener noreferrer">github.com/therealjustsnow/NanoBot</a>. This policy covers the official hosted instance of NanoBot. Because the code is open source, anyone can run their own copy; self-hosted instances are operated independently and are not covered by this policy.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">TL;DR</p>
+    <h2>The short version</h2>
+  </div>
+  <article class="doc-prose">
+    <ul class="bullet-list">
+      <li>All data lives in a single local SQLite database on the machine that hosts the bot. There are <strong>no cloud databases, no analytics services, and no data sales</strong> — ever.</li>
+      <li>NanoBot <strong>does not store the content of your messages</strong>. Message text is scanned in memory for commands and moderation rules, then discarded.</li>
+      <li>NanoBot <strong>does not store presence (online status / activity) data</strong>. It is only displayed live when someone runs the <code>/user</code> command.</li>
+      <li>Data that <em>is</em> stored (warnings, levels, reminders, etc.) is limited to what the bot's features need, and you or your server admins can ask for it to be deleted at any time.</li>
+    </ul>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">What & why</p>
+    <h2>Data we collect and why</h2>
+  </div>
+  <article class="doc-prose">
+    <h3>Identifiers</h3>
+    <p>NanoBot stores Discord <strong>user IDs, server (guild) IDs, channel IDs, role IDs, and message IDs</strong> where a feature needs them. These are numeric identifiers assigned by Discord, not personal information you typed.</p>
+
+    <h3>Per-feature data</h3>
+    <div class="doc-table-wrap">
+      <table class="doc-table">
+        <thead>
+          <tr><th>Feature</th><th>What is stored</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Moderation</td><td>Timed-action schedules (e.g. "unban user X at time Y"): user ID, server ID, expiry time, and the reason a moderator typed.</td></tr>
+          <tr><td>Warnings</td><td>User ID, the reason text written by the moderator, the moderator's ID and username, and a timestamp.</td></tr>
+          <tr><td>Notes</td><td>Free-text notes a moderator writes about a user, with the user's ID.</td></tr>
+          <tr><td>Gatekeeper</td><td>For members pending verification: server ID, user ID, and scheduled unmute/kick times. Member avatars are downloaded <strong>transiently</strong> to compute a perceptual hash for stock-avatar detection and are not saved. The reference avatar catalog contains only images explicitly uploaded by server staff.</td></tr>
+          <tr><td>Welcome / audit log / automod / role panels</td><td>Server configuration only (channel IDs, toggles, rule settings, badword lists set by admins).</td></tr>
+          <tr><td>Reminders &amp; recurring reminders</td><td>The reminder text you typed, your user ID, the channel ID, and when to fire.</td></tr>
+          <tr><td>Tags</td><td>The tag name and text snippet a user chose to save, with their user ID.</td></tr>
+          <tr><td>Leveling</td><td>Per-server XP totals and levels keyed by user ID. Message <em>counts</em> contribute to XP; message <em>content</em> is not stored.</td></tr>
+          <tr><td>Economy</td><td>Per-server coin balances, daily-claim timestamps, and streak counters keyed by user ID.</td></tr>
+          <tr><td>Music</td><td>Per-server settings, the saved server playlist, song/user block lists, recently played track titles/URLs with the requester's user ID (trimmed to the most recent 200), and — if queue persistence is enabled — the current queue.</td></tr>
+          <tr><td>Votes</td><td>When you vote for NanoBot on a bot list (e.g. top.gg), the list sends us your user ID and the time of the vote, which we store to thank voters and track vote history.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Message content</h3>
+    <p>NanoBot requests Discord's Message Content intent because it must read messages to:</p>
+    <ul class="bullet-list">
+      <li>detect and run prefix commands (<code>n!ban</code>, custom prefixes, <code>@NanoBot ...</code>),</li>
+      <li>run AutoMod rules (spam, invite links, excessive caps/mentions, banned words, regex filters),</li>
+      <li>fire tag shortcuts (<code>n!tagname</code>),</li>
+      <li>support "last sender" moderation targeting (we keep an <strong>in-memory</strong> note of the last message author per channel — never written to disk).</li>
+    </ul>
+    <p>Message content is processed <strong>in memory and immediately discarded</strong>. It is never written to the database, never sent to third parties, and never used to train machine-learning or AI models.</p>
+    <p>One nuance: if a server enables audit logging for deleted or edited messages, a short preview of the deleted/edited message is posted to that server's own log channel. That content stays inside Discord, in a channel the server's admins chose.</p>
+
+    <h3>Presence (online status)</h3>
+    <p>NanoBot requests the Presence intent for exactly one feature: the <code>/user</code> info command, which shows whether a member is online and what activity they have set, at the moment the command is run. Presence data is <strong>never logged, stored, or tracked over time</strong>.</p>
+
+    <h3>Diagnostic logs</h3>
+    <p>The bot writes rotating log files on its host machine for debugging. These contain command usage records (which command, which user ID, which server ID, how long it took, and errors). They do <strong>not</strong> contain message content. Logs rotate and old entries are overwritten automatically.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">External APIs</p>
+    <h2>Third-party services</h2>
+    <p>Some features call external APIs. Here is exactly what leaves the bot.</p>
+  </div>
+  <article class="doc-prose">
+    <div class="doc-table-wrap">
+      <table class="doc-table">
+        <thead>
+          <tr><th>Service</th><th>What is sent</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Groq (AI)</td><td>Only when you use <code>/eli5</code>: the question text you typed is sent to Groq's API to generate an explanation. Subject to <a href="https://groq.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Groq's privacy policy</a>.</td></tr>
+          <tr><td>nekos.best / Nekosia</td><td>Nothing about you — the bot fetches image URLs for image/GIF commands.</td></tr>
+          <tr><td>YouTube / yt-dlp, Spotify (page metadata), iTunes Search, SponsorBlock</td><td>Song titles/URLs requested in music commands. No Discord user data is sent.</td></tr>
+          <tr><td>Bot lists (top.gg, Discord Bot List, discord.bots.gg)</td><td>The bot's server count. When you vote on those sites, they send us your user ID (see Votes above).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>NanoBot never sends your messages, member lists, or presence data to any third party.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Storage &amp; security</p>
+    <h2>Where data lives and how it's protected</h2>
+  </div>
+  <article class="doc-prose">
+    <p>All persistent data is stored in a local SQLite database file on the machine that hosts the bot, operated by the bot owner. There is no cloud replication and no third-party hosting of bot data. Access is limited to the bot operator.</p>
+    <p>The official hosted instance encrypts its databases at rest using SQLCipher (AES-256). Self-hosted instances can enable the same protection by setting <code>db_encryption_key</code> in their configuration.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Retention</p>
+    <h2>Data retention and deletion</h2>
+  </div>
+  <article class="doc-prose">
+    <ul class="bullet-list">
+      <li>Most records are kept until a moderator or user deletes them through bot commands (e.g. clearing warnings, deleting tags, cancelling reminders).</li>
+      <li>Music history is automatically trimmed to the most recent 200 tracks per server.</li>
+      <li>If NanoBot is removed from a server, its stored data for that server stops being used and can be purged on request.</li>
+      <li><strong>To request deletion of your data</strong> (or all data for your server), contact the bot owner by opening an issue at <a href="https://github.com/therealjustsnow/NanoBot/issues" target="_blank" rel="noopener noreferrer">github.com/therealjustsnow/NanoBot/issues</a> or via the support contact listed on the bot's profile. Requests are honored within 30 days.</li>
+    </ul>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Eligibility</p>
+    <h2>Children</h2>
+  </div>
+  <article class="doc-prose">
+    <p>NanoBot is intended for users who meet Discord's minimum age requirement (13, or higher where local law requires). We do not knowingly collect data from anyone below that age.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Updates</p>
+    <h2>Changes to this policy</h2>
+  </div>
+  <article class="doc-prose">
+    <p>If this policy changes, the new version will be published at this same URL with an updated "Last updated" date.</p>
+  </article>
+</section>
+
+<section class="stack">
+  <div class="section-head">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Contact</h2>
+  </div>
+  <article class="doc-prose">
+    <p>Questions about this policy or your data: open an issue at <a href="https://github.com/therealjustsnow/NanoBot/issues" target="_blank" rel="noopener noreferrer">github.com/therealjustsnow/NanoBot/issues</a>.</p>
+  </article>
+</section>
+
+    </main>
+  </div>
+  <button class="scroll-top" type="button" data-scroll-top aria-label="Scroll to top">↑ Top</button>
+  <script src="app.js"></script>
+</body>
+</html>
