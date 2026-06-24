@@ -50,6 +50,7 @@
       <button class="chip" data-filter="Moderation" type="button">Moderation</button>
       <button class="chip" data-filter="Utility" type="button">Utility</button>
       <button class="chip" data-filter="Fun" type="button">Fun</button>
+      <button class="chip" data-filter="Community" type="button">Community</button>
       <button class="chip" data-filter="Music" type="button">Music</button>
     </div>
     <p class="toolbar__note">Owner-only commands live in the Self-Hosting guide. This page only lists public and server staff commands.</p>
@@ -3776,6 +3777,957 @@
   <p>Toggle automatic unmuting of age-flagged members once their account is old enough.</p>
   <p class="meta-line"><strong>Usage</strong> <code>/gk ageunmute</code></p>
   <p class="meta-line"><strong>Permission</strong> Manage Guild</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Community">
+  <div class="section-head">
+    <p class="eyebrow">Community</p>
+    <h2>Economy <span class="count-pill">26</span></h2>
+    <p>A NanoCoin economy with daily rewards, transfers, gambling, co-op events, and a redeemable shop.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="balance bal check nanocoin balance and contribution rank economy public none">
+  <div class="command-card__top">
+    <h3><code>balance</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Check your NanoCoin balance and contribution rank, or look up another member&#x27;s.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/balance [member] | n!balance [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bal @snow</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="daily claim daily reward streak nanocoin economy public none">
+  <div class="command-card__top">
+    <h3><code>daily</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Claim your daily NanoCoin reward. Keep a streak going for bonus coins.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/daily | n!daily</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!daily</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="pay send transfer coins to another member economy public none">
+  <div class="command-card__top">
+    <h3><code>pay</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Send NanoCoin to another member.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/pay &lt;member&gt; &lt;amount&gt; | n!pay &lt;member&gt; &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!pay @snow 50</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="report coop co-op reward partner confirms economy public none">
+  <div class="command-card__top">
+    <h3><code>report</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Log a co-op activity with a partner who confirms it to split a shared reward.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/report &lt;member&gt; [activity] | n!report &lt;member&gt; [activity]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coop @snow patrol</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="raid event group co-op join board party economy public none">
+  <div class="command-card__top">
+    <h3><code>raid</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Open a group co-op join board so several members can team up for a shared payout.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/raid [activity] | n!raid [activity]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!event dungeon</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="coin top richest members leaderboard economy public none">
+  <div class="command-card__top">
+    <h3><code>coin top</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the richest members on the server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin top [page] | n!coin top [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin top</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="coin contrib contributors leaderboard economy public none">
+  <div class="command-card__top">
+    <h3><code>coin contrib</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the top contributors on the server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin contrib [page] | n!coin contrib [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin contrib</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="coin gamble bet double coins economy public none">
+  <div class="command-card__top">
+    <h3><code>coin gamble</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Bet NanoCoin for a chance to double it.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin gamble &lt;amount&gt; | n!coin gamble &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin bet 100</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin grant add coins to member economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin grant</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add NanoCoin to a member&#x27;s balance.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin grant &lt;member&gt; &lt;amount&gt; | n!coin grant &lt;member&gt; &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin grant @snow 500</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin take remove coins from member economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin take</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove NanoCoin from a member&#x27;s balance.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin take &lt;member&gt; &lt;amount&gt; | n!coin take &lt;member&gt; &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin take @snow 100</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin reset wipe balances economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin reset</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Wipe one member&#x27;s balance, or every balance on the server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin reset [member] | n!coin reset [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin reset</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin daily set daily reward amount economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin daily</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the amount paid out by the daily reward.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin daily &lt;amount&gt; | n!coin daily &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin daily 200</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin streakbonus per day streak bonus economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin streakbonus</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the per-day bonus added for daily-reward streaks.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin streakbonus &lt;amount&gt; | n!coin streakbonus &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin streakbonus 10</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin coop set co-op reward economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin coop</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the reward paid for a confirmed co-op report.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin coop &lt;amount&gt; | n!coin coop &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin coop 75</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin raid set raid reward economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin raid</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the reward paid out per member for a completed raid.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin raid &lt;amount&gt; | n!coin raid &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin raid 150</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin raidsize party size min max economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin raidsize</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the minimum and maximum party size for raids.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin raidsize &lt;min&gt; &lt;max&gt; | n!coin raidsize &lt;min&gt; &lt;max&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin raidsize 2 5</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin name rename currency economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin name</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Rename the server currency.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin name &lt;text&gt; | n!coin name &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin name Gems</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin emoji set currency emoji economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin emoji</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the currency emoji.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin emoji &lt;emoji&gt; | n!coin emoji &lt;emoji&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin emoji 🪙</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="coin config show economy settings restricted manage server">
+  <div class="command-card__top">
+    <h3><code>coin config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current economy settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/coin config | n!coin config</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!coin config</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="shop list browse rewards items economy public none">
+  <div class="command-card__top">
+    <h3><code>shop list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Browse the rewards available in the shop.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop list [page] | n!shop list [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop list</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="shop buy redeem purchase item economy public none">
+  <div class="command-card__top">
+    <h3><code>shop buy</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Redeem a shop item with NanoCoin.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop buy &lt;id|name&gt; | n!shop buy &lt;id|name&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop buy vip</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="shop add create item reward economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>shop add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Create a new shop item.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop add &lt;name&gt; &lt;price&gt; &lt;kind&gt; ...</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop add VIP 1000 role</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="shop edit modify item economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>shop edit</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Edit an existing shop item.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop edit &lt;id|name&gt; ...</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop edit VIP price 1500</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="shop remove delete item economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>shop remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Delete a shop item.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop remove &lt;id|name&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop remove VIP</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="shop pending custom reward queue economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>shop pending</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>View the queue of custom rewards awaiting fulfilment.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop pending | n!shop pending</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop pending</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="shop fulfill mark reward delivered economy restricted manage server">
+  <div class="command-card__top">
+    <h3><code>shop fulfill</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Mark a pending custom reward as delivered.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/shop fulfill &lt;id&gt; | n!shop fulfill &lt;id&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!shop fulfill 4</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Community">
+  <div class="section-head">
+    <p class="eyebrow">Community</p>
+    <h2>Leveling <span class="count-pill">12</span></h2>
+    <p>Per-server XP and levels with role rewards, coin payouts, and a leaderboard.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="rank lvl level xp rank card leveling public none">
+  <div class="command-card__top">
+    <h3><code>rank</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show your level, XP, and rank on this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/rank [member] | n!rank [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!lvl</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="level top xp leaderboard leveling public none">
+  <div class="command-card__top">
+    <h3><code>level top</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show the server XP leaderboard.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level top [page] | n!level top [page]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level top</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level set exact xp leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level set</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set a member&#x27;s XP to an exact amount.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level set &lt;member&gt; &lt;amount&gt; | n!level set &lt;member&gt; &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level set @snow 5000</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level give add subtract xp leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level give</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add or subtract XP for a member.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level give &lt;member&gt; &lt;amount&gt; | n!level give &lt;member&gt; &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level give @snow 250</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level reset xp leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level reset</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Reset XP for one member, or the whole server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level reset [member] | n!level reset [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level reset</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level toggle enable disable leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level toggle</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Turn leveling on or off.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level toggle &lt;on|off&gt; | n!level toggle &lt;on|off&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level toggle on</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level rate xp per message cooldown leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level rate</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set XP earned per message and the cooldown between awards.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level rate &lt;xp_min&gt; &lt;xp_max&gt; [cooldown] | n!level rate &lt;xp_min&gt; &lt;xp_max&gt; [cooldown]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level rate 15 25 60</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level announce level-up channel leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level announce</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the channel for level-up announcements.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level announce [channel] | n!level announce [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level announce #levels</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level reward role rewards leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level reward</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add, remove, or list level-based role rewards.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level reward &lt;add|remove|list&gt; [level] [role]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level reward add 10 @Regular</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level ignore no-xp channels leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level ignore</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add, remove, or list channels that earn no XP.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level ignore &lt;add|remove|list&gt; [channel]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level ignore add #spam</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level coinreward coins per level leveling restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level coinreward</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set how much NanoCoin is awarded each time a member levels up.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level coinreward &lt;amount&gt; | n!level coinreward &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level coinreward 50</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="level config show leveling settings restricted manage server">
+  <div class="command-card__top">
+    <h3><code>level config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current leveling settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/level config | n!level config</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!level config</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Community">
+  <div class="section-head">
+    <p class="eyebrow">Community</p>
+    <h2>Birthday <span class="count-pill">15</span></h2>
+    <p>Member birthday tracking with scheduled announcements, timezones, and optional voice singing.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="birthday bday birthdays show own birthday public none">
+  <div class="command-card__top">
+    <h3><code>birthday</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show your own registered birthday.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday | n!birthday</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!bday</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="birthday set register add your birthday date public none">
+  <div class="command-card__top">
+    <h3><code>birthday set</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Register your birthday. Accepts formats like &#x27;March 5&#x27;, &#x27;5 Mar 1998&#x27;, or &#x27;03/05&#x27;.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday set &lt;date&gt; | n!birthday set &lt;date&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday set March 5</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="birthday remove delete clear unset your birthday public none">
+  <div class="command-card__top">
+    <h3><code>birthday remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Delete your registered birthday.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday remove | n!birthday remove</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday remove</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="birthday view get show member birthday countdown public none">
+  <div class="command-card__top">
+    <h3><code>birthday view</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show a member&#x27;s birthday and the countdown to it.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday view [member] | n!birthday view [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday view @snow</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="birthday list upcoming all server birthdays public none">
+  <div class="command-card__top">
+    <h3><code>birthday list</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Show upcoming birthdays in this server.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday list | n!birthday list</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday upcoming</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday channel announcement channel restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday channel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the announcement channel and turn the feature on.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday channel &lt;channel&gt; | n!birthday channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday channel #general</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday disable off turn announcements off restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Turn birthday announcements off.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday disable | n!birthday disable</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday off</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday timezone tz set timezone restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday timezone</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the timezone used to decide whose birthday is &#x27;today&#x27;. Shows a dropdown with no argument.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday timezone [timezone] | n!birthday timezone [timezone]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday tz America/New_York</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday hour announcement time restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday hour</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the local hour (0-23) when announcements fire.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday hour &lt;0-23&gt; | n!birthday hour &lt;0-23&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday hour 9</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday message custom announcement text restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday message</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Customize the announcement text. Pass &#x27;default&#x27; to reset it.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday message &lt;text&gt; | n!birthday message &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday message Happy birthday {mention}!</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday gifs toggle festive gif restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday gifs</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle the festive GIF in announcements.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday gifs &lt;on|off&gt; | n!birthday gifs &lt;on|off&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday gifs on</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday voice toggle sing voice channel restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday voice</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle joining voice to play the birthday song.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday voice &lt;on|off&gt; | n!birthday voice &lt;on|off&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday voice on</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday ping toggle mention birthday person restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday ping</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle pinging the birthday person in the announcement.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday ping &lt;on|off&gt; | n!birthday ping &lt;on|off&gt;</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday ping on</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday config settings show restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current birthday settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday config | n!birthday config</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday settings</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="birthday test preview announcement now restricted manage server">
+  <div class="command-card__top">
+    <h3><code>birthday test</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash + prefix</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Preview the announcement now, ignoring the schedule guard.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/birthday test [member] | n!birthday test [member]</code></p>
+  <p class="meta-line"><strong>Example</strong> <code>n!birthday test @snow</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Community">
+  <div class="section-head">
+    <p class="eyebrow">Community</p>
+    <h2>Live Role <span class="count-pill">8</span></h2>
+    <p>Automatically grant a role and announce when members go live streaming.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole setup live role channel streaming restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole setup</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the live role and/or announcement channel in one step.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole setup [role] [channel]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole enable activate tracking streaming restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole enable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Activate live-role tracking.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole enable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole disable deactivate tracking streaming restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Deactivate live-role tracking.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole disable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole role set live streaming role restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole role</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the role granted while a member is live.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole role &lt;role&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole channel go-live announcement restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole channel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the go-live announcement channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole channel &lt;channel&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole announce toggle go-live announcements restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole announce</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Toggle go-live announcements.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole announce &lt;on|off&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole message custom go-live template restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole message</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Customize the go-live announcement template (max 1500 characters).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole message &lt;text&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="liverole status show configuration streaming restricted manage roles">
+  <div class="command-card__top">
+    <h3><code>liverole status</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current live-role configuration.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/liverole status</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
 </article>
 
   </div>

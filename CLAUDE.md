@@ -37,6 +37,30 @@ docs/
 
 `external/NanoBot/` is a git submodule pointing to `https://github.com/therealjustsnow/NanoBot`. It is empty in local checkouts unless initialized with `git submodule update --init`.
 
+### NanoBot Command Count
+
+The command totals shown on `nanobot-docs.html` (the "By the numbers" stat cards) and the `Commands` stat on `nanobot.html` are **not hand-counted** — they are produced by `scripts/count-commands.py`, which statically parses the NanoBot cog source with `ast`.
+
+```bash
+# Print counts as JSON (point at a NanoBot checkout — the dir containing cogs/)
+scripts/count-commands.py external/NanoBot
+
+# Also rewrite the "By the numbers" stat cards in nanobot-docs.html in place
+scripts/count-commands.py external/NanoBot --update nanobot-docs.html
+```
+
+**Counting rules** (see the script docstring for detail):
+- Every `@command` / `@hybrid_command` / `@hybrid_group` / `@<group>.command` decorator on a direct Cog method counts once.
+- Each entry in `cogs/fun/actions.py`'s `_SOCIAL_ACTIONS` / `_REACT_ACTIONS` dicts is a dynamically-registered prefix command and counts once (this is the `dynamic` field; all are public).
+- **Owner** = cog gated by a `cog_check` calling `is_owner`, or `@commands.is_owner` on the command. **Restricted** = has a permission-check decorator or lives under a Group/`hybrid_group` with `default_permissions`. **Public** = everything else.
+- `total = public + restricted + owner`.
+
+**Critical gotcha:** the script must walk cogs with `rglob("*.py")`, not `glob("*.py")`. NanoBot reorganized its larger cogs into packages (`cogs/admin/`, `cogs/fun/`, `cogs/music/`, `cogs/moderation/`, `cogs/utility/`); a flat `glob` silently skips every command inside those subpackages (it once reported 130 instead of the real total). The script aborts if the total comes back under 50 as a guard against this.
+
+When NanoBot changes, re-run the script. `--update` syncs `nanobot-docs.html` automatically; then manually update the single `Commands` stat-card value on `nanobot.html` to match the `total`, and add any new command categories to `docs/commands.html`. The submodule clone may be blocked by the sandbox proxy — in that case fetch a tarball (`https://codeload.github.com/therealjustsnow/NanoBot/tar.gz/refs/heads/main`) and run the script against the extracted dir.
+
+> Current counts (NanoBot `main`, last sync): **368 total** — 189 public, 159 restricted, 20 owner (59 dynamic fun commands included in public).
+
 ### JS / CSS
 
 All files in `css/` and `js/` are **pre-minified**. Unminified source does not live in this repo. Only touch these files for JS logic changes:
