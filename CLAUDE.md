@@ -191,3 +191,10 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 - **New standalone pages** must replicate: nav, color-popup, cookie-banner, cookie-modal, cursor-glow, scroll-top, and cookie-settings-btn blocks from an existing page (e.g. `guestbook.html`).
 - **Static assets** (photos, previews): WebP format preferred. Images live in `photos/` and `previews/`.
 - **`resume.pdf`** is served directly from the repo root.
+
+## Design Context
+
+Strategic and visual design context for this site lives in two root files — read them before any design/UI work:
+
+- **`PRODUCT.md`** — register: `brand` (portfolio primary; NanoBot landing + docs are sibling surfaces). Personality: playful, curious, hands-on. Positioning: personality-first developer — the site itself is the resume. Belief ladder: fun → curious → capable. Primary CTA: resume; fallback: explore the toys. Anti-references: generic template portfolio, corporate SaaS landing, overdone hacker aesthetic. Accessibility: WCAG AA.
+- **`DESIGN.md`** — visual system ("The Midnight Arcade"): Void dark bg + Neon Amethyst (#a855f7) accent, glass cabinets, Syne/DM Sans/JetBrains Mono. Key rules: never hardcode the accent (always `rgba(var(--accent-rgb), α)`); glow/lift only on interactive elements; phosphor green stays inside TI-83/terminal. Machine-readable tokens in the frontmatter and `.impeccable/design.json`.
