@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-10T00:00:00Z",
+  "title": "Design System: snowbuilds.dev",
+  "extensions": {
+    "colorMeta": {
+      "neon-amethyst": { "role": "primary", "displayName": "Neon Amethyst", "canonical": "#a855f7", "tonalRamp": ["#1c0733", "#2e0f52", "#431a75", "#5b2a9d", "#7c3aed", "#a855f7", "#c489fa", "#e0c3fc"] },
+      "amethyst-deep": { "role": "primary", "displayName": "Amethyst Deep", "canonical": "#7c3aed", "tonalRamp": ["#160526", "#26093f", "#3a105f", "#521d86", "#6c2bc4", "#7c3aed", "#a06af4", "#cbaaf9"] },
+      "void": { "role": "neutral", "displayName": "Void", "canonical": "#05060f", "tonalRamp": ["#05060f", "#0d0221", "#1a0533", "#1e1040", "#2a1b55", "#4a3a78", "#8b7fae", "#d5d0e3"] },
+      "moonlight": { "role": "neutral", "displayName": "Moonlight", "canonical": "#e2e8f0", "tonalRamp": ["#1f2530", "#39414f", "#565f70", "#767f91", "#98a1b2", "#bac2d1", "#e2e8f0", "#f5f7fa"] },
+      "signal-red": { "role": "tertiary", "displayName": "Signal Red", "canonical": "#ef4444", "tonalRamp": ["#310a0a", "#521111", "#7a1a1a", "#a52626", "#d13333", "#ef4444", "#f47c7c", "#fbc4c4"] },
+      "phosphor-green": { "role": "tertiary", "displayName": "Phosphor Green (quarantined to TI-83/terminal)", "canonical": "#00ff41", "tonalRamp": ["#001a08", "#003a18", "#00632a", "#00913d", "#00c451", "#00ff41", "#66ff8e", "#c2ffd4"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Syne 800)", "purpose": "Hero title only; arcade-marquee voice." },
+      "headline": { "displayName": "Headline (Syne 800)", "purpose": "Section titles." },
+      "title": { "displayName": "Title (Syne 800)", "purpose": "Card and CTA-box headings." },
+      "body": { "displayName": "Body (DM Sans 400)", "purpose": "Prose; secondary body at white/.65." },
+      "label": { "displayName": "Label (JetBrains Mono)", "purpose": "Inputs, terminal output, technical metadata." }
+    },
+    "shadows": [
+      { "name": "cabinet-ambient", "value": "0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1)", "purpose": "Every .glass surface, at rest and hover. Never varies." },
+      { "name": "interactive-glow", "value": "0 4px 20px rgba(168,85,247,0.4)", "purpose": "Primary buttons at rest; accent-driven via --accent-rgb." },
+      { "name": "eager-glow", "value": "0 8px 28px rgba(168,85,247,0.55)", "purpose": "Primary button hover, paired with translateY(-2px)." },
+      { "name": "focus-ring", "value": "0 0 0 2px rgba(168,85,247,0.18)", "purpose": "Focused inputs, with accent border; Signal Red variant on .invalid." }
+    ],
+    "motion": [
+      { "name": "eager", "value": "all 0.25s ease", "purpose": "Button hover lift/glow." },
+      { "name": "snap", "value": "0.15s ease", "purpose": "Micro-actions, small controls." },
+      { "name": "underline-sweep", "value": "width 0.3s ease", "purpose": "Nav link accent underline 0 to 100%." },
+      { "name": "ambient-drift", "value": "12s ease-in-out infinite alternate", "purpose": "Nebula background drift; disabled on mobile and under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid Amethyst Deep CTA with resting glow; lifts and brightens on hover.",
+      "html": "<button class=\"ds-btn-primary\">Grab the resume</button>",
+      "css": ".ds-btn-primary { background: #7c3aed; color: #fff; border: none; border-radius: 10px; padding: 0.6rem 1.4rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 20px rgba(168,85,247,0.4); transition: all 0.25s ease; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(168,85,247,0.55); } .ds-btn-primary:focus-visible { outline: 2px solid rgba(168,85,247,0.7); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent secondary action with accent-tinted border; fills with accent tint on hover.",
+      "html": "<button class=\"ds-btn-ghost\">Explore first</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(168,85,247,0.35); border-radius: 10px; padding: 0.6rem 1.4rem; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.05em; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.25s ease; } .ds-btn-ghost:hover { background: rgba(168,85,247,0.12); color: #fff; border-color: rgba(168,85,247,0.7); } .ds-btn-ghost:focus-visible { outline: 2px solid rgba(168,85,247,0.7); outline-offset: 2px; }"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Frosted cabinet: glass fill, accent-tinted border, cabinet-ambient shadow. Interactive variants brighten the border on hover.",
+      "html": "<div class=\"ds-card-glass\"><h3 class=\"ds-card-title\">NanoBot</h3><p class=\"ds-card-body\">Discord moderation built for your phone. 368 commands, running in real servers.</p></div>",
+      "css": ".ds-card-glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(14px); border: 1px solid rgba(168,85,247,0.2); border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.1); padding: 1.75rem; max-width: 340px; } .ds-card-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; margin: 0 0 0.6rem; } .ds-card-body { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; line-height: 1.65; color: rgba(255,255,255,0.65); margin: 0; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Glass field; focus brightens border to accent with a soft ring, Signal Red on invalid.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Leave a message...\" />",
+      "css": ".ds-input { width: 100%; max-width: 320px; background: rgba(255,255,255,0.05); border: 1px solid rgba(168,85,247,0.2); border-radius: 10px; padding: 0.65rem 0.9rem; color: #e2e8f0; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input::placeholder { color: rgba(255,255,255,0.45); } .ds-input:focus { border-color: rgba(168,85,247,0.7); box-shadow: 0 0 0 2px rgba(168,85,247,0.18); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Uppercase tracked link with accent underline sweeping in on hover.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">Stack</a><a class=\"ds-nav-link\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 1.5rem; padding: 1rem; background: rgba(5,6,15,0.6); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(168,85,247,0.15); } .ds-nav-link { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; position: relative; transition: color 0.25s ease; } .ds-nav-link::after { content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 2px; background: #a855f7; border-radius: 1px; transition: width 0.3s ease; } .ds-nav-link:hover { color: #fff; } .ds-nav-link:hover::after { width: 100%; }"
+    },
+    {
+      "name": "Micro Action",
+      "kind": "chip",
+      "refersTo": "button-ghost",
+      "description": "Near-invisible at rest; hover reveals intent — accent for edit, Signal Red for delete.",
+      "html": "<span><button class=\"ds-micro\">edit</button> <button class=\"ds-micro ds-micro-danger\">delete</button></span>",
+      "css": ".ds-micro { background: transparent; border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; color: rgba(255,255,255,0.45); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; line-height: 1; padding: 0.2rem 0.4rem; transition: all 0.15s ease; } .ds-micro:hover { border-color: #a855f7; color: #a855f7; background: rgba(168,85,247,0.08); } .ds-micro-danger:hover { border-color: #ef4444; color: #ef4444; background: rgba(239,68,68,0.08); }"
+    },
+    {
+      "name": "Cabinet Button (TI-83)",
+      "kind": "custom",
+      "refersTo": "button-ghost",
+      "description": "Signature in-world toy control — phosphor green quarantined inside its cabinet skin.",
+      "html": "<button class=\"ds-ti-btn\">GRAPH</button>",
+      "css": ".ds-ti-btn { background: #001a08; border: 1px solid #003a18; color: #00ff41; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 0.4rem 0.8rem; border-radius: 3px; cursor: pointer; text-align: center; transition: background 0.15s; } .ds-ti-btn:hover { background: #003a18; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Midnight Arcade",
+    "overview": "A dark room full of glowing machines, and every cabinet is playable. The site is a deep-space void (#05060f) washed by drifting violet nebulae, with frosted-glass cabinets floating above it. The signature Neon Amethyst (#a855f7) is not decoration — it is the arcade's light source, and light means 'touch me.' The whole system exists to make a visitor play first and realize the skill second. The single most important mechanic: the accent is a live variable — visitors re-theme the entire site through the color picker; --accent-rgb cascades everywhere. Purple is the default personality, not a constant.",
+    "keyCharacteristics": [
+      "Deep-space dark, always — glass surfaces over a nebula gradient, never flat panels on gray.",
+      "Neon Amethyst glow = interactivity. Glow is a promise that something happens when you click.",
+      "Syne 800 display voice: wide, geometric, confident; JetBrains Mono whispers the technical labels.",
+      "Tactile and eager — hover states lift, brighten, and respond fast (0.15–0.3s ease-out).",
+      "Honest affordances: static content never borrows interactive styling."
+    ],
+    "rules": [
+      { "name": "The Live Accent Rule", "body": "Never hardcode purple. Every accent usage goes through rgba(var(--accent-rgb), α) or var(--accent) / var(--accent-dark), because the visitor's color picker re-themes the site at runtime. A hex-coded #a855f7 in a component is a bug.", "section": "colors" },
+      { "name": "The Quarantine Rule", "body": "Phosphor Green lives inside the TI-83 and terminal cabinets and nowhere else. One leak and the site becomes the hacker cliché PRODUCT.md bans.", "section": "colors" },
+      { "name": "The Marquee Rule", "body": "Syne appears at weight 700+ only. There is no 'light Syne'; the display voice is always fully lit.", "section": "typography" },
+      { "name": "The Tracking Floor", "body": "Display letter-spacing never goes below -0.04em (current hero value is the floor, not a starting point).", "section": "typography" },
+      { "name": "The Honest Glow Rule", "body": "Accent glow, hover lift, and brightening borders are reserved for elements that respond to a click or keypress. Static content never glows, never lifts, never shows a pointer cursor. A false affordance is a broken promise in an arcade.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do route every accent color through rgba(var(--accent-rgb), α) — the visitor's color picker must re-theme everything (The Live Accent Rule).",
+      "Do make every clickable thing eager: glow, lift -2px, or brighten within 150–300ms, ease / ease-out only.",
+      "Do keep body/secondary text at white/.65 or brighter on Void — that's the WCAG AA floor here; white/.45 is for disabled and meta text only.",
+      "Do ship prefers-reduced-motion alternatives for every animation, and keep the nebula drift disabled on mobile as it is now.",
+      "Do give new pages the full shared shell (nav, color-popup, cookie banner/modal, cursor-glow, scroll-top) so the arcade feels continuous."
+    ],
+    "donts": [
+      "Don't put glow, hover lift, or pointer cursors on non-interactive elements — no false affordances (The Honest Glow Rule).",
+      "Don't let Phosphor Green (#00ff41) out of the TI-83/terminal cabinets; no Matrix rain, no site-wide neon green mono — PRODUCT.md bans the 'overdone hacker aesthetic' by name.",
+      "Don't build the 'generic template portfolio': no skill bars, no identical icon-heading-text card grids, no stock hero.",
+      "Don't drift toward 'corporate SaaS landing' moves: no multi-color enterprise gradients, no stat rows, no gradient text.",
+      "Don't introduce gray hexes for text or borders — neutrals are white-at-opacity, full stop.",
+      "Don't use Syne below weight 700, or track display type tighter than -0.04em.",
+      "Don't hand-edit *.min.js / styles.min.css styling conventions away — extend within the existing token vocabulary (--accent-rgb, .glass, reveal)."
+    ]
+  }
+}
