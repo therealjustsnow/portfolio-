@@ -16,8 +16,8 @@
   --glass-blur: blur(18px);
   --radius: 22px;
   --max: 1180px;
-  --font-heading: "Syne", "Avenir Next", "Trebuchet MS", ui-sans-serif, sans-serif;
-  --font-body: "DM Sans", "Segoe UI", ui-sans-serif, sans-serif;
+  --font-heading: "Bricolage Grotesque", "Avenir Next", "Trebuchet MS", ui-sans-serif, sans-serif;
+  --font-body: "Hanken Grotesk", "Segoe UI", ui-sans-serif, sans-serif;
 }
 
 * { box-sizing: border-box; }
