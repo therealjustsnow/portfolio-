@@ -4,6 +4,9 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Snow</title>
+        <!-- Mark JS available before paint, so reveal animations gate on JS
+             (no-JS / prerender loads render content visible, never blank). -->
+        <script>document.documentElement.className += " js";</script>
         <link id="favicon" rel="icon" type="image/png" href="photos/favicon.png" />
         <link rel="apple-touch-icon" href="photos/favicon.png" />
         <link rel="shortcut icon" href="photos/favicon.png" />
@@ -134,10 +137,91 @@
             /* ---- CTA: promote contact to a solid primary ---- */
             #cta .cta-actions .btn-primary { box-shadow: 0 4px 24px rgba(var(--accent-rgb), .45); }
 
+            /* ===== harden · layout · bolder · polish pass ===== */
+
+            /* [layout] Skip link — first stop for keyboard users past the 8-item nav */
+            .skip-link {
+                position: absolute;
+                left: 1rem; top: -3.5rem;
+                z-index: 3000;
+                background: var(--accent-dark);
+                color: #fff;
+                padding: .6rem 1rem;
+                border-radius: 10px;
+                font-family: "DM Sans", sans-serif;
+                font-size: .85rem; font-weight: 600;
+                text-decoration: none;
+                transition: top .2s ease;
+            }
+            .skip-link:focus { top: 1rem; outline: 2px solid #fff; outline-offset: 2px; }
+
+            /* [harden] Reveal is a progressive enhancement, not a visibility gate.
+               Content is visible by default; only JS-enabled loads hide-then-animate,
+               so no-JS / prerender / failed-observer loads never ship blank sections. */
+            .reveal { opacity: 1; transform: none; }
+            html.js .reveal { opacity: 0; transform: translateY(28px); }
+            html.js .reveal.visible { opacity: 1; transform: none; }
+
+            /* [harden] Pitch line: readable + picker-proof (was accent .75 ≈ 3.3:1) */
+            .hero-tagline {
+                color: rgb(255 255 255 / .82);
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            /* [harden] Toy hints are real <button>s now — keyboard-reachable */
+            .hero-hint {
+                appearance: none;
+                -webkit-appearance: none;
+                background: none;
+                border: none;
+                font: inherit;
+                color: rgb(255 255 255 / .72);
+                cursor: pointer;
+                padding: .15rem .25rem;
+                border-radius: 6px;
+            }
+            .hero-hint kbd { color: var(--accent); }
+            .hero-hint:hover { color: #fff; }
+            .hero-hint:focus-visible {
+                outline: 2px solid rgba(var(--accent-rgb), .8);
+                outline-offset: 2px;
+            }
+
+            /* [layout] Divider chunks in-page anchors from the toy pages */
+            .nav-divider {
+                width: 1px;
+                align-self: stretch;
+                background: rgba(var(--accent-rgb), .25);
+                margin: 0 .35rem;
+            }
+            @media (max-width: 820px) {
+                .nav-divider { width: 100%; height: 1px; margin: .5rem 0; }
+            }
+
+            /* [bolder] Carry the lit-cabinet language onto Stack tiles + stronger titles */
+            .section-title { font-size: clamp(2.2rem, 5.2vw, 3.4rem); }
+            .stack-card { overflow: hidden; }
+            .stack-card::before {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0; height: 2px;
+                background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .85), transparent);
+                opacity: 0;
+                transition: opacity .3s ease;
+                z-index: 2;
+            }
+            .stack-card:hover::before { opacity: 1; }
+            .stack-group-label { color: rgba(var(--accent-rgb), .9); }
+
+            /* [polish] Nudge marginal schedule-time contrast to AA (was white .45 ≈ 4.4:1) */
+            .sched-time { color: rgb(255 255 255 / .6) !important; }
+
             @media (prefers-reduced-motion: reduce) {
                 .hero-greeting::before,
                 .name-glow,
-                .hero-img-ring { animation: none !important; }
+                .hero-img-ring,
+                .opp-dot { animation: none !important; }
             }
         </style>
 
@@ -179,6 +263,7 @@
     </head>
 
     <body>
+        <a class="skip-link" href="#projects">Skip to content</a>
         <!-- Redirect old hash-based URLs to the new standalone pages -->
         <script>
             (function () {
@@ -246,6 +331,7 @@
                     <a href="#analytics">Analytics</a>
                     <a href="#schedule">Schedule</a>
                     <a href="#contact">Contact</a>
+                    <span class="nav-divider" aria-hidden="true"></span>
                     <a href="/photography">📷 Photography</a>
                     <a href="/guestbook">✍️ Guestbook</a>
                     <a href="/terminal">⌨️ Terminal</a>
@@ -310,9 +396,9 @@
                         <a class="btn btn-ghost" href="https://github.com/therealjustsnow" target="_blank">GitHub ↗</a>
                     </div>
                     <div class="hero-hints">
-                        <span class="hero-hint" onclick="toggleTI()" title="Open TI-83">press <kbd>[MODE]</kbd> to unlock something</span>
-                        <span class="hero-hint-sep">·</span>
-                        <span class="hero-hint" onclick="location.href='/terminal'" title="Open terminal">or try <kbd>&gt;_</kbd></span>
+                        <button type="button" class="hero-hint" onclick="toggleTI()" title="Open TI-83">press <kbd>[MODE]</kbd> to unlock something</button>
+                        <span class="hero-hint-sep" aria-hidden="true">·</span>
+                        <button type="button" class="hero-hint" onclick="location.href='/terminal'" title="Open terminal">or try <kbd>&gt;_</kbd></button>
                     </div>
                 </div>
                 <div class="hero-img-wrap">
@@ -495,7 +581,7 @@
         </section>
 
         <footer>
-            <div class="footer-credit">Built by Snow 2026© <span id="footer-year"></span></div>
+            <div class="footer-credit">Built by Snow © <span id="footer-year">2026</span></div>
         </footer>
 
         <!-- PROJECT MODAL -->
@@ -612,6 +698,24 @@
                     { attributes: true, attributeFilter: ['style'] }
                 );
             });
+        }());
+        </script>
+        <script>
+        (function () {
+            /* Dynamic copyright year (no hard-coded drift). */
+            var fy = document.getElementById('footer-year');
+            if (fy) fy.textContent = new Date().getFullYear();
+
+            /* Reveal safety net: content is visible by default and only gated when
+               JS is present. This guarantees it becomes visible even if the
+               IntersectionObserver never fires (backgrounded tab, prerender) or is
+               unsupported — so no section can ship blank. */
+            function revealAll() {
+                var els = document.querySelectorAll('.reveal');
+                for (var i = 0; i < els.length; i++) els[i].classList.add('visible');
+            }
+            if (!('IntersectionObserver' in window)) { revealAll(); return; }
+            window.addEventListener('load', function () { setTimeout(revealAll, 2500); });
         }());
         </script>
     </body>
