@@ -1,23 +1,23 @@
 :root {
-  /* NanoBot Blue Palette */
-  --bg: #070d1b;
-  --bg-strong: #0b1528;
-  --panel: rgba(12, 24, 54, 0.66);
-  --panel-strong: rgba(13, 28, 66, 0.86);
+  /* Midnight Arcade — Neon Amethyst (unified with the main site) */
+  --bg: #05060f;
+  --bg-strong: #0d0518;
+  --panel: rgba(30, 16, 54, 0.6);
+  --panel-strong: rgba(26, 12, 48, 0.82);
   --ink: #f1f5f9;
-  --muted: #8fafc8;
-  --line: rgba(100, 160, 255, 0.12);
-  --accent: #1a6cf5;
-  --accent-strong: #7cc2ff;
-  --accent-soft: rgba(26, 108, 245, 0.16);
-  --chip: rgba(26, 108, 245, 0.08);
+  --muted: #9d95b8;
+  --line: rgba(168, 85, 247, 0.16);
+  --accent: #a855f7;
+  --accent-strong: #c9a2fb;
+  --accent-soft: rgba(168, 85, 247, 0.16);
+  --chip: rgba(168, 85, 247, 0.08);
   --shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
-  --shadow-blue: 0 0 24px rgba(26, 108, 245, 0.25);
+  --shadow-blue: 0 0 24px rgba(168, 85, 247, 0.25);
   --glass-blur: blur(18px);
-  --radius: 22px;
+  --radius: 18px;
   --max: 1180px;
-  --font-heading: "Avenir Next", "Trebuchet MS", "Gill Sans", ui-sans-serif, sans-serif;
-  --font-body: "Avenir Next", "Segoe UI", ui-sans-serif, sans-serif;
+  --font-heading: "Syne", "Avenir Next", "Trebuchet MS", ui-sans-serif, sans-serif;
+  --font-body: "DM Sans", "Segoe UI", ui-sans-serif, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -30,7 +30,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: linear-gradient(160deg, #070d1b, #0a1829 45%, #050f1e);
+  background: linear-gradient(160deg, #05060f, #0d0518 45%, #0a0416);
   color: var(--ink);
   font: 16px/1.6 var(--font-body);
   -webkit-font-smoothing: antialiased;
@@ -40,8 +40,8 @@ a { color: inherit; }
 code, pre { font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace; }
 
 code {
-  background: rgba(26, 108, 245, 0.1);
-  border: 1px solid rgba(26, 108, 245, 0.2);
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 8px;
   padding: .14rem .38rem;
   white-space: pre-wrap;
@@ -231,7 +231,7 @@ pre code {
 .hero__card:hover, .stat-card:hover, .info-card:hover,
 .step-card:hover, .split-card:hover, .command-card:hover, .config-card:hover {
   box-shadow: 0 28px 56px rgba(0, 0, 0, 0.65), var(--shadow-blue);
-  border-color: rgba(26, 108, 245, 0.25);
+  border-color: rgba(168, 85, 247, 0.25);
 }
 
 .hero__copy {
@@ -250,7 +250,7 @@ pre code {
   right: -40px;
   width: 200px;
   height: 200px;
-  background: radial-gradient(circle, rgba(26, 108, 245, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -287,10 +287,10 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(2rem, 7vw, 4.2rem);
   max-width: 14ch;
-  background: linear-gradient(135deg, #fff 30%, var(--accent-strong));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 0 34px rgba(168, 85, 247, 0.28);
 }
 
 h2 { font-size: clamp(1.35rem, 3vw, 2rem); }
@@ -337,7 +337,7 @@ h3 { font-size: 1.05rem; }
 
 .button:hover, .button:focus-visible {
   background: #2f7fff;
-  box-shadow: 0 0 20px rgba(26, 108, 245, 0.45);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
   transform: translateY(-1px);
 }
 
@@ -350,7 +350,7 @@ h3 { font-size: 1.05rem; }
 .button--ghost:hover {
   background: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 0 20px rgba(26, 108, 245, 0.35);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
 }
 
 /* ── Sections ── */
@@ -403,7 +403,7 @@ h3 { font-size: 1.05rem; }
   color: var(--accent-strong);
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 1px solid rgba(124, 194, 255, 0.35);
+  border-bottom: 1px solid rgba(201, 162, 251, 0.35);
   padding-bottom: 1px;
   transition: border-color .2s;
 }
@@ -538,7 +538,7 @@ input[type="search"]:focus {
   background: linear-gradient(135deg, var(--accent), #2f7fff);
   color: #fff;
   font: 900 1rem/1 var(--font-heading);
-  box-shadow: 0 4px 14px rgba(26, 108, 245, 0.45);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.45);
   flex-shrink: 0;
 }
 
@@ -627,7 +627,7 @@ input[type="search"]:focus {
   padding: .5rem .85rem;
   border-radius: 999px;
   background: var(--chip);
-  border: 1px solid rgba(26, 108, 245, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   font-size: .85rem;
   font-weight: 700;
   color: var(--accent-strong);
@@ -711,7 +711,7 @@ input[type="search"]:focus {
 }
 .doc-table thead th {
   color: var(--accent-strong);
-  background: rgba(26, 108, 245, 0.1);
+  background: rgba(168, 85, 247, 0.1);
   font-family: var(--font-heading);
   font-weight: 600;
 }
