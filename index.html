@@ -30,6 +30,117 @@
 
         <link rel="stylesheet" href="css/styles.min.css?v=11" />
 
+        <!-- ============================================================
+             PORTFOLIO — "ATTRACT MODE" (arcade evolution)
+             Layered over styles.min.css, page-scoped to index.html.
+             Keeps the Midnight Arcade identity (Void + Neon Amethyst + glass)
+             but strips the SaaS scaffolding that read as generic:
+             per-section mono eyebrows and gradient-clipped name text.
+             Leans harder into real arcade-cabinet diegetics instead.
+             ============================================================ -->
+        <style id="arcade-redesign">
+            @property --ring-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+            /* ---- Hero: attract-mode line replaces the location eyebrow ---- */
+            .hero-greeting {
+                font-family: "JetBrains Mono", monospace;
+                font-size: .72rem;
+                letter-spacing: .3em;
+                text-transform: uppercase;
+                color: rgba(var(--accent-rgb), .92);
+                display: inline-flex;
+                align-items: center;
+                gap: .7rem;
+                margin-bottom: 1.15rem;
+            }
+            .hero-greeting::before {
+                content: "";
+                width: 8px; height: 8px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 0 12px var(--accent);
+                animation: attractBlink 1.3s steps(1, end) infinite;
+            }
+            @keyframes attractBlink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: .12 } }
+
+            /* ---- Hero title: solid name + phosphor glow (no gradient-clip) ---- */
+            .hero-title { letter-spacing: -.03em; margin-bottom: 1rem; }
+            .i-am { color: rgb(255 255 255 / .5); font-weight: 700; }
+            .name-glow {
+                color: #fff;
+                text-shadow: 0 0 28px rgba(var(--accent-rgb), .55), 0 0 72px rgba(var(--accent-rgb), .3);
+                animation: crtFlicker 7s linear infinite;
+            }
+            @keyframes crtFlicker {
+                0%, 100% { opacity: 1 } 7% { opacity: .82 } 8% { opacity: 1 }
+                52% { opacity: 1 } 53% { opacity: .9 } 54% { opacity: 1 }
+            }
+
+            /* ---- Hero avatar: rotating marquee-light ring (stays round + personal) ---- */
+            .hero-img-ring {
+                background: conic-gradient(from var(--ring-angle), var(--accent), transparent 42%, var(--accent));
+                box-shadow: 0 0 48px rgba(var(--accent-rgb), .28);
+                animation: ringSpin 7s linear infinite;
+            }
+            @keyframes ringSpin { to { --ring-angle: 360deg } }
+
+            /* ---- Hero CTA row: promote the résumé (PRODUCT.md primary CTA) ---- */
+            .hero-links { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+            /* ---- Section headers: drop the per-section eyebrow reflex ----
+               Titles carry the weight; one lit "marquee" rule per header, not a
+               uniform mono kicker above every section. */
+            .section-header { margin-bottom: 2.75rem; }
+            .section-title {
+                position: relative;
+                display: inline-block;
+                text-shadow: 0 0 34px rgba(var(--accent-rgb), .26);
+            }
+            .section-title::after {
+                content: "";
+                display: block;
+                margin-top: 1.05rem;
+                height: 3px;
+                width: clamp(60px, 9vw, 110px);
+                border-radius: 2px;
+                background: linear-gradient(90deg, var(--accent) 0%, rgba(var(--accent-rgb), .12) 100%);
+                box-shadow: 0 0 18px rgba(var(--accent-rgb), .55);
+            }
+            .section-intro { max-width: 60ch; }
+
+            /* ---- Project cards: lit-cabinet hover, breaks the flat card-grid read ---- */
+            .project-card {
+                overflow: hidden;
+                position: relative;
+                transition: transform .3s cubic-bezier(.22, 1, .36, 1), border-color .3s ease, box-shadow .3s ease;
+            }
+            .project-card::before {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .95), transparent);
+                opacity: 0;
+                transition: opacity .3s ease;
+                z-index: 2;
+            }
+            .project-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(var(--accent-rgb), .5);
+                box-shadow: 0 0 34px rgba(var(--accent-rgb), .2), 0 14px 44px rgb(0 0 0 / .42);
+            }
+            .project-card:hover::before { opacity: 1; }
+
+            /* ---- CTA: promote contact to a solid primary ---- */
+            #cta .cta-actions .btn-primary { box-shadow: 0 4px 24px rgba(var(--accent-rgb), .45); }
+
+            @media (prefers-reduced-motion: reduce) {
+                .hero-greeting::before,
+                .name-glow,
+                .hero-img-ring { animation: none !important; }
+            }
+        </style>
+
         <meta name="description" content="Snow — self-taught front-end developer from Des Moines, Iowa. Building interactive UIs with HTML, CSS, and JavaScript. Open to opportunities." />
         <meta name="author"      content="Snow" />
         <link rel="canonical"    href="https://snowbuilds.dev/" />
@@ -182,19 +293,20 @@
         <section id="hero">
             <div class="hero-inner">
                 <div class="hero-text">
-                    <div class="hero-greeting">📍 Des Moines, Iowa</div>
+                    <div class="hero-greeting">Player One · Des Moines, IA</div>
                     <h1 class="hero-title">
-                        <span class="i-am">I Am </span><br />
-                        <span class="name-gradient">Snow</span>
+                        <span class="i-am">I am</span><br />
+                        <span class="name-glow">Snow</span>
                     </h1>
                     <div class="hero-role">Front-End Developer <span class="hero-role-sep">&</span> Open-Source Maintainer</div>
                     <p class="hero-tagline">
-                        I build tools Discord communities rely on.
+                        I build the tools Discord communities rely on.
                     </p>
                     <div class="opp-badge" aria-label="Open to opportunities">
                         <span class="opp-dot"></span> Open to opportunities
                     </div>
                     <div class="hero-links">
+                        <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Grab the Résumé ↗</a>
                         <a class="btn btn-ghost" href="https://github.com/therealjustsnow" target="_blank">GitHub ↗</a>
                     </div>
                     <div class="hero-hints">
@@ -244,9 +356,7 @@
         <!-- PROJECTS -->
         <section id="projects" class="section">
             <div class="section-header reveal">
-                <div class="section-tag">Work</div>
                 <h2 class="section-title">Projects</h2>
-                <div class="section-underline"></div>
                 <p class="section-intro">Selected open-source projects — including a Python Discord music bot, CSS UI themes used by thousands, and interactive front-end experiments.</p>
             </div>
             <div class="projects-grid" id="projects-grid"></div>
@@ -255,9 +365,7 @@
         <!-- TECH STACK -->
         <section id="stack" class="section">
             <div class="section-header reveal">
-                <div class="section-tag">Toolbelt</div>
                 <h2 class="section-title">Tech Stack</h2>
-                <div class="section-underline"></div>
                 <p class="section-intro">The languages and tools I reach for. Focused on the front-end — HTML, CSS, and SCSS — with Python for scripting and automation.</p>
             </div>
 
@@ -275,9 +383,7 @@
         <!-- ANALYTICS -->
         <section id="analytics" class="section">
             <div class="section-header reveal">
-                <div class="section-tag">Metrics</div>
                 <h2 class="section-title">Analytics</h2>
-                <div class="section-underline"></div>
                 <p class="section-intro">A live look at my GitHub activity, commit history, and contribution streaks.</p>
             </div>
 
@@ -360,9 +466,7 @@
         <!-- SCHEDULE -->
         <section id="schedule" class="section">
             <div class="section-header reveal">
-                <div class="section-tag">Daily Routine</div>
                 <h2 class="section-title">Where's Snow?</h2>
-                <div class="section-underline"></div>
             </div>
             <div class="schedule-grid" id="schedule-grid"></div>
         </section>
@@ -370,9 +474,7 @@
         <!-- CONTACT -->
         <section id="contact" class="section">
             <div class="section-header reveal">
-                <div class="section-tag">Reach Out</div>
                 <h2 class="section-title">Contact</h2>
-                <div class="section-underline"></div>
             </div>
             <div class="contact-cards" id="contact-cards"></div>
         </section>
@@ -381,13 +483,12 @@
         <section id="cta" class="section">
             <div class="cta-box glass reveal">
                 <div class="cta-text">
-                    <div class="section-tag">What's next</div>
                     <h2 class="cta-title">Let's work together.</h2>
                     <p class="cta-motivation">I build for communities because the right tool turns chaos into collaboration — and I've seen it happen firsthand.</p>
                     <p class="cta-desc">Open to front-end roles, freelance work, and open-source collabs. If you think I'd be a good fit — reach out.</p>
                 </div>
                 <div class="cta-actions">
-                    <a class="btn btn-ghost" href="#" onclick="window.location='mai'+'lto:snow@snowbuilds.dev';return false;">Get in Touch ↗</a>
+                    <a class="btn btn-primary" href="#" onclick="window.location='mai'+'lto:snow@snowbuilds.dev';return false;">Get in Touch ↗</a>
                     <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
                 </div>
             </div>
