@@ -255,7 +255,7 @@ pre code {
 }
 
 .hero__card {
-  padding: 1.25rem 1.25rem 1.25rem 1.6rem;
+  padding: 1.25rem;
   overflow: hidden;
   position: relative;
 }
@@ -366,6 +366,9 @@ h3 { font-size: 1.05rem; }
 
 /* ── Stat cards ── */
 .stat-card, .info-card, .step-card, .config-card { padding: 1.1rem; }
+/* info-cards are real links to their topic pages */
+a.info-card { display: block; text-decoration: none; color: inherit; }
+a.info-card:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
 
 .stat-card {
   position: relative;
@@ -443,7 +446,7 @@ h3 { font-size: 1.05rem; }
 
 /* ── Toolbar / search ── */
 .toolbar { display: grid; gap: 1rem; padding: 2rem; margin: 1rem; }
-.search { display: grid; gap: .45rem; l }
+.search { display: grid; gap: .45rem; }
 .search__label { font-weight: 800; font-size: .9rem; }
 
 input[type="search"] {

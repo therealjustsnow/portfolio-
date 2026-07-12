@@ -54,6 +54,14 @@
         /* NanoBot's own type identity: Bricolage Grotesque display + Hanken Grotesk body,
            chosen for high legibility on a phone (mobile-first is the whole pitch). */
         body { font-family: "Hanken Grotesk", "DM Sans", sans-serif; }
+        /* Seed NanoBot blue for first paint / no-JS so the accent doesn't flash
+           amethyst before the theme script runs; the picker still overrides. */
+        :root {
+            --accent: #3d80ea;
+            --accent-rgb: 62, 128, 234;
+            --accent-dark: #1a63d6;
+            --accent-glow: rgba(62, 128, 234, .35);
+        }
         .nb-wrap {
             max-width: 800px;
             margin: 0 auto;
@@ -119,7 +127,8 @@
         }
         .nb-hero-actions .btn {
             font-size: .9rem;
-            padding: .7rem 1.8rem;
+            padding: .8rem 1.8rem;
+            min-height: 46px;
         }
 
         /* Stats bar */
@@ -142,7 +151,7 @@
         .nb-stat-label {
             font-family: "JetBrains Mono", monospace;
             font-size: .62rem;
-            color: rgb(255 255 255 / .4);
+            color: rgb(255 255 255 / .6);
             letter-spacing: .1em;
             text-transform: uppercase;
             margin-top: .15rem;
@@ -252,7 +261,7 @@
             font-size: .72rem;
             letter-spacing: .18em;
             text-transform: uppercase;
-            color: rgba(var(--accent-rgb), .85);
+            color: var(--accent);
             display: flex;
             align-items: center;
             gap: .85rem;
@@ -393,7 +402,7 @@
         .nb-footer-text {
             font-family: "JetBrains Mono", monospace;
             font-size: .7rem;
-            color: rgb(255 255 255 / .35);
+            color: rgb(255 255 255 / .6);
             letter-spacing: .04em;
         }
         .nb-footer-text a {
@@ -499,8 +508,8 @@
                     <div class="nb-stat-label">Servers</div>
                 </div>
                 <div class="nb-stat">
-                    <div class="nb-stat-val">0ms</div>
-                    <div class="nb-stat-label">Setup Time</div>
+                    <div class="nb-stat-val">Instant</div>
+                    <div class="nb-stat-label">Setup</div>
                 </div>
                 <div class="nb-stat">
                     <div class="nb-stat-val">368</div>
@@ -565,7 +574,7 @@
         </div>
 
         <!-- SECONDARY: everything else -->
-        <div class="nb-cat">Everything else it does</div>
+        <div class="nb-cat">Utility &amp; safety</div>
         <div class="nb-features">
             <div class="glass nb-feature-card">
                 <span class="nb-feature-emoji">🏷️</span>
@@ -576,10 +585,10 @@
             </div>
 
             <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">🎭</span>
-                <div class="nb-feature-name">Role Panels</div>
+                <span class="nb-feature-emoji">⏰</span>
+                <div class="nb-feature-name">Reminders</div>
                 <p class="nb-feature-desc">
-                    Button-based role menus that work great on mobile. Tap to toggle. Single-select mode available. Quick generators for colors, pronouns, age ranges, and regions.
+                    One-time reminders with natural language. Recurring reminders that repeat on a schedule, like calendar events but in Discord. All survive restarts.
                 </p>
             </div>
 
@@ -592,13 +601,40 @@
             </div>
 
             <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">⏰</span>
-                <div class="nb-feature-name">Reminders</div>
+                <span class="nb-feature-emoji">👋</span>
+                <div class="nb-feature-name">Welcome & Leave Messages</div>
                 <p class="nb-feature-desc">
-                    One-time reminders with natural language. Recurring reminders that repeat on a schedule, like calendar events but in Discord. All survive restarts.
+                    Custom join and leave messages with variables like <code class="nb-cmd">{user}</code> <code class="nb-cmd">{mention}</code> <code class="nb-cmd">{server}</code> <code class="nb-cmd">{count}</code>. Supports embeds and images. Test everything before enabling.
                 </p>
             </div>
 
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🔍</span>
+                <div class="nb-feature-name">Clean Info Commands</div>
+                <p class="nb-feature-desc">
+                    User cards, server info, role breakdowns, avatars, and banners. All formatted to read well on a phone screen.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🎭</span>
+                <div class="nb-feature-name">Role Panels</div>
+                <p class="nb-feature-desc">
+                    Button-based role menus that work great on mobile. Tap to toggle. Single-select mode available. Quick generators for colors, pronouns, age ranges, and regions.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">💾</span>
+                <div class="nb-feature-name">Persistent & Reliable</div>
+                <p class="nb-feature-desc">
+                    Every timed ban, timeout, slowmode, warning, and setting survives a restart. Nothing gets lost in a crash. Your moderation state is always intact.
+                </p>
+            </div>
+        </div>
+
+        <div class="nb-cat">Engagement &amp; fun</div>
+        <div class="nb-features">
             <div class="glass nb-feature-card">
                 <span class="nb-feature-emoji">🎉</span>
                 <div class="nb-feature-name">Fun & Community</div>
@@ -646,46 +682,19 @@
                     Automatically grant a role and post a go-live announcement when members start streaming, then strip the role when they stop.
                 </p>
             </div>
-
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">👋</span>
-                <div class="nb-feature-name">Welcome & Leave Messages</div>
-                <p class="nb-feature-desc">
-                    Custom join and leave messages with variables like <code class="nb-cmd">{user}</code> <code class="nb-cmd">{mention}</code> <code class="nb-cmd">{server}</code> <code class="nb-cmd">{count}</code>. Supports embeds and images. Test everything before enabling.
-                </p>
-            </div>
-
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">🔍</span>
-                <div class="nb-feature-name">Clean Info Commands</div>
-                <p class="nb-feature-desc">
-                    User cards, server info, role breakdowns, avatars, and banners. All formatted to read well on a phone screen.
-                </p>
-            </div>
-
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">💾</span>
-                <div class="nb-feature-name">Persistent & Reliable</div>
-                <p class="nb-feature-desc">
-                    Every timed ban, timeout, slowmode, warning, and setting survives a restart. Nothing gets lost in a crash. Your moderation state is always intact.
-                </p>
-            </div>
         </div>
 
         <!-- CTA -->
         <div class="nb-cta glass">
-            <div class="nb-cta-title">Want to dig in?</div>
-            <p class="nb-cta-desc">The source is open and votes on Top.gg help more people find NanoBot.</p>
+            <div class="nb-cta-title">Ready to moderate from your phone?</div>
+            <p class="nb-cta-desc">Add NanoBot in one tap — no dashboard, no setup. Want to look first? The docs, source, and Top.gg page are right here.</p>
             <div class="nb-cta-actions">
-                <a class="btn btn-primary" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
-                    Top.gg
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&permissions=1494984439894&scope=bot%20applications.commands" target="_blank" rel="noopener">
+                    Add to Server
                 </a>
-                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-                <a class="btn btn-ghost" href="/nanobot-docs.html">
-                    Docs
-                </a>
+                <a class="btn btn-ghost" href="/nanobot-docs.html">Docs</a>
+                <a class="btn btn-ghost" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">Top.gg</a>
+                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">GitHub</a>
             </div>
         </div>
 
@@ -703,6 +712,11 @@
         var nbAnimating = false;
         var nbInView = false;
         function countUp(el, target) {
+            /* Respect reduced-motion: set the final value without animating. */
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                el.textContent = target;
+                return;
+            }
             if (nbAnimating) return;
             nbAnimating = true;
             var start = performance.now();
