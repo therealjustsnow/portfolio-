@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
         onload="this.onload=null;this.rel='stylesheet'" />
     <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
     </noscript>
     <link rel="stylesheet" href="css/styles.min.css?v=11" />
 
@@ -51,6 +51,17 @@
 
     <style>
         /* ── NanoBot page-specific styles ── */
+        /* NanoBot's own type identity: Bricolage Grotesque display + Hanken Grotesk body,
+           chosen for high legibility on a phone (mobile-first is the whole pitch). */
+        body { font-family: "Hanken Grotesk", "DM Sans", sans-serif; }
+        /* Seed NanoBot blue for first paint / no-JS so the accent doesn't flash
+           amethyst before the theme script runs; the picker still overrides. */
+        :root {
+            --accent: #3d80ea;
+            --accent-rgb: 62, 128, 234;
+            --accent-dark: #1a63d6;
+            --accent-glow: rgba(62, 128, 234, .35);
+        }
         .nb-wrap {
             max-width: 800px;
             margin: 0 auto;
@@ -62,30 +73,46 @@
             text-align: center;
             margin-bottom: 4rem;
         }
-        .nb-emoji-hero {
-            font-size: 4rem;
+        /* Attract-mode line (arcade voice, focused for conversion) */
+        .nb-attract {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .7rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(var(--accent-rgb), .92);
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.5rem;
+        }
+        .nb-attract::before {
+            content: "";
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            animation: attractBlink 1.3s steps(1, end) infinite;
+        }
+        @keyframes attractBlink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: .12 } }
+
+        /* Mascot logo carries the hero — real brand art, no gradient-clipped text */
+        .nb-logo {
+            width: clamp(200px, 42vw, 300px);
+            height: auto;
             display: block;
-            margin-bottom: 1rem;
-            line-height: 1;
+            margin: 0 auto 1.25rem;
+            filter: drop-shadow(0 0 34px rgba(var(--accent-rgb), .42));
+            animation: nbFloat 5s ease-in-out infinite;
         }
-        .nb-title {
-            font-family: "Space Grotesk", sans-serif;
-            font-weight: 700;
-            font-size: clamp(2.4rem, 6vw, 3.8rem);
-            letter-spacing: -.04em;
-            line-height: .95;
-            margin-bottom: .75rem;
-        }
-        .nb-title .nb-gradient {
-            background: linear-gradient(135deg, var(--accent), #fff, var(--accent));
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: #fff0;
-            background-clip: text;
-            animation: nameShimmer 4s ease-in-out infinite;
+        @keyframes nbFloat { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-9px) } }
+        .nb-title { margin: 0; line-height: 0; }
+        .nb-sr {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
         }
         .nb-tagline {
-            font-family: "DM Sans", sans-serif;
+            font-family: "Hanken Grotesk", sans-serif;
             font-size: 1.05rem;
             color: rgb(255 255 255 / .6);
             line-height: 1.6;
@@ -100,7 +127,8 @@
         }
         .nb-hero-actions .btn {
             font-size: .9rem;
-            padding: .7rem 1.8rem;
+            padding: .8rem 1.8rem;
+            min-height: 46px;
         }
 
         /* Stats bar */
@@ -115,7 +143,7 @@
             text-align: center;
         }
         .nb-stat-val {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Bricolage Grotesque", sans-serif;
             font-weight: 700;
             font-size: 1.4rem;
             color: #fff;
@@ -123,7 +151,7 @@
         .nb-stat-label {
             font-family: "JetBrains Mono", monospace;
             font-size: .62rem;
-            color: rgb(255 255 255 / .4);
+            color: rgb(255 255 255 / .6);
             letter-spacing: .1em;
             text-transform: uppercase;
             margin-top: .15rem;
@@ -142,7 +170,7 @@
             transform: none;
         }
         .nb-callout-title {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Bricolage Grotesque", sans-serif;
             font-weight: 700;
             font-size: 1.25rem;
             margin-bottom: .75rem;
@@ -181,7 +209,7 @@
             flex-shrink: 0;
         }
         .nb-section-title {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Bricolage Grotesque", sans-serif;
             font-weight: 700;
             font-size: 1.15rem;
             letter-spacing: -.02em;
@@ -216,7 +244,7 @@
             display: block;
         }
         .nb-feature-name {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Bricolage Grotesque", sans-serif;
             font-weight: 700;
             font-size: 1rem;
             margin-bottom: .4rem;
@@ -225,6 +253,73 @@
             font-size: .82rem;
             color: rgb(255 255 255 / .55);
             line-height: 1.6;
+        }
+
+        /* Category label — structural grouping, not a per-item eyebrow */
+        .nb-cat {
+            font-family: "JetBrains Mono", monospace;
+            font-size: .72rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            margin: 0 0 1.35rem;
+        }
+        .nb-cat::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(var(--accent-rgb), .35), transparent);
+        }
+
+        /* Flagship trio — the moderation core, art-directed larger + lit */
+        .nb-flagship {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+        .nb-flagship .nb-feature-card {
+            padding: 1.9rem 1.75rem;
+            border-color: rgba(var(--accent-rgb), .4);
+            background: rgba(var(--accent-rgb), .06);
+        }
+        .nb-flagship .nb-feature-card::after {
+            content: "";
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .9), transparent);
+        }
+        .nb-flagship .nb-feature-emoji { font-size: 2rem; }
+        .nb-flagship .nb-feature-name { font-size: 1.18rem; }
+        .nb-flagship .nb-feature-desc { font-size: .86rem; color: rgb(255 255 255 / .62); }
+
+        /* Secondary grid — denser, compact tiles */
+        .nb-features { grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); }
+        .nb-feature-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s cubic-bezier(.22, 1, .36, 1), border-color .25s ease, box-shadow .25s ease;
+        }
+        .nb-feature-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(var(--accent-rgb), .45);
+            box-shadow: 0 0 26px rgba(var(--accent-rgb), .15), 0 10px 30px rgb(0 0 0 / .38);
+        }
+
+        /* Elevated killer-feature callout — the marquee cabinet */
+        .nb-callout { position: relative; overflow: hidden; }
+        .nb-callout::before {
+            content: "";
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        .nb-callout-title { font-size: 1.4rem; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .nb-attract::before,
+            .nb-logo { animation: none !important; }
         }
 
         /* Command styles */
@@ -280,7 +375,7 @@
             transform: none;
         }
         .nb-cta-title {
-            font-family: "Space Grotesk", sans-serif;
+            font-family: "Bricolage Grotesque", sans-serif;
             font-weight: 700;
             font-size: 1.5rem;
             margin-bottom: .5rem;
@@ -307,7 +402,7 @@
         .nb-footer-text {
             font-family: "JetBrains Mono", monospace;
             font-size: .7rem;
-            color: rgb(255 255 255 / .35);
+            color: rgb(255 255 255 / .6);
             letter-spacing: .04em;
         }
         .nb-footer-text a {
@@ -391,8 +486,11 @@
     <div class="nb-wrap">
         <!-- HERO -->
         <div class="nb-hero">
-            <span class="nb-emoji-hero">⚡</span>
-            <h1 class="nb-title"><span class="nb-gradient">NanoBot</span></h1>
+            <div class="nb-attract">Mobile-First Moderation</div>
+            <h1 class="nb-title">
+                <img class="nb-logo" src="previews/nanobot.webp" width="300" height="200"
+                    alt="NanoBot — Discord moderation for your phone" />
+            </h1>
             <p class="nb-tagline">
                 Discord moderation built for your phone. Fast commands, no dashboards, no copying user IDs. Just tap and go.
             </p>
@@ -410,8 +508,8 @@
                     <div class="nb-stat-label">Servers</div>
                 </div>
                 <div class="nb-stat">
-                    <div class="nb-stat-val">0ms</div>
-                    <div class="nb-stat-label">Setup Time</div>
+                    <div class="nb-stat-val">Instant</div>
+                    <div class="nb-stat-label">Setup</div>
                 </div>
                 <div class="nb-stat">
                     <div class="nb-stat-val">368</div>
@@ -447,8 +545,9 @@
 
         <div class="nb-divider"></div>
 
-        <!-- FEATURE CARDS -->
-        <div class="nb-features">
+        <!-- FLAGSHIP: the moderation core -->
+        <div class="nb-cat">The moderation core</div>
+        <div class="nb-flagship">
             <div class="glass nb-feature-card">
                 <span class="nb-feature-emoji">🔨</span>
                 <div class="nb-feature-name">Complete Moderation</div>
@@ -472,7 +571,11 @@
                     Spam, invite links, external links, caps, mass mentions, bad words, custom regex. Each rule can delete, warn, or timeout. Exempt roles and channels. Runs quietly in the background.
                 </p>
             </div>
+        </div>
 
+        <!-- SECONDARY: everything else -->
+        <div class="nb-cat">Utility &amp; safety</div>
+        <div class="nb-features">
             <div class="glass nb-feature-card">
                 <span class="nb-feature-emoji">🏷️</span>
                 <div class="nb-feature-name">Tags</div>
@@ -482,10 +585,10 @@
             </div>
 
             <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">🎭</span>
-                <div class="nb-feature-name">Role Panels</div>
+                <span class="nb-feature-emoji">⏰</span>
+                <div class="nb-feature-name">Reminders</div>
                 <p class="nb-feature-desc">
-                    Button-based role menus that work great on mobile. Tap to toggle. Single-select mode available. Quick generators for colors, pronouns, age ranges, and regions.
+                    One-time reminders with natural language. Recurring reminders that repeat on a schedule, like calendar events but in Discord. All survive restarts.
                 </p>
             </div>
 
@@ -498,13 +601,40 @@
             </div>
 
             <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">⏰</span>
-                <div class="nb-feature-name">Reminders</div>
+                <span class="nb-feature-emoji">👋</span>
+                <div class="nb-feature-name">Welcome & Leave Messages</div>
                 <p class="nb-feature-desc">
-                    One-time reminders with natural language. Recurring reminders that repeat on a schedule, like calendar events but in Discord. All survive restarts.
+                    Custom join and leave messages with variables like <code class="nb-cmd">{user}</code> <code class="nb-cmd">{mention}</code> <code class="nb-cmd">{server}</code> <code class="nb-cmd">{count}</code>. Supports embeds and images. Test everything before enabling.
                 </p>
             </div>
 
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🔍</span>
+                <div class="nb-feature-name">Clean Info Commands</div>
+                <p class="nb-feature-desc">
+                    User cards, server info, role breakdowns, avatars, and banners. All formatted to read well on a phone screen.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">🎭</span>
+                <div class="nb-feature-name">Role Panels</div>
+                <p class="nb-feature-desc">
+                    Button-based role menus that work great on mobile. Tap to toggle. Single-select mode available. Quick generators for colors, pronouns, age ranges, and regions.
+                </p>
+            </div>
+
+            <div class="glass nb-feature-card">
+                <span class="nb-feature-emoji">💾</span>
+                <div class="nb-feature-name">Persistent & Reliable</div>
+                <p class="nb-feature-desc">
+                    Every timed ban, timeout, slowmode, warning, and setting survives a restart. Nothing gets lost in a crash. Your moderation state is always intact.
+                </p>
+            </div>
+        </div>
+
+        <div class="nb-cat">Engagement &amp; fun</div>
+        <div class="nb-features">
             <div class="glass nb-feature-card">
                 <span class="nb-feature-emoji">🎉</span>
                 <div class="nb-feature-name">Fun & Community</div>
@@ -554,47 +684,17 @@
             </div>
         </div>
 
-        <!-- EXTRAS -->
-        <div class="nb-features">
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">👋</span>
-                <div class="nb-feature-name">Welcome & Leave Messages</div>
-                <p class="nb-feature-desc">
-                    Custom join and leave messages with variables like <code class="nb-cmd">{user}</code> <code class="nb-cmd">{mention}</code> <code class="nb-cmd">{server}</code> <code class="nb-cmd">{count}</code>. Supports embeds and images. Test everything before enabling.
-                </p>
-            </div>
-
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">🔍</span>
-                <div class="nb-feature-name">Clean Info Commands</div>
-                <p class="nb-feature-desc">
-                    User cards, server info, role breakdowns, avatars, and banners. All formatted to read well on a phone screen.
-                </p>
-            </div>
-
-            <div class="glass nb-feature-card">
-                <span class="nb-feature-emoji">💾</span>
-                <div class="nb-feature-name">Persistent & Reliable</div>
-                <p class="nb-feature-desc">
-                    Every timed ban, timeout, slowmode, warning, and setting survives a restart. Nothing gets lost in a crash. Your moderation state is always intact.
-                </p>
-            </div>
-        </div>
-
         <!-- CTA -->
         <div class="nb-cta glass">
-            <div class="nb-cta-title">Want to dig in?</div>
-            <p class="nb-cta-desc">The source is open and votes on Top.gg help more people find NanoBot.</p>
+            <div class="nb-cta-title">Ready to moderate from your phone?</div>
+            <p class="nb-cta-desc">Add NanoBot in one tap — no dashboard, no setup. Want to look first? The docs, source, and Top.gg page are right here.</p>
             <div class="nb-cta-actions">
-                <a class="btn btn-primary" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">
-                    Top.gg
+                <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&permissions=1494984439894&scope=bot%20applications.commands" target="_blank" rel="noopener">
+                    Add to Server
                 </a>
-                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">
-                    GitHub
-                </a>
-                <a class="btn btn-ghost" href="/nanobot-docs.html">
-                    Docs
-                </a>
+                <a class="btn btn-ghost" href="/nanobot-docs.html">Docs</a>
+                <a class="btn btn-ghost" href="https://top.gg/bot/1478550873457299603" target="_blank" rel="noopener">Top.gg</a>
+                <a class="btn btn-ghost" href="https://github.com/therealjustsnow/NanoBot" target="_blank" rel="noopener">GitHub</a>
             </div>
         </div>
 
@@ -612,6 +712,11 @@
         var nbAnimating = false;
         var nbInView = false;
         function countUp(el, target) {
+            /* Respect reduced-motion: set the final value without animating. */
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                el.textContent = target;
+                return;
+            }
             if (nbAnimating) return;
             nbAnimating = true;
             var start = performance.now();
@@ -652,5 +757,25 @@
 </script>
     <script src="js/analytics.min.js?v=10" defer></script>
     <script src="js/theme.min.js?v=10" defer></script>
+    <script>
+        /* NanoBot's brand color is blue (matches the mascot). Make blue the DEFAULT
+           accent on this page only, without persisting it — the site-wide color
+           picker still fully overrides it, and other pages keep their amethyst default.
+           Runs after theme.min.js (defer) has applied its own default on DOMContentLoaded. */
+        document.addEventListener("DOMContentLoaded", function () {
+            var hue = localStorage.getItem("snow-hue");
+            var alpha = localStorage.getItem("snow-alpha");
+            /* theme.min.js persists its default hue (280) on load, so treat both
+               "missing" and the untouched default as "user hasn't chosen a color"
+               and fall back to NanoBot blue. Any other value is a real pick — respect it. */
+            if ((hue == null || hue === "280") && typeof applyCustomColor === "function") {
+                applyCustomColor(217, alpha == null ? 1 : parseFloat(alpha)); /* hue 217 ≈ NanoBot blue */
+                /* applyCustomColor also writes localStorage; undo that so the picker's
+                   real value (and every other page's amethyst default) is untouched. */
+                if (hue == null) { localStorage.removeItem("snow-hue"); } else { localStorage.setItem("snow-hue", hue); }
+                if (alpha == null) { localStorage.removeItem("snow-alpha"); } else { localStorage.setItem("snow-alpha", alpha); }
+            }
+        });
+    </script>
 </body>
 </html>

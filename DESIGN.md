@@ -199,3 +199,11 @@ Self-contained toys with their own in-world skins: the TI-83 (phosphor green on 
 - **Don't** introduce gray hexes for text or borders — neutrals are white-at-opacity, full stop.
 - **Don't** use Syne below weight 700, or track display type tighter than -0.04em.
 - **Don't** hand-edit `*.min.js` / `styles.min.css` styling conventions away — extend within the existing token vocabulary (`--accent-rgb`, `.glass`, `reveal`).
+
+## 7. NanoBot Sub-Brand
+
+NanoBot's surfaces (`nanobot.html` landing + `docs/` documentation) are a **sibling brand** to the Midnight Arcade, not a departure from it. They share the Void background, `.glass` cabinets, and the live color-picker, but deliberately diverge on two axes to match the product's own mascot identity:
+
+- **Accent:** NanoBot **blue** is the default — `#1a6cf5` (hero art), rendered via the picker system as `hsl(217, 80%, 58%)` ≈ `rgb(62, 128, 234)`. It matches the mascot logo. The site-wide 🎨 picker still overrides it live; the blue is seeded per-page (inline `:root` + a non-persisting `applyCustomColor(217,1)` on load) so it never leaks to the portfolio's amethyst default.
+- **Typography:** NanoBot uses **Bricolage Grotesque** (display) + **Hanken Grotesk** (body), chosen for phone-first legibility, with **JetBrains Mono** for command syntax. These are intentional and distinct from the portfolio's Syne / DM Sans — the detector flags them as "outside DESIGN.md" only because it reads the main-brand tokens; they are sanctioned here.
+- **Register:** the landing turns personality up for conversion (primary CTA: *Add to Server*, repeated at the top and bottom); the docs turn it down for clarity (quiet volume). Same voice, different volumes — the "one voice, three volumes" rule from PRODUCT.md.

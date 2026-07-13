@@ -7,6 +7,9 @@
   <meta name="description" content="NanoBot docs — Discord moderation built for mobile. Commands, setup, and self-hosting guides.">
   <link rel="icon" type="image/png" href="/photos/favicon.png">
   <link rel="apple-touch-icon" href="/photos/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
   <link rel="stylesheet" href="docs/styles.css">
 </head>
 <body data-page="nanobot-docs.html">
@@ -33,12 +36,10 @@
 
 <section class="hero">
   <div class="hero__copy">
-    <p class="eyebrow">Discord bot docs</p>
     <h1>Moderate from your phone</h1>
     <p class="lede">NanoBot is a lightweight Discord moderation bot designed around fast, thumb-friendly workflows — slash commands, prefix commands, and mention support all in one.</p>
   </div>
   <div class="hero__card">
-    <div class="hero-card__stripe"></div>
     <p class="hero-card__label">Why mobile-first</p>
     <ul class="bullet-list">
       <li>Big tap targets. Short, focused sections.</li>
@@ -56,87 +57,89 @@
 
 <section class="stack">
   <div class="section-head">
-    <p class="eyebrow">By the numbers</p>
     <h2>What's inside NanoBot</h2>
-    <p>368 command definitions covering moderation, utility, community, social, fun, and music — with permission gating baked in from the start.</p>
+    <p>368 command definitions — 189 public, 159 restricted, 20 owner — covering moderation, utility, community, social, fun, and music, with permission gating baked in. (Social actions and fun one-liners below are subsets of the public commands, not additions.)</p>
   </div>
   <div class="stat-grid">
     <article class="stat-card">
       <p class="stat-card__value">368</p>
-      <h2 class="stat-card__label">Total commands</h2>
+      <h3 class="stat-card__label">Total commands</h3>
       <p class="stat-card__note">Slash, prefix, and @mention variants.</p>
     </article>
 
     <article class="stat-card">
       <p class="stat-card__value">189</p>
-      <h2 class="stat-card__label">Public commands</h2>
+      <h3 class="stat-card__label">Public commands</h3>
       <p class="stat-card__note">No elevated Discord permissions needed.</p>
     </article>
 
     <article class="stat-card">
       <p class="stat-card__value">159</p>
-      <h2 class="stat-card__label">Restricted commands</h2>
+      <h3 class="stat-card__label">Restricted commands</h3>
       <p class="stat-card__note">Permission-gated for server staff.</p>
     </article>
 
     <article class="stat-card">
       <p class="stat-card__value">20</p>
-      <h2 class="stat-card__label">Owner admin commands</h2>
+      <h3 class="stat-card__label">Owner admin commands</h3>
       <p class="stat-card__note">Reload cogs, update, sync, and manage config without restarting.</p>
     </article>
 
     <article class="stat-card">
       <p class="stat-card__value">26</p>
-      <h2 class="stat-card__label">Social actions</h2>
-      <p class="stat-card__note">Quick reaction-style prefix shortcuts.</p>
+      <h3 class="stat-card__label">Social actions</h3>
+      <p class="stat-card__note">Quick reaction-style prefix shortcuts — part of the 189 public.</p>
     </article>
 
     <article class="stat-card">
       <p class="stat-card__value">33</p>
-      <h2 class="stat-card__label">Fun one-liners</h2>
-      <p class="stat-card__note">Single-word commands for fast server banter.</p>
+      <h3 class="stat-card__label">Fun one-liners</h3>
+      <p class="stat-card__note">Single-word commands for banter — part of the 189 public.</p>
     </article>
   </div>
 </section>
 
 <section class="stack">
   <div class="section-head">
-    <p class="eyebrow">Jump right in</p>
     <h2>Find what you need</h2>
     <p>New? Start with Setup. Running your own instance? Self-Hosting covers Docker, config keys, logs, and owner maintenance.</p>
   </div>
   <div class="card-grid">
-    <article class="info-card" style="padding:1.1rem;">
-      <h3>Commands</h3>
+    <a class="info-card" href="docs/commands.html" style="padding:1.1rem;">
+      <h3>Commands →</h3>
       <p>Full command reference with search and category filters. Grouped by workflow, not by source file.</p>
-    </article>
+    </a>
 
-    <article class="info-card" style="padding:1.1rem;">
-      <h3>Setup</h3>
+    <a class="info-card" href="docs/setup.html" style="padding:1.1rem;">
+      <h3>Setup →</h3>
       <p>Six steps from a fresh clone to a running bot. No extra tooling required.</p>
-    </article>
+    </a>
 
-    <article class="info-card" style="padding:1.1rem;">
-      <h3>Self-Hosting</h3>
+    <a class="info-card" href="docs/self-hosting.html" style="padding:1.1rem;">
+      <h3>Self-Hosting →</h3>
       <p>Config reference, Docker path, log location, data directories, and every owner maintenance command.</p>
-    </article>
+    </a>
 
-    <article class="info-card" style="padding:1.1rem;">
-      <h3>FAQ</h3>
+    <a class="info-card" href="docs/faq.html" style="padding:1.1rem;">
+      <h3>FAQ →</h3>
       <p>Quick answers to common questions about intents, persistence, Groq setup, and Docker.</p>
-    </article>
+    </a>
 
-    <article class="info-card" style="padding:1.1rem;">
-      <h3>Privacy</h3>
+    <a class="info-card" href="docs/changelog.html" style="padding:1.1rem;">
+      <h3>Changelog →</h3>
+      <p>What's new in each release — features, fixes, and breaking changes, newest first.</p>
+    </a>
+
+    <a class="info-card" href="docs/privacy.html" style="padding:1.1rem;">
+      <h3>Privacy →</h3>
       <p>What NanoBot stores, what it never stores, third-party calls, and how to request deletion.</p>
-    </article>
+    </a>
   </div>
 </section>
 
 <section class="stack">
   <div class="split-card">
     <div>
-      <p class="eyebrow">Mobile-first design choices</p>
       <h2>Built around how you actually moderate</h2>
       <ul class="bullet-list">
         <li>Most moderation commands target the last message sender when no user is specified — no copying IDs on a phone keyboard.</li>
@@ -146,7 +149,6 @@
       </ul>
     </div>
     <div>
-      <p class="eyebrow">Quick requirements</p>
       <h2>What you need to run NanoBot</h2>
       <ul class="bullet-list">
         <li>Python 3.11 or newer.</li>
@@ -160,10 +162,12 @@
 
 <section class="stack">
   <div class="section-head">
-    <p class="eyebrow">Add NanoBot to Discord</p>
-    <h2>Invite NanoBot to your server</h2>
-    <p>Use the official invite link to add NanoBot with slash commands and moderation permissions preconfigured.</p>
-    <p><a class="button" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&scope=bot+applications.commands&permissions=1374675922134" target="_blank" rel="noopener noreferrer">Invite NanoBot</a></p>
+    <h2>Add NanoBot — hosted or your own</h2>
+    <p>Add the public bot in one click with slash commands and moderation permissions preconfigured — or stand up your own instance from the source. Either way the setup is short.</p>
+    <p class="button-row">
+      <a class="button" href="https://discord.com/oauth2/authorize?client_id=1478550873457299603&scope=bot+applications.commands&permissions=1374675922134" target="_blank" rel="noopener noreferrer">Invite NanoBot</a>
+      <a class="button button--ghost" href="docs/setup.html">Self-host it →</a>
+    </p>
   </div>
 </section>
 

@@ -1,5 +1,5 @@
 :root {
-  /* NanoBot Blue Palette */
+  /* NanoBot Blue Palette (matches the mascot) */
   --bg: #070d1b;
   --bg-strong: #0b1528;
   --panel: rgba(12, 24, 54, 0.66);
@@ -16,8 +16,8 @@
   --glass-blur: blur(18px);
   --radius: 22px;
   --max: 1180px;
-  --font-heading: "Avenir Next", "Trebuchet MS", "Gill Sans", ui-sans-serif, sans-serif;
-  --font-body: "Avenir Next", "Segoe UI", ui-sans-serif, sans-serif;
+  --font-heading: "Bricolage Grotesque", "Avenir Next", "Trebuchet MS", ui-sans-serif, sans-serif;
+  --font-body: "Hanken Grotesk", "Segoe UI", ui-sans-serif, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -255,7 +255,7 @@ pre code {
 }
 
 .hero__card {
-  padding: 1.25rem 1.25rem 1.25rem 1.6rem;
+  padding: 1.25rem;
   overflow: hidden;
   position: relative;
 }
@@ -287,10 +287,10 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(2rem, 7vw, 4.2rem);
   max-width: 14ch;
-  background: linear-gradient(135deg, #fff 30%, var(--accent-strong));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 0 34px rgba(26, 108, 245, 0.28);
 }
 
 h2 { font-size: clamp(1.35rem, 3vw, 2rem); }
@@ -366,6 +366,9 @@ h3 { font-size: 1.05rem; }
 
 /* ── Stat cards ── */
 .stat-card, .info-card, .step-card, .config-card { padding: 1.1rem; }
+/* info-cards are real links to their topic pages */
+a.info-card { display: block; text-decoration: none; color: inherit; }
+a.info-card:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
 
 .stat-card {
   position: relative;
@@ -443,7 +446,7 @@ h3 { font-size: 1.05rem; }
 
 /* ── Toolbar / search ── */
 .toolbar { display: grid; gap: 1rem; padding: 2rem; margin: 1rem; }
-.search { display: grid; gap: .45rem; l }
+.search { display: grid; gap: .45rem; }
 .search__label { font-weight: 800; font-size: .9rem; }
 
 input[type="search"] {
