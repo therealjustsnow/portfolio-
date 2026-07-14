@@ -28,7 +28,6 @@ docs/
   commands.html
   faq.html
   self-hosting.html
-  setup.html
   styles.css
   app.js
 ```
