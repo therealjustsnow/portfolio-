@@ -10,8 +10,13 @@ Usage:
         Print counts as JSON.
 
     scripts/count-commands.py <nanobot-repo> --update <html-file>
-        Also rewrite the "By the numbers" stat-card values in the HTML file
+        Also rewrite the "By the numbers" stat cards, the prose breakdown,
+        and the "part of the N public" notes in the HTML file
         (nanobot-docs.html) in place.
+
+    scripts/count-commands.py <nanobot-repo> --update-total <html-file>
+        Also rewrite the single "Commands" nb-stat card to the total
+        (nanobot.html) in place. Can be combined with --update.
 
 <nanobot-repo> is the root of a NanoBot checkout — the directory containing
 cogs/. The numbers shown on nanobot-docs.html are derived from this script.
@@ -213,6 +218,29 @@ def update_html(html_path, counts):
     if n != 1:
         sys.exit(f"error: could not find the 'command definitions' line in {html_path}")
 
+    # Prose breakdown on the same line ("N public, N restricted, N owner").
+    # Best-effort: the wording can drift, so warn rather than crash CI.
+    text, n = re.subn(
+        r"\b\d+ public, \d+ restricted, \d+ owner\b",
+        f"{counts['public']} public, {counts['restricted']} restricted, "
+        f"{counts['owner']} owner",
+        text,
+        count=1,
+    )
+    if n != 1:
+        print(f"warning: no 'N public, N restricted, N owner' breakdown found in "
+              f"{html_path}; skipped", file=sys.stderr)
+
+    # "part of the N public" stat-card notes (Social actions / Fun one-liners).
+    text, n = re.subn(
+        r"\bpart of the \d+ public\b",
+        f"part of the {counts['public']} public",
+        text,
+    )
+    if n == 0:
+        print(f"warning: no 'part of the N public' notes found in {html_path}; "
+              f"skipped", file=sys.stderr)
+
     for key, label in STAT_LABELS.items():
         pattern = (
             r'(<p class="stat-card__value">)\d+(</p>\s*'
@@ -233,6 +261,33 @@ def update_html(html_path, counts):
     return False
 
 
+def update_total(html_path, counts):
+    """Sync the single 'Commands' nb-stat-val card (nanobot.html) to the total."""
+    text = original = html_path.read_text()
+    text, n = re.subn(
+        r'(<div class="nb-stat-val">)\d+(</div>\s*'
+        r'<div class="nb-stat-label">Commands</div>)',
+        lambda m: f"{m.group(1)}{counts['total']}{m.group(2)}",
+        text,
+    )
+    if n != 1:
+        sys.exit(f"error: expected exactly one 'Commands' nb-stat card in "
+                 f"{html_path}, found {n}")
+    if text != original:
+        html_path.write_text(text)
+        return True
+    return False
+
+
+def _flag_value(argv, flag):
+    if flag not in argv:
+        return None
+    i = argv.index(flag)
+    if i + 1 >= len(argv):
+        sys.exit(f"error: {flag} requires an HTML file path")
+    return argv[i + 1]
+
+
 def main(argv):
     if not argv:
         sys.exit(__doc__)
@@ -240,11 +295,13 @@ def main(argv):
     repo = Path(argv[0])
     counts = classify(repo)
 
-    if "--update" in argv:
-        i = argv.index("--update")
-        if i + 1 >= len(argv):
-            sys.exit("error: --update requires an HTML file path")
-        counts["html_updated"] = update_html(Path(argv[i + 1]), counts)
+    update = _flag_value(argv, "--update")
+    if update is not None:
+        counts["html_updated"] = update_html(Path(update), counts)
+
+    update_total_path = _flag_value(argv, "--update-total")
+    if update_total_path is not None:
+        counts["total_updated"] = update_total(Path(update_total_path), counts)
 
     print(json.dumps(counts, indent=2))
 
