@@ -216,7 +216,7 @@ def update_html(html_path, counts):
     for key, label in STAT_LABELS.items():
         pattern = (
             r'(<p class="stat-card__value">)\d+(</p>\s*'
-            r'<h2 class="stat-card__label">' + re.escape(label) + r"</h2>)"
+            r'<h([23]) class="stat-card__label">' + re.escape(label) + r"</h\3>)"
         )
         text, n = re.subn(
             pattern,

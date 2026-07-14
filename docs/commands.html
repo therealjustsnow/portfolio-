@@ -3835,17 +3835,17 @@
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
 
-<article class="command-card" data-cluster="Community" data-access="Public" data-search="report coop co-op reward partner confirms economy public none">
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="squad coop co-op reward teammates confirm party picker economy public none">
   <div class="command-card__top">
-    <h3><code>report</code></h3>
+    <h3><code>squad</code></h3>
     <div class="badge-row">
       <span class="badge">Community</span>
       <span class="badge">Slash + prefix</span>
       <span class="badge ">Public</span>
     </div>
   </div>
-  <p>Log a co-op activity with a partner who confirms it to split a shared reward.</p>
-  <p class="meta-line"><strong>Usage</strong> <code>/report &lt;member&gt; [activity] | n!report &lt;member&gt; [activity]</code></p>
+  <p>Reward a co-op activity — tag up to 5 teammates directly, or tag no one to open a picker for a squad of up to 25. Everyone confirms, then the whole squad earns coins.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/squad [member] … [activity] | n!squad [member] … [activity]</code></p>
   <p class="meta-line"><strong>Example</strong> <code>n!coop @snow patrol</code></p>
   <p class="meta-line"><strong>Permission</strong> None</p>
 </article>
@@ -4728,6 +4728,171 @@
   <p>Show the current live-role configuration.</p>
   <p class="meta-line"><strong>Usage</strong> <code>/liverole status</code></p>
   <p class="meta-line"><strong>Permission</strong> Manage Roles</p>
+</article>
+
+  </div>
+</section>
+
+<section class="command-section" data-cluster="Community">
+  <div class="section-head">
+    <p class="eyebrow">Community</p>
+    <h2>Tickets <span class="count-pill">11</span></h2>
+    <p>Private-thread support tickets — members open a thread, staff claim and close it, with a persistent Open Ticket panel button and auto-generated transcripts.</p>
+  </div>
+  <div class="command-grid">
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="ticket open create support thread modal subject tickets public none">
+  <div class="command-card__top">
+    <h3><code>ticket open</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Open a private support ticket. With no subject you get a modal to fill in.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket open [subject]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Public" data-search="ticket close resolve archive transcript reason tickets public none opener staff">
+  <div class="command-card__top">
+    <h3><code>ticket close</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge ">Public</span>
+    </div>
+  </div>
+  <p>Close this ticket. The opener or any staff member can close it; the thread is archived and a transcript posted to the log channel.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket close [reason]</code></p>
+  <p class="meta-line"><strong>Permission</strong> None (opener or staff)</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket claim assign staff handling tickets restricted staff role">
+  <div class="command-card__top">
+    <h3><code>ticket claim</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Claim this ticket so members know which staff member is handling it.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket claim</code></p>
+  <p class="meta-line"><strong>Permission</strong> Staff role</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket add invite member thread tickets restricted staff role">
+  <div class="command-card__top">
+    <h3><code>ticket add</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Add a member to this ticket thread.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket add &lt;member&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Staff role</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket remove kick member thread tickets restricted staff role">
+  <div class="command-card__top">
+    <h3><code>ticket remove</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Remove a member from this ticket thread.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket remove &lt;member&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Staff role</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket setup staff role log channel max open configure tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket setup</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set the staff role, an optional log channel, and the per-member open-ticket cap.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket setup &lt;staff_role&gt; [log_channel] [max_open]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket panel button post open ticket message title tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket panel</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Post the persistent Open Ticket button panel, with an optional custom title and message.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket panel [channel] [title] [message]</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket limit max open per member cap tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket limit</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Set how many tickets one member can have open at once (1-10).</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket limit &lt;amount&gt;</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket config show settings staff role log channel tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket config</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Show the current ticket settings.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket config</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket enable turn on tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket enable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Turn the ticket system on.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket enable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
+</article>
+
+<article class="command-card" data-cluster="Community" data-access="Restricted" data-search="ticket disable turn off tickets restricted manage server">
+  <div class="command-card__top">
+    <h3><code>ticket disable</code></h3>
+    <div class="badge-row">
+      <span class="badge">Community</span>
+      <span class="badge">Slash</span>
+      <span class="badge badge--strong">Restricted</span>
+    </div>
+  </div>
+  <p>Turn the ticket system off. Open tickets stay usable.</p>
+  <p class="meta-line"><strong>Usage</strong> <code>/ticket disable</code></p>
+  <p class="meta-line"><strong>Permission</strong> Manage Server</p>
 </article>
 
   </div>

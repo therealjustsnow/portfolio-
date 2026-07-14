@@ -58,7 +58,7 @@ scripts/count-commands.py external/NanoBot --update nanobot-docs.html
 
 When NanoBot changes, re-run the script. `--update` syncs `nanobot-docs.html` automatically; then manually update the single `Commands` stat-card value on `nanobot.html` to match the `total`, and add any new command categories to `docs/commands.html`. The submodule clone may be blocked by the sandbox proxy — in that case fetch a tarball (`https://codeload.github.com/therealjustsnow/NanoBot/tar.gz/refs/heads/main`) and run the script against the extracted dir.
 
-> Current counts (NanoBot `main`, last sync): **368 total** — 189 public, 159 restricted, 20 owner (59 dynamic fun commands included in public).
+> Current counts (NanoBot `main`, last sync): **381 total** — 200 public, 160 restricted, 21 owner (59 dynamic fun commands included in public).
 
 ### JS / CSS
 
