@@ -44,8 +44,11 @@ The command totals shown on `nanobot-docs.html` (the "By the numbers" stat cards
 # Print counts as JSON (point at a NanoBot checkout — the dir containing cogs/)
 scripts/count-commands.py external/NanoBot
 
-# Also rewrite the "By the numbers" stat cards in nanobot-docs.html in place
+# Also rewrite nanobot-docs.html (stat cards + prose breakdown + notes) in place
 scripts/count-commands.py external/NanoBot --update nanobot-docs.html
+
+# Also rewrite the single "Commands" stat card on nanobot.html in place
+scripts/count-commands.py external/NanoBot --update nanobot-docs.html --update-total nanobot.html
 ```
 
 **Counting rules** (see the script docstring for detail):
@@ -56,9 +59,9 @@ scripts/count-commands.py external/NanoBot --update nanobot-docs.html
 
 **Critical gotcha:** the script must walk cogs with `rglob("*.py")`, not `glob("*.py")`. NanoBot reorganized its larger cogs into packages (`cogs/admin/`, `cogs/fun/`, `cogs/music/`, `cogs/moderation/`, `cogs/utility/`); a flat `glob` silently skips every command inside those subpackages (it once reported 130 instead of the real total). The script aborts if the total comes back under 50 as a guard against this.
 
-When NanoBot changes, re-run the script. `--update` syncs `nanobot-docs.html` automatically; then manually update the single `Commands` stat-card value on `nanobot.html` to match the `total`, and add any new command categories to `docs/commands.html`. The submodule clone may be blocked by the sandbox proxy — in that case fetch a tarball (`https://codeload.github.com/therealjustsnow/NanoBot/tar.gz/refs/heads/main`) and run the script against the extracted dir.
+When NanoBot changes, re-run the script. `--update` syncs `nanobot-docs.html` (stat cards, prose breakdown, and "part of the N public" notes) and `--update-total` syncs the `Commands` stat on `nanobot.html` — both are numeric-only and safe to automate (the `check-nanobot-updates.yml` workflow runs both). Adding any new command **categories** to `docs/commands.html` is still a manual review step. The submodule clone may be blocked by the sandbox proxy — in that case fetch a tarball (`https://codeload.github.com/therealjustsnow/NanoBot/tar.gz/refs/heads/main`) and run the script against the extracted dir.
 
-> Current counts (NanoBot `main`, last sync): **368 total** — 189 public, 159 restricted, 20 owner (59 dynamic fun commands included in public).
+> Current counts (NanoBot `main`, last sync): **381 total** — 200 public, 160 restricted, 21 owner (59 dynamic fun commands included in public).
 
 ### JS / CSS
 
